@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Page title="{i18n>pagRootFavouritesTitle}">
+		<headerContent>
+			<ToggleButton press="onToggleFavourite" pressed="{view>/isFavourite}" visible="{= !${view>/edit} }"
+				tooltip="{= ${view>/isFavourite} ? ${i18n>btnRootRemoveFavouriteTooltip} : ${i18n>btnRootAddFavouriteTooltip} }"
+				icon="{= ${view>/isFavourite} ? 'sap-icon://favorite' : 'sap-icon://unfavorite' }"/>
+			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" press="onToggleEdit" 
+				tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+		</headerContent>
+		
+		<List items="{view>/favourites}" mode="{= ${view>/edit} ? 'Delete' : 'None'}" delete="onDeleteFavouriteEdit">
+			<CustomListItem press="onNavigateToFavourite" class="sapMSLI" type="{= ${view>/edit} ? 'Inactive' : 'Active'}" >
+				<Input width="90%" visible="{view>/edit}" value="{view>title}" class="sapUiSmallMarginBegin"/>
+				<Label width="90%" visible="{= !${view>/edit} }" text="{view>title}" class="sapUiSmallMarginBegin"/>
+			</CustomListItem>
+		</List>
+	</Page>
+</core:FragmentDefinition>

@@ -1,0 +1,58 @@
+<mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+	<Page id="pagEntity" 
+		title="{
+			parts: [{path: 'view>/id'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'}, 
+				{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}
+			],
+			formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
+		}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		
+		<headerContent>
+			<Button icon="sap-icon://save" visible="{= ${view>/edit} &amp;&amp; !${data>/deleted} }" press="onSave" 
+				tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
+			<Button icon="sap-icon://undo" visible="{data>/deleted}" press="onRestore" 
+				tooltip="{i18n>btnEntityRestoreTooltip}"/>
+			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" visible="{= !${data>/deleted} }" press="onToggleEdit" 
+				tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+		</headerContent>
+		
+		<ObjectHeader
+			responsive="true"
+			fullScreenOptimized="true"
+			icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
+			title="{
+				parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
+				formatter: 'spet.sbwo.web.model.formatter.personName'
+			}"
+			intro="{
+				parts: [{path: 'data>/location/country/name'}, {path: 'data>/location/region/name'}, {path: 'data>/location/address'}],
+				formatter: 'spet.sbwo.web.model.formatter.address'
+			}">
+			<statuses>
+				<ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
+			</statuses>
+			<headerContainer>
+				<IconTabBar class="sapUiResponsiveContentPadding">
+					<items>
+						<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonTabs" type="XML" />
+						<core:Fragment fragmentName="spet.sbwo.web.fragment.display.PersonTabs" type="XML" />
+					</items>
+				</IconTabBar>
+			</headerContainer>
+		</ObjectHeader>
+		
+		<footer>
+			<Toolbar>
+				<spet:DraftIndicator state="{view>/draft}" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://delete" visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} }" press="onDelete" 
+					text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}" type="Reject"/>
+				<Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}" visible="{view>/edit}" 
+					tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

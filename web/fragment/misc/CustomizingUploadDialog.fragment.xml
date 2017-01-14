@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified">
+	<Dialog id="dlgUpload" stretch="{device>/system/phone}" title="{i18n>dlgCustomizingUploadTitle}" busy="{view>/busy}">
+		<Panel>
+			<Text text="{view>text}"/>
+		</Panel>
+		<f:Form editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout 
+					labelSpanL="4"	labelSpanM="5"
+					emptySpanL="4"	emptySpanM="2"
+					columnsL="1"	columnsM="1" />
+			</f:layout>
+			<f:FormContainer>
+				<f:FormElement label="{i18n>lblCustomizingUploadSeparatorText}">
+					<ComboBox value="{view>separator}">
+						<core:Item text=","/>
+						<core:Item text=";"/>
+						<core:Item text="&#x9;"/>
+					</ComboBox>
+				</f:FormElement>
+				<f:FormElement label="{i18n>lblCustomizingUploadHeaderText}">
+					<CheckBox selected="{view>header}" />
+				</f:FormElement>
+				<f:FormElement label="{i18n>lblCustomizingUploadFileText}">
+					<u:FileUploader
+						id="fupCustomizing"
+						uploadUrl="{
+							parts: [{path: 'view>target'}, {path: 'view>separator'}, {path: 'view>header'}], 
+							formatter: '.formatUploadUrl'
+						}"
+						width="100%"
+						sendXHR="true"
+						useMultipart="false"
+						fileType="csv"
+						tooltip="{i18n>fupCustomizingTooltip}"
+						uploadComplete="onUploadComplete">
+						<u:headerParameters>
+							<u:FileUploaderParameter
+								name="X-CSRF-TOKEN"
+								value="{view>/securityToken}"/>
+						</u:headerParameters>
+					</u:FileUploader>
+				</f:FormElement>
+			</f:FormContainer>
+		</f:Form>
+		
+		<beginButton>
+			<Button icon="sap-icon://upload" text="{i18n>btnCustomizingUploadConfirmText}" press="onUploadStart"/>
+		</beginButton>
+		<endButton>
+			<Button icon="sap-icon://decline" text="{i18n>btnCustomizingUploadCancelText}" press="onCloseUploadDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.util"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<spet:EventWrapper sapshow="onAddPersonPhone" saphide="onDeletePersonLastPhone">
+		<Panel>
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>tblPersonPhonesHeader}" />
+					<ToolbarSpacer />
+					<Button icon="sap-icon://add" tooltip="{i18n>btnAddTooltip}" press="onAddPersonPhone" />
+				</Toolbar>
+			</headerToolbar>
+			<Table items="{data>telephones}" visible="{= ${data>telephones/length} &gt; 0 }" 
+				keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
+				<columns>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonPhoneNumberHeaderText}" /></header></Column>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonPhoneNameHeaderText}" /></header></Column>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonPhonePrimaryHeaderText}" /></header></Column>
+				</columns>
+				<ColumnListItem vAlign="Middle">
+					<Input value="{data>telephone}" cd:context="/fields/person/telephone" change="onValueChanged"/>
+					<Input value="{data>name}" change="onValueChanged"/>
+					<Switch state="{data>primary}" type="AcceptReject" change="onPrimaryFlagChanged"/>
+				</ColumnListItem>
+			</Table>
+		</Panel>
+	</spet:EventWrapper>
+</core:FragmentDefinition>

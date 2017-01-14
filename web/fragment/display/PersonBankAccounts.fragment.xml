@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Panel headerText="{i18n>tblPersonBankAccountsHeader}">
+		<List items="{data>bankAccounts}">
+			<StandardListItem title="{data>accountNumber}" description="{data>bank}" infoState="Success" type="Inactive"
+				info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
+		</List>
+	</Panel>
+</core:FragmentDefinition>

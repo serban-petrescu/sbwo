@@ -1,0 +1,24 @@
+<mvc:View controllerName="spet.sbwo.web.controller.list.PersonList" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="pagList" 
+		title="{i18n>pagPersonListTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<subHeader>
+			<Toolbar>
+				<SearchField id="seaMain" width="100%" search="onSearch"/>
+			</Toolbar>
+		</subHeader>
+		<List id="lstMain" items="{path: '/PersonSearchs', sorter: {path: 'Name'}}">
+			<StandardListItem title="{Name}" 
+				type="Navigation"
+				icon="{= ${Type} === 'NATURAL' ? 'sap-icon://customer' : 'sap-icon://group'}"
+				press="onPressItem"
+				description="{
+					parts: [{path: 'Country'}, {path: 'Region'}, {path: 'Address'}], 
+					formatter: 'spet.sbwo.web.model.formatter.address'
+				}">
+			</StandardListItem>
+		</List>
+	</Page>
+</mvc:View>

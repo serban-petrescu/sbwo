@@ -1,0 +1,41 @@
+<mvc:View controllerName="spet.sbwo.web.controller.list.DeletedEntityList" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Page id="pagList" 
+		title="{i18n>pagDeletedEntitiesTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<subHeader>
+			<Toolbar>
+				<SearchField id="seaMain" width="100%" search="onSearch"/>
+			</Toolbar>
+		</subHeader>
+		<Table id="lstMain" 
+			mode="MultiSelect"
+			selectionChange="onSelectionChange"
+			items="{path: '/DeletedEntitys', sorter: {path: 'DeletedOn', descending: true}}">
+			<columns>
+				<Column width="3em" />
+				<Column />
+				<Column />
+				<Column width="3em"/>
+			</columns>
+			<ColumnListItem vAlign="Middle">
+				<core:Icon src="{path: 'Type', formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+				<Text text="{Title}" />
+				<Text text="{path: 'DeletedOn', type: 'sap.ui.model.type.DateTime', formatOptions: {style: 'short'}}" />
+				<Button type="Transparent" icon="sap-icon://navigation-right-arrow" press="onPressItem" />
+			</ColumnListItem>
+		</Table>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="{i18n>btnThrashCanEmptyText}" icon="sap-icon://multiselect-all" type="Reject" 
+					press="onDeleteAll" visible="{= !${view>/selection} }"/>
+				<Button text="{i18n>btnThrashCanDeleteText}" icon="sap-icon://delete" type="Reject"
+					press="onDeleteSelected" visible="{view>/selection}"/>
+				<Button text="{i18n>btnThrashCanRestoreText}" icon="sap-icon://undo" type="Accept"
+					press="onRestoreSelected" visible="{view>/selection}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

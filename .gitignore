@@ -1,0 +1,9 @@
+/.classpath
+/.project
+/.settings/
+/public/resources/
+/log/
+/data/
+/target/
+/.project.json
+/.user.project.json

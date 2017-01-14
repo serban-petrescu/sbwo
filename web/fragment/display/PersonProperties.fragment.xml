@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<f:Form editable="false" >
+		<f:layout>
+			<f:ResponsiveGridLayout
+				labelSpanL="4"	labelSpanM="5"
+				emptySpanL="4"	emptySpanM="2"
+				columnsL="1"	columnsM="1" />
+		</f:layout>
+		<f:FormContainer visible="{= ${data>type} === 1 }">
+			<f:FormElement label="{i18n>lblPersonTypeText}">
+				<Text text="{i18n>txtPersonTypeJuridical}"/>
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonNameText}" visible="{= !!${data>name} }">
+				<Text text="{data>name}"/>
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonIdNumberText}" visible="{= !!${data>idNumber} }" >
+				<Text text="{data>idNumber}"/>
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonRegNumberText}" visible="{= !!${data>regNumber} }" >
+				<Text text="{data>regNumber}"/>
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonJointStockText}" visible="{= !!${data>jointStock} }" >
+				<Text text="{path: 'data>jointStock', type: 'sap.ui.model.odata.type.Decimal'}" />
+			</f:FormElement>
+		</f:FormContainer>
+		<f:FormContainer visible="{= ${data>type} === 0 }">
+			<f:FormElement label="{i18n>lblPersonTypeText}">
+				<Text text="{i18n>txtPersonTypeNatural}"/>
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonFirstNameText}" visible="{= !!${data>firstName} }" >
+				<Text text="{data>firstName}" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonLastNameText}" visible="{= !!${data>lastName} }" >
+				<Text text="{data>lastName}" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonPersonlNumberText}" visible="{= !!${data>personalNumber} }" >
+				<Text text="{data>personalNumber}" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonIdCardTypeText}" visible="{= ${data>identityCardType} !== null }" >
+				<Text text="{path: 'data>identityCardType', formatter: 'spet.sbwo.web.model.formatter.identityCardType'}" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblPersonIdCardNumberText}" visible="{= !!${data>identityCardNumber} }" >
+				<Text text="{data>identityCardNumber}" />
+			</f:FormElement>
+		</f:FormContainer>
+	</f:Form>
+</core:FragmentDefinition>

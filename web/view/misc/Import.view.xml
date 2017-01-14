@@ -1,0 +1,63 @@
+<mvc:View controllerName="spet.sbwo.web.controller.misc.Import" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<Page id="pagImport" 
+		title="{i18n>pagImportTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		
+		<Panel>
+			<u:FileUploader
+				id="fupImport"
+				uploadUrl="{
+					path: 'view>name', 
+					formatter: '.formatUploadUrl'
+				}"
+				multiple="true"
+				width="100%"
+				sendXHR="true"
+				name="files"
+				useMultipart="true"
+				fileType="csv"
+				tooltip="{i18n>fupImportTooltip}"
+				change="onUploadChange"
+				uploadComplete="onUploadComplete">
+				<u:headerParameters>
+					<u:FileUploaderParameter
+						name="X-CSRF-TOKEN"
+						value="{view>/securityToken}"/>
+				</u:headerParameters>
+			</u:FileUploader>
+		</Panel>
+		
+		<IconTabBar items="{view>/data}" selectedKey="{view>/selected}" select="onUpdateBinding">
+			<items>
+				<IconTabFilter key="{view>name}" text="{path: 'view>name', formatter: '.formatTabText'}">
+					<Panel>
+						<Text text="{path: 'view>name', formatter: '.formatTabDescription'}" class="sapUiTinyMarginBottom"/>
+					</Panel>
+					<List items="{path: 'view>files', templateShareable: true}">
+						<ObjectListItem title="{view>name}"
+							number="{path: 'view>size', type: 'sap.ui.model.type.FileSize', formatOptions: {binaryFilesize: true}}">
+							<firstStatus>
+								<ObjectStatus 
+									text="{= ${view>exists} ? ${i18n>obsImportFileStatusExists} : ${i18n>obsImportFileStatusNotExists} }" 
+									state="{= ${view>exists} ? 'Success' : 'Error' }" />
+							</firstStatus>
+							<attributes>
+								<ObjectAttribute text="{path: 'view>name', formatter: '.formatFileDescription'}" />
+							</attributes>
+						</ObjectListItem>
+					</List>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		
+		<footer>
+			<Toolbar>
+				<Button icon="sap-icon://reset" text="{i18n>btnImportResetText}" type="Reject" press="reset" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://accept" text="{i18n>btnImportAcceptText}" type="Accept" press="onStartUpload" visible="{view>ready}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

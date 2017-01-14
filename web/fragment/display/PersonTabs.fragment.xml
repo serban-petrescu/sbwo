@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<IconTabFilter icon="sap-icon://hint" visible="{= !${view>/edit} }" binding="{data>/}">
+		<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonProperties" />
+	</IconTabFilter>
+	<IconTabFilter icon="sap-icon://map" visible="{= !${view>/edit} }" binding="{data>/location}">
+		<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>
+	</IconTabFilter>
+	<IconTabFilter icon="sap-icon://phone" visible="{= !${view>/edit} &amp;&amp; !!${data>/telephones/length} }" binding="{data>/}">
+		<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonPhones" />
+	</IconTabFilter>
+	<IconTabFilter icon="sap-icon://arobase" visible="{= !${view>/edit} &amp;&amp; !!${data>/emailAddresses/length} }" binding="{data>/}">
+		<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonEmails" />
+	</IconTabFilter>
+	<IconTabFilter icon="sap-icon://loan" visible="{= !${view>/edit} &amp;&amp; !!${data>/bankAccounts/length} }" binding="{data>/}">
+		<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonBankAccounts" />
+	</IconTabFilter>
+</core:FragmentDefinition>

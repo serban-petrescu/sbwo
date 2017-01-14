@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title></title>
+
+		<script id="sap-ui-bootstrap"
+			src="/public/resources/openui5/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"login": ""}'>
+		</script>
+
+		<style>
+			.welcomeText {
+			    background-color: rgb(255, 255, 255);
+			    background-color: rgba(255, 255, 255, 0.5);
+			    width: 18rem;
+			    margin-bottom: 0.5rem;
+			}
+			.sapUiSizeCompact .welcomeText {
+				padding-top: 0.3rem;
+				padding-bottom: 0.3rem;
+			}
+			.sapUiSizeCozy .welcomeText {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+			}
+			form {
+			    height: 100%;
+			    width: 100%;
+			}
+		</style>
+
+		<script>
+			jQuery.ajax({
+				method: "GET",
+				url:	"/public/rest/user/current",
+				dataType: "json",
+				success: function() {
+					window.location.replace("/private/web/index.html")
+				}
+			});
+			
+			sap.ui.getCore().attachInit(function() {
+				sap.ui.xmlview("login.view.Main").placeAt("content");
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content">
+	</body>
+</html>

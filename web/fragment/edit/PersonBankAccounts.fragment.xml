@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.util"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<spet:EventWrapper sapshow="onAddPersonBankAccount" saphide="onDeletePersonLastBankAccount">
+		<Panel>
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>tblPersonBankAccountsHeader}" />
+					<ToolbarSpacer />
+					<Button icon="sap-icon://add" tooltip="{i18n>btnAddTooltip}" press="onAddPersonBankAccount" />
+				</Toolbar>
+			</headerToolbar>
+			<Table items="{data>bankAccounts}" visible="{= ${data>bankAccounts/length} &gt; 0 }" 
+				 keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
+				<columns>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonBankAccAccountHeaderText}" /></header></Column>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonBankAccBankHeaderText}" /></header></Column>
+					<Column minScreenWidth="Medium" demandPopin="true"><header><Label text="{i18n>colPersonBankAccPrimaryHeaderText}" /></header></Column>
+				</columns>
+				<ColumnListItem vAlign="Middle">
+					<Input value="{data>accountNumber}" cd:context="/fields/person/bankAccount" change="onValueChanged"/>
+					<Input value="{data>bank}" change="onValueChanged"/>
+					<Switch state="{data>primary}" type="AcceptReject" change="onPrimaryFlagChanged"/>
+				</ColumnListItem>
+			</Table>
+		</Panel>
+	</spet:EventWrapper>
+</core:FragmentDefinition>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<IconTabFilter text="{i18n>itfCustomizingCountriesText}">
+		<List items="{path: '/LocationCountrys', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
+			<StandardListItem info="{Code}" title="{Name}" />
+		</List>
+	</IconTabFilter>
+	<IconTabFilter text="{i18n>itfCustomizingRegionsText}">
+		<List items="{path: '/LocationRegions', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
+			<StandardListItem info="{Code}" title="{Name}" />
+		</List>
+	</IconTabFilter>
+	<IconTabFilter text="{i18n>itfCustomizingAdmUnitsText}">
+		<List items="{path: '/LocationAdministrativeUnits', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
+			<StandardListItem info="{Code}" title="{Name}" />
+		</List>
+	</IconTabFilter>
+</core:FragmentDefinition>

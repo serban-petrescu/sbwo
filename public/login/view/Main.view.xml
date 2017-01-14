@@ -1,0 +1,33 @@
+<mvc:View controllerName="login.view.Main" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	height="100%">
+	<App backgroundImage="../images/background.jpg">
+		<Page showHeader="false" showFooter="false" backgroundDesign="Transparent">
+			<html:form method="POST" action="/j_security_check">
+				<HBox id="hbxMain" alignItems="Center" justifyContent="Center"
+					width="100%" height="100%">
+					<VBox alignItems="Stretch" justifyContent="Center" height="100%"
+						width="18rem">
+						<Text text="{i18n>txtWelcomeText}" class="welcomeText"
+							textAlign="Center" />
+						<Input id="username" name="j_username" placeholder="{i18n>inpUsernamePlaceholder}" />
+						<Input id="password" name="j_password" placeholder="{i18n>inpPasswordPlaceholder}"
+							type="Password" />
+						<Button text="{i18n>btnLoginText}" press="onLogin" type="Emphasized"
+							width="100%" />
+						<VBox alignItems="End" justifyContent="End" width="100%">
+							<Link visible="{view>/localhost}" href="../users/index.html"
+								text="{i18n>lnkManageUsersText}" />
+						</VBox>
+						<VBox alignItems="Stretch" justifyContent="End" width="100%">
+							<MessageStrip visible="{view>/error}" type="Error"
+								text="{i18n>mssErrorAuthenticationFailedText}" showIcon="true"
+								class="sapUiTinyMarginTop">
+							</MessageStrip>
+						</VBox>
+					</VBox>
+				</HBox>
+			</html:form>
+		</Page>
+	</App>
+</mvc:View>

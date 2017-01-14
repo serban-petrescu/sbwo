@@ -1,0 +1,171 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "spet.sbwo.web",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		},
+		"dataSources": {
+			"main": {
+				"uri": "/private/api/odata/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"odataVersion": "2.0",
+					"localUri": ""
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "spet.sbwo.web.view.Root",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "spet.sbwo.web.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+                "dataSource": "main",
+                "settings": {
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading"
+                    }
+                }
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "spet.sbwo.web.view",
+				"controlId": "appMain",
+				"controlAggregation": "pages",
+				"transition": "slide",
+				"async": true,
+				"bypassed": {
+					"target": ["home"]
+				}
+			},
+			"routes": [{
+				"pattern": "home",
+				"name": "home",
+				"target": "home"
+			}, {
+				"pattern": "person/{id}",
+				"name": "person",
+				"target": "person"
+			}, {
+				"pattern": "person-list/:search:",
+				"name": "person-list",
+				"target": "person-list"
+			}, {
+				"pattern": "person-create",
+				"name": "person-create",
+				"target": "person-create"
+			}, {
+				"pattern": "customizing",
+				"name": "customizing",
+				"target": "customizing"
+			}, {
+				"pattern": "deleted-list/:search:",
+				"name": "deleted-list",
+				"target": "deleted-list"
+			}, {
+				"pattern": "import",
+				"name": "import",
+				"target": "import"
+			}],
+			"targets": {
+				"home": {
+					"viewName": "Home",
+					"title": "{i18n>pagHomeTitle}"
+				},
+				"person": {
+					"viewName": "entity.Person",
+					"title": {
+						"parts": [
+							"view>/id", "i18n>pagEntityLoadingTitle", "i18n>pagEntityPersonPatternTitle", 
+							"data>/type", "data>/firstName", "data>/lastName", "data>/name"
+						],
+						"formatter": "spet.sbwo.web.model.formatter.personPageTitle"
+					}
+				},
+				"not-found": {
+					"viewName": "entity.NotFound",
+					"title": "{i18n>pagEntityNotFoundTitle}"
+				},
+				"person-create": {
+					"viewName": "wizard.PersonCreate",
+					"title": "{i18n>pagPersonCreateTitle}"
+				},
+				"person-list": {
+					"viewName": "list.PersonList",
+					"title": "{i18n>pagPersonListTitle}"
+				},
+				"deleted-list": {
+					"viewName": "list.DeletedEntityList",
+					"title": "{i18n>pagDeletedEntitiesTitle}"
+				},
+				"customizing": {
+					"viewName": "misc.Customizing",
+					"title": "{i18n>pagCustomizingTitle}"
+				},
+				"import": {
+					"viewName": "misc.Import",
+					"title": "{i18n>pagImportTitle}"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,65 @@
+<mvc:View controllerName="spet.sbwo.web.controller.Root" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<u:Shell showPane="{= ${view>/menu} &amp;&amp; !${device>/system/phone} }">
+		<u:headItems>
+			<u:ShellHeadItem
+				tooltip="{i18n>shiRootHomeTooltip}"
+				icon="sap-icon://home"
+				press="onPressHome" />
+			<u:ShellHeadItem
+				tooltip="{i18n>shiRootMenuTooltip}"
+				toggleEnabled="{:= !${device>/system/phone} }"
+				selected="{view>/menu}"
+				icon="sap-icon://favorite-list"
+				press="onShowFavourites" />
+			<u:ShellHeadItem 
+				icon="sap-icon://search" 
+				press="onOpenGlobalSearch" 
+				visible="{:= ${device>/system/phone} }"/>
+		</u:headItems>
+		<u:headEndItems>
+			<u:ShellHeadItem
+				icon="sap-icon://log"
+				tooltip="{i18n>shiRootLogoffTooltip}"
+				press="onLogoff" />
+		</u:headEndItems>
+		<u:user>
+			<u:ShellHeadUserItem
+				image="sap-icon://person-placeholder"
+				username="Karl Mustermann"
+				press="onPressPersonalization" />
+		</u:user>
+		<u:search>
+			<SearchField search="onSearchField" visible="{:= !${device>/system/phone} }" 
+				enableSuggestions="true" suggestionItems="{/GlobalSearchs}" suggest="onSuggestGlobal">
+				<SuggestionItem text="{Title}" description="{Description}" 
+					icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+			</SearchField>
+		</u:search>
+		<u:content>
+			<App id="appMain" />
+		</u:content>
+		<u:paneContent>
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.UserFavouritesPage" type="XML" />
+		</u:paneContent>
+		
+		<u:dependents>
+			<SelectDialog id="sedGlobalSearch"
+				title="{i18n>sedGlobalSearchTitle}" 
+				multiSelect="false" 
+				items="{/GlobalSearchs}"
+				confirm="onSelectSearchDialog"
+				search="onSearchDialog">
+				<StandardListItem title="{Title}" description="{Description}" 
+					icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+			</SelectDialog>
+			
+			<Dialog id="dlgFavourites" stretch="true" showHeader="false">
+				<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.UserFavouritesPage" type="XML" />
+				<endButton>
+					<Button text="{i18n>btnCloseDialogText}" press="onCloseFavourites"/>
+				</endButton>
+			</Dialog>
+		</u:dependents>
+	</u:Shell>
+</mvc:View>

@@ -1,0 +1,18 @@
+{
+	"persons": {
+		"name": "persons",
+		"files": [{
+			"name": "persons",
+			"optional": false
+		},{
+			"name": "telephones",
+			"optional": true
+		},{
+			"name": "emails",
+			"optional": true
+		},{
+			"name": "bankAccounts",
+			"optional": true
+		}]
+	}
+}
