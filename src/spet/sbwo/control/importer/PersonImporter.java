@@ -33,7 +33,7 @@ class PersonImporter extends BaseMapImporter<Person> {
 			PersonJuridical juridical = new PersonJuridical();
 			juridical.setName(entry.get("juridical_name"));
 			juridical.setIdNumber(entry.get("juridical_id_number"));
-			juridical.setRegNumber("juridical_reg_number");
+			juridical.setRegNumber(entry.get("juridical_reg_number"));
 			juridical.setJointStock(Utils.toDecimal(entry.get("juridical_joint_stock")));
 			result = juridical;
 		}

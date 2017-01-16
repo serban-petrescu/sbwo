@@ -30,6 +30,10 @@ sap.ui.define([
 		
 		getEntityListRoute: function() {
 			return "person-list";
+		},
+		
+		onExport: function() {
+			window.location.assign(sBaseApiPath + "/export/" + this.getModel("view").getProperty("/id"));
 		}
 	}));
 

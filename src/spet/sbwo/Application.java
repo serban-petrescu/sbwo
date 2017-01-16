@@ -5,6 +5,7 @@ import javax.persistence.Persistence;
 
 import org.h2.server.web.WebServlet;
 
+import spet.sbwo.api.AuthConditionalFilter;
 import spet.sbwo.api.CsrfTokenFilter;
 import spet.sbwo.api.ImportService;
 import spet.sbwo.api.LocalAddressFilter;
@@ -20,6 +21,7 @@ import spet.sbwo.control.controller.TrashController;
 import spet.sbwo.control.controller.UserController;
 import spet.sbwo.control.controller.UtilityController;
 import spet.sbwo.control.importer.DataImportFacade;
+import spet.sbwo.control.util.SessionManager;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.server.ServerBuilder;
 
@@ -38,14 +40,17 @@ public class Application {
 		TrashController trashController = new TrashController(database, personController);
 		UtilityController utilityController = new UtilityController(database);
 		DataImportFacade dataImportFacade = new DataImportFacade(database);
+		SessionManager sessionManager = new SessionManager(database);
 
 		// Service layer
 		ODataFactory.setEmf(emf);
 		ODataFactory.setPuName("sbwo");
-		PublicService publicService = new PublicService(userController);
+		PublicService publicService = new PublicService(userController, "/public/login/index.html");
 		WebServlet dbWebServlet = new WebServlet();
 		CsrfTokenFilter csrfTokenFilter = new CsrfTokenFilter();
 		LocalAddressFilter localAddressFilter = new LocalAddressFilter();
+		AuthConditionalFilter authConditionalFilter = new AuthConditionalFilter("/public/login/index.html",
+				"/private/web/index.html");
 		ImportService importService = new ImportService(importController, dataImportFacade);
 		PersonService personService = new PersonService(personController);
 		TrashService trashService = new TrashService(trashController);
@@ -55,6 +60,10 @@ public class Application {
 		// Server
 		ServerBuilder serverBuilder = new ServerBuilder();
 		serverBuilder.setPort(8080);
+
+		// Root redirect
+		serverBuilder.createFilterBuilder().setPath("/").setFilter(authConditionalFilter);
+		serverBuilder.createFilterBuilder().setPath("/index.html").setFilter(authConditionalFilter);
 
 		// Public area
 		serverBuilder.createFilterBuilder().setPath("/public/rest/*").setFilter(csrfTokenFilter);
@@ -71,14 +80,18 @@ public class Application {
 		serverBuilder.createFilterBuilder().setPath("/private/api/*").setFilter(csrfTokenFilter);
 		serverBuilder.createFileBuilder().setPath("/private/web/*").setBaseDirectory("web");
 		serverBuilder.createODataBuilder().setPath("/private/api/odata/*").setFactoryClass(ODataFactory.class);
-		serverBuilder.createServiceBuilder().setPath("/private/api/rest/*").addService(importService)
-				.addService(personService).addService(trashService).addService(utilityService).addService(userService);
+		serverBuilder.createServiceBuilder().setPath("/private/api/rest/*").addServices(importService, personService,
+				trashService, utilityService, userService);
 
 		// Server security
-		serverBuilder.setSecuredPath("/private/private/*");
+		serverBuilder.setSecuredPath("/private/*");
 		serverBuilder.setLoginPage("/public/login/index.html");
 		serverBuilder.setErrorPage("/public/login/index.html#/error");
 		serverBuilder.setLoginProvider(userController);
+
+		// Session management
+		serverBuilder.setSessionManager(sessionManager);
+		serverBuilder.setSessionTimeout(60);
 
 		serverBuilder.build().start();
 	}

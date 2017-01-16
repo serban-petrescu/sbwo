@@ -7,6 +7,7 @@ import org.eclipse.jetty.security.AbstractLoginService;
 import org.eclipse.jetty.security.ConstraintMapping;
 import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.authentication.FormAuthenticator;
+import org.eclipse.jetty.server.session.DefaultSessionCache;
 import org.eclipse.jetty.server.session.DefaultSessionIdManager;
 import org.eclipse.jetty.server.session.SessionHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -14,6 +15,7 @@ import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 
 import spet.sbwo.control.util.ILoginProvider;
+import spet.sbwo.control.util.SessionManager;
 
 public class ServerBuilder {
 	private int port = 8080;
@@ -22,6 +24,8 @@ public class ServerBuilder {
 	private String securedPath;
 	private String loginPage;
 	private String errorPage;
+	private SessionManager sessionManager;
+	private int sessionTimeout = 0;
 
 	public ServerBuilder() {
 		this.builders = new LinkedList<>();
@@ -49,6 +53,16 @@ public class ServerBuilder {
 
 	public ServerBuilder setSecuredPath(String securedPath) {
 		this.securedPath = securedPath;
+		return this;
+	}
+
+	public ServerBuilder setSessionTimeout(int minutes) {
+		this.sessionTimeout = minutes * 60;
+		return this;
+	}
+
+	public ServerBuilder setSessionManager(SessionManager manager) {
+		this.sessionManager = manager;
 		return this;
 	}
 
@@ -117,6 +131,15 @@ public class ServerBuilder {
 			DefaultSessionIdManager manager = new DefaultSessionIdManager(server.getInnerServer());
 			SessionHandler session = new SessionHandler();
 			session.setSessionIdManager(manager);
+
+			if (sessionManager != null) {
+				DefaultSessionCache cache = new DefaultSessionCache(session);
+				cache.setSessionDataStore(new SessionDataStore(sessionManager));
+				cache.setRemoveUnloadableSessions(true);
+				cache.setSaveOnCreate(true);
+				session.setSessionCache(cache);
+				session.setMaxInactiveInterval(sessionTimeout);
+			}
 
 			root = new ServletContextHandler(null, "/", true, true);
 			root.setSecurityHandler(security);

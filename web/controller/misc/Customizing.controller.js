@@ -72,7 +72,7 @@ sap.ui.define([
 				MessageBox.success(oBundle.getText("txtCustomizingUploadSuccessText"));
 			}
 			else {
-				this.onInternalServerError(oEvent.getParameter("responseText"));
+				this.onInternalServerError(oEvent.getParameter("responseRaw"));
 			}
 			this.getModel().refresh();
 			this.byId("dlgUpload").close();

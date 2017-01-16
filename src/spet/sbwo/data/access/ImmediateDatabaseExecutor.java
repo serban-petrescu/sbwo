@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import spet.sbwo.data.DatabaseException;
-import spet.sbwo.data.base.BaseEntity;
 
 class ImmediateDatabaseExecutor extends BaseDatabaseExecutor {
 	private static final Logger LOG = LoggerFactory.getLogger(ImmediateDatabaseExecutor.class);
@@ -16,7 +15,7 @@ class ImmediateDatabaseExecutor extends BaseDatabaseExecutor {
 	}
 
 	@Override
-	public <T extends BaseEntity> void update(T entity) throws DatabaseException {
+	public <T> void update(T entity) throws DatabaseException {
 		try {
 			simpleCommandBuilder.update(entity).run(this.em);
 		} catch (Exception e) {
@@ -26,7 +25,7 @@ class ImmediateDatabaseExecutor extends BaseDatabaseExecutor {
 	}
 
 	@Override
-	public <T extends BaseEntity> void delete(T entity) throws DatabaseException {
+	public <T> void delete(T entity) throws DatabaseException {
 		try {
 			simpleCommandBuilder.delete(entity).run(this.em);
 		} catch (Exception e) {
@@ -36,7 +35,7 @@ class ImmediateDatabaseExecutor extends BaseDatabaseExecutor {
 	}
 
 	@Override
-	public <T extends BaseEntity> void create(T entity) throws DatabaseException {
+	public <T> void create(T entity) throws DatabaseException {
 		try {
 			simpleCommandBuilder.create(entity).run(this.em);
 		} catch (Exception e) {

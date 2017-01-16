@@ -122,6 +122,10 @@ sap.ui.define([
 				}.bind(this),
 				error: this.onError.bind(this)
 			});
+		},
+		
+		onNavBack: function() {
+			window.history.go(-1);
 		}
 	});
 });

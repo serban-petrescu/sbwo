@@ -1,6 +1,6 @@
 <mvc:View controllerName="spet.sbwo.web.controller.Root" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
-	<u:Shell showPane="{= ${view>/menu} &amp;&amp; !${device>/system/phone} }">
+	<u:Shell id="shlMain" showPane="{= ${view>/menu} &amp;&amp; !${device>/system/phone} }">
 		<u:headItems>
 			<u:ShellHeadItem
 				tooltip="{i18n>shiRootHomeTooltip}"
@@ -26,31 +26,39 @@
 		<u:user>
 			<u:ShellHeadUserItem
 				image="sap-icon://person-placeholder"
-				username="Karl Mustermann"
+				username="{view>/user/username}"
 				press="onPressPersonalization" />
 		</u:user>
 		<u:search>
-			<SearchField search="onSearchField" visible="{:= !${device>/system/phone} }" 
-				enableSuggestions="true" suggestionItems="{/GlobalSearchs}" suggest="onSuggestGlobal">
-				<SuggestionItem text="{Title}" description="{Description}" 
-					icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
-			</SearchField>
+			<SearchField search="onSearchField" visible="{:= !${device>/system/phone} }" />
 		</u:search>
 		<u:content>
-			<App id="appMain" />
+			<App id="appMain"/>
 		</u:content>
 		<u:paneContent>
 			<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.UserFavouritesPage" type="XML" />
 		</u:paneContent>
 		
 		<u:dependents>
+			<Popover id="popGlobalSearch" 
+				placement="Bottom"
+				showArrow="false"
+				showHeader="false"
+				contentHeight="50%"
+				horizontalScrolling="false">
+				<List growing="true" growingScrollToLoad="true" items="{/GlobalSearchs}" id="lstSearchPopover">
+					<StandardListItem title="{Title}" description="{Description}" type="Active" press="onSelectSearchPopover"
+						icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+				</List>
+			</Popover>
+			
 			<SelectDialog id="sedGlobalSearch"
 				title="{i18n>sedGlobalSearchTitle}" 
 				multiSelect="false" 
 				items="{/GlobalSearchs}"
 				confirm="onSelectSearchDialog"
 				search="onSearchDialog">
-				<StandardListItem title="{Title}" description="{Description}" 
+				<StandardListItem title="{Title}" description="{Description}"
 					icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
 			</SelectDialog>
 			

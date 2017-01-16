@@ -11,8 +11,8 @@ sap.ui.define([], function() {
 		}	
 	};
 	
-	var fnEntityPageTitle = function(iId, sDefault, sPattern) {
-		if (iId === null || iId === undefined) {
+	var fnEntityPageTitle = function(bLoaded, sDefault, sPattern) {
+		if (!bLoaded) {
 			return sDefault;
 		}
 		else {
@@ -28,11 +28,11 @@ sap.ui.define([], function() {
 		
 		entityPageTitle: fnEntityPageTitle,
 		
-		personPageTitle: function(iId, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
+		personPageTitle: function(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
 			if (iType === 0) {
 				sName = oBundle.getText("txtPersonNaturalNameText", [sFirstName, sLastName]);
 			}
-			return fnEntityPageTitle(iId, sDefault, sPattern, sName);
+			return fnEntityPageTitle(bLoaded, sDefault, sPattern, sName);
 		},
 		
 		entityIcon: function(iType, iSubtype) {

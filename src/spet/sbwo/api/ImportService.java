@@ -15,6 +15,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -40,8 +41,10 @@ public class ImportService extends BaseService {
 		this.dataImporter = dataImporter;
 	}
 
+	@POST
 	@Path("/data/{entity}")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces("application/json")
 	public void importData(@PathParam("entity") String entity, @Multipart(value = "files[]") List<Attachment> files,
 			@Context HttpServletRequest request) {
 		try {
@@ -58,10 +61,11 @@ public class ImportService extends BaseService {
 		}
 	}
 
-	@Path("/locations/{separator}/{header}")
 	@POST
+	@Path("/locations/{separator}/{header}")
 	@Consumes({ "text/comma-separated-values", "text/csv", "application/csv", "application/excel",
 			"application/vnd.ms-excel", "application/vnd.msexcel" })
+	@Produces("application/json")
 	public void importLocationsFromCsv(@PathParam("separator") String separator, @PathParam("header") boolean header,
 			InputStream body) {
 		CSVFormat format = CSVFormat.DEFAULT.withDelimiter(separator.charAt(0)).withSkipHeaderRecord(header);
@@ -86,12 +90,11 @@ public class ImportService extends BaseService {
 		Map<String, Iterator<Map<String, String>>> result = new HashMap<>();
 		Map<String, List<String>> fields = dataImporter.fields(target);
 		List<CSVParser> parsers = new LinkedList<>();
+		CSVFormat format = CSVFormat.DEFAULT.withHeader();
 		try {
 			for (Attachment file : files) {
 				String filename = file.getContentDisposition().getFilename().replaceFirst("[.][^.]+$", "");
 				if (fields.containsKey(filename)) {
-					CSVFormat format = CSVFormat.DEFAULT.withSkipHeaderRecord(true)
-							.withHeader(fields.get(filename).toArray(new String[] {}));
 					CSVParser parser = new CSVParser(new InputStreamReader(file.getDataHandler().getInputStream()),
 							format);
 					result.put(filename, new CsvMapIterator(parser.iterator()));

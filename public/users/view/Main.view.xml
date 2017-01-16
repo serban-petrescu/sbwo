@@ -3,7 +3,7 @@
 	height="100%">
 	<Shell backgroundImage="../images/background.jpg">
 		<App>
-			<Page title="{i18n>pageTitle}" showFooter="false"
+			<Page title="{i18n>pageTitle}" showFooter="false" showNavButton="true" navButtonPress="onNavBack"
 				backgroundDesign="Translucent">
 				<List id="lstUsers" growing="true" growingScrollToLoad="true"
 					items="{view>/users}" mode="SingleSelect" selectionChange="onSelect">

@@ -84,7 +84,9 @@ sap.ui.define([
 					},
 					number: {
 						path: "/counts/" + oContext.getProperty("count"),
-						model: "view"
+						model: "view",
+						type: "sap.ui.model.type.Integer",
+						formatOptions: {style: "short"}
 					},
 					numberUnit: oContext.getProperty("unit")
 				});

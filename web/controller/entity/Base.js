@@ -26,7 +26,8 @@ sap.ui.define([
 			this.buildViewModel({
 				edit: false,
 				draft: "Clear",
-				id: null
+				id: null,
+				loaded: false
 			});
 			this.setModel(new JSONModel({}), "data");
 		},
@@ -72,6 +73,7 @@ sap.ui.define([
 		onRead: function() {
 			var oViewModel = this.getModel("view"),
 				oDataModel = this.getModel("data");
+			oViewModel.setProperty("/loaded", false);
 			jQuery.ajax({
 				url:	this.getReadApiUrl(oViewModel.getProperty("/id")),
 				method: "GET",
@@ -79,6 +81,7 @@ sap.ui.define([
 				success: function(oData) {
 					oDataModel.setData(oData);
 					oViewModel.setProperty("/draft", "Clear");
+					oViewModel.setProperty("/loaded", true);
 				},
 				error: this.onRestApiError.bind(this)
 			});

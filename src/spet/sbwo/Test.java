@@ -15,8 +15,8 @@ public class Test {
 		MetadataSources metadata = new MetadataSources(new StandardServiceRegistryBuilder()
 				.applySetting("hibernate.dialect", "org.hibernate.dialect.H2Dialect").build());
 
-		metadata.addAnnotatedClass(BaseEntity.class);
 
+		/*metadata.addAnnotatedClass(BaseEntity.class);
 		metadata.addAnnotatedClass(Person.class);
 		metadata.addAnnotatedClass(PersonBankAccount.class);
 		metadata.addAnnotatedClass(PersonEmailAddress.class);
@@ -30,10 +30,11 @@ public class Test {
 		metadata.addAnnotatedClass(Location.class);
 		metadata.addAnnotatedClass(LocationAdministrativeUnit.class);
 		metadata.addAnnotatedClass(LocationCountry.class);
-		metadata.addAnnotatedClass(LocationRegion.class);
+		metadata.addAnnotatedClass(LocationRegion.class);*/
+		metadata.addAnnotatedClass(UserSession.class);
 
 		SchemaExport export = new SchemaExport();
-		export.setOutputFile("E:/Downloads/dll.sql");
+		export.setOutputFile("E:/Downloads/dll2.sql");
 		export.setDelimiter(";");
 		export.setFormat(true);
 		export.create(EnumSet.of(TargetType.SCRIPT), metadata.buildMetadata());

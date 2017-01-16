@@ -1,6 +1,10 @@
 package spet.sbwo.api;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.FormParam;
@@ -21,13 +25,14 @@ import spet.sbwo.control.controller.UserController;
 
 public class PublicService extends BaseService {
 
+	private String loginPath;
 	private UserController userController;
 	private ObjectWriter jsonWriter;
 
-	public PublicService(UserController userController) {
-		super();
+	public PublicService(UserController userController, String loginPath) {
 		this.userController = userController;
 		this.jsonWriter = new ObjectMapper().writer();
+		this.loginPath = loginPath;
 	}
 
 	@GET
@@ -36,9 +41,23 @@ public class PublicService extends BaseService {
 	public String readCurrent(@Context HttpServletRequest request) {
 		String username = getCurrentUsername(request);
 		if (username != null) {
-			return "{\"name\": \"" + username + "\"}";
+			return "{\"username\": \"" + username + "\"}";
 		} else {
 			throw new ForbiddenException();
+		}
+	}
+
+	@GET
+	@Path("/user/logout")
+	public Response logout(@Context HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		try {
+			return Response.seeOther(new URI(loginPath)).build();
+		} catch (URISyntaxException e) {
+			return Response.noContent().build();
 		}
 	}
 

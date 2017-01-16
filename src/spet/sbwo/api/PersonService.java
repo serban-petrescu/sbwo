@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -111,4 +112,18 @@ public class PersonService extends BaseService {
 		}
 	}
 
+	@GET
+	@Path("/export/{id}")
+	@Produces("text/vcard")
+	public Response export(@PathParam("id") int id) {
+		try {
+			return Response.ok().entity(controller.exportPerson(id))
+					.header("Content-Disposition", "attachment; filename=Contact.vcf").build();
+		} catch (ControlException e) {
+			this.handleException(e);
+		} catch (Exception e) {
+			this.handleException(e);
+		}
+		throw new InternalServerErrorException();
+	}
 }

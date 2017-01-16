@@ -12,6 +12,7 @@
 		<Table id="lstMain" 
 			mode="MultiSelect"
 			selectionChange="onSelectionChange"
+			growing="true" growingScrollToLoad="true"
 			items="{path: '/DeletedEntitys', sorter: {path: 'DeletedOn', descending: true}}">
 			<columns>
 				<Column width="3em" />

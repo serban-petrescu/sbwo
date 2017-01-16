@@ -288,7 +288,17 @@ sap.ui.define([
 					}
 					return oBundle.getText("txtErrorDatabaseText");
 				},
-				oError = JSON.parse(typeof oXhr === "string" ? oXhr : oXhr.responseText);
+				
+				fnGetErrorObject = function() {
+					try {
+						return JSON.parse(typeof oXhr === "string" ? oXhr : oXhr.responseText) || {};
+					}
+					catch(e) {
+						return {};
+					}
+				},
+				
+				oError = fnGetErrorObject();
 				
 			switch(oError.type) {
 			case "CONTROL":

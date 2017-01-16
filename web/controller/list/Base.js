@@ -32,8 +32,11 @@ sap.ui.define([
 		},
 		
 		onRouteMatched: function(oEvent) {
-			var sQuery = oEvent.getParameter("arguments").search || "";
-			this.getSearchField().setValue(sQuery);
+			var sQuery = oEvent.getParameter("arguments").search || "",
+				oField = this.getSearchField();
+			if (oField.getValue() !== sQuery) {
+				oField.setValue(sQuery);
+			}
 			this._filterList(sQuery);
 		},
 		

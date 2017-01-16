@@ -10,6 +10,7 @@ sap.ui.define([
 				oHash = HashChanger.getInstance(),
 				fnUpdateModel = this.updateFavoriteModel.bind(this),
 				oModel;
+				
 			this.buildViewModel({
 				menu: false,
 				edit: false,
@@ -19,7 +20,9 @@ sap.ui.define([
 			});
 			
 			this.getView().addStyleClass(sClass);
-			this.byId("sedGlobalSearch").addStyleClass(sClass);
+			this.byId("shlMain").getDependents().forEach(function(oControl){
+				oControl.addStyleClass(sClass);
+			});
 			
 			oModel = this.getModel("view");
 			oHash.attachEvent("hashChanged", function(oEvent) {
@@ -33,6 +36,20 @@ sap.ui.define([
 			oHash.attachEvent("hashSet", function(oEvent) {
 				oModel.setProperty("/hash", oEvent.getParameter("sHash"));
 				fnUpdateModel();
+			});
+			
+			this.onReadUser();
+		},
+		
+		onReadUser: function() {
+			var oModel = this.getModel("view");
+			jQuery.ajax({
+				method: "GET",
+				url: "/public/rest/user/current",
+				success: function(oData) {
+					oModel.setProperty("/user", oData);
+				},
+				error: this.onRestApiError.bind(this)
 			});
 		},
 		
@@ -55,7 +72,8 @@ sap.ui.define([
 				jQuery.ajax({
 					method: "GET",
 					url: "/private/api/rest/user/favourites/read",
-					success: fnUpdateModel
+					success: fnUpdateModel,
+					error: this.onRestApiError.bind(this)
 				});
 			}
 		},
@@ -68,7 +86,8 @@ sap.ui.define([
 					dataType: "json",
 					contentType: "application/json",
 					data: JSON.stringify(this.getModel("view").getProperty("/favourites")),
-					success: this.updateFavoriteModel.bind(this)
+					success: this.updateFavoriteModel.bind(this),
+					error: this.onRestApiError.bind(this)
 				});
 			}
 		},
@@ -121,7 +140,8 @@ sap.ui.define([
 					success: function(oData) {
 						aFavs.push(oData);
 						fnUpdateModel(aFavs);
-					}
+					},
+					error: this.onRestApiError.bind(this)
 				});
 			}
 			else {
@@ -133,7 +153,8 @@ sap.ui.define([
 				if (i < aFavs.length) {
 					jQuery.ajax({
 						method: "DELETE",
-						url: "/private/api/rest/user/favourites/delete/" + aFavs[i].id
+						url: "/private/api/rest/user/favourites/delete/" + aFavs[i].id,
+						error: this.onRestApiError.bind(this)
 					}).always(function() {
 						aFavs.splice(i, 1);
 						fnUpdateModel(aFavs);
@@ -169,22 +190,14 @@ sap.ui.define([
 			this.byId("sedGlobalSearch").open("");
 		},
 		
-		onSuggestGlobal: function(oEvent) {
-			var oControl = oEvent.getSource(),
-				oBinding = oControl.getBinding("suggestionItems");
-			this.applySearchFilter(oEvent.getParameter("suggestValue"), "Search", oBinding);
-			oBinding.attachEventOnce("dataReceived", function() {
-				oControl.suggest(true);
-			});
-		},
-		
 		onSearchField: function(oEvent) {
-			var oItem = oEvent.getParameter("suggestionItem"),
-				oContext;
-			if (oItem) {
-				oContext = oItem.getBindingContext();
-				this.navigateToEntity(oContext.getProperty("Type"), oContext.getProperty("Id"));
-			}
+			var oPopover = this.byId("popGlobalSearch"),
+				oSearch = oEvent.getSource();
+			this.applySearchFilter(oEvent.getParameter("query"), "Search", this.byId("lstSearchPopover").getBinding("items"));
+			oPopover.setContentWidth(oSearch.$().width() + "px");
+			jQuery.sap.delayedCall(500, null, function(){
+				oPopover.openBy(oSearch);
+			});
 		},
 		
 		onSearchDialog: function(oEvent) {
@@ -194,6 +207,12 @@ sap.ui.define([
 		onSelectSearchDialog: function(oEvent) {
 			var oContext = oEvent.getParameter("selectedItem").getBindingContext();
 			this.navigateToEntity(oContext.getProperty("Type"), oContext.getProperty("Id"));
+		},
+		
+		onSelectSearchPopover: function(oEvent) {
+			var oContext = oEvent.getSource().getBindingContext();
+			this.navigateToEntity(oContext.getProperty("Type"), oContext.getProperty("Id"));
+			this.byId("popGlobalSearch").close();
 		}
 	});
 

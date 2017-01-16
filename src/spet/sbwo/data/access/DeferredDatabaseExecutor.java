@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import spet.sbwo.data.DatabaseException;
-import spet.sbwo.data.base.BaseEntity;
 
 class DeferredDatabaseExecutor extends BaseDatabaseExecutor {
 	private List<IUpdateCommand> updates;
@@ -36,17 +35,17 @@ class DeferredDatabaseExecutor extends BaseDatabaseExecutor {
 	}
 
 	@Override
-	public <T extends BaseEntity> void update(T entity) throws DatabaseException {
+	public <T> void update(T entity) throws DatabaseException {
 		this.updates.add(this.simpleCommandBuilder.update(entity));
 	}
 
 	@Override
-	public <T extends BaseEntity> void delete(T entity) throws DatabaseException {
+	public <T> void delete(T entity) throws DatabaseException {
 		this.updates.add(this.simpleCommandBuilder.delete(entity));
 	}
 
 	@Override
-	public <T extends BaseEntity> void create(T entity) throws DatabaseException {
+	public <T> void create(T entity) throws DatabaseException {
 		this.updates.add(this.simpleCommandBuilder.create(entity));
 	}
 

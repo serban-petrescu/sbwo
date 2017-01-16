@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified">
-	<Dialog id="dlgUpload" stretch="{device>/system/phone}" title="{i18n>dlgCustomizingUploadTitle}" busy="{view>/busy}">
+	<Dialog id="dlgUpload" stretch="{device>/system/phone}" title="{i18n>dlgCustomizingUploadTitle}" busy="{view>/busy}" busyIndicatorDelay="0">
 		<Panel>
 			<Text text="{view>text}"/>
 		</Panel>

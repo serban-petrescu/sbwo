@@ -1,6 +1,7 @@
 sap.ui.define([
-	"spet/sbwo/web/controller/Base"
-], function(Base) {
+	"spet/sbwo/web/controller/Base",
+	"sap/m/MessageBox"
+], function(Base, MessageBox) {
 	"use strict";
 	
 	var fnInitializeData = function(oData) {
@@ -62,6 +63,10 @@ sap.ui.define([
 			return this.getResourceBundle().getText(jQuery.sap.camelCase("itf-import-" + sText + "-tab-text"));
 		},
 		
+		formatFileDescription : function(sFile) {
+			return this.getResourceBundle().getText(jQuery.sap.camelCase("txt-import-file-" + sFile + "-description"));
+		},
+		
 		formatTabDescription: function(sText) {
 			return this.getResourceBundle().getText(jQuery.sap.camelCase("itf-import-" + sText + "-tab-description"));
 		},
@@ -113,7 +118,21 @@ sap.ui.define([
 		},
 		
 		onStartUpload: function() {
+			this.getModel("view").setProperty("/busy", true);
 			this.byId("fupImport").upload();
+		},
+		
+		onUploadComplete: function(oEvent){
+			var oBundle = this.getResourceBundle();
+			this.getModel("view").setProperty("/busy", false);
+			if (oEvent.getParameter("status") === 204) {
+				MessageBox.success(oBundle.getText("txtDataImportUploadSuccessText"));
+				this.reset();
+			}
+			else {
+				this.onInternalServerError(oEvent.getParameter("responseRaw"));
+			}
+			this.getModel().refresh();
 		}
 		
 	});

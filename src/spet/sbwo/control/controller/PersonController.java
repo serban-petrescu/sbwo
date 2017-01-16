@@ -7,10 +7,15 @@ import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.PersonChannel;
 import spet.sbwo.control.mapper.PersonMapper;
+import spet.sbwo.control.util.VCardBuilder;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.table.Person;
+import spet.sbwo.data.table.PersonEmailAddress;
+import spet.sbwo.data.table.PersonJuridical;
+import spet.sbwo.data.table.PersonNatural;
+import spet.sbwo.data.table.PersonTelephone;
 
 public class PersonController extends JournalizedBaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
@@ -91,6 +96,39 @@ public class PersonController extends JournalizedBaseController {
 			}
 		} catch (DatabaseException e) {
 			LOG.warn("Database error while restoring a person.");
+			throw new ControlException(e, PersonChannel.class);
+		}
+	}
+
+	public String exportPerson(int id) throws ControlException {
+		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+			Person p = executor.find(Person.class, id);
+			if (p != null) {
+				VCardBuilder builder = new VCardBuilder();
+				if (p instanceof PersonNatural) {
+					PersonNatural natural = (PersonNatural) p;
+					if (natural.getFirstName() != null && natural.getLastName() != null) {
+						builder.name(natural.getFirstName() + " " + natural.getLastName());
+					}
+				} else {
+					PersonJuridical juridical = (PersonJuridical) p;
+					builder.name(juridical.getName());
+				}
+				builder.address(p.getLocation().getAddress());
+
+				for (PersonEmailAddress email : p.getEmailAddresses()) {
+					builder.email(email.getEmail(), email.isPrimary());
+				}
+				for (PersonTelephone phone : p.getTelephones()) {
+					builder.phone(phone.getTelephone(), phone.isPrimary());
+				}
+
+				return builder.build();
+			} else {
+				throw new ControlException(ControlError.ENTITY_NOT_FOUND, PersonChannel.class);
+			}
+		} catch (DatabaseException e) {
+			LOG.error("Database error during exporting a person.");
 			throw new ControlException(e, PersonChannel.class);
 		}
 	}

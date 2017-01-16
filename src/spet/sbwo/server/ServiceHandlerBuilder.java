@@ -1,5 +1,6 @@
 package spet.sbwo.server;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,11 @@ public class ServiceHandlerBuilder extends ServletHandlerBuilderBase {
 
 	public ServiceHandlerBuilder addService(Object service) {
 		this.services.add(service);
+		return this;
+	}
+
+	public ServiceHandlerBuilder addServices(Object... services) {
+		Collections.addAll(this.services, services);
 		return this;
 	}
 

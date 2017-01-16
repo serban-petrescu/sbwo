@@ -129,41 +129,49 @@
 			"targets": {
 				"home": {
 					"viewName": "Home",
-					"title": "{i18n>pagHomeTitle}"
+					"title": "{i18n>pagHomeTitle}",
+					"viewId": "home"
 				},
 				"person": {
 					"viewName": "entity.Person",
 					"title": {
 						"parts": [
-							"view>/id", "i18n>pagEntityLoadingTitle", "i18n>pagEntityPersonPatternTitle", 
+							"view>/loaded", "i18n>pagEntityLoadingTitle", "i18n>pagEntityPersonPatternTitle", 
 							"data>/type", "data>/firstName", "data>/lastName", "data>/name"
 						],
 						"formatter": "spet.sbwo.web.model.formatter.personPageTitle"
-					}
+					},
+					"viewId": "person"
 				},
 				"not-found": {
 					"viewName": "entity.NotFound",
-					"title": "{i18n>pagEntityNotFoundTitle}"
+					"title": "{i18n>pagEntityNotFoundTitle}",
+					"viewId": "not-found"
 				},
 				"person-create": {
 					"viewName": "wizard.PersonCreate",
-					"title": "{i18n>pagPersonCreateTitle}"
+					"title": "{i18n>pagPersonCreateTitle}",
+					"viewId": "person-create"
 				},
 				"person-list": {
 					"viewName": "list.PersonList",
-					"title": "{i18n>pagPersonListTitle}"
+					"title": "{i18n>pagPersonListTitle}",
+					"viewId": "person-list"
 				},
 				"deleted-list": {
 					"viewName": "list.DeletedEntityList",
-					"title": "{i18n>pagDeletedEntitiesTitle}"
+					"title": "{i18n>pagDeletedEntitiesTitle}",
+					"viewId": "deleted-list"
 				},
 				"customizing": {
 					"viewName": "misc.Customizing",
-					"title": "{i18n>pagCustomizingTitle}"
+					"title": "{i18n>pagCustomizingTitle}",
+					"viewId": "customizing"
 				},
 				"import": {
 					"viewName": "misc.Import",
-					"title": "{i18n>pagImportTitle}"
+					"title": "{i18n>pagImportTitle}",
+					"viewId": "import"
 				}
 			}
 		}

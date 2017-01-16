@@ -9,7 +9,7 @@
 				<SearchField id="seaMain" width="100%" search="onSearch"/>
 			</Toolbar>
 		</subHeader>
-		<List id="lstMain" items="{path: '/PersonSearchs', sorter: {path: 'Name'}}">
+		<List id="lstMain" items="{path: '/PersonSearchs', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
 			<StandardListItem title="{Name}" 
 				type="Navigation"
 				icon="{= ${Type} === 'NATURAL' ? 'sap-icon://customer' : 'sap-icon://group'}"
