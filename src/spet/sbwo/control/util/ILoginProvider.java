@@ -4,6 +4,10 @@ public interface ILoginProvider {
 
 	boolean userExists(String username);
 
-	boolean passwordMatches(String username, String password);
+	boolean passwordMatchesPlain(String username, String password);
+	
+	boolean passwordMatchesEncrypted(String username, String password);
+
+	String encryptPassword(String username, String input);
 
 }

@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/Device",
 	"spet/sbwo/web/model/models",
 	"spet/sbwo/web/model/formatter",
-	"sap/ui/unified/FileUploader"
-], function(UIComponent, Device, models, formatter, FileUploader) {
+	"sap/ui/unified/FileUploader",
+	"sap/m/MessageBox"
+], function(UIComponent, Device, models, formatter, FileUploader, MessageBox) {
 	"use strict";
 	
 	var fnSuper = FileUploader.prototype.onAfterRendering;
@@ -39,6 +40,8 @@ sap.ui.define([
 			//put the bundle in the formatter
 			formatter.setResourceBundle(this.getModel("i18n").getResourceBundle());
 			
+			this.attachLoginRedirector();
+			
 			this._fixTargetTitles();
 			this.getRouter().attachTitleChanged(function(oEvent) {
 				document.title = oEvent.getParameter("title");
@@ -52,6 +55,24 @@ sap.ui.define([
 		 */
 		getContentDensityClass: function() {
 			return Device.support.touch ? "sapUiSizeCozy" : "sapUiSizeCompact";
+		},
+		
+		/**
+		 * Attaches a login redirect error handler.
+		 */
+		attachLoginRedirector: function() {
+			var sText = this.getModel("i18n").getResourceBundle().getText("txtLoggedOutAutomaticallyText"),
+				fnOnConfirm = function() {
+					window.location.reload();
+				},
+				fnOnError = function(oHandler, oXhr) {
+					if (parseInt(oXhr.status, 10) === 403) {
+						MessageBox.information(sText, {
+							onClose: fnOnConfirm
+						});
+					}
+				};
+			jQuery(document).ajaxError(fnOnError);
 		},
 		
 		_fixTargetTitles: function() {

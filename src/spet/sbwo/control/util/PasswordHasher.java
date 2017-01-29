@@ -61,6 +61,18 @@ public class PasswordHasher {
 		}
 	}
 
+	public String hashPassword(String password, String salt) throws ControlException {
+		try {
+			byte[] saltb = Base64.getDecoder().decode(salt);
+			SecretKey key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+					.generateSecret(new PBEKeySpec(password.toCharArray(), saltb, this.iterations, this.hashLength));
+			return Base64.getEncoder().encodeToString(key.getEncoded());
+		} catch (Exception e) {
+			LOG.error("Unable to hash a password.", e);
+			throw new ControlException(ControlError.TECHNICAL, UserChannel.class);
+		}
+	}
+
 	protected byte[] buildSalt() throws ControlException {
 		try {
 			return SecureRandom.getInstance("SHA1PRNG").generateSeed(this.saltLength);

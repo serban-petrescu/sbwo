@@ -67,6 +67,15 @@ sap.ui.define([
 					count:	"deleted",
 					unit:	oBundle.getText("sttHomeDeletedNumberUnit"),
 					navinfo: ["deleted-list", {}]
+				},
+				"server-settings": {
+					name:	"server-settings",
+					title:	oBundle.getText("sttHomeServerSettingsTitle"),
+					icon:	"sap-icon://settings",
+					type:	"None",
+					order:	5,
+					visible: /localhost:\d+/.test(window.location.host),
+					navinfo: ["server-settings", {}]
 				}
 			};
 		},

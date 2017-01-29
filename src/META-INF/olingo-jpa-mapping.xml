@@ -14,6 +14,7 @@
 			<JPAEntityType name="UserHomeTile" exclude="true" />
 			<JPAEntityType name="UserFavourite" exclude="true" />
 			<JPAEntityType name="UserPreference" exclude="true" />
+			<JPAEntityType name="UserSession" exclude="true" />
 		</JPAEntityTypes>
 		<JPAEmbeddableTypes></JPAEmbeddableTypes>
 	</PersistenceUnit>

@@ -7,7 +7,7 @@
 		<RollingFile name="File" 
             fileName="./log/log.txt" 
             filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
-			<JsonLayout locationInfo="false" complete="true" />
+			<JsonLayout locationInfo="false" complete="false" />
             <Policies>
                 <SizeBasedTriggeringPolicy size="1 MB"/>
                 <TimeBasedTriggeringPolicy />
@@ -15,7 +15,7 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-    	<Root level="debug">
+    	<Root>
     		<Appender-ref ref="Console" level="error"/>
     		<Appender-ref ref="File" level="info"/>
     	</Root>

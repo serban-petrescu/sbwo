@@ -7,17 +7,66 @@
 
 		<title>Loading...</title>
 
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<body class="sapUiBody" style="overflow:hidden">
+		<div id="overlay">
+			<div id="ring" class='uil-ring-css' style='transform:scale(1);'><div></div></div>
+		</div>
+		<script type="text/javascript">
+			var oUserPreference = {"language": "en", "theme": "sap_belize", "draftResumeDelay": 30};
+			
+			function mergePreference(oPreference) {
+				oUserPreference.language = oPreference.language || oUserPreference.language;
+				oUserPreference.theme = oPreference.theme || oUserPreference.theme;
+				oUserPreference.draftResumeDelay = oPreference.draftResumeDelay || oUserPreference.draftResumeDelay;
+			}
+			
+			function browserSupportsCSSProperty(sPropertyName) {
+				var oElem = document.createElement('div');
+					sPropertyName = sPropertyName.toLowerCase();
+				
+				if (oElem.style[sPropertyName] !== undefined) {
+					return true;
+				}
+				
+				var sPropertyNameCapital = sPropertyName.charAt(0).toUpperCase() + sPropertyName.substr(1),
+					aDomPrefixes = 'Webkit Moz ms O'.split(' ');
+				
+				for (var i = 0; i < aDomPrefixes.length; ++i) {
+					if (oElem.style[aDomPrefixes[i] + sPropertyNameCapital] !== undefined) {
+						return true;
+					}
+				}
+				return false;
+			}
+			
+			if (!browserSupportsCSSProperty("animation")) {
+				document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
+			}
+		</script>
+		
+		<div id="content">
+		</div>
+		
+		<script src="/private/api/rest/user/preference/read?callback=mergePreference" ></script>
+		<script type="text/javascript">
+			window["sap-ui-config"] = {
+				theme: oUserPreference.theme,
+				language: oUserPreference.language
+            };
+		</script>
+		
 		<script id="sap-ui-bootstrap"
 			src="/public/resources/openui5/sap-ui-core.js"
-			data-sap-ui-libs="sap.m, sap.ui.unified"
-			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified"
+			data-sap-ui-preload="async" 
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-resourceroots='{"spet.sbwo.web": ""}'>
 		</script>
 
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-
-		<script>
+		<script type="text/javascript">
 			sap.ui.getCore().attachInit(function() {
 				new sap.m.Shell({
 					backgroundImage: "/public/images/background.jpg",
@@ -28,9 +77,7 @@
 				}).placeAt("content");
 			});
 		</script>
-	</head>
 
-	<body class="sapUiBody" id="content">
 	</body>
 
 </html>

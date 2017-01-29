@@ -24,6 +24,8 @@ public interface IDatabaseExecutor extends AutoCloseable {
 
 	<T> IQueryFacade<List<T>> select(Class<T> entity);
 
+	<T, M> IQueryFacade<List<M>> select(Class<T> entityClazz, Class<M> attrClazz, String attr);
+
 	<T> IQueryFacade<T> selectSingle(Class<T> entity);
 
 	<T> T find(Class<T> clazz, Object id) throws DatabaseException;

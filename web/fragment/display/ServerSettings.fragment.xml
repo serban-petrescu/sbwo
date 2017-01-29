@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
+	<f:FormContainer visible="{= !${view>/edit} }">
+		<f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{data>/sessionTimeout}" />
+				<Text text="{i18n>txtSessionExpirationMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{
+					parts: [
+						'i18n>txtServerSettingsDispayNumberUnitPattern', 
+						'data>/directDeleteInterval', 
+						'i18n>inpSessionExpirationMinutesDesc'
+					], 
+					formatter: 'spet.sbwo.web.model.formatter.pattern'
+				}" />
+				<Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblDatabaseBackupStartText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{path: 'data>/databaseBackupStart', type: 'spet.sbwo.web.util.TimeOfDay'}" />
+				<Text text="{i18n>txtDatabaseBackupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{
+					parts: [
+						'i18n>txtServerSettingsDispayNumberUnitPattern', 
+						'data>/databaseBackupInterval', 
+						'i18n>inpDatabaseBackupIntervalDesc'
+					], 
+					formatter: 'spet.sbwo.web.model.formatter.pattern'
+				}" />
+				<Text text="{i18n>txtDatabaseBackupIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblDatabaseBackupLocationText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{data>/databaseBackupLocation}" />
+				<Text text="{i18n>txtDatabaseBackupLocationInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblSchedulerThreadsText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{
+					parts: [
+						'i18n>txtServerSettingsDispayNumberUnitPattern', 
+						'data>/schedulerThreads', 
+						'i18n>inpSchedulerThreadsDesc'
+					], 
+					formatter: 'spet.sbwo.web.model.formatter.pattern'
+				}" />
+				<Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblCleanupStartText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{path: 'data>/cleanupStart', type: 'spet.sbwo.web.util.TimeOfDay'}" />
+				<Text text="{i18n>txtCleanupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblCleanupThresholdText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Text text="{
+					parts: [
+						'i18n>txtServerSettingsDispayNumberUnitPattern', 
+						'data>/cleanupThreshold', 
+						'i18n>inpCleanupThresholdDesc'
+					], 
+					formatter: 'spet.sbwo.web.model.formatter.pattern'
+				}"/>
+				<Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+	</f:FormContainer>
+</core:FragmentDefinition>

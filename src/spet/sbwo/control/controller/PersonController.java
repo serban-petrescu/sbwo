@@ -10,7 +10,7 @@ import spet.sbwo.control.mapper.PersonMapper;
 import spet.sbwo.control.util.VCardBuilder;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.access.DatabaseFacade;
+import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonEmailAddress;
 import spet.sbwo.data.table.PersonJuridical;
@@ -20,12 +20,12 @@ import spet.sbwo.data.table.PersonTelephone;
 public class PersonController extends JournalizedBaseController {
 	private static final Logger LOG = LoggerFactory.getLogger(PersonController.class);
 
-	public PersonController(DatabaseFacade database) {
-		super(database);
+	public PersonController(IDatabaseExecutorCreator database, int directDeleteInterval) {
+		super(database, directDeleteInterval);
 	}
 
 	public int createPerson(PersonChannel data, String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(true)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(true)) {
 			PersonMapper mapper = new PersonMapper(executor);
 			Person p = mapper.toInternal(data);
 			mapper.flush();
@@ -39,7 +39,7 @@ public class PersonController extends JournalizedBaseController {
 	}
 
 	public PersonChannel readPerson(int id) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			Person p = executor.find(Person.class, id);
 			if (p != null) {
 				return new PersonMapper(executor).toExternal(p);
@@ -53,7 +53,7 @@ public class PersonController extends JournalizedBaseController {
 	}
 
 	public void updatePerson(int id, PersonChannel data, String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(true)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(true)) {
 			PersonMapper mapper = new PersonMapper(executor);
 			Person p = executor.find(Person.class, id);
 			if (p != null) {
@@ -71,7 +71,7 @@ public class PersonController extends JournalizedBaseController {
 	}
 
 	public void deletePerson(int id, boolean force, String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			Person p = executor.find(Person.class, id);
 			if (p != null) {
 				this.doEntityDeletion(p, username, force, executor);
@@ -86,7 +86,7 @@ public class PersonController extends JournalizedBaseController {
 	}
 
 	public void restorePerson(int id, String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			Person p = executor.find(Person.class, id);
 			if (p != null && p.isDeleted()) {
 				this.doEntityRestore(p, username, executor);
@@ -101,19 +101,11 @@ public class PersonController extends JournalizedBaseController {
 	}
 
 	public String exportPerson(int id) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			Person p = executor.find(Person.class, id);
 			if (p != null) {
 				VCardBuilder builder = new VCardBuilder();
-				if (p instanceof PersonNatural) {
-					PersonNatural natural = (PersonNatural) p;
-					if (natural.getFirstName() != null && natural.getLastName() != null) {
-						builder.name(natural.getFirstName() + " " + natural.getLastName());
-					}
-				} else {
-					PersonJuridical juridical = (PersonJuridical) p;
-					builder.name(juridical.getName());
-				}
+				builder.name(getPersonName(p));
 				builder.address(p.getLocation().getAddress());
 
 				for (PersonEmailAddress email : p.getEmailAddresses()) {
@@ -131,6 +123,19 @@ public class PersonController extends JournalizedBaseController {
 			LOG.error("Database error during exporting a person.");
 			throw new ControlException(e, PersonChannel.class);
 		}
+	}
+
+	protected String getPersonName(Person p) {
+		if (p instanceof PersonNatural) {
+			PersonNatural natural = (PersonNatural) p;
+			if (natural.getFirstName() != null && natural.getLastName() != null) {
+				return natural.getFirstName() + " " + natural.getLastName();
+			}
+		} else {
+			PersonJuridical juridical = (PersonJuridical) p;
+			return juridical.getName();
+		}
+		return "";
 	}
 
 }

@@ -13,17 +13,17 @@ import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.LocationImportChannel;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
+import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.access.WhereOperator;
-import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.base.ICodifiedEntity;
 import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;
 import spet.sbwo.data.table.LocationRegion;
 
-public class ImportController extends BaseController {
+public class ImportController extends BaseMainController {
 	private static final Logger LOG = LoggerFactory.getLogger(ImportController.class);
 
-	public ImportController(DatabaseFacade database) {
+	public ImportController(IDatabaseExecutorCreator database) {
 		super(database);
 	}
 
@@ -31,7 +31,7 @@ public class ImportController extends BaseController {
 		if (data.isEmpty()) {
 			return;
 		}
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			Collections.sort(data);
 			LocationCountry currentCountry = null;
 			LocationRegion currentRegion = null;

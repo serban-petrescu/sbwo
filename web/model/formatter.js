@@ -26,6 +26,10 @@ sap.ui.define([], function() {
 			oBundle = oResourceBundle;
 		},
 		
+		pattern: function(sPattern) {
+			return jQuery.sap.formatMessage(sPattern, Array.prototype.slice.call(arguments, 1));
+		},
+		
 		entityPageTitle: fnEntityPageTitle,
 		
 		personPageTitle: function(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {

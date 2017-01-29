@@ -1,88 +1,72 @@
 package spet.sbwo.control.controller;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.UserChannel;
 import spet.sbwo.control.channel.UserFavouriteChannel;
 import spet.sbwo.control.channel.UserHomeTilesChannel;
-import spet.sbwo.control.channel.UserHomeTilesChannel.HomeTile;
-import spet.sbwo.control.mapper.UserFavouriteMapper;
+import spet.sbwo.control.channel.UserPreferenceChannel;
+import spet.sbwo.control.helper.UserFavouriteHelper;
+import spet.sbwo.control.helper.UserHelper;
+import spet.sbwo.control.helper.UserTileHelper;
 import spet.sbwo.control.util.ILoginProvider;
-import spet.sbwo.control.util.PasswordHasher;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.access.WhereOperator;
-import spet.sbwo.data.access.DatabaseFacade;
-import spet.sbwo.data.table.User;
-import spet.sbwo.data.table.UserFavourite;
-import spet.sbwo.data.table.UserHomeTile;
-import spet.sbwo.data.table.UserPreference;
+import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
 
-public class UserController extends BaseController implements ILoginProvider {
+public class UserController extends BaseMainController implements ILoginProvider {
 	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 	private static final String INITIAL_PASSWORD = "init";
 
-	private PasswordHasher hasher;
+	private final UserHelper userHelper;
+	private final UserFavouriteHelper userFavouriteHelper;
+	private final UserTileHelper userTileHelper;
 
-	public UserController(DatabaseFacade database) {
+	public UserController(IDatabaseExecutorCreator database) {
 		super(database);
-		this.hasher = new PasswordHasher();
+		userHelper = new UserHelper();
+		userFavouriteHelper = new UserFavouriteHelper();
+		userTileHelper = new UserTileHelper();
 	}
 
 	@Override
 	public boolean userExists(String username) {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			return user != null && user.isActive();
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userHelper.userExists(executor, username);
 		} catch (Exception e) {
-			LOG.error("Forcing failed authentication because of underlying error (when checking user existance).");
+			LOG.error("Forcing failed authentication because of underlying error (when checking user existance).", e);
 			return false;
 		}
 	}
 
 	@Override
-	public boolean passwordMatches(String username, String password) {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user == null || !user.isActive()) {
-				return false;
-			} else {
-				return this.hasher.checkPassword(password, user.getPassword(), user.getSalt());
-			}
+	public boolean passwordMatchesPlain(String username, String password) {
+		return passwordMatches(username, password, false);
+	}
+
+	@Override
+	public boolean passwordMatchesEncrypted(String username, String password) {
+		return passwordMatches(username, password, true);
+	}
+
+	@Override
+	public String encryptPassword(String username, String input) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userHelper.encryptPassword(executor, username, input);
 		} catch (Exception e) {
-			LOG.error("Forcing failed authentication because of underlying error (when checking user password).");
-			return false;
+			LOG.error("Failed to encrypt user password.", e);
+			return null;
 		}
 	}
 
 	public void registerUser(String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user != null) {
-				LOG.warn("Attempted to create already existing user ({}).", username);
-				throw new ControlException(ControlError.INVALID_PROPERTY_VALUE, UserChannel.class);
-			} else {
-				PasswordHasher.HashedPasswordInfo pwdInfo = this.hasher.hashPassword(INITIAL_PASSWORD);
-				UserPreference preference = new UserPreference();
-				user = new User();
-				preference.setUser(user);
-				user.setPreference(preference);
-				user.setUsername(username);
-				user.setPassword(pwdInfo.getHash());
-				user.setSalt(pwdInfo.getSalt());
-				user.setActive(true);
-				executor.create(user);
-				executor.create(preference);
-				executor.commit();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			userHelper.registerUser(executor, username, INITIAL_PASSWORD);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to register user because of a database error.");
 			throw new ControlException(e, UserChannel.class);
@@ -90,16 +74,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public void activateUser(String username, boolean active) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user == null) {
-				LOG.warn("User {} not found during activation.", username);
-				throw new ControlException(ControlError.ENTITY_NOT_FOUND, UserChannel.class);
-			} else {
-				user.setActive(active);
-				executor.update(user);
-				executor.commit();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			userHelper.activateUser(executor, username, active);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to activate user because of a database error.");
 			throw new ControlException(e, UserChannel.class);
@@ -111,18 +87,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public void changeUserPassword(String username, String password) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user == null) {
-				LOG.warn("User {} not found during password reset.", username);
-				throw new ControlException(ControlError.ENTITY_NOT_FOUND, UserChannel.class);
-			} else {
-				PasswordHasher.HashedPasswordInfo pwdInfo = this.hasher.hashPassword(password);
-				user.setPassword(pwdInfo.getHash());
-				user.setSalt(pwdInfo.getSalt());
-				executor.update(user);
-				executor.commit();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			userHelper.changePassword(executor, username, password);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to change user password because of a database error.");
 			throw new ControlException(e, UserChannel.class);
@@ -130,15 +96,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public UserHomeTilesChannel getTiles(String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			UserHomeTilesChannel result = new UserHomeTilesChannel();
-			if (user != null) {
-				for (UserHomeTile tile : user.getHomeTiles()) {
-					result.addTile(tile.getName(), tile.getOrder(), tile.isVisible());
-				}
-			}
-			return result;
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userTileHelper.getTiles(executor, username);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to load user tiles.");
 			throw new ControlException(e, UserHomeTilesChannel.class);
@@ -146,36 +105,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public UserHomeTilesChannel updateTiles(UserHomeTilesChannel data, String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			UserHomeTilesChannel result = new UserHomeTilesChannel();
-			if (user != null) {
-				Map<String, HomeTile> input = data.getTiles();
-				for (UserHomeTile tile : user.getHomeTiles()) {
-					HomeTile current = input.get(tile.getName());
-					if (current != null) {
-						result.getTiles().put(tile.getName(), current);
-						tile.setOrder(current.getOrder());
-						tile.setVisible(current.isVisible());
-					} else {
-						result.addTile(tile.getName(), tile.getOrder(), tile.isVisible());
-					}
-				}
-				for (Map.Entry<String, HomeTile> entry : input.entrySet()) {
-					if (!result.getTiles().containsKey(entry.getKey())) {
-						result.getTiles().put(entry.getKey(), entry.getValue());
-						UserHomeTile tile = new UserHomeTile();
-						tile.setName(entry.getKey());
-						tile.setOrder(entry.getValue().getOrder());
-						tile.setVisible(entry.getValue().isVisible());
-						tile.setUser(user);
-						user.getHomeTiles().add(tile);
-						executor.create(tile);
-					}
-				}
-				executor.commit();
-			}
-			return result;
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userTileHelper.updateTiles(executor, data, username);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to update user tiles.");
 			throw new ControlException(e, UserHomeTilesChannel.class);
@@ -183,13 +114,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public List<UserFavouriteChannel> readFavourites(String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user != null) {
-				return new UserFavouriteMapper(executor, user).toExternal(user.getFavourites());
-			} else {
-				return new LinkedList<>();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userFavouriteHelper.readFavourites(executor, username);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to read user favourites.");
 			throw new ControlException(e, UserFavouriteChannel.class);
@@ -197,14 +123,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public void deleteFavourite(String username, int id) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			UserFavourite favourite = executor.find(UserFavourite.class, id);
-			if (favourite != null && user != null) {
-				user.getFavourites().remove(favourite);
-				executor.delete(favourite);
-				executor.commit();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			userFavouriteHelper.deleteFavourite(executor, username, id);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to delete user favourite.");
 			throw new ControlException(e, UserFavouriteChannel.class);
@@ -212,15 +132,8 @@ public class UserController extends BaseController implements ILoginProvider {
 	}
 
 	public void addFavourite(String username, UserFavouriteChannel data) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user != null) {
-				UserFavourite favourite = new UserFavouriteMapper(executor, user).toInternal(data);
-				user.getFavourites().add(favourite);
-				executor.create(favourite);
-				executor.commit();
-				data.setId(favourite.getId());
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			userFavouriteHelper.addFavourite(executor, username, data);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to add favourite.");
 			throw new ControlException(e, UserFavouriteChannel.class);
@@ -229,38 +142,47 @@ public class UserController extends BaseController implements ILoginProvider {
 
 	public List<UserFavouriteChannel> updateFavourites(String username, List<UserFavouriteChannel> input)
 			throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			User user = this.getUserByUsername(username, executor);
-			if (user != null) {
-				UserFavouriteMapper mapper = new UserFavouriteMapper(executor, user);
-				user.setFavourites(mapper.merge(user.getFavourites(), input));
-				mapper.flush();
-				executor.commit();
-				return mapper.toExternal(user.getFavourites());
-			} else {
-				return new LinkedList<>();
-			}
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userFavouriteHelper.updateFavourites(executor, username, input);
 		} catch (DatabaseException e) {
 			LOG.error("Unable to update user favourites.");
 			throw new ControlException(e, UserFavouriteChannel.class);
 		}
 	}
 
-	public User getUserByUsername(String username) throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
-			return executor.selectSingle(User.class).where("username", WhereOperator.EQ, username).execute();
-		} catch (DatabaseException e) {
-			LOG.error("Unable to get user by username.");
-			throw new ControlException(e, UserChannel.class);
-		}
-	}
-
 	public List<UserPlain> listAllPlains() throws ControlException {
-		try (IDatabaseExecutor executor = this.database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
 			return executor.select(UserPlain.class).execute();
 		} catch (DatabaseException e) {
 			LOG.error("Unable to read all users.");
 			throw new ControlException(e, UserChannel.class);
+		}
+	}
+
+	public UserPreferenceChannel readPreference(String username) throws ControlException {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userHelper.readPreferences(executor, username);
+		} catch (DatabaseException e) {
+			LOG.error("Unable to read user preference.");
+			throw new ControlException(e, UserChannel.class);
+		}
+	}
+
+	public UserPreferenceChannel updatePreference(String username, UserPreferenceChannel data) throws ControlException {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userHelper.updatePreference(executor, username, data);
+		} catch (DatabaseException e) {
+			LOG.error("Unable to update user preference.");
+			throw new ControlException(e, UserChannel.class);
+		}
+	}
+
+	protected boolean passwordMatches(String username, String password, boolean encrypted) {
+		try (IDatabaseExecutor executor = this.database.createExecutor(false)) {
+			return userHelper.passwordMatches(executor, username, password, encrypted);
+		} catch (Exception e) {
+			LOG.error("Forcing failed authentication because of underlying error (when checking user password).", e);
+			return false;
 		}
 	}
 }

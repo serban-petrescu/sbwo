@@ -75,6 +75,9 @@
                 "settings": {
                     "metadataUrlParams": {
                         "sap-documentation": "heading"
+                    },
+                    "headers": {
+                    	"X-Requested-With": "XMLHttpRequest"
                     }
                 }
 			}
@@ -125,6 +128,14 @@
 				"pattern": "import",
 				"name": "import",
 				"target": "import"
+			},{
+				"pattern": "server-settings",
+				"name": "server-settings",
+				"target": "server-settings"
+			},{
+				"pattern": "user-settings",
+				"name": "user-settings",
+				"target": "user-settings"
 			}],
 			"targets": {
 				"home": {
@@ -172,6 +183,16 @@
 					"viewName": "misc.Import",
 					"title": "{i18n>pagImportTitle}",
 					"viewId": "import"
+				},
+				"server-settings": {
+					"viewName": "misc.ServerSettings",
+					"title": "{i18n>pagServerSettingsTitle}",
+					"viewId": "server-settings"
+				},
+				"user-settings": {
+					"viewName": "misc.UserSettings",
+					"title": "{i18n>pagUserSettingsTitle}",
+					"viewId": "user-settings"
 				}
 			}
 		}

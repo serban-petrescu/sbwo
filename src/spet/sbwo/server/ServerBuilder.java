@@ -3,10 +3,13 @@ package spet.sbwo.server;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+
 import org.eclipse.jetty.security.AbstractLoginService;
 import org.eclipse.jetty.security.ConstraintMapping;
 import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.authentication.FormAuthenticator;
+import org.eclipse.jetty.server.UserIdentity;
 import org.eclipse.jetty.server.session.DefaultSessionCache;
 import org.eclipse.jetty.server.session.DefaultSessionIdManager;
 import org.eclipse.jetty.server.session.SessionHandler;
@@ -124,7 +127,10 @@ public class ServerBuilder {
 			mapping.setPathSpec(this.securedPath);
 
 			ConstraintSecurityHandler security = new ConstraintSecurityHandler();
-			security.setAuthenticator(new FormAuthenticator(this.loginPage, this.errorPage, false));
+			CustomFormAuthenticator authenticator = new CustomFormAuthenticator(this.loginPage, this.errorPage, false,
+					this.loginProvider);
+			authenticator.setAlwaysSaveUri(true);
+			security.setAuthenticator(authenticator);
 			security.addConstraintMapping(mapping);
 			security.setLoginService(new CustomLoginService(this.loginProvider));
 
@@ -147,6 +153,26 @@ public class ServerBuilder {
 		}
 		root.setContextPath("/");
 		return root;
+	}
+
+	private static class CustomFormAuthenticator extends FormAuthenticator {
+		private ILoginProvider loginProvider;
+
+		public CustomFormAuthenticator(String login, String error, boolean dispatch, ILoginProvider loginProvider) {
+			super(login, error, dispatch);
+			this.loginProvider = loginProvider;
+		}
+
+		@Override
+		public UserIdentity login(String username, Object password, ServletRequest request) {
+			String encrypted = this.loginProvider.encryptPassword(username, password.toString());
+			if (encrypted != null) {
+				return super.login(username, encrypted, request);
+			} else {
+				return null;
+			}
+		}
+
 	}
 
 	private static class CustomLoginService extends AbstractLoginService {
@@ -186,7 +212,7 @@ public class ServerBuilder {
 		public boolean check(Object credentials) {
 			String password = credentials instanceof char[] ? String.valueOf((char[]) credentials)
 					: credentials.toString();
-			return this.loginProvider.passwordMatches(this.username, password);
+			return this.loginProvider.passwordMatchesEncrypted(this.username, password);
 		}
 
 	}

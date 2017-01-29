@@ -25,6 +25,7 @@
 		</u:headEndItems>
 		<u:user>
 			<u:ShellHeadUserItem
+				showPopupIndicator="false"
 				image="sap-icon://person-placeholder"
 				username="{view>/user/username}"
 				press="onPressPersonalization" />

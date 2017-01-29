@@ -1,0 +1,52 @@
+<mvc:View controllerName="spet.sbwo.web.controller.misc.FileExplorer" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+	<Dialog id="dlgMain" 
+		title="{i18n>dlgFileExplorerTitle}"
+		stretch="{device>/system/phone}"
+		contentHeight="60%"
+		verticalScrolling="false"
+		contentWidth="50%">
+		
+		<Panel height="100%">
+			<headerToolbar>
+				<Toolbar>
+					<HBox width="100%">
+						<Input value="{view>/current}" change="read">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Input>
+						<Button icon="sap-icon://drill-up" 
+							tooltip="{i18n>btnFileExplorerUpTooltip}" 
+							type="Transparent"
+							press="onUpPress">
+							<layoutData>
+								<FlexItemData growFactor="0" />
+							</layoutData>
+						</Button>
+					</HBox>
+				</Toolbar>
+			</headerToolbar>
+			
+			<ScrollContainer height="100%" horizontal="false" vertical="true">
+				<List id="lstFolders" 
+					showNoData="{view>/folder}"
+					items="{path: 'view>/folders', sorter: {path: 'name'}}"
+					mode="{= ${view>/folder} &amp;&amp; ${view>/multiple} ? 'MultiSelect' : 'None' }">
+					<StandardListItem icon="{view>icon}" title="{view>name}" type="Navigation" press="onFolderPress" />
+				</List>
+				
+				<List id="lstFiles" 
+					items="{path: 'view>/files', sorter: {path: 'name'}}"
+					visible="{= !${view>/folder} }"
+					mode="{= ${view>/multiple} ? 'MultiSelect' : 'SingleSelectLeft'}">
+					<StandardListItem icon="{view>icon}" title="{view>name}" />
+				</List>
+			</ScrollContainer>
+		</Panel>
+		
+		<beginButton>
+			<Button text="{i18n>btnFileExplorerOkText}" press="onOkPress"/>
+		</beginButton>
+	</Dialog>
+</mvc:View>

@@ -101,17 +101,22 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 
 	@Override
 	public <T> IQueryFacade<Long> count(Class<T> entity) {
-		return new CountFacade<T>(entity);
+		return new CountFacade<>(entity);
 	}
 
 	@Override
 	public <T> IQueryFacade<List<T>> select(Class<T> entity) {
-		return new SelectFacade<T>(entity);
+		return new SelectFacade<>(entity);
+	}
+
+	@Override
+	public <T, M> IQueryFacade<List<M>> select(Class<T> entityClazz, Class<M> attrClazz, String attr) {
+		return new SelectAttributeFacade<>(entityClazz, attrClazz, attr);
 	}
 
 	@Override
 	public <T> IQueryFacade<T> selectSingle(Class<T> entity) {
-		return new SelectSingleFacade<T>(entity);
+		return new SelectSingleFacade<>(entity);
 	}
 
 	@Override
@@ -150,6 +155,34 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 
 	}
 
+	protected class SelectAttributeFacade<T> extends QueryFacade<List<T>> {
+		protected Class<?> entityClazz;
+		protected Class<T> attributeClazz;
+		protected String attribute;
+
+		public SelectAttributeFacade(Class<?> entityClazz, Class<T> attributeClazz, String attribute) {
+			this.entityClazz = entityClazz;
+			this.attributeClazz = attributeClazz;
+			this.attribute = attribute;
+		}
+
+		@Override
+		public List<T> execute() throws DatabaseException {
+			try {
+				CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+				CriteriaQuery<T> query = criteriaBuilder.createQuery(attributeClazz);
+				Root<?> root = query.from(entityClazz);
+				parameters(em, query.select(root.get(attribute)), root);
+				TypedQuery<T> createQuery = em.createQuery(query);
+				return values(createQuery).getResultList();
+			} catch (Exception e) {
+				LOG.error("Error while executing a select (attribute).", e);
+				throw new DatabaseException(e);
+			}
+		}
+
+	}
+
 	protected class SelectFacade<T> extends QueryFacade<List<T>> {
 		protected Class<T> fromClazz;
 
@@ -165,7 +198,7 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 				Root<T> root = query.from(fromClazz);
 				parameters(em, query.select(root), root);
 				TypedQuery<T> createQuery = em.createQuery(query);
-				return values(em, createQuery).getResultList();
+				return values(createQuery).getResultList();
 			} catch (Exception e) {
 				LOG.error("Error while executing a select.", e);
 				throw new DatabaseException(e);
@@ -189,7 +222,7 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 				Root<T> root = query.from(fromClazz);
 				parameters(em, query.select(root), root);
 				TypedQuery<T> createQuery = em.createQuery(query);
-				List<T> results = values(em, createQuery).getResultList();
+				List<T> results = values(createQuery).getResultList();
 				if (results.isEmpty()) {
 					return null;
 				} else {
@@ -219,7 +252,7 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 				Root<K> root = query.from(fromClazz);
 				parameters(em, query.select(criteriaBuilder.count(root)), root);
 				TypedQuery<Long> createQuery = em.createQuery(query);
-				return values(em, createQuery).getSingleResult();
+				return values(createQuery).getSingleResult();
 			} catch (Exception e) {
 				LOG.error("Error while executing a select.", e);
 				throw new DatabaseException(e);
@@ -228,7 +261,7 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 
 	}
 
-	private static abstract class QueryFacade<T> implements IQueryFacade<T> {
+	private abstract static class QueryFacade<T> implements IQueryFacade<T> {
 		protected List<Criteria> criterias;
 
 		public QueryFacade() {
@@ -241,54 +274,52 @@ abstract class BaseDatabaseExecutor implements IDatabaseExecutor {
 			return this;
 		}
 
-		@SuppressWarnings("unchecked")
 		protected <K> CriteriaQuery<K> parameters(EntityManager em, CriteriaQuery<K> query, Root<?> root) {
 			if (!criterias.isEmpty()) {
 				CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 				List<Predicate> predicates = new LinkedList<>();
 				for (Criteria criteria : this.criterias) {
-					if (criteria.getValue() != null) {
-						ParameterExpression<?> parameter = criteriaBuilder.parameter(criteria.getValue().getClass(),
-								criteria.getAttribute());
-						switch (criteria.getOperator()) {
-						case GE:
-							predicates.add(criteriaBuilder.ge(root.get(criteria.getAttribute()),
-									(Expression<? extends Number>) parameter));
-							break;
-						case GT:
-							predicates.add(criteriaBuilder.gt(root.get(criteria.getAttribute()),
-									(Expression<? extends Number>) parameter));
-							break;
-						case LE:
-							predicates.add(criteriaBuilder.le(root.get(criteria.getAttribute()),
-									(Expression<? extends Number>) parameter));
-							break;
-						case LT:
-							predicates.add(criteriaBuilder.lt(root.get(criteria.getAttribute()),
-									(Expression<? extends Number>) parameter));
-							break;
-						case NEQ:
-							predicates.add(criteriaBuilder.notEqual(root.get(criteria.getAttribute()), parameter));
-							break;
-						case EQ:
-						default:
-							predicates.add(criteriaBuilder.equal(root.get(criteria.getAttribute()), parameter));
-							break;
-						}
-					} else {
-						if (criteria.getOperator() == WhereOperator.NEQ) {
-							predicates.add(criteriaBuilder.isNotNull(root.get(criteria.getAttribute())));
-						} else {
-							predicates.add(criteriaBuilder.isNull(root.get(criteria.getAttribute())));
-						}
-					}
+					predicates.add(buildSinglePredicte(criteriaBuilder, criteria, root));
 				}
 				query.where(criteriaBuilder.and(predicates.toArray(new Predicate[] {})));
 			}
 			return query;
 		}
 
-		protected <K> TypedQuery<K> values(EntityManager em, TypedQuery<K> query) {
+		@SuppressWarnings("unchecked")
+		protected Predicate buildSinglePredicte(CriteriaBuilder criteriaBuilder, Criteria criteria, Root<?> root) {
+			if (criteria.getValue() != null) {
+				ParameterExpression<?> parameter = criteriaBuilder.parameter(criteria.getValue().getClass(),
+						criteria.getAttribute());
+				switch (criteria.getOperator()) {
+				case GE:
+					return criteriaBuilder.ge(root.get(criteria.getAttribute()),
+							(Expression<? extends Number>) parameter);
+				case GT:
+					return criteriaBuilder.gt(root.get(criteria.getAttribute()),
+							(Expression<? extends Number>) parameter);
+				case LE:
+					return criteriaBuilder.le(root.get(criteria.getAttribute()),
+							(Expression<? extends Number>) parameter);
+				case LT:
+					return criteriaBuilder.lt(root.get(criteria.getAttribute()),
+							(Expression<? extends Number>) parameter);
+				case NEQ:
+					return criteriaBuilder.notEqual(root.get(criteria.getAttribute()), parameter);
+				case EQ:
+				default:
+					return criteriaBuilder.equal(root.get(criteria.getAttribute()), parameter);
+				}
+			} else {
+				if (criteria.getOperator() == WhereOperator.NEQ) {
+					return criteriaBuilder.isNotNull(root.get(criteria.getAttribute()));
+				} else {
+					return criteriaBuilder.isNull(root.get(criteria.getAttribute()));
+				}
+			}
+		}
+
+		protected <K> TypedQuery<K> values(TypedQuery<K> query) {
 			for (Criteria criteria : this.criterias) {
 				if (criteria.getValue() != null) {
 					query.setParameter(criteria.getAttribute(), criteria.getValue());

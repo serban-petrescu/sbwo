@@ -21,7 +21,7 @@ public class DataImportFacade {
 
 	public void execute(Target target, String username, Map<String, Iterator<Map<String, String>>> data)
 			throws ControlException {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
 			User user = executor.selectSingle(User.class).where("username", WhereOperator.EQ, username).execute();
 			switch (target) {
 			case PERSON:
@@ -42,7 +42,7 @@ public class DataImportFacade {
 		return Collections.emptyMap();
 	}
 
-	public static enum Target {
+	public enum Target {
 		PERSON
 	}
 }

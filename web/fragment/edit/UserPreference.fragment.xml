@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
+	<f:FormContainer visible="{view>/edit}">
+		<f:FormElement label="{i18n>lblUserPreferenceDraftResumeMinutesText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<HBox alignItems="Center" width="100%">
+					<StepInput value="{data>/draftResumeDelay}" min="1" max="10000" width="100%"  change="onValueChanged" />
+					<Label class="sapUiTinyMarginBegin" text="{i18n>inpUserPreferenceDraftResumeMinutesUnit}" />
+				</HBox>
+				<Text text="{i18n>txtUserPreferenceDraftResumeMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblUserPreferenceLanguageText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Select selectedKey="{data>/language}" width="100%" forceSelection="false" change="onValueChanged">
+					<core:Item key="en" text="{i18n>txtLanguageEnglishText}"/>
+					<core:Item key="ro" text="{i18n>txtLanguageRomanianText}"/>
+				</Select> 
+				<Text text="{i18n>txtUserPreferenceLanguageInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblUserPreferenceThemeText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Select selectedKey="{data>/theme}" width="100%" forceSelection="false" change="onValueChanged">
+					<core:Item key="sap_belize" text="{i18n>txtThemeBelizeText}"/>
+					<core:Item key="sap_bluecrystal" text="{i18n>txtThemeBlueCrystalText}"/>
+					<core:Item key="sap_hcb" text="{i18n>txtThemeHighContrastBlackText}"/>
+				</Select> 
+				<Text text="{i18n>txtUserPreferenceThemeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+	</f:FormContainer>
+</core:FragmentDefinition>

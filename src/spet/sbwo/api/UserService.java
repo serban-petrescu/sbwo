@@ -13,7 +13,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,17 +26,20 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.UserFavouriteChannel;
 import spet.sbwo.control.channel.UserHomeTilesChannel;
+import spet.sbwo.control.channel.UserPreferenceChannel;
 import spet.sbwo.control.controller.UserController;
 
 @Path("/user")
 public class UserService extends BaseService {
-	private UserController userController;
-	private ObjectWriter tileWriter;
-	private ObjectReader tileReader;
-	private ObjectWriter favWriter;
-	private ObjectReader favReader;
-	private ObjectWriter favListWriter;
-	private ObjectReader favListReader;
+	private final UserController userController;
+	private final ObjectWriter tileWriter;
+	private final ObjectReader tileReader;
+	private final ObjectWriter favWriter;
+	private final ObjectReader favReader;
+	private final ObjectWriter favListWriter;
+	private final ObjectReader favListReader;
+	private final ObjectWriter prefWriter;
+	private final ObjectReader prefReader;
 
 	public UserService(UserController userController) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -48,6 +53,8 @@ public class UserService extends BaseService {
 				UserFavouriteChannel.class);
 		this.favListReader = mapper.readerFor(favListType);
 		this.favListWriter = mapper.writerFor(favListType);
+		this.prefReader = mapper.readerFor(UserPreferenceChannel.class);
+		this.prefWriter = mapper.writerFor(UserPreferenceChannel.class);
 	}
 
 	@GET
@@ -137,6 +144,42 @@ public class UserService extends BaseService {
 	public void deleteFavourite(@Context HttpServletRequest request, @PathParam("id") int id) {
 		try {
 			this.userController.deleteFavourite(getCurrentUsername(request), id);
+		} catch (ControlException e) {
+			this.handleException(e);
+		} catch (Exception e) {
+			this.handleException(e);
+		}
+		throw new InternalServerErrorException();
+	}
+
+	@GET
+	@Path("/preference/read")
+	public Response readPreference(@Context HttpServletRequest request, @QueryParam("callback") String callback) {
+		try {
+			UserPreferenceChannel preference = userController.readPreference(getCurrentUsername(request));
+			String data = prefWriter.writeValueAsString(preference);
+			if (callback == null) {
+				return Response.ok(data, "application/json").build();
+			} else {
+				return Response.ok(callback + "(" + data + ")", "application/javascript").build();
+			}
+		} catch (ControlException e) {
+			this.handleException(e);
+		} catch (Exception e) {
+			this.handleException(e);
+		}
+		throw new InternalServerErrorException();
+	}
+
+	@PUT
+	@Path("/preference/update")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public String updatePreference(@Context HttpServletRequest request, InputStream body) {
+		try {
+			UserPreferenceChannel preference = prefReader.readValue(body);
+			UserPreferenceChannel result = userController.updatePreference(getCurrentUsername(request), preference);
+			return prefWriter.writeValueAsString(result);
 		} catch (ControlException e) {
 			this.handleException(e);
 		} catch (Exception e) {

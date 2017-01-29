@@ -21,25 +21,25 @@ public class SessionManager {
 	}
 
 	public boolean exists(String id) {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
 			return executor.find(UserSession.class, id) != null;
 		} catch (DatabaseException e) {
-			LOG.error("Unable to check session {} for existance.", id);
+			LOG.error("Unable to check session {} for existance.", id, e);
 			return false;
 		}
 	}
 
 	public UserSession read(String id) {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
 			return executor.find(UserSession.class, id);
 		} catch (DatabaseException e) {
-			LOG.error("Unable to load session {}.", id);
+			LOG.error("Unable to load session {}.", id, e);
 			return null;
 		}
 	}
 
 	public boolean remove(String id) {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
 			UserSession session = executor.find(UserSession.class, id);
 			if (session != null) {
 				executor.delete(session);
@@ -47,13 +47,13 @@ public class SessionManager {
 				return true;
 			}
 		} catch (DatabaseException e) {
-			LOG.error("Unable to delete session {}.", id);
+			LOG.error("Unable to delete session {}.", id, e);
 		}
 		return false;
 	}
 
 	public void upsert(UserSession session) {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
 			UserSession attached = executor.find(UserSession.class, session.getId());
 			if (attached == null) {
 				executor.create(session);
@@ -62,15 +62,16 @@ public class SessionManager {
 			}
 			executor.commit();
 		} catch (DatabaseException e) {
-			LOG.error("Unable to update session {}.", session.getId());
+			LOG.error("Unable to update session {}.", session.getId(), e);
 		}
 	}
 
-	public List<UserSession> readAllExpired(long ts) {
-		try (IDatabaseExecutor executor = database.buildExecutor(false)) {
-			return executor.select(UserSession.class).where("expiryTime", WhereOperator.LE, ts).execute();
+	public List<String> readAllExpired(long ts) {
+		try (IDatabaseExecutor executor = database.createExecutor(false)) {
+			return executor.select(UserSession.class, String.class, "id").where("expiryTime", WhereOperator.LE, ts)
+					.execute();
 		} catch (DatabaseException e) {
-			LOG.error("Unable to read all expired sessions.");
+			LOG.error("Unable to read all expired sessions.", e);
 			return new LinkedList<>();
 		}
 	}

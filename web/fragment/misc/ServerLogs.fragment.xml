@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" 
+	xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.util">
+	<NavContainer id="navLogs" height="100%">
+		<ScrollContainer id="sccLogList" width="100%" height="100%" vertical="true" horizontal="false">
+			<List id="lstLogs" items="{view>/logs/content}" growing="true" growingScrollToLoad="true">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>titServerSettingsLogsText}" />
+						<ToolbarSpacer />
+						<SearchField search="onSearchLogs" showRefreshButton="true" 
+							width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
+					</Toolbar>
+				</headerToolbar>
+				<StandardListItem type="Navigation" title="{view>name}" icon="sap-icon://attachment-text-file" press="onShowLogEvents"
+					info="{path: 'view>size', type: 'sap.ui.model.type.FileSize', formatOptions: {binaryFilesize: true, decimals: 2}}"/>
+			</List>
+		</ScrollContainer>
+		<ScrollContainer id="sccLogEvents" width="100%" height="100%" vertical="true" horizontal="false">
+			<Table id="lstLogEvents" items="{view>/log/events}" growing="true" growingScrollToLoad="true">
+				<headerToolbar>
+					<Toolbar>
+						<Button icon="sap-icon://nav-back" type="Transparent" press="onShowLogList"/>
+						<Title text="{i18n>titServerSettingsLogEventsText}" />
+						<ToolbarSpacer />
+						<SearchField search="onSearchLogEvents" showRefreshButton="true" 
+							width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="2em" />
+					<Column width="{:= ${device>/system/phone} ? '6em' : '12em' }">
+						<header><Label text="{i18n>colServerLogEventsDateHeader}"/></header>
+					</Column>
+					<Column width="15em" minScreenWidth="Tablet">
+						<header><Label text="{i18n>colServerLogEventsLoggerHeader}"/></header>
+					</Column>
+					<Column>
+						<header><Label text="{i18n>colServerLogEventsMessageHeader}"/></header>
+					</Column>
+				</columns>
+				<ColumnListItem>
+					<core:Icon color="{path: 'view>level', formatter: '.formatLogColorFromLevel'}" src="sap-icon://circle-task-2" />
+					<Text text="{path: 'view>timeMillis', formatter: '.formatTimestampDate'}"/>
+					<Text text="{view>loggerName}"/>
+					<Text text="{view>message}"/>
+				</ColumnListItem>
+			</Table>
+		</ScrollContainer>
+	</NavContainer>
+</core:FragmentDefinition>

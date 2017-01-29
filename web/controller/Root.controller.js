@@ -9,7 +9,12 @@ sap.ui.define([
 			var sClass = this.getOwnerComponent().getContentDensityClass(),
 				oHash = HashChanger.getInstance(),
 				fnUpdateModel = this.updateFavoriteModel.bind(this),
-				oModel;
+				oModel,
+				oOverlay = jQuery("#overlay");
+				
+			jQuery.sap.delayedCall(1000, null, function(){
+				oOverlay.fadeOut(1000, oOverlay.remove.bind(oOverlay));
+			});
 				
 			this.buildViewModel({
 				menu: false,
@@ -51,6 +56,10 @@ sap.ui.define([
 				},
 				error: this.onRestApiError.bind(this)
 			});
+		},
+		
+		onLogoff: function() {
+			window.location.assign("/public/rest/user/logout");
 		},
 		
 		onShowFavourites: function() {
@@ -184,6 +193,10 @@ sap.ui.define([
 		
 		onPressHome: function() {
 			this.getRouter().navTo("home", {});
+		},
+		
+		onPressPersonalization: function() {
+			this.getRouter().navTo("user-settings", {});
 		},
 		
 		onOpenGlobalSearch: function() {

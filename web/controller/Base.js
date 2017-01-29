@@ -179,6 +179,22 @@ sap.ui.define([
 		},
 		
 		/**
+		 * Applies a simple contains filter. 
+		 * @param	{string}	sQuery		The search query.
+		 * @param	{string}	sAttribute	The target search attribute.
+		 * @param	{Binding}	oBinding	The target binding which should be filtered.
+		 * @returns {void}
+		 */
+		applyContainsFilter: function(sQuery, sAttribute, oBinding) {
+			if (sQuery){
+				oBinding.filter(new Filter(sAttribute, FilterOperator.Contains, sQuery));
+			}
+			else {
+				oBinding.filter([]);
+			}
+		},
+		
+		/**
 		 * Applies a search filter. Search filters work by splitting the search query into words
 		 * and applying a filter on a single attribute. This filter will be a conjunction of Contains
 		 * filters for each word. The search is case insensitive (the words are converted to upper case)
@@ -227,7 +243,7 @@ sap.ui.define([
 		onRestApiError: function(oXhr) {
 			switch (oXhr.status) {
 			case 403:
-				this.onForbiddenError(oXhr);
+				// do nothing because this is handeled by the global listener
 				break;
 			case 404:
 				this.onNotFoundError(oXhr);
@@ -243,10 +259,6 @@ sap.ui.define([
 		
 		onNotFoundError: function(/* oXhr */) {
 			MessageBox.error(this.getResourceBundle().getText("txtErrorNotFoundText"));
-		},
-		
-		onForbiddenError: function(/* oXhr */) {
-			MessageBox.error(this.getResourceBundle().getText("txtErrorForbiddenText"));
 		},
 		
 		onTechnicalError: function(/* oXhr */) {

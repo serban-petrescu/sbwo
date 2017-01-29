@@ -1,21 +1,51 @@
 package spet.sbwo.data.access;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import spet.sbwo.data.DatabaseException;
 
-public class DatabaseFacade {
+public class DatabaseFacade implements IBackupCreator, IDatabaseExecutorCreator {
+	private static final Logger LOG = LoggerFactory.getLogger(DatabaseFacade.class);
 	private EntityManagerFactory emf;
 
 	public DatabaseFacade(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 
-	public IDatabaseExecutor buildExecutor(boolean deferred) throws DatabaseException {
+	@Override
+	public IDatabaseExecutor createExecutor(boolean deferred) throws DatabaseException {
 		if (deferred) {
 			return new DeferredDatabaseExecutor(this.emf.createEntityManager());
 		} else {
 			return new ImmediateDatabaseExecutor(this.emf.createEntityManager());
 		}
 	}
+
+	@Override
+	public void createBackup(String baseName) throws DatabaseException {
+		EntityManager em = null;
+		EntityTransaction transaction = null;
+		try {
+			em = emf.createEntityManager();
+			transaction = em.getTransaction();
+			transaction.begin();
+			em.createNativeQuery(String.format("BACKUP TO '%s.zip'", baseName)).executeUpdate();
+		} catch (Exception e) {
+			LOG.error("Unable to run backup", e);
+			throw new DatabaseException(e);
+		} finally {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			if (em != null) {
+				em.close();
+			}
+		}
+	}
+
 }
