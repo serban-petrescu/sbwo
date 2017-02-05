@@ -39,6 +39,10 @@ sap.ui.define([], function() {
 			return fnEntityPageTitle(bLoaded, sDefault, sPattern, sName);
 		},
 		
+		helpPageTitle: function(sDefault, sPattern, sName) {
+			return fnEntityPageTitle(!!sName, sDefault, sPattern, sName);
+		},
+		
 		entityIcon: function(iType, iSubtype) {
 			var oType = mSearchIcons[iType + ""];
 			if (typeof oType === "object") {

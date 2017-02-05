@@ -1,8 +1,9 @@
 sap.ui.define([
 	"spet/sbwo/web/controller/entity/Base",
 	"spet/sbwo/web/util/TimeOfDay",
-	"sap/ui/core/format/DateFormat"
-], function(Base, TimeOfDay, DateFormat) {
+	"sap/ui/core/format/DateFormat",
+	"sap/m/MessageBox"
+], function(Base, TimeOfDay, DateFormat, MessageBox) {
 	"use strict";
 	
 	var sBaseApiPath = "/private/api/rest/utility/file";
@@ -90,39 +91,29 @@ sap.ui.define([
 		},
 		
 		onReadLogs: function() {
-			var oModel = this.getModel("view");
-			jQuery.ajax({
-				url: sBaseApiPath + "/logs",
-				method: "GET",
-				success: function(oData) {
-					oModel.setProperty("/logs", oData);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var fnSuccesss = function(oData) {
+				this.getModel("view").setProperty("/logs", oData);
+			};
+			this.get(sBaseApiPath + "/logs", fnSuccesss);
 		},
 		
 		onReadLogEvents: function(sName) {
-			var oModel = this.getModel("view");
-			jQuery.ajax({
-				url: sBaseApiPath + "/log/" + sName,
-				method: "GET",
-				success: function(oData) {
-					oModel.setProperty("/log/events", oData);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var fnSuccesss = function(oData) {
+				this.getModel("view").setProperty("/log/events", oData);
+			};
+			this.get(sBaseApiPath + "/log/" + sName, fnSuccesss);
 		},
 		
 		onReadSchedules: function() {
-			var oModel = this.getModel("view");
-			jQuery.ajax({
-				url: sBaseApiPath + "/schedules",
-				method: "GET",
-				success: function(oData) {
-					oModel.setProperty("/schedules", oData);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var fnSuccesss = function(oData) {
+				this.getModel("view").setProperty("/schedules", oData);
+			};
+			this.get(sBaseApiPath + "/schedules/read", fnSuccesss);
+		},
+		
+		onSaveSuccess: function() {
+			Base.prototype.onSaveSuccess.apply(this, arguments);
+			MessageBox.information(this.getResourceBundle().getText("txtServerSettingsUpdatedRefreshInfo"));
 		}
 	});
 

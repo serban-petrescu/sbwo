@@ -1,15 +1,13 @@
 sap.ui.define([
 	"./Base",
-	"sap/ui/core/routing/HashChanger"
-], function(Base, HashChanger) {
+	"sap/ui/core/routing/HashChanger",
+	"spet/sbwo/web/model/helps"
+], function(Base, HashChanger, helps) {
 	"use strict";
 	
 	return Base.extend("spet.sbwo.web.controller.Root", {
 		onInit: function() {
 			var sClass = this.getOwnerComponent().getContentDensityClass(),
-				oHash = HashChanger.getInstance(),
-				fnUpdateModel = this.updateFavoriteModel.bind(this),
-				oModel,
 				oOverlay = jQuery("#overlay");
 				
 			jQuery.sap.delayedCall(1000, null, function(){
@@ -21,7 +19,8 @@ sap.ui.define([
 				edit: false,
 				favourites: [],
 				isFavourite: false,
-				hash: oHash.getHash()
+				hash: HashChanger.getInstance().getHash(),
+				help: null
 			});
 			
 			this.getView().addStyleClass(sClass);
@@ -29,7 +28,18 @@ sap.ui.define([
 				oControl.addStyleClass(sClass);
 			});
 			
-			oModel = this.getModel("view");
+			this.attachHashAndRoutes();
+			this.onReadUser();
+		},
+		
+		attachHashAndRoutes: function() {
+			var oModel = this.getModel("view"),
+				fnUpdateModel = this.updateFavoriteModel.bind(this),
+				oHash = HashChanger.getInstance(),
+				oRouter = this.getRouter(),
+				fnReadHelp = function(sRoute) {
+					this.getModel("view").setProperty("/help", helps.route(this.getResourceBundle(), sRoute));
+				}.bind(this);
 			oHash.attachEvent("hashChanged", function(oEvent) {
 				oModel.setProperty("/hash", oEvent.getParameter("newHash"));
 				fnUpdateModel();
@@ -43,19 +53,27 @@ sap.ui.define([
 				fnUpdateModel();
 			});
 			
-			this.onReadUser();
+			oRouter.attachRouteMatched(function(oEvent){
+				fnReadHelp(oEvent.getParameter("name"));
+			});
+			oRouter.attachBypassed(function(){
+				fnReadHelp("home");
+			});
+		},
+		
+		onCloseHelpDialog: function() {
+			this.byId("dlgHelpVideo").close();
+		},
+		
+		onOpenHelpDialog: function() {
+			this.byId("dlgHelpVideo").open();
 		},
 		
 		onReadUser: function() {
-			var oModel = this.getModel("view");
-			jQuery.ajax({
-				method: "GET",
-				url: "/public/rest/user/current",
-				success: function(oData) {
-					oModel.setProperty("/user", oData);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var fnSuccess = function(oData) {
+				this.getModel("view").setProperty("/user", oData);
+			};
+			this.get("/public/rest/user/current", fnSuccess);
 		},
 		
 		onLogoff: function() {
@@ -64,8 +82,7 @@ sap.ui.define([
 		
 		onShowFavourites: function() {
 			var oModel = this.getModel("view"),
-				bOpen,
-				fnUpdateModel = this.updateFavoriteModel.bind(this);
+				bOpen;
 				
 			if (this.getModel("device").getProperty("/system/phone")) {
 				oModel.setProperty("/menu", true);
@@ -78,26 +95,14 @@ sap.ui.define([
 			}
 			
 			if (bOpen) {
-				jQuery.ajax({
-					method: "GET",
-					url: "/private/api/rest/user/favourites/read",
-					success: fnUpdateModel,
-					error: this.onRestApiError.bind(this)
-				});
+				this.get("/private/api/rest/user/favourites/read", this.updateFavoriteModel);
 			}
 		},
 		
 		onToggleEdit: function(oEvent) {
 			if (!oEvent.getSource().getPressed()) {
-				jQuery.ajax({
-					method: "PUT",
-					url: "/private/api/rest/user/favourites/update",
-					dataType: "json",
-					contentType: "application/json",
-					data: JSON.stringify(this.getModel("view").getProperty("/favourites")),
-					success: this.updateFavoriteModel.bind(this),
-					error: this.onRestApiError.bind(this)
-				});
+				var oData = this.getModel("view").getProperty("/favourites");
+				this.put("/private/api/rest/user/favourites/update", oData, this.updateFavoriteModel);
 			}
 		},
 		
@@ -133,25 +138,19 @@ sap.ui.define([
 				aFavs = oModel.getProperty("/favourites"),
 				sHash = oModel.getProperty("/hash"),
 				i,
-				fnUpdateModel = this.updateFavoriteModel.bind(this);
+				oData,
+				fnSuccess;
 				
 			if (oEvent.getSource().getPressed()) {
-				jQuery.ajax({
-					method: "POST",
-					url: "/private/api/rest/user/favourites/create",
-					headers: {"X-CSRF-TOKEN": this.getModel().getSecurityToken()},
-					dataType: "json",
-					contentType: "application/json",
-					data: JSON.stringify({
-						hash: sHash,
-						title: window.document.title
-					}),
-					success: function(oData) {
-						aFavs.push(oData);
-						fnUpdateModel(aFavs);
-					},
-					error: this.onRestApiError.bind(this)
-				});
+				oData = {
+					hash: sHash,
+					title: window.document.title
+				};
+				fnSuccess = function(oDt) {
+					aFavs.push(oDt);
+					this.updateFavoriteModel(aFavs);
+				};
+				this.post("/private/api/rest/user/favourites/create", oData, fnSuccess);
 			}
 			else {
 				for (i = 0; i < aFavs.length; ++i) {
@@ -160,14 +159,11 @@ sap.ui.define([
 					}
 				}
 				if (i < aFavs.length) {
-					jQuery.ajax({
-						method: "DELETE",
-						url: "/private/api/rest/user/favourites/delete/" + aFavs[i].id,
-						error: this.onRestApiError.bind(this)
-					}).always(function() {
+					fnSuccess = function() {
 						aFavs.splice(i, 1);
-						fnUpdateModel(aFavs);
-					});
+						this.updateFavoriteModel(aFavs);
+					};
+					this.del("/private/api/rest/user/favourites/delete/" + aFavs[i].id, fnSuccess);
 				}
 			}
 		},

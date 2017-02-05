@@ -1,5 +1,6 @@
 <mvc:View controllerName="spet.sbwo.web.controller.misc.Import" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<Page id="pagImport" 
 		title="{i18n>pagImportTitle}"
 		showNavButton="true"
@@ -36,6 +37,8 @@
 				<IconTabFilter key="{view>name}" text="{path: 'view>name', formatter: '.formatTabText'}">
 					<Panel>
 						<Text text="{path: 'view>name', formatter: '.formatTabDescription'}" class="sapUiTinyMarginBottom"/>
+						<Button icon="sap-icon://download" text="{i18n>txtImportDataDownloadTemplateText}" type="Emphasized"
+							press="doExternalAction" cd:action="download" cd:target="{path: 'view>/selected', formatter: '.formatZipPath'}"/>
 					</Panel>
 					<List items="{path: 'view>files', templateShareable: true}">
 						<ObjectListItem title="{view>name}"

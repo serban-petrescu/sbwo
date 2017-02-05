@@ -6,6 +6,8 @@
 		navButtonPress="onNavBack">
 		
 		<headerContent>
+			<Button icon="sap-icon://key" visible="{= !${view>/edit} }" 
+				press="onOpenPasswordDialog" tooltip="{i18n>btnUserPasswordChangeTooltip}"/>
 			<Button icon="sap-icon://save" visible="{view>/edit}" press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
 			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"	press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
 		</headerContent>
@@ -30,7 +32,7 @@
 		</footer>
 		
 		<dependents>
-			
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.UserPasswordChange" type="XML" />
 		</dependents>
 	</Page>
 </mvc:View>

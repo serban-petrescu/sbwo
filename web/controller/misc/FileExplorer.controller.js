@@ -174,6 +174,13 @@ sap.ui.define([
 		
 		read: function() {
 			var oModel = this.getModel("view");
+			this.readFolders(oModel);
+			if (!oModel.getProperty("folder")) {
+				this.readFiles(oModel);
+			}
+		},
+		
+		readFolders: function(oModel) {
 			jQuery.ajax({
 				method: "GET",
 				url: sBaseApiPath + "/folders",
@@ -193,27 +200,28 @@ sap.ui.define([
 					oModel.setProperty("/folders", []);
 				}
 			});
-			if (!oModel.getProperty("folder")) {
-				jQuery.ajax({
-					method: "GET",
-					url: sBaseApiPath + "/files",
-					data: {
-						base: oModel.getProperty("/current"),
-						extension: oModel.getProperty("/extension")
-					},
-					success: function(oData) {
-						oModel.setProperty("/filder", oData.content.map(function(oFile){
-							return {
-								name: oFile.name + "." + oFile.extension,
-								icon: fnGetIconForExtension(oFile.extension)
-							};
-						}));
-					},
-					error: function() {
-						oModel.setProperty("/files", []);
-					}
-				});
-			}
+		},
+		
+		readFiles: function(oModel) {
+			jQuery.ajax({
+				method: "GET",
+				url: sBaseApiPath + "/files",
+				data: {
+					base: oModel.getProperty("/current"),
+					extension: oModel.getProperty("/extension")
+				},
+				success: function(oData) {
+					oModel.setProperty("/filder", oData.content.map(function(oFile){
+						return {
+							name: oFile.name + "." + oFile.extension,
+							icon: fnGetIconForExtension(oFile.extension)
+						};
+					}));
+				},
+				error: function() {
+					oModel.setProperty("/files", []);
+				}
+			});
 		}
 		
 	});

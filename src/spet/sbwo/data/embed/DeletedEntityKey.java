@@ -4,24 +4,28 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import spet.sbwo.data.domain.EntityType;
 
 @Embeddable
 public class DeletedEntityKey implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "C_TYPE")
-	private int type;
+	@Enumerated(EnumType.ORDINAL)
+	private EntityType type;
 
 	@Column(name = "C_ID")
 	private int id;
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + type;
+		result = prime * result + type.ordinal();
 		return result;
 	}
 
@@ -41,11 +45,11 @@ public class DeletedEntityKey implements Serializable {
 		return true;
 	}
 
-	public int getType() {
+	public EntityType getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(EntityType type) {
 		this.type = type;
 	}
 

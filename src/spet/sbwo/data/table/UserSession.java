@@ -1,13 +1,10 @@
 package spet.sbwo.data.table;
 
-import java.util.HashMap;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "T_USER_SESSION")
@@ -16,7 +13,7 @@ public class UserSession {
 	@Id
 	@Column(name = "C_ID", length = 128)
 	private String id;
-
+	
 	@Column(name = "C_CONTEXT_PATH", length = 64)
 	private String contextPath;
 
@@ -46,10 +43,10 @@ public class UserSession {
 
 	@Column(name = "C_MAX_INTERVAL")
 	private long maxInterval;
-	
+
+	@Lob
 	@Column(name = "C_ATTRIBUTES")
-	@Type(type = "serializable")
-	private HashMap<String, Object> attributes;
+	private byte[] attributes;
 
 	public String getId() {
 		return id;
@@ -139,11 +136,11 @@ public class UserSession {
 		this.maxInterval = maxInterval;
 	}
 
-	public HashMap<String, Object> getAttributes() {
+	public byte[] getAttributes() {
 		return attributes;
 	}
 
-	public void setAttributes(HashMap<String, Object> attributes) {
+	public void setAttributes(byte[] attributes) {
 		this.attributes = attributes;
 	}
 }

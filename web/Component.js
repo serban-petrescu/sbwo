@@ -76,16 +76,17 @@ sap.ui.define([
 		},
 		
 		_fixTargetTitles: function() {
-			var oTargets = this.getRouter().getTargets(),
-				oTarget,
-				oInfo;
-			oTarget = oTargets.getTarget("person");
-			if (oTarget._oTitleProvider && oTarget._oTitleProvider.getBindingInfo) {
-				oInfo = oTarget._oTitleProvider.getBindingInfo("title");
-				if (oInfo) {
-					oInfo.formatter = jQuery.sap.getObject(oInfo.formatter);
+			var oTargets = this.getRouter().getTargets();
+			
+			jQuery.each(oTargets._mTargets, function(sKey, oTarget) {
+				var oInfo;
+				if (oTarget._oTitleProvider && oTarget._oTitleProvider.getBindingInfo) {
+					oInfo = oTarget._oTitleProvider.getBindingInfo("title");
+					if (oInfo && oInfo.formatter) {
+						oInfo.formatter = jQuery.sap.getObject(oInfo.formatter);
+					}
 				}
-			}
+			});
 		}
 	});
 

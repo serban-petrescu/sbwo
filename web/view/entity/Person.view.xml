@@ -1,5 +1,6 @@
 <mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<Page id="pagEntity" 
 		title="{
 			parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'}, 
@@ -16,7 +17,8 @@
 			<Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}" 
 				press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
 			<Button icon="sap-icon://download" visible="{= !${view>/edit} &amp;&amp; ${view>/loaded}}" 
-				press="onExport" tooltip="{i18n>btnPersonEntityExportTooltip}"/>
+				press="doExternalAction" cd:action="download" cd:target="{path: 'view>/id', formatter: '.formatExportPath'}"
+				tooltip="{i18n>btnPersonEntityExportTooltip}"/>
 			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}" 
 				press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
 		</headerContent>

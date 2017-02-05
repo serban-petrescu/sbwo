@@ -17,8 +17,8 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 
+import spet.sbwo.control.controller.user.SessionManager;
 import spet.sbwo.control.util.ILoginProvider;
-import spet.sbwo.control.util.SessionManager;
 
 public class ServerBuilder {
 	private int port = 8080;
@@ -195,12 +195,17 @@ public class ServerBuilder {
 				return null;
 			}
 		}
+
+		@Override
+		public boolean validate(UserIdentity user) {
+			return user != null && super.validate(user);
+		}
 	}
 
 	private static class CustomCredential extends Credential {
 		private static final long serialVersionUID = 1L;
 
-		private ILoginProvider loginProvider;
+		private transient ILoginProvider loginProvider;
 		private String username;
 
 		public CustomCredential(ILoginProvider loginProvider, String username) {

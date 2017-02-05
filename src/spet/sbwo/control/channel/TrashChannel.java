@@ -1,8 +1,18 @@
 package spet.sbwo.control.channel;
 
+import spet.sbwo.data.domain.EntityType;
+
 public class TrashChannel {
 	private int type;
 	private int id;
+
+	public EntityType getTypeAsEnum() {
+		if (type >= 0 && type < EntityType.values().length) {
+			return EntityType.values()[type];
+		} else {
+			return null;
+		}
+	}
 
 	public int getType() {
 		return type;

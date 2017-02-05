@@ -56,31 +56,19 @@ sap.ui.define([
 		},
 		
 		onRestoreSelected: function() {
-			var oModel = this.getModel(),
-				fnClear = this.clearSelection.bind(this);
-			jQuery.ajax({
-				method: "PUT",
-				url: "/private/api/rest/trash/restore",
-				contentType: "application/json",
-				data: JSON.stringify(this.getSelectionEntities()),
-				success: function() {
-					oModel.refresh();
-					fnClear();
-				}
-			});
+			var fnSuccess = function() {
+				this.getModel().refresh();
+				this.clearSelection();
+			};
+			this.put("/private/api/rest/trash/restore", this.getSelectionEntities(), fnSuccess);
 		},
 		
 		onDeleteAll: function() {
-			var oModel = this.getModel(),
-				fnClear = this.clearSelection.bind(this);
-			jQuery.ajax({
-				method: "DELETE",
-				url: "/private/api/rest/trash/delete/all",
-				success: function() {
-					oModel.refresh();
-					fnClear();
-				}
-			});
+			var fnSuccess = function() {
+				this.getModel().refresh();
+				this.clearSelection();
+			};
+			this.del("/private/api/rest/trash/delete/all", fnSuccess);
 		},
 		
 		clearSelection: function(){

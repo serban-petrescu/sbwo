@@ -75,6 +75,10 @@ sap.ui.define([
 			return "/private/api/rest/import/data/" + sName;
 		},
 		
+		formatZipPath: function(sName) {
+			return jQuery.sap.getModulePath("spet/sbwo/web/model/import", "/" + sName + ".zip");
+		},
+		
 		onUpdateBinding: function() {
 			this.getView().bindElement({
 				model: "view",

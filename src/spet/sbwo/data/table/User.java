@@ -25,6 +25,9 @@ public class User extends BaseEntity {
 	@Column(name = "C_ACTIVE")
 	private boolean active;
 
+	@Column(name = "C_FAILS")
+	private int fails;
+
 	@OneToOne(mappedBy = "user")
 	private UserPreference preference;
 
@@ -88,6 +91,14 @@ public class User extends BaseEntity {
 
 	public void setFavourites(List<UserFavourite> favourites) {
 		this.favourites = favourites;
+	}
+
+	public int getFails() {
+		return fails;
+	}
+
+	public void setFails(int fails) {
+		this.fails = fails;
 	}
 
 	@Override

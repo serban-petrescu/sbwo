@@ -45,6 +45,9 @@
 			</ScrollContainer>
 		</Panel>
 		
+		<endButton>
+			<Button text="{i18n>btnFileExplorerCancelText}" press="close"/>
+		</endButton>
 		<beginButton>
 			<Button text="{i18n>btnFileExplorerOkText}" press="onOkPress"/>
 		</beginButton>

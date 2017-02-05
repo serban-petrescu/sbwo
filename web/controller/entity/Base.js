@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/HashChanger",
 	"spet/sbwo/web/util/DraftService",
-	"sap/ui/core/format/DateFormat"
-], function(Base, JSONModel, MessageBox, HashChanger, DraftService, DateFormat) {
+	"sap/ui/core/format/DateFormat",
+	"spet/sbwo/web/model/preference"
+], function(Base, JSONModel, MessageBox, HashChanger, DraftService, DateFormat, preference) {
 	"use strict";
 	
 	var oDtFormat = DateFormat.getDateTimeInstance({style: "short"});
@@ -33,36 +34,24 @@ sap.ui.define([
 		},
 		
 		onSave: function() {
-			var oViewModel = this.getModel("view"),
-				oDataModel = this.getModel("data");
-			jQuery.ajax({
-				url:	this.getUpdateApiUrl(oViewModel.getProperty("/id")),
-				method: "PUT",
-				contentType: "application/json",
-				data:	JSON.stringify(oDataModel.getData()),
-				dataType: "json",
-				success: function(oData) {
-					oDataModel.setData(oData);
-					oViewModel.setProperty("/edit", false);
-					oViewModel.setProperty("/draft", "Clear");
-					DraftService.remove(HashChanger.getInstance().getHash());
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var sUrl = this.getUpdateApiUrl(this.getModel("view").getProperty("/id"));
+			this.put(sUrl, this.getModel("data").getData(), this.onSaveSuccess);
+		},
+		
+		onSaveSuccess: function(oData) {
+			this.getModel("data").setData(oData);
+			this.getModel("view").setProperty("/edit", false);
+			this.getModel("view").setProperty("/draft", "Clear");
+			DraftService.remove(HashChanger.getInstance().getHash());
 		},
 		
 		onRestore: function() {
-			var oViewModel = this.getModel("view"),
-				oDataModel = this.getModel("data");
-			jQuery.ajax({
-				url:	this.getRestoreApiUrl(oViewModel.getProperty("/id")),
-				method: "PUT",
-				dataType: "json",
-				success: function(oData) {
-					oDataModel.setData(oData);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var sUrl = this.getRestoreApiUrl(this.getModel("view").getProperty("/id"));
+			this.put(sUrl, {}, this.onRestoreSuccess);
+		},
+		
+		onRestoreSuccess: function(oData) {
+			this.getModel("data").setData(oData);
 		},
 		
 		onReset: function() {
@@ -72,32 +61,25 @@ sap.ui.define([
 		
 		onRead: function() {
 			var oViewModel = this.getModel("view"),
-				oDataModel = this.getModel("data");
+				sUrl = this.getReadApiUrl(oViewModel.getProperty("/id"));
 			oViewModel.setProperty("/loaded", false);
-			jQuery.ajax({
-				url:	this.getReadApiUrl(oViewModel.getProperty("/id")),
-				method: "GET",
-				dataType: "json",
-				success: function(oData) {
-					oDataModel.setData(oData);
-					oViewModel.setProperty("/draft", "Clear");
-					oViewModel.setProperty("/loaded", true);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			this.get(sUrl, this.onReadSuccess);
+		},
+		
+		onReadSuccess: function(oData) {
+			this.getModel("data").setData(oData);
+			this.getModel("view").setProperty("/draft", "Clear");
+			this.getModel("view").setProperty("/loaded", true);
 		},
 		
 		onDelete: function() {
-			var oViewModel = this.getModel("view");
-			jQuery.ajax({
-				url:	this.getDeleteApiUrl(oViewModel.getProperty("/id")),
-				method: "DELETE",
-				success: function() {
-					oViewModel.setProperty("/draft", "Clear");
-					window.history.go(-1);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+			var sUrl = this.getDeleteApiUrl(this.getModel("view").getProperty("/id"));
+			this.del(sUrl, this.onDeleteSuccess);
+		},
+		
+		onDeleteSuccess: function() {
+			this.getModel("view").setProperty("/draft", "Clear");
+			window.history.go(-1);
 		},
 		
 		onValueChanged: function() {
@@ -173,7 +155,7 @@ sap.ui.define([
 				
 			DraftService.load(HashChanger.getInstance().getHash()).then(function(oData){
 				if (oData && oData.data) {
-					if ((new Date().getTime() - oData.time) <= 30 * 60 * 1000) {
+					if ((new Date().getTime() - oData.time) <= preference.draftResumeDelay * 60 * 1000) {
 						fnOnConfirm(oData);
 					}
 					else {

@@ -103,7 +103,7 @@ sap.ui.define([
 				i,
 				sValue = oInput.getValue(),
 				oBundle = this.getResourceBundle(),
-				sDataBasePath = oInput.getBindingContext("data").getPath(),
+				sDataBasePath = oInput.getBinding("value").getPath(),
 				
 				fnGetText = function(sText) {
 					if (sText.indexOf("i18n>") === 0) {
@@ -175,6 +175,9 @@ sap.ui.define([
 				case "link":
 					sap.m.URLHelper.redirect(oControl.data("target"), true);
 					break;
+				case "download":
+					sap.m.URLHelper.redirect(oControl.data("target"), false);
+					break;
 			}
 		},
 		
@@ -223,9 +226,9 @@ sap.ui.define([
 		/**
 		 * Retrieves the route name for the given entity type.
 		 */
-		getRouterForEntityType: function(iType) {
-			switch(iType) {
-				case 0: return "person";
+		getRouterForEntityType: function(sType) {
+			switch(sType) {
+				case "PERSON": return "person";
 			}
 		},
 		
@@ -238,6 +241,50 @@ sap.ui.define([
 			if (sRoute) {
 				oRouter.navTo(sRoute, {id: iId});
 			}
+		},
+		
+		get: function(sUrl, fnSuccess) {
+			return jQuery.ajax({
+				url: sUrl,
+				method: "GET",
+				success: fnSuccess.bind(this),
+				error: this.onRestApiError.bind(this)
+			});
+		},
+		
+		post: function(sUrl, oData, fnSuccess) {
+			return jQuery.ajax({
+				url: sUrl,
+				method: "POST",
+				contentType: "json",
+				data: JSON.stringify(oData),
+				success: fnSuccess.bind(this),
+				headers: {
+					"X-CSRF-TOKEN": this.getModel().getSecurityToken()
+				},
+				error: this.onRestApiError.bind(this)
+			});
+		},
+		
+		put: function(sUrl, oData, fnSuccess) {
+			return jQuery.ajax({
+				url: sUrl,
+				method: "PUT",
+				contentType: "json",
+				success: fnSuccess.bind(this),
+				data: JSON.stringify(oData),
+				error: this.onRestApiError.bind(this)
+			});
+		},
+		
+		del: function(sUrl,  fnSuccess) {
+			return jQuery.ajax({
+				url: sUrl,
+				method: "DELETE",
+				success: fnSuccess.bind(this),
+				error: this.onRestApiError.bind(this)
+			});
+			
 		},
 		
 		onRestApiError: function(oXhr) {

@@ -32,8 +32,8 @@ sap.ui.define([
 			return "person-list";
 		},
 		
-		onExport: function() {
-			window.location.assign(sBaseApiPath + "/export/" + this.getModel("view").getProperty("/id"));
+		formatExportPath: function(sId) {
+			return sBaseApiPath + "/export/" + sId;
 		}
 	}));
 

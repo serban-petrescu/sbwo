@@ -64,25 +64,15 @@ sap.ui.define([
 		},
 		
 		onComplete: function() {
-			var oRouter = this.getRouter(),
-				sRoute = this.getEntityRoute();
-			jQuery.ajax({
-				url:	this.getCreateApiPath(),
-				method: "POST",
-				data:	JSON.stringify(this.getModel("data").getData()),
-				dataType: "text",
-				contentType: "application/json",
-				headers: {
-					"X-CSRF-TOKEN": this.getModel().getSecurityToken()
-				},
-				success: function(sId) {
+			var sPath = this.getCreateApiPath(),
+				oData = this.getModel("data").getData(),
+				fnSuccess = function(sId) {
 					DraftService.remove(HashChanger.getInstance().getHash());
-					oRouter.navTo(sRoute, {
+					this.getRouter().navTo(this.getEntityRoute(), {
 						id: sId
 					}, true);
-				},
-				error: this.onRestApiError.bind(this)
-			});
+				};
+			this.post(sPath, oData, fnSuccess);
 		},
 		
 		_saveDraft: function() {

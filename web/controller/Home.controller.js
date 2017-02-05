@@ -1,8 +1,9 @@
 sap.ui.define([
 	"./Base",
 	"sap/m/StandardTile",
-	"sap/ui/model/Sorter"
-], function(Base, StandardTile, Sorter) {
+	"sap/ui/model/Sorter",
+	"spet/sbwo/web/model/tiles"
+], function(Base, StandardTile, Sorter, tiles) {
 	"use strict";
 	
 	return Base.extend("spet.sbwo.web.controller.Home", {
@@ -17,71 +18,19 @@ sap.ui.define([
 		},
 		
 		getDefaultTiles: function() {
-			var oBundle = this.getResourceBundle();
-			return {
-				"person-create" :{
-					name:	"person-create",
-					title:	oBundle.getText("sttHomePersonCreateTitle"),
-					icon:	"sap-icon://add-contact",
-					type:	"Create",
-					order:	1,
-					visible: true,
-					navinfo: ["person-create", {}]
-				},
-				"import" :{
-					name:	"import",
-					title:	oBundle.getText("sttHomeImportTitle"),
-					icon:	"sap-icon://add-contact",
-					type:	"None",
-					order:	5,
-					visible: true,
-					navinfo: ["import", {}]
-				},
-				"customizing": {
-					name:	"customizing",
-					title:	oBundle.getText("sttHomeCustomizingTitle"),
-					icon:	"sap-icon://customize",
-					type:	"None",
-					order:	3,
-					visible: true,
-					navinfo: ["customizing", {}]
-				},
-				"person-list": {
-					name:	"person-list",
-					title:	oBundle.getText("sttHomePersonListTitle"),
-					icon:	"sap-icon://customer-briefing",
-					type:	"None",
-					order:	1,
-					visible: true,
-					count:	"person",
-					unit:	oBundle.getText("sttHomePersonNumberUnit"),
-					navinfo: ["person-list", {}]
-				},
-				"deleted-list": {
-					name:	"deleted-list",
-					title:	oBundle.getText("sttHomeTrashCanTitle"),
-					icon:	"sap-icon://delete",
-					type:	"None",
-					order:	4,
-					visible: true,
-					count:	"deleted",
-					unit:	oBundle.getText("sttHomeDeletedNumberUnit"),
-					navinfo: ["deleted-list", {}]
-				},
-				"server-settings": {
-					name:	"server-settings",
-					title:	oBundle.getText("sttHomeServerSettingsTitle"),
-					icon:	"sap-icon://settings",
-					type:	"None",
-					order:	5,
-					visible: /localhost:\d+/.test(window.location.host),
-					navinfo: ["server-settings", {}]
-				}
-			};
+			return tiles(this.getResourceBundle());
 		},
 		
 		buildTile: function(sId, oContext) {
+			var sNumberPath = null;
 			if (oContext.getProperty("count")) {
+				sNumberPath = "/counts/" + oContext.getProperty("count");
+			}
+			else if (oContext.getProperty("number")) {
+				sNumberPath = "number";
+			}
+			
+			if (sNumberPath) {
 				return new StandardTile(sId, {
 					title:	oContext.getProperty("title"),
 					icon:	oContext.getProperty("icon"),
@@ -92,7 +41,7 @@ sap.ui.define([
 						model: "view"
 					},
 					number: {
-						path: "/counts/" + oContext.getProperty("count"),
+						path: sNumberPath,
 						model: "view",
 						type: "sap.ui.model.type.Integer",
 						formatOptions: {style: "short"}
@@ -148,13 +97,7 @@ sap.ui.define([
 						};
 					}
 				}
-				jQuery.ajax({
-					method: "PUT",
-					url: "/private/api/rest/user/tiles/update",
-					contentType: "application/json",
-					data: JSON.stringify({tiles: oResult}),
-					success: this.onTilesRead.bind(this)
-				});
+				this.put("/private/api/rest/user/tiles/update", {tiles: oResult}, this.onTilesRead);
 			}
 		},
 		
@@ -163,22 +106,14 @@ sap.ui.define([
 		},
 		
 		readTiles: function() {
-			jQuery.ajax({
-				method: "GET",
-				url: "/private/api/rest/user/tiles/read",
-				success: this.onTilesRead.bind(this)
-			});
+			this.get("/private/api/rest/user/tiles/read", this.onTilesRead);
 		},
 		
 		readCounts: function() {
-			var oModel = this.getModel("view");
-			jQuery.ajax({
-				method: "GET",
-				url:	"/private/api/rest/utility/count",
-				success: function(oCounts) {
-					oModel.setProperty("/counts", oCounts);
-				}
-			});
+			var fnSuccess = function(oCounts) {
+				this.getModel("view").setProperty("/counts", oCounts);
+			};
+			this.get("/private/api/rest/utility/count", fnSuccess);
 		},
 		
 		onTilesRead: function(oData) {

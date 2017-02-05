@@ -19,6 +19,11 @@
 		</u:headItems>
 		<u:headEndItems>
 			<u:ShellHeadItem
+				icon="sap-icon://sys-help"
+				visible="{= ${view>/help} !== null }"
+				tooltip="{i18n>shiRootHelpTooltip}"
+				press="onOpenHelpDialog" />
+			<u:ShellHeadItem
 				icon="sap-icon://log"
 				tooltip="{i18n>shiRootLogoffTooltip}"
 				press="onLogoff" />
@@ -69,6 +74,8 @@
 					<Button text="{i18n>btnCloseDialogText}" press="onCloseFavourites"/>
 				</endButton>
 			</Dialog>
+			
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.HelpVideoDialog" type="XML" />
 		</u:dependents>
 	</u:Shell>
 </mvc:View>

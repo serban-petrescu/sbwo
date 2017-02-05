@@ -136,6 +136,10 @@
 				"pattern": "user-settings",
 				"name": "user-settings",
 				"target": "user-settings"
+			},{
+				"pattern": "help/:id:",
+				"name": "help",
+				"target": "help"
 			}],
 			"targets": {
 				"home": {
@@ -193,6 +197,14 @@
 					"viewName": "misc.UserSettings",
 					"title": "{i18n>pagUserSettingsTitle}",
 					"viewId": "user-settings"
+				},
+				"help": {
+					"viewName": "misc.Help",
+					"title": {
+						"parts": ["i18n>titHelpPageMasterText", "i18n>pagHelpTopicTitle", "view>title"],
+						"formatter": "spet.sbwo.web.model.formatter.helpPageTitle"
+					},
+					"viewId": "help"
 				}
 			}
 		}
