@@ -4,17 +4,37 @@ import javax.servlet.Servlet;
 
 import org.eclipse.jetty.servlet.ServletHolder;
 
-public class ServletHandlerBuilder extends ServletHandlerBuilderBase {
+/**
+ * Handler builder for keeping a single servlet instance.
+ * 
+ * @author Serban Petrescu
+ */
+public class ServletHandlerBuilder extends AbstractServletHandlerBuilder {
 	private Servlet servlet;
 
 	ServletHandlerBuilder() {
+		this.cacheEnabled = false;
 	}
 
+	/**
+	 * Enables or disables cache.
+	 */
+	public ServletHandlerBuilder cache(boolean enabled) {
+		this.cacheEnabled = enabled;
+		return this;
+	}
+
+	/**
+	 * Sets the underlying servlet.
+	 */
 	public ServletHandlerBuilder setServlet(Servlet servlet) {
 		this.servlet = servlet;
 		return this;
 	}
 
+	/**
+	 * Sets the holder's path specification.
+	 */
 	public ServletHandlerBuilder setPath(String path) {
 		this.path = path;
 		return this;
@@ -22,9 +42,7 @@ public class ServletHandlerBuilder extends ServletHandlerBuilderBase {
 
 	@Override
 	ServletHolder build() {
-		ServletHolder result = new ServletHolder(this.servlet);
-		result.setInitParameter("cacheControl", "max-age=0,public");
-		return result;
+		return new ServletHolder(this.servlet);
 	}
 
 }

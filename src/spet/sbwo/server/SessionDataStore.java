@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.eclipse.jetty.server.session.AbstractSessionDataStore;
 import org.eclipse.jetty.server.session.SessionData;
@@ -16,8 +17,14 @@ import org.eclipse.jetty.server.session.SessionData;
 import spet.sbwo.control.controller.user.SessionManager;
 import spet.sbwo.data.table.UserSession;
 
-class SessionDataStore extends AbstractSessionDataStore {
-	private SessionManager manager;
+/**
+ * Adapter class between the session manager and the Jetty specific session data
+ * store.
+ * 
+ * @author Serban Petrescu
+ */
+public class SessionDataStore extends AbstractSessionDataStore {
+	private final SessionManager manager;
 
 	public SessionDataStore(SessionManager manager) {
 		this.manager = manager;
@@ -85,12 +92,18 @@ class SessionDataStore extends AbstractSessionDataStore {
 		return new HashSet<>(manager.readAllExpired(new Date().getTime()));
 	}
 
-	protected <T> T runInContext(IExecutor<T> executor) {
+	/**
+	 * Runs a given task in the context.
+	 */
+	protected <T> T runInContext(Supplier<T> executor) {
 		Deferred<T> deferred = new Deferred<>(executor);
 		this._context.run(deferred);
 		return deferred.getResult();
 	}
 
+	/**
+	 * Serializes the session attributes.
+	 */
 	protected byte[] serialize(HashMap<String, Object> data) throws IOException {
 		try (ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
 				ObjectOutputStream obj = new ObjectOutputStream(out)) {
@@ -100,6 +113,9 @@ class SessionDataStore extends AbstractSessionDataStore {
 		}
 	}
 
+	/**
+	 * Deserializes the session attributes.
+	 */
 	@SuppressWarnings("unchecked")
 	protected HashMap<String, Object> deserialize(byte[] data) throws ClassNotFoundException, IOException {
 		try (ByteArrayInputStream in = new ByteArrayInputStream(data);
@@ -108,22 +124,21 @@ class SessionDataStore extends AbstractSessionDataStore {
 		}
 	}
 
-	@FunctionalInterface
-	private static interface IExecutor<T> {
-		T execute();
-	}
-
+	/**
+	 * Utility class for executing a task and keeping a deferred reference to
+	 * the result.
+	 */
 	private class Deferred<T> implements Runnable {
 		private T result;
-		private IExecutor<T> executor;
+		private final Supplier<T> supplier;
 
-		public Deferred(IExecutor<T> executor) {
-			this.executor = executor;
+		public Deferred(Supplier<T> supplier) {
+			this.supplier = supplier;
 		}
 
 		@Override
 		public void run() {
-			result = executor.execute();
+			result = supplier.get();
 		}
 
 		public T getResult() {

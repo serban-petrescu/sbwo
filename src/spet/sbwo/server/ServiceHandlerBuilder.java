@@ -11,45 +11,80 @@ import javax.ws.rs.core.Application;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-public class ServiceHandlerBuilder extends ServletHandlerBuilderBase {
+/**
+ * Handler builder class for creating JAX-RS service handlers.
+ * 
+ * @author Serban Petrescu
+ */
+public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
 	private final Set<Object> services;
 	private final Set<Class<?>> classes;
 
 	ServiceHandlerBuilder() {
 		this.services = new HashSet<>();
 		this.classes = new HashSet<>();
+		this.cacheEnabled = false;
 	}
 
+	/**
+	 * Enables or disables the cache.
+	 */
+	public ServiceHandlerBuilder cache(boolean enabled) {
+		this.cacheEnabled = enabled;
+		return this;
+	}
+
+	/**
+	 * Adds a new service instance.
+	 */
 	public ServiceHandlerBuilder addService(Object service) {
 		this.services.add(service);
 		return this;
 	}
 
+	/**
+	 * Adds several service instances.
+	 */
 	public ServiceHandlerBuilder addServices(Object... services) {
 		Collections.addAll(this.services, services);
 		return this;
 	}
 
+	/**
+	 * Adds several service instances.
+	 */
 	public ServiceHandlerBuilder addServices(List<Object> services) {
 		this.services.addAll(services);
 		return this;
 	}
 
+	/**
+	 * Adds a new service class.
+	 */
 	public ServiceHandlerBuilder addClass(Class<?> clazz) {
 		this.classes.add(clazz);
 		return this;
 	}
 
+	/**
+	 * Adds several service classes.
+	 */
 	public ServiceHandlerBuilder addClasses(Class<?>... classes) {
 		Collections.addAll(this.classes, classes);
 		return this;
 	}
 
+	/**
+	 * Adds several service classes.
+	 */
 	public ServiceHandlerBuilder addClasses(List<Class<?>> classes) {
 		this.classes.addAll(classes);
 		return this;
 	}
 
+	/**
+	 * Sets the holder's path specification.
+	 */
 	public ServiceHandlerBuilder setPath(String path) {
 		this.path = path;
 		return this;
@@ -58,11 +93,13 @@ public class ServiceHandlerBuilder extends ServletHandlerBuilderBase {
 	@Override
 	ServletHolder build() {
 		Servlet servlet = new CXFNonSpringJaxrsServlet(new SimpleApplication(services, classes));
-		ServletHolder result = new ServletHolder(servlet);
-		result.setInitParameter("cacheControl", "max-age=0,public");
-		return result;
+		return new ServletHolder(servlet);
 	}
 
+	/**
+	 * Helper class for exposing the service instances and classes to the JAX-RS
+	 * API.
+	 */
 	protected static class SimpleApplication extends Application {
 		private final Set<Object> services;
 		private final Set<Class<?>> classes;

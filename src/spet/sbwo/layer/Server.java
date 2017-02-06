@@ -3,11 +3,12 @@ package spet.sbwo.layer;
 import spet.sbwo.api.odata.ODataFactory;
 import spet.sbwo.server.IServer;
 import spet.sbwo.server.ServerBuilder;
+import spet.sbwo.server.SessionDataStore;
 
 public class Server {
 	private static final String LOGIN_PATH = "/public/login/index.html";
 
-	private final IServer server;
+	private final IServer result;
 
 	public Server(Filter filter, Service service, Control control) {
 		ServerBuilder serverBuilder = new ServerBuilder();
@@ -39,20 +40,16 @@ public class Server {
 		serverBuilder.createServiceBuilder().setPath("/private/api/rest/*").addServices(service.getPrivateServices());
 
 		// Server security
-		serverBuilder.setSecuredPath("/private/*");
-		serverBuilder.setLoginPage(LOGIN_PATH);
-		serverBuilder.setErrorPage("/public/login/index.html#/error");
-		serverBuilder.setLoginProvider(control.getLoginController());
+		serverBuilder.createSecurityBuilder().setSecuredPath("/private/*").setLoginPage(LOGIN_PATH)
+				.setErrorPage("/public/login/index.html#/error").setLoginProvider(control.getLoginController())
+				.setSessionDataStore(new SessionDataStore(control.getSessionManager()))
+				.setSessionTimeout(control.getConfiguration().getSessionTimeout());
 
-		// Session management
-		serverBuilder.setSessionManager(control.getSessionManager());
-		serverBuilder.setSessionTimeout(control.getConfiguration().getSessionTimeout());
-
-		server = serverBuilder.build();
+		result = serverBuilder.build();
 	}
 
 	public IServer getServer() {
-		return server;
+		return result;
 	}
 
 }

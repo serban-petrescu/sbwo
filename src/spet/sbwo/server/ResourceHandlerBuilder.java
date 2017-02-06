@@ -4,21 +4,21 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 /**
- * Handler which can serve files from the file system.
+ * Handler which can serve resource from the classpath.
  * 
  * @author Serban Petrescu
  */
-public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
+public class ResourceHandlerBuilder extends AbstractServletHandlerBuilder {
 	private String base;
 
-	FileHandlerBuilder() {
+	ResourceHandlerBuilder() {
 		this.cacheEnabled = true;
 	}
 
 	/**
-	 * Sets the base path for files to be served.
+	 * Sets the base path (package) for files to be served.
 	 */
-	public FileHandlerBuilder setBaseDirectory(String path) {
+	public ResourceHandlerBuilder setBaseDirectory(String path) {
 		this.base = path;
 		return this;
 	}
@@ -26,7 +26,7 @@ public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Enables or disables the cache.
 	 */
-	public FileHandlerBuilder cache(boolean enabled) {
+	public ResourceHandlerBuilder cache(boolean enabled) {
 		this.cacheEnabled = enabled;
 		return this;
 	}
@@ -34,7 +34,7 @@ public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the holder's path specification.
 	 */
-	public FileHandlerBuilder setPath(String path) {
+	public ResourceHandlerBuilder setPath(String path) {
 		this.path = path;
 		return this;
 	}
@@ -42,7 +42,7 @@ public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
 	@Override
 	ServletHolder build() {
 		ServletHolder holder = new ServletHolder(DefaultServlet.class);
-		holder.setInitParameter("resourceBase", this.base);
+		holder.setInitParameter("resourceBase", ResourceHandlerBuilder.class.getResource(base).toExternalForm());
 		holder.setInitParameter("dirAllowed", "true");
 		holder.setInitParameter("pathInfoOnly", "true");
 		return holder;
