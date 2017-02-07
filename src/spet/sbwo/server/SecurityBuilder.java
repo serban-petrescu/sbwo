@@ -15,6 +15,7 @@ import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 
 import spet.sbwo.control.util.ILoginProvider;
+import spet.sbwo.server.SessionDataStore;
 
 /**
  * Class for enabling basic security features on the server.
@@ -32,7 +33,7 @@ public class SecurityBuilder {
 	/**
 	 * Sets the login provider for the server.
 	 */
-	public SecurityBuilder setLoginProvider(ILoginProvider loginProvider) {
+	public SecurityBuilder loginProvider(ILoginProvider loginProvider) {
 		this.loginProvider = loginProvider;
 		return this;
 	}
@@ -40,7 +41,7 @@ public class SecurityBuilder {
 	/**
 	 * Sets the location of the login page.
 	 */
-	public SecurityBuilder setLoginPage(String loginPage) {
+	public SecurityBuilder loginPage(String loginPage) {
 		this.loginPage = loginPage;
 		return this;
 	}
@@ -48,7 +49,7 @@ public class SecurityBuilder {
 	/**
 	 * Sets the location of the error page.
 	 */
-	public SecurityBuilder setErrorPage(String errorPage) {
+	public SecurityBuilder errorPage(String errorPage) {
 		this.errorPage = errorPage;
 		return this;
 	}
@@ -57,7 +58,7 @@ public class SecurityBuilder {
 	 * Sets the path specification which should be protected against
 	 * un-authenticated access.
 	 */
-	public SecurityBuilder setSecuredPath(String securedPath) {
+	public SecurityBuilder securedPath(String securedPath) {
 		this.securedPath = securedPath;
 		return this;
 	}
@@ -65,7 +66,7 @@ public class SecurityBuilder {
 	/**
 	 * Sets the session timeout in minutes.
 	 */
-	public SecurityBuilder setSessionTimeout(int minutes) {
+	public SecurityBuilder sessionTimeout(int minutes) {
 		this.sessionTimeout = minutes * 60;
 		return this;
 	}
@@ -73,7 +74,7 @@ public class SecurityBuilder {
 	/**
 	 * Sets the underlying session data store.
 	 */
-	public SecurityBuilder setSessionDataStore(SessionDataStore sessionDataStore) {
+	public SecurityBuilder sessionDataStore(SessionDataStore sessionDataStore) {
 		this.sessionDataStore = sessionDataStore;
 		return this;
 	}

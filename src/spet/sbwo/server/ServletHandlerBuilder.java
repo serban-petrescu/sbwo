@@ -27,7 +27,7 @@ public class ServletHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the underlying servlet.
 	 */
-	public ServletHandlerBuilder setServlet(Servlet servlet) {
+	public ServletHandlerBuilder servlet(Servlet servlet) {
 		this.servlet = servlet;
 		return this;
 	}
@@ -35,7 +35,7 @@ public class ServletHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the holder's path specification.
 	 */
-	public ServletHandlerBuilder setPath(String path) {
+	public ServletHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}

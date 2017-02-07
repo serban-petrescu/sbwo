@@ -18,7 +18,7 @@ public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the base path for files to be served.
 	 */
-	public FileHandlerBuilder setBaseDirectory(String path) {
+	public FileHandlerBuilder directory(String path) {
 		this.base = path;
 		return this;
 	}
@@ -34,7 +34,7 @@ public class FileHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the holder's path specification.
 	 */
-	public FileHandlerBuilder setPath(String path) {
+	public FileHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}

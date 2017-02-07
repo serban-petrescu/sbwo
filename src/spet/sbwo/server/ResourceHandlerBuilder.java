@@ -18,7 +18,7 @@ public class ResourceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the base path (package) for files to be served.
 	 */
-	public ResourceHandlerBuilder setBaseDirectory(String path) {
+	public ResourceHandlerBuilder directory(String path) {
 		this.base = path;
 		return this;
 	}
@@ -34,7 +34,7 @@ public class ResourceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the holder's path specification.
 	 */
-	public ResourceHandlerBuilder setPath(String path) {
+	public ResourceHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}

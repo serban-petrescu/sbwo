@@ -28,7 +28,7 @@ public class ODataHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the OData service factory class.
 	 */
-	public ODataHandlerBuilder setFactoryClass(Class<? extends ODataServiceFactory> factory) {
+	public ODataHandlerBuilder factory(Class<? extends ODataServiceFactory> factory) {
 		this.factory = factory;
 		return this;
 	}
@@ -36,7 +36,7 @@ public class ODataHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the handler's path specification.
 	 */
-	public ODataHandlerBuilder setPath(String path) {
+	public ODataHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}

@@ -30,7 +30,7 @@ public class ServerBuilder {
 	/**
 	 * Builds a security builder for the server.
 	 */
-	public SecurityBuilder createSecurityBuilder() {
+	public SecurityBuilder security() {
 		security = new SecurityBuilder();
 		return security;
 	}
@@ -38,8 +38,17 @@ public class ServerBuilder {
 	/**
 	 * Builds a new file handler builder for the server.
 	 */
-	public FileHandlerBuilder createFileBuilder() {
+	public FileHandlerBuilder file() {
 		FileHandlerBuilder builder = new FileHandlerBuilder();
+		this.builders.add(builder);
+		return builder;
+	}
+
+	/**
+	 * Builds a new resource handler builder for the server.
+	 */
+	public ResourceHandlerBuilder resource() {
+		ResourceHandlerBuilder builder = new ResourceHandlerBuilder();
 		this.builders.add(builder);
 		return builder;
 	}
@@ -47,7 +56,7 @@ public class ServerBuilder {
 	/**
 	 * Builds a new service handler builder for the server.
 	 */
-	public ServiceHandlerBuilder createServiceBuilder() {
+	public ServiceHandlerBuilder service() {
 		ServiceHandlerBuilder builder = new ServiceHandlerBuilder();
 		this.builders.add(builder);
 		return builder;
@@ -56,7 +65,7 @@ public class ServerBuilder {
 	/**
 	 * Builds a new servlet handler builder for the server.
 	 */
-	public ServletHandlerBuilder createServletBuilder() {
+	public ServletHandlerBuilder servlet() {
 		ServletHandlerBuilder builder = new ServletHandlerBuilder();
 		this.builders.add(builder);
 		return builder;
@@ -65,7 +74,7 @@ public class ServerBuilder {
 	/**
 	 * Builds a new OData service handler builder for the server.
 	 */
-	public ODataHandlerBuilder createODataBuilder() {
+	public ODataHandlerBuilder odata() {
 		ODataHandlerBuilder builder = new ODataHandlerBuilder();
 		this.builders.add(builder);
 		return builder;
@@ -74,7 +83,7 @@ public class ServerBuilder {
 	/**
 	 * Builds a new filter handler builder for the server.
 	 */
-	public FilterHandlerBuilder createFilterBuilder() {
+	public FilterHandlerBuilder filter() {
 		FilterHandlerBuilder builder = new FilterHandlerBuilder();
 		this.builders.add(builder);
 		return builder;

@@ -15,35 +15,35 @@ public class Server {
 		serverBuilder.setPort(8080);
 
 		// Root redirect
-		serverBuilder.createFilterBuilder().setPath("/").setFilter(filter.getAuthConditionalFilter());
-		serverBuilder.createFilterBuilder().setPath("/index.html").setFilter(filter.getAuthConditionalFilter());
+		serverBuilder.filter().path("/").filter(filter.getAuthConditionalFilter());
+		serverBuilder.filter().path("/index.html").filter(filter.getAuthConditionalFilter());
 
 		// Public area
-		serverBuilder.createFilterBuilder().setPath("/public/rest/*").setFilter(filter.getCsrfTokenFilter());
-		serverBuilder.createFilterBuilder().setPath("/public/rest/user/manage/*")
-				.setFilter(filter.getLocalAddressFilter());
-		serverBuilder.createFilterBuilder().setPath("/public/users/*").setFilter(filter.getLocalAddressFilter());
-		serverBuilder.createFilterBuilder().setPath(LOGIN_PATH).setFilter(filter.getAjaxDenyFilter());
-		serverBuilder.createServiceBuilder().setPath("/public/rest/*").addServices(service.getPublicServices());
-		serverBuilder.createFileBuilder().setPath("/public/*").setBaseDirectory("public");
+		serverBuilder.filter().path("/public/rest/*").filter(filter.getCsrfTokenFilter());
+		serverBuilder.filter().path("/public/rest/user/manage/*")
+				.filter(filter.getLocalAddressFilter());
+		serverBuilder.filter().path("/public/users/*").filter(filter.getLocalAddressFilter());
+		serverBuilder.filter().path(LOGIN_PATH).filter(filter.getAjaxDenyFilter());
+		serverBuilder.service().path("/public/rest/*").addAll(service.getPublicServices());
+		serverBuilder.file().path("/public/*").directory("public");
 
 		// Db console
-		serverBuilder.createFilterBuilder().setPath("/db/*").setFilter(filter.getLocalAddressFilter());
-		serverBuilder.createServletBuilder().setPath("/db/*").setServlet(service.getDbWebServlet());
+		serverBuilder.filter().path("/db/*").filter(filter.getLocalAddressFilter());
+		serverBuilder.servlet().path("/db/*").servlet(service.getDbWebServlet());
 
 		// Private area
-		serverBuilder.createFilterBuilder().setPath("/private/api/*").setFilter(filter.getCsrfTokenFilter());
-		serverBuilder.createFilterBuilder().setPath("/public/api/rest/utility/file")
-				.setFilter(filter.getLocalAddressFilter());
-		serverBuilder.createFileBuilder().setPath("/private/web/*").setBaseDirectory("web");
-		serverBuilder.createODataBuilder().setPath("/private/api/odata/*").setFactoryClass(ODataFactory.class);
-		serverBuilder.createServiceBuilder().setPath("/private/api/rest/*").addServices(service.getPrivateServices());
+		serverBuilder.filter().path("/private/api/*").filter(filter.getCsrfTokenFilter());
+		serverBuilder.filter().path("/public/api/rest/utility/file")
+				.filter(filter.getLocalAddressFilter());
+		serverBuilder.file().path("/private/web/*").directory("web");
+		serverBuilder.odata().path("/private/api/odata/*").factory(ODataFactory.class);
+		serverBuilder.service().path("/private/api/rest/*").addAll(service.getPrivateServices());
 
 		// Server security
-		serverBuilder.createSecurityBuilder().setSecuredPath("/private/*").setLoginPage(LOGIN_PATH)
-				.setErrorPage("/public/login/index.html#/error").setLoginProvider(control.getLoginController())
-				.setSessionDataStore(new SessionDataStore(control.getSessionManager()))
-				.setSessionTimeout(control.getConfiguration().getSessionTimeout());
+		serverBuilder.security().securedPath("/private/*").loginPage(LOGIN_PATH)
+				.errorPage("/public/login/index.html#/error").loginProvider(control.getLoginController())
+				.sessionDataStore(new SessionDataStore(control.getSessionManager()))
+				.sessionTimeout(control.getConfiguration().getSessionTimeout());
 
 		result = serverBuilder.build();
 	}

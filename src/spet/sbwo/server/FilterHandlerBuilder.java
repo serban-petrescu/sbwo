@@ -25,7 +25,7 @@ public class FilterHandlerBuilder implements IServletHandlerBuilder {
 	/**
 	 * Sets the path specification for the holder.
 	 */
-	public FilterHandlerBuilder setPath(String path) {
+	public FilterHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}
@@ -33,7 +33,7 @@ public class FilterHandlerBuilder implements IServletHandlerBuilder {
 	/**
 	 * Sets the underlying filter.
 	 */
-	public FilterHandlerBuilder setFilter(Filter filter) {
+	public FilterHandlerBuilder filter(Filter filter) {
 		this.filter = filter;
 		return this;
 	}
@@ -41,7 +41,7 @@ public class FilterHandlerBuilder implements IServletHandlerBuilder {
 	/**
 	 * Sets the dispatcher type(s) to be used for the filter.
 	 */
-	public FilterHandlerBuilder setDispatches(EnumSet<DispatcherType> dispatches) {
+	public FilterHandlerBuilder dispatches(EnumSet<DispatcherType> dispatches) {
 		this.dispatches = dispatches;
 		return this;
 	}

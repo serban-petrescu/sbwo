@@ -37,7 +37,7 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Adds a new service instance.
 	 */
-	public ServiceHandlerBuilder addService(Object service) {
+	public ServiceHandlerBuilder add(Object service) {
 		this.services.add(service);
 		return this;
 	}
@@ -45,7 +45,7 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Adds several service instances.
 	 */
-	public ServiceHandlerBuilder addServices(Object... services) {
+	public ServiceHandlerBuilder addAll(Object... services) {
 		Collections.addAll(this.services, services);
 		return this;
 	}
@@ -53,7 +53,7 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Adds several service instances.
 	 */
-	public ServiceHandlerBuilder addServices(List<Object> services) {
+	public ServiceHandlerBuilder addAll(List<Object> services) {
 		this.services.addAll(services);
 		return this;
 	}
@@ -85,7 +85,7 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
 	/**
 	 * Sets the holder's path specification.
 	 */
-	public ServiceHandlerBuilder setPath(String path) {
+	public ServiceHandlerBuilder path(String path) {
 		this.path = path;
 		return this;
 	}
