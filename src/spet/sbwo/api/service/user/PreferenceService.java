@@ -37,9 +37,9 @@ public class PreferenceService extends BaseService {
 
 	@GET
 	@Path("/read")
-	public Response readPreference(@Context HttpServletRequest request, @QueryParam("callback") String callback) {
+	public Response readPreference(@QueryParam("callback") String callback) {
 		try {
-			UserPreferenceChannel preference = controller.readPreference(getCurrentUsername(request));
+			UserPreferenceChannel preference = controller.readPreference(currentUsername());
 			String data = prefWriter.writeValueAsString(preference);
 			if (callback == null) {
 				return Response.ok(data, "application/json").build();
@@ -58,7 +58,7 @@ public class PreferenceService extends BaseService {
 	public String updatePreference(@Context HttpServletRequest request, InputStream body) {
 		try {
 			UserPreferenceChannel preference = prefReader.readValue(body);
-			UserPreferenceChannel result = controller.updatePreference(getCurrentUsername(request), preference);
+			UserPreferenceChannel result = controller.updatePreference(currentUsername(), preference);
 			return prefWriter.writeValueAsString(result);
 		} catch (Exception e) {
 			throw mapException(e);

@@ -3,12 +3,10 @@ package spet.sbwo.api.service.misc;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Context;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,10 +33,10 @@ public class TrashService extends BaseService {
 	@DELETE
 	@Path("/delete")
 	@Consumes("application/json")
-	public void delete(@Context HttpServletRequest request, InputStream body) {
+	public void delete(InputStream body) {
 		try {
 			List<TrashChannel> data = this.jsonReader.readValue(body);
-			this.controller.delete(data, getCurrentUsername(request));
+			this.controller.delete(data, currentUsername());
 		} catch (Exception e) {
 			throw mapException(e);
 		}
@@ -47,9 +45,9 @@ public class TrashService extends BaseService {
 	@DELETE
 	@Path("/delete/all")
 	@Consumes("application/json")
-	public void delete(@Context HttpServletRequest request) {
+	public void deleteAll() {
 		try {
-			this.controller.deleteAll(getCurrentUsername(request));
+			this.controller.deleteAll(currentUsername());
 		} catch (Exception e) {
 			throw mapException(e);
 		}
@@ -58,10 +56,10 @@ public class TrashService extends BaseService {
 	@PUT
 	@Path("/restore")
 	@Consumes("application/json")
-	public void restore(@Context HttpServletRequest request, InputStream body) {
+	public void restore(InputStream body) {
 		try {
 			List<TrashChannel> data = this.jsonReader.readValue(body);
-			this.controller.restore(data, getCurrentUsername(request));
+			this.controller.restore(data, currentUsername());
 		} catch (Exception e) {
 			throw mapException(e);
 		}

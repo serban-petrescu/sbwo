@@ -9,7 +9,7 @@ import spet.sbwo.control.ControlException;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.access.WhereOperator;
+import spet.sbwo.data.query.WhereOperator;
 import spet.sbwo.data.table.User;
 
 public class DataImportFacade {
@@ -21,7 +21,7 @@ public class DataImportFacade {
 
 	public void execute(Target target, String username, Map<String, Iterator<Map<String, String>>> data)
 			throws ControlException {
-		try (IDatabaseExecutor executor = database.createExecutor(false)) {
+		try (IDatabaseExecutor executor = database.createExecutor()) {
 			User user = executor.selectSingle(User.class).where("username", WhereOperator.EQ, username).execute();
 			switch (target) {
 			case PERSON:

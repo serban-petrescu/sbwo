@@ -1,71 +1,32 @@
 package spet.sbwo.control.controller.misc;
 
-import java.util.EnumMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import spet.sbwo.control.ControlException;
+import spet.sbwo.control.action.Actions;
+import spet.sbwo.control.action.base.BaseActionExecutor;
+import spet.sbwo.control.action.misc.ForceDeleteListAction;
+import spet.sbwo.control.action.misc.ReadAllTrashAction;
+import spet.sbwo.control.action.misc.RestoreListAction;
 import spet.sbwo.control.channel.TrashChannel;
-import spet.sbwo.control.controller.BaseController;
-import spet.sbwo.control.controller.bo.IDeleteRestoreController;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
-import spet.sbwo.data.domain.EntityType;
-import spet.sbwo.data.view.DeletedEntity;
 
-public class TrashController extends BaseController {
-	private static final Logger LOG = LoggerFactory.getLogger(TrashController.class);
-	private static final String READ_ALL_ERROR = "Unable to read all deleted entities.";
-	private static final String UNKNOWN_TYPE_ERROR = "Entity type {} is unknown.";
+public class TrashController extends BaseActionExecutor {
 
-	protected final Map<EntityType, IDeleteRestoreController> controllers;
-
-	public TrashController(IDatabaseExecutorCreator database, IDeleteRestoreController... controllers) {
-		super(database, TrashChannel.class);
-		this.controllers = new EnumMap<>(EntityType.class);
-		for (IDeleteRestoreController controller : controllers) {
-			this.controllers.put(controller.getEntityType(), controller);
-		}
+	public TrashController(IDatabaseExecutorCreator database) {
+		super(database);
 	}
 
 	public void delete(List<TrashChannel> entities, String username) throws ControlException {
-		for (TrashChannel entity : entities) {
-			IDeleteRestoreController controller = controllers.get(entity.getTypeAsEnum());
-			if (controller != null) {
-				controller.delete(entity.getId(), true, username);
-			} else {
-				LOG.error(UNKNOWN_TYPE_ERROR, entity.getType());
-			}
-		}
+		executeAndCommit(username, new ForceDeleteListAction(), entities);
 	}
 
 	public void restore(List<TrashChannel> entities, String username) throws ControlException {
-		for (TrashChannel entity : entities) {
-			IDeleteRestoreController controller = controllers.get(entity.getTypeAsEnum());
-			if (controller != null) {
-				controller.restore(entity.getId(), username);
-			} else {
-				LOG.error(UNKNOWN_TYPE_ERROR, entity.getType());
-			}
-		}
+		executeAndCommit(username, new RestoreListAction(), entities);
 	}
 
 	public void deleteAll(String username) throws ControlException {
-		IAction<List<TrashChannel>> action = executor -> {
-			List<TrashChannel> channels = new LinkedList<>();
-			List<DeletedEntity> entities = executor.select(DeletedEntity.class).execute();
-			for (DeletedEntity entity : entities) {
-				TrashChannel channel = new TrashChannel();
-				channel.setId(entity.getKey().getId());
-				channel.setType(entity.getKey().getType().ordinal());
-				channels.add(channel);
-			}
-			return channels;
-		};
-		delete(execute(READ_ALL_ERROR, action), username);
+		executeAndCommit(username, Actions.chain(new ReadAllTrashAction(), new ForceDeleteListAction()), null);
 	}
 
 }

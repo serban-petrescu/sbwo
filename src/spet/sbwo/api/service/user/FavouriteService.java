@@ -3,7 +3,6 @@ package spet.sbwo.api.service.user;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,7 +11,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,9 +45,9 @@ public class FavouriteService extends BaseService {
 	@GET
 	@Path("/read")
 	@Produces("application/json")
-	public String readFavourites(@Context HttpServletRequest request) {
+	public String readFavourites() {
 		try {
-			List<UserFavouriteChannel> favourites = controller.readFavourites(getCurrentUsername(request));
+			List<UserFavouriteChannel> favourites = controller.readFavourites(currentUsername());
 			return this.favListWriter.writeValueAsString(favourites);
 		} catch (Exception e) {
 			throw mapException(e);
@@ -60,11 +58,10 @@ public class FavouriteService extends BaseService {
 	@Path("/update")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public String updateFavourites(@Context HttpServletRequest request, InputStream body) {
+	public String updateFavourites(InputStream body) {
 		try {
 			List<UserFavouriteChannel> input = this.favListReader.readValue(body);
-			List<UserFavouriteChannel> favourites = controller.updateFavourites(getCurrentUsername(request),
-					input);
+			List<UserFavouriteChannel> favourites = controller.updateFavourites(currentUsername(), input);
 			return this.favListWriter.writeValueAsString(favourites);
 		} catch (Exception e) {
 			throw mapException(e);
@@ -75,10 +72,10 @@ public class FavouriteService extends BaseService {
 	@Path("/create")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public String createFavourite(@Context HttpServletRequest request, InputStream body) {
+	public String createFavourite(InputStream body) {
 		try {
 			UserFavouriteChannel data = this.favReader.readValue(body);
-			controller.addFavourite(getCurrentUsername(request), data);
+			controller.addFavourite(currentUsername(), data);
 			return this.favWriter.writeValueAsString(data);
 		} catch (Exception e) {
 			throw mapException(e);
@@ -87,9 +84,9 @@ public class FavouriteService extends BaseService {
 
 	@DELETE
 	@Path("/delete/{id}")
-	public void deleteFavourite(@Context HttpServletRequest request, @PathParam("id") int id) {
+	public void deleteFavourite(@PathParam("id") int id) {
 		try {
-			controller.deleteFavourite(getCurrentUsername(request), id);
+			controller.deleteFavourite(currentUsername(), id);
 		} catch (Exception e) {
 			throw mapException(e);
 		}

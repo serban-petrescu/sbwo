@@ -1,4 +1,4 @@
-package spet.sbwo.data.access;
+package spet.sbwo.data.query;
 
 import spet.sbwo.data.DatabaseException;
 

@@ -9,6 +9,8 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.phase.PhaseInterceptorChain;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -97,7 +99,8 @@ public abstract class BaseService {
 		return token;
 	}
 
-	public static String getCurrentUsername(HttpServletRequest request) {
+	public static String currentUsername() {
+		HttpServletRequest request = (HttpServletRequest) PhaseInterceptorChain.getCurrentMessage().get("HTTP.REQUEST");
 		if (request.getSession(false) != null) {
 			if (request.getUserPrincipal() != null) {
 				return request.getUserPrincipal().getName();

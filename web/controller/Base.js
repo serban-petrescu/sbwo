@@ -365,7 +365,7 @@ sap.ui.define([
 					if (oError.cause) {
 						MessageBox.error(fnGetControlErrorText(oError.error, oError.entity), {
 							details: fnGetDatabaseErrorText(oError.cause.error) + 
-								(oError.cause.details ? "\n" + oError.cause.details : undefined)
+								(oError.cause.details ? "\n" + oError.cause.details : "")
 						});
 					}
 					else {

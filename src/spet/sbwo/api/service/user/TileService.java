@@ -2,13 +2,11 @@ package spet.sbwo.api.service.user;
 
 import java.io.InputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,9 +34,9 @@ public class TileService extends BaseService {
 	@GET
 	@Path("/read")
 	@Produces("application/json")
-	public String readTiles(@Context HttpServletRequest request) {
+	public String readTiles() {
 		try {
-			UserHomeTilesChannel data = controller.readTiles(getCurrentUsername(request));
+			UserHomeTilesChannel data = controller.readTiles(currentUsername());
 			return this.tileWriter.writeValueAsString(data);
 		} catch (Exception e) {
 			throw mapException(e);
@@ -49,10 +47,10 @@ public class TileService extends BaseService {
 	@Path("/update")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public String updateTiles(@Context HttpServletRequest request, InputStream body) {
+	public String updateTiles(InputStream body) {
 		try {
 			UserHomeTilesChannel input = this.tileReader.readValue(body);
-			UserHomeTilesChannel result = controller.updateTiles(input, getCurrentUsername(request));
+			UserHomeTilesChannel result = controller.updateTiles(input, currentUsername());
 			return this.tileWriter.writeValueAsString(result);
 		} catch (Exception e) {
 			throw mapException(e);

@@ -3,13 +3,11 @@ package spet.sbwo.api.service.transfer;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
@@ -32,10 +30,9 @@ public class DataImportService extends BaseService {
 	@Path("/data/{entity}")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	@Produces("application/json")
-	public void importData(@PathParam("entity") String entity, @Multipart(value = "files[]") List<Attachment> files,
-			@Context HttpServletRequest request) {
+	public void importData(@PathParam("entity") String entity, @Multipart(value = "files[]") List<Attachment> files) {
 		try {
-			String username = getCurrentUsername(request);
+			String username = currentUsername();
 			Target target = getTargetForEntity(entity);
 			Map<String, List<String>> fields = dataImporter.fields(target);
 			try (CsvMapIteratorHolder hoder = new CsvMapIteratorHolder(fields, files)) {

@@ -2,11 +2,9 @@ package spet.sbwo.api.service.user;
 
 import java.io.InputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
@@ -28,10 +26,10 @@ public class SelfService extends BaseService {
 	@PUT
 	@Path("/password/update")
 	@Consumes("application/json")
-	public void changePassword(@Context HttpServletRequest request, InputStream body) {
+	public void changePassword(InputStream body) {
 		try {
 			PasswordChannel data = passwordReader.readValue(body);
-			managementController.changeUserPassword(getCurrentUsername(request), data.getPassword());
+			managementController.changeUserPassword(currentUsername(), data.getPassword());
 		} catch (Exception e) {
 			throw mapException(e);
 		}

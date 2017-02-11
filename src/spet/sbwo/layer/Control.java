@@ -36,7 +36,7 @@ public class Control {
 		tileController = new TileController(database.getFacade());
 		locationImportController = new LocationImportController(database.getFacade());
 		personController = new PersonController(database.getFacade(), configuration.getDirectDeleteInterval());
-		trashController = new TrashController(database.getFacade(), personController);
+		trashController = new TrashController(database.getFacade());
 		countController = new CountController(database.getFacade());
 		dataImportFacade = new DataImportFacade(database.getFacade());
 		sessionManager = new SessionManager(database.getFacade());

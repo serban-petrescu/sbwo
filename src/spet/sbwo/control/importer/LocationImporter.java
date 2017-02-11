@@ -6,7 +6,7 @@ import java.util.Map;
 
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.access.WhereOperator;
+import spet.sbwo.data.query.WhereOperator;
 import spet.sbwo.data.table.Location;
 import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;

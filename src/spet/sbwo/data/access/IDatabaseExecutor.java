@@ -3,6 +3,7 @@ package spet.sbwo.data.access;
 import java.util.List;
 
 import spet.sbwo.data.DatabaseException;
+import spet.sbwo.data.query.IQueryFacade;
 
 public interface IDatabaseExecutor extends AutoCloseable {
 
@@ -32,5 +33,6 @@ public interface IDatabaseExecutor extends AutoCloseable {
 
 	<T> IQueryFacade<Long> count(Class<T> entity);
 
+	@Override
 	void close();
 }

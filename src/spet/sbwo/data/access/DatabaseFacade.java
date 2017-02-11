@@ -18,12 +18,8 @@ public class DatabaseFacade implements IBackupCreator, IDatabaseExecutorCreator 
 	}
 
 	@Override
-	public IDatabaseExecutor createExecutor(boolean deferred) throws DatabaseException {
-		if (deferred) {
-			return new DeferredDatabaseExecutor(this.emf.createEntityManager());
-		} else {
-			return new ImmediateDatabaseExecutor(this.emf.createEntityManager());
-		}
+	public IDatabaseExecutor createExecutor() throws DatabaseException {
+		return new DatabaseExecutor(this.emf.createEntityManager());
 	}
 
 	@Override

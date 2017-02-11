@@ -30,8 +30,8 @@ public class SessionService extends BaseService {
 	@GET
 	@Path("/user/current")
 	@Produces("application/json")
-	public String readCurrent(@Context HttpServletRequest request) {
-		String username = getCurrentUsername(request);
+	public String readCurrent() {
+		String username = currentUsername();
 		if (username != null) {
 			return "{\"username\": \"" + username + "\"}";
 		} else {

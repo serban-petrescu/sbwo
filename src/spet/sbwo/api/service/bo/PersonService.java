@@ -2,7 +2,6 @@ package spet.sbwo.api.service.bo;
 
 import java.io.InputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,7 +10,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -52,10 +50,10 @@ public class PersonService extends BaseService {
 	@Path("/update/{id}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String update(@PathParam("id") int id, @Context HttpServletRequest request, InputStream body) {
+	public String update(@PathParam("id") int id, InputStream body) {
 		try {
 			PersonChannel data = this.jsonReader.readValue(body);
-			this.controller.update(id, data, getCurrentUsername(request));
+			this.controller.update(id, data, currentUsername());
 			return this.jsonWriter.writeValueAsString(this.controller.read(id));
 		} catch (Exception e) {
 			throw mapException(e);
@@ -66,9 +64,9 @@ public class PersonService extends BaseService {
 	@Path("/restore/{id}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String restore(@PathParam("id") int id, @Context HttpServletRequest request) {
+	public String restore(@PathParam("id") int id) {
 		try {
-			this.controller.restore(id, getCurrentUsername(request));
+			this.controller.restore(id, currentUsername());
 			return this.jsonWriter.writeValueAsString(this.controller.read(id));
 		} catch (Exception e) {
 			throw mapException(e);
@@ -79,10 +77,10 @@ public class PersonService extends BaseService {
 	@Path("/create")
 	@Consumes("application/json")
 	@Produces("text/plain")
-	public String create(InputStream body, @Context HttpServletRequest request) {
+	public String create(InputStream body) {
 		try {
 			PersonChannel data = this.jsonReader.readValue(body);
-			return Integer.toString(this.controller.create(data, getCurrentUsername(request)));
+			return Integer.toString(this.controller.create(data, currentUsername()));
 		} catch (Exception e) {
 			throw mapException(e);
 		}
@@ -90,9 +88,9 @@ public class PersonService extends BaseService {
 
 	@DELETE
 	@Path("/delete/{id}")
-	public void delete(@PathParam("id") int id, @Context HttpServletRequest request) {
+	public void delete(@PathParam("id") int id) {
 		try {
-			this.controller.delete(id, false, getCurrentUsername(request));
+			this.controller.delete(id, currentUsername());
 		} catch (Exception e) {
 			throw mapException(e);
 		}
