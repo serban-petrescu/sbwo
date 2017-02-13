@@ -22,6 +22,17 @@ sap.ui.define([
 							separator: ",",
 							header: false
 						}
+					},
+					court: {
+						title: oBundle.getText("btnCustomizingUploadCourtsText"),
+						icon: "sap-icon://excel-attachment",
+						tooltip: oBundle.getText("btnCustomizingUploadCourtsText"),
+						dialog: {
+							target: "/private/api/rest/import/courts/{0}/{1}",
+							text: oBundle.getText("btnCustomizingUploadCourtsDescription"),
+							separator: ",",
+							header: false
+						}
 					}
 				}
 			});

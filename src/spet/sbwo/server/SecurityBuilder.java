@@ -105,7 +105,7 @@ public class SecurityBuilder {
 			DefaultSessionCache cache = new DefaultSessionCache(session);
 			cache.setSessionDataStore(sessionDataStore);
 			cache.setRemoveUnloadableSessions(true);
-			cache.setSaveOnCreate(true);
+			cache.setSaveOnCreate(false);
 			session.setSessionCache(cache);
 			session.setMaxInactiveInterval(sessionTimeout);
 		}

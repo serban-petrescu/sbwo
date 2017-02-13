@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Scanner;
 
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 
 public class JsonFragmentStream implements StreamingOutput {
@@ -16,7 +15,7 @@ public class JsonFragmentStream implements StreamingOutput {
 	}
 
 	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
+	public void write(OutputStream output) throws IOException {
 		boolean closed = false;
 		output.write("[".getBytes());
 		try (Scanner in = new Scanner(file)) {

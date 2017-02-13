@@ -10,7 +10,7 @@ public class Server {
 
 	private final IServer result;
 
-	public Server(Filter filter, Service service, Control control) {
+	public Server(Filter filter, Service service, Producer producer, Control control) {
 		ServerBuilder serverBuilder = new ServerBuilder();
 		serverBuilder.setPort(8080);
 
@@ -20,11 +20,11 @@ public class Server {
 
 		// Public area
 		serverBuilder.filter().path("/public/rest/*").filter(filter.getCsrfTokenFilter());
-		serverBuilder.filter().path("/public/rest/user/manage/*")
-				.filter(filter.getLocalAddressFilter());
+		serverBuilder.filter().path("/public/rest/user/manage/*").filter(filter.getLocalAddressFilter());
 		serverBuilder.filter().path("/public/users/*").filter(filter.getLocalAddressFilter());
 		serverBuilder.filter().path(LOGIN_PATH).filter(filter.getAjaxDenyFilter());
-		serverBuilder.service().path("/public/rest/*").addAll(service.getPublicServices());
+		serverBuilder.service().path("/public/rest/*").addAll(service.getPublicServices())
+				.addAll(producer.getProducers());
 		serverBuilder.file().path("/public/*").directory("public");
 
 		// Db console
@@ -33,11 +33,11 @@ public class Server {
 
 		// Private area
 		serverBuilder.filter().path("/private/api/*").filter(filter.getCsrfTokenFilter());
-		serverBuilder.filter().path("/public/api/rest/utility/file")
-				.filter(filter.getLocalAddressFilter());
+		serverBuilder.filter().path("/public/api/rest/utility/file").filter(filter.getLocalAddressFilter());
 		serverBuilder.file().path("/private/web/*").directory("web");
 		serverBuilder.odata().path("/private/api/odata/*").factory(ODataFactory.class);
-		serverBuilder.service().path("/private/api/rest/*").addAll(service.getPrivateServices());
+		serverBuilder.service().path("/private/api/rest/*").addAll(service.getPrivateServices())
+				.addAll(producer.getProducers());
 
 		// Server security
 		serverBuilder.security().securedPath("/private/*").loginPage(LOGIN_PATH)

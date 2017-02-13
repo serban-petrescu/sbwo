@@ -22,7 +22,7 @@ import spet.sbwo.data.domain.PersonType;
 @Table(name = "T_PERSON")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "C_PERSON_TYPE", discriminatorType = DiscriminatorType.INTEGER)
-public class Person extends JournalizedBaseEntity {
+public abstract class Person extends JournalizedBaseEntity {
 	@Column(name = "C_PERSON_TYPE", insertable = false, updatable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private PersonType type;

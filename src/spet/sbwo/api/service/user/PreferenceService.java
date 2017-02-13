@@ -1,7 +1,5 @@
 package spet.sbwo.api.service.user;
 
-import java.io.InputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,27 +10,17 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.util.JsonpEntity;
 import spet.sbwo.control.channel.UserPreferenceChannel;
 import spet.sbwo.control.controller.user.PreferenceController;
 
 @Path("/user/preference")
 public class PreferenceService extends BaseService {
 	private final PreferenceController controller;
-	private final ObjectWriter prefWriter;
-	private final ObjectReader prefReader;
 
 	public PreferenceService(PreferenceController controller) {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		this.controller = controller;
-		this.prefReader = mapper.readerFor(UserPreferenceChannel.class);
-		this.prefWriter = mapper.writerFor(UserPreferenceChannel.class);
 	}
 
 	@GET
@@ -40,11 +28,10 @@ public class PreferenceService extends BaseService {
 	public Response readPreference(@QueryParam("callback") String callback) {
 		try {
 			UserPreferenceChannel preference = controller.readPreference(currentUsername());
-			String data = prefWriter.writeValueAsString(preference);
 			if (callback == null) {
-				return Response.ok(data, "application/json").build();
+				return Response.ok(preference, "application/json").build();
 			} else {
-				return Response.ok(callback + "(" + data + ")", "application/javascript").build();
+				return Response.ok(new JsonpEntity<>(preference, callback), "application/javascript").build();
 			}
 		} catch (Exception e) {
 			throw mapException(e);
@@ -55,11 +42,10 @@ public class PreferenceService extends BaseService {
 	@Path("/update")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String updatePreference(@Context HttpServletRequest request, InputStream body) {
+	public UserPreferenceChannel updatePreference(@Context HttpServletRequest request,
+			UserPreferenceChannel preference) {
 		try {
-			UserPreferenceChannel preference = prefReader.readValue(body);
-			UserPreferenceChannel result = controller.updatePreference(currentUsername(), preference);
-			return prefWriter.writeValueAsString(result);
+			return controller.updatePreference(currentUsername(), preference);
 		} catch (Exception e) {
 			throw mapException(e);
 		}

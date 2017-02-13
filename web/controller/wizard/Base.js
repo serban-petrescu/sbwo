@@ -50,12 +50,12 @@ sap.ui.define([
 		
 		onValueChanged: function() {
 			Base.prototype.onValueChanged.apply(this, arguments);
-			this._saveDraft();
+			this.saveDraft();
 		},
 		
 		onRouteMatched: function() {
 			this._reset();
-			this._restoreDraft();
+			this.restoreDraft();
 		},
 		
 		onReset: function() {
@@ -75,7 +75,7 @@ sap.ui.define([
 			this.post(sPath, oData, fnSuccess);
 		},
 		
-		_saveDraft: function() {
+		saveDraft: function() {
 			var oModel = this.getModel("view"),
 				oData = {
 					data: this.getModel("data").getData(),
@@ -89,7 +89,7 @@ sap.ui.define([
 			this._updateWizardModel();
 		},
 		
-		_restoreDraft: function() {
+		restoreDraft: function() {
 			DraftService.load(HashChanger.getInstance().getHash()).then(function(oData){
 				if (oData && oData.data) {
 					this.getModel("data").setData(oData.data);

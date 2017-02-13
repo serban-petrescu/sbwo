@@ -1,17 +1,28 @@
 package spet.sbwo.data.view;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import spet.sbwo.data.embed.GlobalSearchKey;
 
 @Entity
+@IdClass(GlobalSearchKey.class)
 @Table(name = "V_GLOBAL_SEARCH")
 public class GlobalSearch {
-	@EmbeddedId
-	private GlobalSearchKey key;
+	@Id
+	@Column(name = "C_TYPE")
+	private int type;
+
+	@Id
+	@Column(name = "C_SUBTYPE")
+	private int subtype;
+
+	@Id
+	@Column(name = "C_ID")
+	private int id;
 
 	@Column(name = "C_TITLE")
 	private String title;
@@ -22,12 +33,28 @@ public class GlobalSearch {
 	@Column(name = "C_SEARCH")
 	private String search;
 
-	public GlobalSearchKey getKey() {
-		return key;
+	public int getType() {
+		return type;
 	}
 
-	public void setKey(GlobalSearchKey key) {
-		this.key = key;
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getSubtype() {
+		return subtype;
+	}
+
+	public void setSubtype(int subtype) {
+		this.subtype = subtype;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

@@ -39,10 +39,10 @@
 					</Column>
 				</columns>
 				<ColumnListItem>
-					<core:Icon color="{path: 'view>level', formatter: '.formatLogColorFromLevel'}" src="sap-icon://circle-task-2" />
+					<core:Icon color="{path: 'view>level/name', formatter: '.formatLogColorFromLevel'}" src="sap-icon://circle-task-2" />
 					<Text text="{path: 'view>timeMillis', formatter: '.formatTimestampDate'}"/>
 					<Text text="{view>loggerName}"/>
-					<Text text="{view>message}"/>
+					<Text text="{view>message/message}"/>
 				</ColumnListItem>
 			</Table>
 		</ScrollContainer>

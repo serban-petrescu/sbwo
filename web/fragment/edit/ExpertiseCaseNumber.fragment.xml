@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:Form editable="true" >
+		<f:layout>
+			<f:ResponsiveGridLayout
+				labelSpanL="4"	labelSpanM="5"
+				emptySpanL="4"	emptySpanM="2"
+				columnsL="1"	columnsM="1" />
+		</f:layout>
+		<f:FormContainer >
+			<f:FormElement label="{i18n>lblCaseNumberText}">
+				<Input id="inpCaseNumber" value="{data>number}" change="onCaseNumberChanged" cd:context="/fields/expertise/caseNumber" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblCourtHouseText}">
+				<Input value="{data>court/name}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onOpenCourtValueHelp" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblCaseYearText}">
+				<Input type="Number" value="{path: 'data>year', type: 'sap.ui.model.type.Integer'}" change="onValueChanged" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblCourtSystemText}">
+				<Button width="100%" icon="sap-icon://detail-view" 
+					text="{i18n>btnShowExpteriseExternalText}"
+					type="Emphasized"
+					enabled="{= ${view>/case} !== null }"
+					press="onOpenCourtCaseDialog"/>
+			</f:FormElement>
+		</f:FormContainer>
+	</f:Form>
+</core:FragmentDefinition>

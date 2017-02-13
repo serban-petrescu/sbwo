@@ -12,6 +12,7 @@
 		<IconTabBar>
 			<items>
 				<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingLocationTabs" type="XML" />
+				<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingCourtTab" type="XML" />
 			</items>
 		</IconTabBar>
 		

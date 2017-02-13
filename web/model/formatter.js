@@ -32,6 +32,21 @@ sap.ui.define([], function() {
 		
 		entityPageTitle: fnEntityPageTitle,
 		
+		courtCaseDocument: function(sType, sNumber, sDate) {
+			if (sType && sNumber && sDate) {
+				return oBundle.getText("txtCourtCaseDocumentFullPattern", [sType, sNumber, sDate]);
+			}
+			else if (sType && sDate) {
+				return oBundle.getText("txtCourtCaseDocumentPartialPattern", [sType, sDate]);
+			}
+			else if (sType) {
+				return sType;
+			}
+			else {
+				return "";
+			}
+		},
+		
 		personPageTitle: function(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
 			if (iType === 0) {
 				sName = oBundle.getText("txtPersonNaturalNameText", [sFirstName, sLastName]);

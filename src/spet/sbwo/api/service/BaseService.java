@@ -11,10 +11,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.phase.PhaseInterceptorChain;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.data.DatabaseException;
@@ -22,28 +18,13 @@ import spet.sbwo.data.DatabaseException;
 public abstract class BaseService {
 	public static final String X_CSRF_TOKEN_HEADER = "X-CSRF-TOKEN";
 	public static final String X_CSRF_TOKEN_HEADER_FETCH = "Fetch";
-	protected final ObjectWriter controlExceptionWriter;
-	protected final ObjectWriter databaseExceptionWriter;
-	protected final ObjectWriter otherExceptionWriter;
-
-	protected BaseService() {
-		ObjectMapper mapper = new ObjectMapper();
-		controlExceptionWriter = mapper.writerFor(ControlExceptionChannel.class);
-		databaseExceptionWriter = mapper.writerFor(DatabaseExceptionChannel.class);
-		otherExceptionWriter = mapper.writerFor(ExceptionChannel.class);
-	}
 
 	protected WebApplicationException mapException(Exception ex) {
 		if (isNotFoundException(ex)) {
 			return new NotFoundException();
 		} else {
-			try {
-				String body = exceptionToEntity(ex);
-				Response entity = Response.status(500).type("application/json").entity(body).build();
-				return new InternalServerErrorException(entity);
-			} catch (JsonProcessingException je) {
-				return new InternalServerErrorException(je);
-			}
+			Response entity = Response.status(500).type("application/json").entity(exceptionToEntity(ex)).build();
+			return new InternalServerErrorException(entity);
 		}
 	}
 
@@ -51,13 +32,13 @@ public abstract class BaseService {
 		return ex instanceof ControlException && ((ControlException) ex).getError() == ControlError.ENTITY_NOT_FOUND;
 	}
 
-	protected String exceptionToEntity(Exception e) throws JsonProcessingException {
+	protected Object exceptionToEntity(Exception e) {
 		if (e instanceof ControlException) {
-			return controlExceptionWriter.writeValueAsString(exceptionToChannel((ControlException) e));
+			return exceptionToChannel((ControlException) e);
 		} else if (e instanceof DatabaseException) {
-			return databaseExceptionWriter.writeValueAsString(exceptionToChannel((DatabaseException) e));
+			return exceptionToChannel((DatabaseException) e);
 		} else {
-			return otherExceptionWriter.writeValueAsString(exceptionToChannel(e));
+			return exceptionToChannel(e);
 		}
 	}
 

@@ -10,10 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.type.CollectionType;
-
 import spet.sbwo.api.service.BaseService;
 import spet.sbwo.control.controller.user.ManagementController;
 import spet.sbwo.data.view.UserPlain;
@@ -21,13 +17,9 @@ import spet.sbwo.data.view.UserPlain;
 @Path("/user/manage")
 public class ManagementService extends BaseService {
 	private ManagementController controller;
-	private ObjectWriter jsonWriter;
 
 	public ManagementService(ManagementController controller) {
 		this.controller = controller;
-		ObjectMapper mapper = new ObjectMapper();
-		CollectionType userPlainListType = mapper.getTypeFactory().constructCollectionType(List.class, UserPlain.class);
-		this.jsonWriter = new ObjectMapper().writerFor(userPlainListType);
 	}
 
 	@POST
@@ -69,9 +61,9 @@ public class ManagementService extends BaseService {
 	@GET
 	@Path("/list")
 	@Produces("application/json")
-	public String readAllUsers() {
+	public List<UserPlain> readAllUsers() {
 		try {
-			return jsonWriter.writeValueAsString(controller.listAllPlains());
+			return controller.listAllPlains();
 		} catch (Exception e) {
 			throw mapException(e);
 		}

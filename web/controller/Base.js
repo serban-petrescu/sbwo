@@ -9,6 +9,11 @@ sap.ui.define([
 ], function(Controller, History, JSONModel, Input, Filter, FilterOperator, MessageBox) {
 	"use strict";
 	
+	var mParsers = {
+		"integer": parseInt,
+		"float": parseFloat
+	};
+	
 	return Controller.extend("spet.sbwo.web.controller.Base", {
 		/**
 		 * Convenience method for accessing the router in every controller of the application.
@@ -103,7 +108,8 @@ sap.ui.define([
 				i,
 				sValue = oInput.getValue(),
 				oBundle = this.getResourceBundle(),
-				sDataBasePath = oInput.getBinding("value").getPath(),
+				oBinding = oInput.getBindingContext("data"),
+				sDataBasePath = oBinding ? oBinding.getPath() : "",
 				
 				fnGetText = function(sText) {
 					if (sText.indexOf("i18n>") === 0) {
@@ -116,24 +122,30 @@ sap.ui.define([
 				
 				fnProcessCapture = function(oCtxt, sCapture) {
 					var sKey,
-						sPath = sDataBasePath + "/" + oCtxt.target;
+						sPath = sDataBasePath + (sDataBasePath.lastIndexOf("/") === sDataBasePath.length - 1 ? "" : "/") + oCtxt.target;
 					if (oCtxt.caseInsensitive) {
 						sCapture = (sCapture || "").toLowerCase();
 					}
-					if (oCtxt.force || !oDataModel.getProperty(sPath)) {
-						for (sKey in oCtxt.value) {
-							if (oCtxt.value.hasOwnProperty(sKey) && sKey === sCapture) {
-								oDataModel.setProperty(sPath, oCtxt.value[sKey]);
-								return;
+					if (oCtxt.value) {
+						if (oCtxt.force || !oDataModel.getProperty(sPath)) {
+							for (sKey in oCtxt.value) {
+								if (oCtxt.value.hasOwnProperty(sKey) && sKey === sCapture) {
+									oDataModel.setProperty(sPath, oCtxt.value[sKey]);
+									return;
+								}
+							}
+							if (oCtxt.hasOwnProperty("defaultValue")) {
+								oDataModel.setProperty(sPath, fnGetText(oCtxt.defaultValue));
 							}
 						}
-						if (oCtxt.hasOwnProperty("defaultValue")) {
-							oDataModel.setProperty(sPath, fnGetText(oCtxt.defaultValue));
-						}
+					}
+					else {
+						var fnParser = mParsers[oCtxt.type] || function(o){return o;};
+						oDataModel.setProperty(sPath, fnParser(sCapture));
 					}
 				};
 				
-			if (sContextPath && oContext) {
+			if (sDataBasePath && sContextPath && oContext) {
 				if (sValue) {
 					aMatch = sValue.match(oContext.regex);
 					if (aMatch && aMatch.length) {

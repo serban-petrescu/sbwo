@@ -140,6 +140,10 @@
 				"pattern": "help/:id:",
 				"name": "help",
 				"target": "help"
+			}, {
+				"pattern": "expertise-create",
+				"name": "expertise-create",
+				"target": "expertise-create"
 			}],
 			"targets": {
 				"home": {
@@ -205,6 +209,11 @@
 						"formatter": "spet.sbwo.web.model.formatter.helpPageTitle"
 					},
 					"viewId": "help"
+				},
+				"expertise-create": {
+					"viewName": "wizard.ExpertiseCreate",
+					"title": "{i18n>pagExpertiseCreateTitle}",
+					"viewId": "expertise-create"
 				}
 			}
 		}

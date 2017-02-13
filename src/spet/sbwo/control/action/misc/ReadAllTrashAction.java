@@ -21,8 +21,8 @@ public class ReadAllTrashAction extends BaseDatabaseAction<Void, List<TrashChann
 		List<DeletedEntity> entities = executor.select(DeletedEntity.class).execute();
 		return entities.stream().map(entity -> {
 			TrashChannel channel = new TrashChannel();
-			channel.setId(entity.getKey().getId());
-			channel.setType(entity.getKey().getType().ordinal());
+			channel.setId(entity.getId());
+			channel.setType(entity.getType().ordinal());
 			return channel;
 		}).collect(Collectors.toList());
 	}

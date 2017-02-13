@@ -3,6 +3,7 @@
 	xmlns="http://www.apache.org/olingo/odata2/jpa/processor/api/model/mapping">
 	<PersistenceUnit name="sbwo">
 		<JPAEntityTypes>
+			<JPAEntityType name="Expertise" exclude="true" />
 			<JPAEntityType name="Person" exclude="true" />
 			<JPAEntityType name="Location" exclude="true" />
 			<JPAEntityType name="PersonNatural" exclude="true" />

@@ -2,6 +2,7 @@ package spet.sbwo.api.odata;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.apache.olingo.odata2.api.ODataCallback;
 import org.apache.olingo.odata2.api.ODataService;
 import org.apache.olingo.odata2.api.edm.provider.EdmProvider;
 import org.apache.olingo.odata2.api.processor.ODataSingleProcessor;
@@ -16,6 +17,16 @@ public class ODataFactory extends ODataJPAServiceFactory {
 	@Override
 	public ODataService createODataSingleProcessorService(EdmProvider provider, ODataSingleProcessor processor) {
 		return super.createODataSingleProcessorService(provider, new ODataReadDelegateProcessor(processor));
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T extends ODataCallback> T getCallback(Class<T> callbackInterface) {
+		if (callbackInterface.isAssignableFrom(ODataErrorHandlingCallback.class)) {
+			return (T) new ODataErrorHandlingCallback();
+		} else {
+			return super.getCallback(callbackInterface);
+		}
 	}
 
 	@Override

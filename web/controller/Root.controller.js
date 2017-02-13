@@ -1,15 +1,18 @@
 sap.ui.define([
 	"./Base",
 	"sap/ui/core/routing/HashChanger",
-	"spet/sbwo/web/model/helps"
-], function(Base, HashChanger, helps) {
+	"spet/sbwo/web/model/helps",
+	"spet/sbwo/web/util/vhManager"
+], function(Base, HashChanger, helps, vhManager) {
 	"use strict";
 	
 	return Base.extend("spet.sbwo.web.controller.Root", {
 		onInit: function() {
 			var sClass = this.getOwnerComponent().getContentDensityClass(),
 				oOverlay = jQuery("#overlay");
-				
+			
+			vhManager.initialize(this.getOwnerComponent(), this.getView());
+			
 			jQuery.sap.delayedCall(1000, null, function(){
 				oOverlay.fadeOut(1000, oOverlay.remove.bind(oOverlay));
 			});

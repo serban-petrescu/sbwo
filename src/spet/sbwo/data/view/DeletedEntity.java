@@ -3,18 +3,29 @@ package spet.sbwo.data.view;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.embed.DeletedEntityKey;
 
 @Entity
+@IdClass(DeletedEntityKey.class)
 @Table(name = "V_DELETED")
 public class DeletedEntity {
 
-	@EmbeddedId
-	private DeletedEntityKey key;
+	@Id
+	@Column(name = "C_TYPE")
+	@Enumerated(EnumType.ORDINAL)
+	private EntityType type;
+
+	@Id
+	@Column(name = "C_ID")
+	private int id;
 
 	@Column(name = "C_TITLE")
 	private String title;
@@ -25,12 +36,20 @@ public class DeletedEntity {
 	@Column(name = "C_SEARCH")
 	private String search;
 
-	public DeletedEntityKey getKey() {
-		return key;
+	public EntityType getType() {
+		return type;
 	}
 
-	public void setKey(DeletedEntityKey key) {
-		this.key = key;
+	public void setType(EntityType type) {
+		this.type = type;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

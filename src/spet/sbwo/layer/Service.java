@@ -6,6 +6,7 @@ import java.util.List;
 import org.h2.server.web.WebServlet;
 
 import spet.sbwo.api.odata.ODataFactory;
+import spet.sbwo.api.service.bo.ExpertiseService;
 import spet.sbwo.api.service.bo.PersonService;
 import spet.sbwo.api.service.misc.ConfigurationService;
 import spet.sbwo.api.service.misc.CountService;
@@ -13,6 +14,7 @@ import spet.sbwo.api.service.misc.FileExploreService;
 import spet.sbwo.api.service.misc.LogService;
 import spet.sbwo.api.service.misc.ScheduleService;
 import spet.sbwo.api.service.misc.TrashService;
+import spet.sbwo.api.service.transfer.CourtImportService;
 import spet.sbwo.api.service.transfer.DataImportService;
 import spet.sbwo.api.service.transfer.LocationImportService;
 import spet.sbwo.api.service.user.FavouriteService;
@@ -42,8 +44,10 @@ public class Service {
 	private final SessionService sessionService;
 	private final TileService tileService;
 	private final SelfService selfService;
+	private final CourtImportService courtImportService;
+	private final ExpertiseService expertiseService;
 
-	public Service(Control control, Schedule schedule, Database database) {
+	public Service(Integration integration, Control control, Schedule schedule, Database database) {
 		ODataFactory.setEmf(database.getEmf());
 		ODataFactory.setPuName("sbwo");
 		dbWebServlet = new WebServlet();
@@ -62,6 +66,8 @@ public class Service {
 		sessionService = new SessionService(LOGIN_RELATIVE_PATH);
 		tileService = new TileService(control.getTileController());
 		selfService = new SelfService(control.getManagementController());
+		courtImportService = new CourtImportService(control.getCourtImportController());
+		expertiseService = new ExpertiseService(control.getExpertiseController(), integration.getCourtSystemApi());
 	}
 
 	public List<Object> getPublicServices() {
@@ -71,7 +77,7 @@ public class Service {
 	public List<Object> getPrivateServices() {
 		return Arrays.asList(personService, configurationService, countService, fileExploreService, logService,
 				scheduleService, trashService, dataImportService, locationImportService, favouriteService,
-				preferenceService, tileService, selfService);
+				preferenceService, tileService, selfService, expertiseService, courtImportService);
 	}
 
 	public WebServlet getDbWebServlet() {
@@ -138,4 +144,11 @@ public class Service {
 		return selfService;
 	}
 
+	public CourtImportService getCourtImportService() {
+		return courtImportService;
+	}
+
+	public ExpertiseService getExpertiseService() {
+		return expertiseService;
+	}
 }

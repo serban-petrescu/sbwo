@@ -1,5 +1,20 @@
 {
 	"fields": {
+		"expertise": {
+			"caseNumber": {
+				"regex": "^\\d+[^/]*/(\\d+)[^/]*/(\\d+).*$",
+				"severity": "Warning",
+				"text": "i18n>txtExpertiseCaseNumberFormatError",
+				"captures": [{
+					"target": "court/code",
+					"force": true
+				},{
+					"target": "year",
+					"force": true,
+					"type": "integer"
+				}]
+			}
+		},
 		"person": {
 			"email": {
 				"regex": "^[^@]+@([a-zA-Z0-9]+)\\..+$",

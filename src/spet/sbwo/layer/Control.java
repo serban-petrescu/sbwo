@@ -1,9 +1,11 @@
 package spet.sbwo.layer;
 
 import spet.sbwo.control.config.Configuration;
+import spet.sbwo.control.controller.bo.ExpertiseController;
 import spet.sbwo.control.controller.bo.PersonController;
 import spet.sbwo.control.controller.misc.CountController;
 import spet.sbwo.control.controller.misc.TrashController;
+import spet.sbwo.control.controller.transfer.CourtImportController;
 import spet.sbwo.control.controller.transfer.LocationImportController;
 import spet.sbwo.control.controller.user.FavouriteController;
 import spet.sbwo.control.controller.user.LoginController;
@@ -26,6 +28,8 @@ public class Control {
 	private final CountController countController;
 	private final DataImportFacade dataImportFacade;
 	private final SessionManager sessionManager;
+	private final ExpertiseController expertiseController;
+	private final CourtImportController courtImportController;
 
 	public Control(Database database) {
 		configuration = new Configuration("server.json");
@@ -40,6 +44,8 @@ public class Control {
 		countController = new CountController(database.getFacade());
 		dataImportFacade = new DataImportFacade(database.getFacade());
 		sessionManager = new SessionManager(database.getFacade());
+		expertiseController = new ExpertiseController(database.getFacade(), configuration.getDirectDeleteInterval());
+		courtImportController = new CourtImportController(database.getFacade());
 	}
 
 	public Configuration getConfiguration() {
@@ -88,6 +94,14 @@ public class Control {
 
 	public SessionManager getSessionManager() {
 		return sessionManager;
+	}
+
+	public ExpertiseController getExpertiseController() {
+		return expertiseController;
+	}
+
+	public CourtImportController getCourtImportController() {
+		return courtImportController;
 	}
 
 }

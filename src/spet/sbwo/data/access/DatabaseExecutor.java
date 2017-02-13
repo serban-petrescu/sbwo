@@ -20,7 +20,7 @@ import spet.sbwo.data.query.SelectSingleFacade;
 class DatabaseExecutor implements IDatabaseExecutor {
 	static final Logger LOG = LoggerFactory.getLogger(DatabaseExecutor.class);
 
-	protected EntityManager em;
+	protected final EntityManager em;
 	protected EntityTransaction tr;
 
 	DatabaseExecutor(EntityManager em) throws DatabaseException {
@@ -58,6 +58,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 			throw new DatabaseException(e);
 		}
 	}
+
 	@Override
 	public void start() throws DatabaseException {
 		if (this.tr == null) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration packages="spet.sbwo.logging">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
 		    <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>
@@ -7,7 +7,7 @@
 		<RollingFile name="File" 
             fileName="./log/log.txt" 
             filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
-			<JsonLayout locationInfo="false" complete="false" />
+			<GsonLayout/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1 MB"/>
                 <TimeBasedTriggeringPolicy />

@@ -5,6 +5,8 @@
 	<persistence-unit name="sbwo" transaction-type="RESOURCE_LOCAL">
 		<class>spet.sbwo.data.base.BaseEntity</class>
 		<class>spet.sbwo.data.base.JournalizedBaseEntity</class>
+		<class>spet.sbwo.data.table.Court</class>
+		<class>spet.sbwo.data.table.Expertise</class>
 		<class>spet.sbwo.data.table.Location</class>
 		<class>spet.sbwo.data.table.LocationAdministrativeUnit</class>
 		<class>spet.sbwo.data.table.LocationCountry</class>
@@ -19,17 +21,20 @@
 		<class>spet.sbwo.data.table.UserHomeTile</class>
 		<class>spet.sbwo.data.table.UserFavourite</class>
 		<class>spet.sbwo.data.table.UserPreference</class>
+		<class>spet.sbwo.data.table.UserSession</class>
 		<class>spet.sbwo.data.view.UserPlain</class>
 		<class>spet.sbwo.data.view.PersonSearch</class>
 		<class>spet.sbwo.data.view.GlobalSearch</class>
 		<class>spet.sbwo.data.view.DeletedEntity</class>
+		<class>spet.sbwo.data.view.CourtSearch</class>
+		<class>spet.sbwo.data.embed.DeletedEntityKey</class>
+		<class>spet.sbwo.data.embed.GlobalSearchKey</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./data/sbwo;TRACE_LEVEL_FILE=4" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="zPZN-WJq4Prio&amp;nOuP2Z" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+			<property name="eclipselink.logging.logger" value="spet.sbwo.logging.EclipseLinkLogger"/>
 		</properties>
 	</persistence-unit>
 </persistence>

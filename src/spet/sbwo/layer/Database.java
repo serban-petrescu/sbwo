@@ -11,7 +11,7 @@ public class Database {
 
 	public EntityManagerFactory getEmf() {
 		return emf;
-	}
+	} 
 
 	public DatabaseFacade getFacade() {
 		return facade;

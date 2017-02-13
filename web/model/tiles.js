@@ -15,7 +15,7 @@ sap.ui.define(["./helps"], function(helps) {
 				title:	oBundle.getText("sttHomeImportTitle"),
 				icon:	"sap-icon://add-contact",
 				type:	"None",
-				order:	5,
+				order:	14,
 				visible: /localhost:\d+/.test(window.location.host),
 				navinfo: ["import", {}]
 			},
@@ -24,7 +24,7 @@ sap.ui.define(["./helps"], function(helps) {
 				title:	oBundle.getText("sttHomeCustomizingTitle"),
 				icon:	"sap-icon://customize",
 				type:	"None",
-				order:	3,
+				order:	15,
 				visible: true,
 				navinfo: ["customizing", {}]
 			},
@@ -33,7 +33,7 @@ sap.ui.define(["./helps"], function(helps) {
 				title:	oBundle.getText("sttHomePersonListTitle"),
 				icon:	"sap-icon://customer-briefing",
 				type:	"None",
-				order:	1,
+				order:	2,
 				visible: true,
 				count:	"person",
 				unit:	oBundle.getText("sttHomePersonNumberUnit"),
@@ -55,7 +55,7 @@ sap.ui.define(["./helps"], function(helps) {
 				title:	oBundle.getText("sttHomeServerSettingsTitle"),
 				icon:	"sap-icon://settings",
 				type:	"None",
-				order:	5,
+				order:	16,
 				visible: /localhost:\d+/.test(window.location.host),
 				navinfo: ["server-settings", {}]
 			},
@@ -69,6 +69,15 @@ sap.ui.define(["./helps"], function(helps) {
 				number:	helps.count,
 				unit:	oBundle.getText("sttHomeHelpTopicsUnit"),
 				navinfo: ["help", {}]
+			},
+			"expertise-create" :{
+				name:	"expertise-create",
+				title:	oBundle.getText("sttHomeExpertiseCreateTitle"),
+				icon:	"sap-icon://official-service",
+				type:	"Create",
+				order:	3,
+				visible: true,
+				navinfo: ["expertise-create", {}]
 			}
 		};
 	};
