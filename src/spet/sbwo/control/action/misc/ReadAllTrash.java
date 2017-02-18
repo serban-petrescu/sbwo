@@ -18,7 +18,7 @@ public class ReadAllTrash extends BaseDatabaseAction<Void, List<TrashChannel>> {
 
 	@Override
 	public List<TrashChannel> doRun(Void input, IDatabaseExecutor executor) throws ControlException, DatabaseException {
-		List<DeletedEntity> entities = executor.select(DeletedEntity.class).execute();
+		List<DeletedEntity> entities = executor.queryList("DeletedEntity.readAll", DeletedEntity.class);
 		return entities.stream().map(entity -> {
 			TrashChannel channel = new TrashChannel();
 			channel.setId(entity.getId());

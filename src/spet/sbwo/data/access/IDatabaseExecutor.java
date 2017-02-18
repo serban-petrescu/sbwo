@@ -1,9 +1,9 @@
 package spet.sbwo.data.access;
 
 import java.util.List;
+import java.util.Optional;
 
 import spet.sbwo.data.DatabaseException;
-import spet.sbwo.data.query.IQueryFacade;
 
 public interface IDatabaseExecutor extends AutoCloseable {
 
@@ -23,15 +23,11 @@ public interface IDatabaseExecutor extends AutoCloseable {
 
 	<T> void create(T entity) throws DatabaseException;
 
-	<T> IQueryFacade<List<T>> select(Class<T> entity);
+	<T> List<T> queryList(String name, Class<T> resultType, Object... params) throws DatabaseException;
 
-	<T, M> IQueryFacade<List<M>> select(Class<T> entityClazz, Class<M> attrClazz, String attr);
-
-	<T> IQueryFacade<T> selectSingle(Class<T> entity);
+	<T> Optional<T> querySingle(String name, Class<T> resultType, Object... params) throws DatabaseException;
 
 	<T> T find(Class<T> clazz, Object id) throws DatabaseException;
-
-	<T> IQueryFacade<Long> count(Class<T> entity);
 
 	@Override
 	void close();

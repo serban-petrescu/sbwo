@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -11,7 +12,6 @@ import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.LocationImportChannel;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.query.WhereOperator;
 import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;
 import spet.sbwo.data.table.LocationRegion;
@@ -58,15 +58,16 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 	protected LocationCountry getCountry(IDatabaseExecutor executor, String code, String name)
 			throws DatabaseException {
 		LocationCountry result;
-		result = executor.selectSingle(LocationCountry.class).where("code", WhereOperator.EQ, code).execute();
-		if (result == null) {
+		Optional<LocationCountry> o = executor.querySingle("LocationCountry.getByCode", LocationCountry.class, code);
+		if (o.isPresent()) {
+			result = o.get();
+			result.setName(name);
+		} else {
 			result = new LocationCountry();
 			result.setCode(code);
 			result.setName(name);
 			result.setRegions(new ArrayList<>());
 			executor.create(result);
-		} else {
-			result.setName(name);
 		}
 		return result;
 	}

@@ -16,7 +16,7 @@ public class ReadAllUserPlains extends BaseDatabaseAction<Void, List<UserPlain>>
 
 	@Override
 	public List<UserPlain> doRun(Void input, IDatabaseExecutor e) throws DatabaseException {
-		return e.select(UserPlain.class).execute();
+		return e.queryList("UserPlain.readAll", UserPlain.class);
 	}
 
 }

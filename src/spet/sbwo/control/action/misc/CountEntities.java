@@ -5,10 +5,6 @@ import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.CountChannel;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
-import spet.sbwo.data.query.WhereOperator;
-import spet.sbwo.data.table.Expertise;
-import spet.sbwo.data.table.Person;
-import spet.sbwo.data.view.DeletedEntity;
 
 public class CountEntities extends BaseDatabaseAction<Void, CountChannel> {
 
@@ -19,9 +15,9 @@ public class CountEntities extends BaseDatabaseAction<Void, CountChannel> {
 	@Override
 	public CountChannel doRun(Void input, IDatabaseExecutor executor) throws ControlException, DatabaseException {
 		CountChannel result = new CountChannel();
-		result.setDeleted(executor.count(DeletedEntity.class).execute());
-		result.setPerson(executor.count(Person.class).where("deleted", WhereOperator.EQ, false).execute());
-		result.setExpertise(executor.count(Expertise.class).where("deleted", WhereOperator.EQ, false).execute());
+		result.setDeleted(executor.querySingle("DeletedEntity.countAll", Long.class).orElse(0L));
+		result.setPerson(executor.querySingle("Person.countByDeleted", Long.class, false).orElse(0L));
+		result.setExpertise(executor.querySingle("Expertise.countByDeleted", Long.class, false).orElse(0L));
 		return result;
 	}
 

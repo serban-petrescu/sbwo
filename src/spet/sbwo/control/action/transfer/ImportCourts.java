@@ -21,7 +21,7 @@ public class ImportCourts extends BaseDatabaseAction<List<CourtImportChannel>, V
 	@Override
 	public Void doRun(List<CourtImportChannel> input, IDatabaseExecutor executor)
 			throws ControlException, DatabaseException {
-		Map<String, Court> courts = executor.select(Court.class).execute().stream()
+		Map<String, Court> courts = executor.queryList("Court.readAll", Court.class).stream()
 				.collect(Collectors.toMap(Court::getCode, Function.identity()));
 		for (CourtImportChannel importCourt : input) {
 			Court court = courts.get(importCourt.getCode());

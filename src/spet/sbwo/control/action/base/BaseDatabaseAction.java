@@ -24,6 +24,6 @@ public abstract class BaseDatabaseAction<I, O> implements IDatabaseAction<I, O> 
 		}
 	}
 
-	public abstract O doRun(I input, IDatabaseExecutor executor) throws ControlException, DatabaseException;
+	protected abstract O doRun(I input, IDatabaseExecutor executor) throws ControlException, DatabaseException;
 
 }

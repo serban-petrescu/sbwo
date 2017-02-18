@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="sbwo" transaction-type="RESOURCE_LOCAL">
+		<mapping-file>META-INF/queries.xml</mapping-file>
 		<class>spet.sbwo.data.base.BaseEntity</class>
 		<class>spet.sbwo.data.base.JournalizedBaseEntity</class>
 		<class>spet.sbwo.data.table.Court</class>
