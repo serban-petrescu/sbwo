@@ -8,6 +8,8 @@
 			],
 			formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
 		}"
+		busy="{= !${view>/loaded} }"
+		busyIndicatorDelay="500"
 		showNavButton="true"
 		navButtonPress="onNavBack">
 		
@@ -23,16 +25,9 @@
 				press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
 		</headerContent>
 		
-		<HBox alignItems="Center" justifyContent="Center" width="100%" height="100%" visible="{= !${view>/loaded} }">
-			<VBox alignItems="Stretch" justifyContent="Center" height="100%" width="6rem">
-				<BusyIndicator text="{i18n>bsyEntityLoadingText}" size="3rem" />
-			</VBox>
-		</HBox>
-		
 		<ObjectHeader
 			responsive="true"
 			fullScreenOptimized="true"
-			visible="{view>/loaded}"
 			icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
 			title="{
 				parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
@@ -46,10 +41,9 @@
 				<ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
 			</statuses>
 			<headerContainer>
-				<IconTabBar class="sapUiResponsiveContentPadding" visible="{view>/loaded}">
+				<IconTabBar class="sapUiResponsiveContentPadding" >
 					<items>
-						<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonTabs" type="XML" />
-						<core:Fragment fragmentName="spet.sbwo.web.fragment.display.PersonTabs" type="XML" />
+						<core:Fragment fragmentName="spet.sbwo.web.fragment.entity.PersonTabs" type="XML" />
 					</items>
 				</IconTabBar>
 			</headerContainer>

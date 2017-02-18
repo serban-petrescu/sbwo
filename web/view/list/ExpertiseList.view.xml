@@ -1,0 +1,38 @@
+<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="pagList" 
+		title="{i18n>pagExpertiseListTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<subHeader>
+			<Toolbar>
+				<SearchField id="seaMain" width="100%" search="onSearch"/>
+			</Toolbar>
+		</subHeader>
+		<Table id="lstMain" items="{
+				path: '/ExpertiseSearchs', 
+				sorter: [
+					{path: 'Year', descending: true}, 
+					{path: 'NextHearing', descending: true}
+				]
+			}" 
+			growing="true" growingScrollToLoad="true">
+			<columns>
+				<Column width="9em"><header><Label text="{i18n>lblCaseNumberText}" /></header></Column>
+				<Column width="7em"><header><Label text="{i18n>lblExpertiseNextHearingText}" /></header></Column>
+				<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>lblCourtHouseText}" /></header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<header><Label text="{i18n>lblExpertiseTitleText}" /></header>
+				</Column>
+			</columns>
+			<ColumnListItem type="Navigation" press="onPressItem">
+				<Text text="{Number}"/>
+				<Text text="{path: 'NextHearing', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
+				<Text text="{Court}"/>
+				<Text text="{Title}"/>
+			</ColumnListItem>
+		</Table>
+	</Page>
+</mvc:View>

@@ -1,15 +1,15 @@
 package spet.sbwo.control.controller.bo;
 
-import spet.sbwo.control.action.bo.base.CreateEntityAction;
-import spet.sbwo.control.action.bo.base.DeleteEntityAction;
-import spet.sbwo.control.action.bo.base.ReadEntityAction;
-import spet.sbwo.control.action.bo.base.RestoreEntityAction;
-import spet.sbwo.control.action.bo.base.UpdateEntityAction;
-import spet.sbwo.control.action.bo.expertise.CreateExpertiseAction;
-import spet.sbwo.control.action.bo.expertise.DeleteExpertiseAction;
-import spet.sbwo.control.action.bo.expertise.ReadExpertiseAction;
-import spet.sbwo.control.action.bo.expertise.RestoreExpertiseAction;
-import spet.sbwo.control.action.bo.expertise.UpdateExpertiseAction;
+import spet.sbwo.control.action.bo.base.CreateEntity;
+import spet.sbwo.control.action.bo.base.DeleteEntity;
+import spet.sbwo.control.action.bo.base.ReadEntity;
+import spet.sbwo.control.action.bo.base.RestoreEntity;
+import spet.sbwo.control.action.bo.base.UpdateEntity;
+import spet.sbwo.control.action.bo.expertise.CreateExpertise;
+import spet.sbwo.control.action.bo.expertise.DeleteExpertise;
+import spet.sbwo.control.action.bo.expertise.ReadExpertise;
+import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
+import spet.sbwo.control.action.bo.expertise.UpdateExpertise;
 import spet.sbwo.control.channel.ExpertiseChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Expertise;
@@ -21,28 +21,28 @@ public class ExpertiseController extends BaseBoController<Expertise, ExpertiseCh
 	}
 
 	@Override
-	protected CreateEntityAction<Expertise, ExpertiseChannel> createAction() {
-		return new CreateExpertiseAction();
+	protected CreateEntity<Expertise, ExpertiseChannel> createAction() {
+		return new CreateExpertise();
 	}
 
 	@Override
-	protected ReadEntityAction<Expertise, ExpertiseChannel> readAction() {
-		return new ReadExpertiseAction();
+	protected ReadEntity<Expertise, ExpertiseChannel> readAction() {
+		return new ReadExpertise();
 	}
 
 	@Override
-	protected UpdateEntityAction<Expertise, ExpertiseChannel> updateAction() {
-		return new UpdateExpertiseAction();
+	protected UpdateEntity<Expertise, ExpertiseChannel> updateAction() {
+		return new UpdateExpertise();
 	}
 
 	@Override
-	protected DeleteEntityAction<Expertise> deleteAction(int directDeleteInterval) {
-		return new DeleteExpertiseAction(directDeleteInterval);
+	protected DeleteEntity<Expertise> deleteAction(int directDeleteInterval) {
+		return new DeleteExpertise(directDeleteInterval);
 	}
 
 	@Override
-	protected RestoreEntityAction<Expertise> restoreAction() {
-		return new RestoreExpertiseAction();
+	protected RestoreEntity<Expertise> restoreAction() {
+		return new RestoreExpertise();
 	}
 
 }

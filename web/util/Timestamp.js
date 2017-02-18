@@ -16,6 +16,9 @@ sap.ui.define([
 			
 			if (sType === "int") {
 				return iValue;
+			} 
+			else if (sType === "object") {
+				return new Date(iValue);
 			}
 			else {
 				return DateTime.prototype.formatValue.call(this, new Date(iValue), sType);
@@ -31,8 +34,11 @@ sap.ui.define([
 			if (sType === "int") {
 				return oValue;
 			}
-			else {
+			else if (sType === "object") {
 				return oValue.getTime();
+			}
+			else {
+				return DateTime.prototype.parseValue.call(this, oValue, sType).getTime();
 			}
 		},
 		

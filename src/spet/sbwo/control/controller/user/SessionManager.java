@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.session.ExistsAction;
-import spet.sbwo.control.action.session.ReadAction;
-import spet.sbwo.control.action.session.ReadExpiredAction;
-import spet.sbwo.control.action.session.RemoveAction;
-import spet.sbwo.control.action.session.UpsertAction;
+import spet.sbwo.control.action.session.SessionExists;
+import spet.sbwo.control.action.session.ReadSession;
+import spet.sbwo.control.action.session.ReadAllExpired;
+import spet.sbwo.control.action.session.RemoveSession;
+import spet.sbwo.control.action.session.UpsertSession;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.table.UserSession;
 
@@ -19,22 +19,22 @@ public class SessionManager extends BaseActionExecutor {
 	}
 
 	public boolean exists(String id) {
-		return suppress(() -> execute(new ExistsAction(), id), false);
+		return suppress(() -> execute(new SessionExists(), id), false);
 	}
 
 	public UserSession read(String id) {
-		return suppress(() -> execute(new ReadAction(), id), null);
+		return suppress(() -> execute(new ReadSession(), id), null);
 	}
 
 	public boolean remove(String id) {
-		return suppress(() -> executeAndCommit(new RemoveAction(), id), false);
+		return suppress(() -> executeAndCommit(new RemoveSession(), id), false);
 	}
 
 	public void upsert(UserSession session) {
-		suppress(() -> executeAndCommit(new UpsertAction(), session));
+		suppress(() -> executeAndCommit(new UpsertSession(), session));
 	}
 
 	public List<String> readAllExpired(long ts) {
-		return suppress(() -> execute(new ReadExpiredAction(), ts), Collections.emptyList());
+		return suppress(() -> execute(new ReadAllExpired(), ts), Collections.emptyList());
 	}
 }

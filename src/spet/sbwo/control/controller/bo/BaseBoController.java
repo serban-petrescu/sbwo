@@ -2,11 +2,11 @@ package spet.sbwo.control.controller.bo;
 
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.bo.base.CreateEntityAction;
-import spet.sbwo.control.action.bo.base.DeleteEntityAction;
-import spet.sbwo.control.action.bo.base.ReadEntityAction;
-import spet.sbwo.control.action.bo.base.RestoreEntityAction;
-import spet.sbwo.control.action.bo.base.UpdateEntityAction;
+import spet.sbwo.control.action.bo.base.CreateEntity;
+import spet.sbwo.control.action.bo.base.DeleteEntity;
+import spet.sbwo.control.action.bo.base.ReadEntity;
+import spet.sbwo.control.action.bo.base.RestoreEntity;
+import spet.sbwo.control.action.bo.base.UpdateEntity;
 import spet.sbwo.control.channel.JournalChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.base.JournalizedBaseEntity;
@@ -46,14 +46,14 @@ abstract class BaseBoController<E extends JournalizedBaseEntity, C extends Journ
 		executeAndCommit(username, restoreAction(), id);
 	}
 
-	protected abstract CreateEntityAction<E, C> createAction();
+	protected abstract CreateEntity<E, C> createAction();
 
-	protected abstract ReadEntityAction<E, C> readAction();
+	protected abstract ReadEntity<E, C> readAction();
 
-	protected abstract UpdateEntityAction<E, C> updateAction();
+	protected abstract UpdateEntity<E, C> updateAction();
 
-	protected abstract DeleteEntityAction<E> deleteAction(int directDeleteInterval);
+	protected abstract DeleteEntity<E> deleteAction(int directDeleteInterval);
 
-	protected abstract RestoreEntityAction<E> restoreAction();
+	protected abstract RestoreEntity<E> restoreAction();
 
 }

@@ -144,6 +144,14 @@
 				"pattern": "expertise-create",
 				"name": "expertise-create",
 				"target": "expertise-create"
+			}, {
+				"pattern": "expertise-list/:search:",
+				"name": "expertise-list",
+				"target": "expertise-list"
+			}, {
+				"pattern": "expertise/{id}",
+				"name": "expertise",
+				"target": "expertise"
 			}],
 			"targets": {
 				"home": {
@@ -214,6 +222,22 @@
 					"viewName": "wizard.ExpertiseCreate",
 					"title": "{i18n>pagExpertiseCreateTitle}",
 					"viewId": "expertise-create"
+				},
+				"expertise-list": {
+					"viewName": "list.ExpertiseList",
+					"title": "{i18n>pagExpertiseListTitle}",
+					"viewId": "expertise-list"
+				},
+				"expertise": {
+					"viewName": "entity.Expertise",
+					"title": {
+						"parts": [
+							"view>/loaded", "i18n>pagEntityLoadingTitle", 
+							"i18n>pagEntityExpertisePatternTitle", "data>/number"
+						],
+						"formatter": "spet.sbwo.web.model.formatter.entityPageTitle"
+					},
+					"viewId": "expertise"
 				}
 			}
 		}

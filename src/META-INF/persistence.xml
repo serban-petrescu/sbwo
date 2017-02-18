@@ -24,6 +24,7 @@
 		<class>spet.sbwo.data.table.UserSession</class>
 		<class>spet.sbwo.data.view.UserPlain</class>
 		<class>spet.sbwo.data.view.PersonSearch</class>
+		<class>spet.sbwo.data.view.ExpertiseSearch</class>
 		<class>spet.sbwo.data.view.GlobalSearch</class>
 		<class>spet.sbwo.data.view.DeletedEntity</class>
 		<class>spet.sbwo.data.view.CourtSearch</class>

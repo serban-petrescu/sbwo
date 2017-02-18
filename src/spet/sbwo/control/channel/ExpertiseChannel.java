@@ -9,6 +9,7 @@ public class ExpertiseChannel extends JournalChannel {
 	private String note;
 	private UserChannel responsible;
 	private Long lastCheckedOn;
+	private Long nextHearing;
 
 	public String getNumber() {
 		return number;
@@ -73,4 +74,13 @@ public class ExpertiseChannel extends JournalChannel {
 	public void setLastCheckedOn(Long lastCheckedOn) {
 		this.lastCheckedOn = lastCheckedOn;
 	}
+
+	public Long getNextHearing() {
+		return nextHearing;
+	}
+
+	public void setNextHearing(Long nextHearing) {
+		this.nextHearing = nextHearing;
+	}
+
 }

@@ -23,12 +23,13 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 	public void merge(Expertise internal, ExpertiseChannel external) throws ControlException {
 		super.merge(internal, external);
 		internal.setCourt(toInternal(external.getCourt()));
-		internal.setLastCheckedOn(toInternal(external.getLastCheckedOn()));
+		internal.setLastCheckedOn(toInternalTimestamp(external.getLastCheckedOn()));
 		internal.setNote(external.getNote());
 		internal.setNumber(external.getNumber());
 		internal.setResponsible(toInternal(external.getResponsible()));
 		internal.setStatus(getEnumValue(ExpertiseStatus.values(), external.getStatus()));
 		internal.setTitle(external.getTitle());
+		internal.setNextHearing(toInternalDate(external.getNextHearing()));
 		this.ifNotNull(external.getYear(), internal::setYear);
 	}
 
@@ -36,13 +37,14 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 	public void merge(ExpertiseChannel result, Expertise input) throws ControlException {
 		super.merge(result, input);
 		result.setCourt(toExternal(input.getCourt()));
-		result.setLastCheckedOn(toExternal(input.getLastCheckedOn()));
+		result.setLastCheckedOn(toExternalTimestamp(input.getLastCheckedOn()));
 		result.setNote(input.getNote());
 		result.setNumber(input.getNumber());
 		result.setResponsible(toExternal(input.getResponsible()));
 		result.setStatus(input.getStatus() == null ? null : input.getStatus().ordinal());
 		result.setTitle(input.getTitle());
 		result.setYear(input.getYear());
+		result.setNextHearing(toExternalDate(input.getNextHearing()));
 	}
 
 	@Override

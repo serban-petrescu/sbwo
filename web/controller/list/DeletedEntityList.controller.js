@@ -12,7 +12,7 @@ sap.ui.define([
 		},
 		
 		getEntityRoute: function(oContext) {
-			return this.getRouterForEntityType(oContext.getProperty("Type"));
+			return this.getRouteForEntityType(oContext.getProperty("Type"));
 		},
 		
 		getListRoute: function() {

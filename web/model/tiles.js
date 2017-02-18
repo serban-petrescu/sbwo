@@ -78,6 +78,17 @@ sap.ui.define(["./helps"], function(helps) {
 				order:	3,
 				visible: true,
 				navinfo: ["expertise-create", {}]
+			},
+			"expertise-list": {
+				name:	"expertise-list",
+				title:	oBundle.getText("sttHomeExpertiseListTitle"),
+				icon:	"sap-icon://compare",
+				type:	"None",
+				order:	4,
+				visible: true,
+				count:	"expertise",
+				unit:	oBundle.getText("sttHomeExpertiseNumberUnit"),
+				navinfo: ["expertise-list", {}]
 			}
 		};
 	};

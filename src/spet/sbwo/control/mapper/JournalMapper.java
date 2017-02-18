@@ -1,5 +1,6 @@
 package spet.sbwo.control.mapper;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.slf4j.Logger;
@@ -25,9 +26,9 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 	public void merge(O result, I input) throws ControlException {
 		super.merge(result, input);
 		result.setChangedBy(this.toExternal(input.getChangedBy()));
-		result.setChangedOn(this.toExternal(input.getChangedOn()));
+		result.setChangedOn(this.toExternalTimestamp(input.getChangedOn()));
 		result.setCreatedBy(this.toExternal(input.getChangedBy()));
-		result.setCreatedOn(this.toExternal(input.getCreatedOn()));
+		result.setCreatedOn(this.toExternalTimestamp(input.getCreatedOn()));
 		result.setDeleted(input.isDeleted());
 	}
 
@@ -35,13 +36,13 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 	public void merge(I internal, O external) throws ControlException {
 		super.merge(internal, external);
 		internal.setChangedBy(this.toInternal(external.getChangedBy()));
-		internal.setChangedOn(this.toInternal(external.getChangedOn()));
+		internal.setChangedOn(this.toInternalTimestamp(external.getChangedOn()));
 		internal.setCreatedBy(this.toInternal(external.getCreatedBy()));
-		internal.setCreatedOn(this.toInternal(external.getCreatedOn()));
+		internal.setCreatedOn(this.toInternalTimestamp(external.getCreatedOn()));
 		this.ifNotNull(external.getDeleted(), internal::setDeleted);
 	}
 
-	protected Long toExternal(Timestamp ts) {
+	protected Long toExternalTimestamp(Timestamp ts) {
 		if (ts != null) {
 			return ts.getTime();
 		} else {
@@ -49,9 +50,25 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 		}
 	}
 
-	protected Timestamp toInternal(Long ts) {
+	protected Long toExternalDate(Date ts) {
+		if (ts != null) {
+			return ts.getTime();
+		} else {
+			return null;
+		}
+	}
+
+	protected Timestamp toInternalTimestamp(Long ts) {
 		if (ts != null) {
 			return new Timestamp(ts);
+		} else {
+			return null;
+		}
+	}
+
+	protected Date toInternalDate(Long ts) {
+		if (ts != null) {
+			return new Date(ts);
 		} else {
 			return null;
 		}

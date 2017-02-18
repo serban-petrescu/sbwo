@@ -1,58 +1,60 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
 	<Dialog id="dlgCourtCase" stretch="true" title="{i18n>dlgCourtCaseTitle}">
-		<f:Form editable="false">
-			<f:layout>
-				<f:ResponsiveGridLayout
-					labelSpanL="4"	labelSpanM="5"
-					emptySpanL="4"	emptySpanM="2"
-					columnsL="1"	columnsM="1" />
-			</f:layout>
-			<f:FormContainer>
-				<f:FormElement label="{i18n>lblCourtCaseNumber}" visible="{= !!${view>number} }">
-					<Text text="{view>number}" />
-				</f:FormElement>
-				<f:FormElement label="{i18n>lblCourtCaseDate}" visible="{= !!${view>date} }">
+		<Panel busy="{= ${view>} === null }">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanL="4"	labelSpanM="5"
+						emptySpanL="4"	emptySpanM="2"
+						columnsL="1"	columnsM="1" />
+				</f:layout>
+				<f:FormContainer>
+					<f:FormElement label="{i18n>lblCourtCaseNumber}" visible="{= !!${view>number} }">
+						<Text text="{view>number}" />
+					</f:FormElement>
+					<f:FormElement label="{i18n>lblCourtCaseDate}" visible="{= !!${view>date} }">
+						<Text text="{path: 'view>date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+					</f:FormElement>
+					<f:FormElement label="{i18n>lblCourtCaseMatter}" visible="{= !!${view>matter} }">
+						<Text text="{view>matter}" />
+					</f:FormElement>
+					<f:FormElement label="{i18n>lblCourtCaseStatus}" visible="{= !!${view>status} }">
+						<Text text="{view>status}" />
+					</f:FormElement>
+					<f:FormElement label="{i18n>lblCourtCaseCategory}" visible="{= !!${view>category} }">
+						<Text text="{view>category}" />
+					</f:FormElement>
+				</f:FormContainer>
+			</f:Form>
+			<List items="{view>sides}" headerText="{i18n>lstCourtCaseSidesHeader}">
+				<StandardListItem title="{view>name}" description="{view>type}"/>
+			</List>
+			<Table items="{view>hearings}" headerText="{i18n>lstCourtCaseHearingsHeader}">
+				<columns>
+					<Column width="6em"><header><Label text="{i18n>lblCourtCaseHearingDate}"/></header></Column>
+					<Column width="3em"><header><Label text="{i18n>lblCourtCaseHearingTime}"/></header></Column>
+					<Column width="6em"><header><Label text="{i18n>lblCourtCaseHearingDelivery}"/></header></Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingResult}"/></header></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingSummary}"/></header></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingDocument}"/></header></Column>
+				</columns>
+				<ColumnListItem>
 					<Text text="{path: 'view>date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
-				</f:FormElement>
-				<f:FormElement label="{i18n>lblCourtCaseMatter}" visible="{= !!${view>matter} }">
-					<Text text="{view>matter}" />
-				</f:FormElement>
-				<f:FormElement label="{i18n>lblCourtCaseStatus}" visible="{= !!${view>status} }">
-					<Text text="{view>status}" />
-				</f:FormElement>
-				<f:FormElement label="{i18n>lblCourtCaseCategory}" visible="{= !!${view>category} }">
-					<Text text="{view>category}" />
-				</f:FormElement>
-			</f:FormContainer>
-		</f:Form>
-		<List items="{view>sides}" headerText="{i18n>lstCourtCaseSidesHeader}">
-			<StandardListItem title="{view>name}" description="{view>type}"/>
-		</List>
-		<Table items="{view>hearings}" headerText="{i18n>lstCourtCaseHearingsHeader}">
-			<columns>
-				<Column width="6em"><header><Label text="{i18n>lblCourtCaseHearingDate}"/></header></Column>
-				<Column width="3em"><header><Label text="{i18n>lblCourtCaseHearingTime}"/></header></Column>
-				<Column width="6em"><header><Label text="{i18n>lblCourtCaseHearingDelivery}"/></header></Column>
-				<Column width="12em" minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingResult}"/></header></Column>
-				<Column minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingSummary}"/></header></Column>
-				<Column minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingDocument}"/></header></Column>
-			</columns>
-			<ColumnListItem>
-				<Text text="{path: 'view>date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
-				<Text text="{view>time}" />
-				<Text text="{path: 'view>delivery', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
-				<Text text="{view>result}" />
-				<Text text="{view>summary}" />
-				<Text text="{
-					parts: [
-						{path: 'view>document/type'},
-						{path: 'view>document/number'},
-						{path: 'view>document/date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
-				}" />
-			</ColumnListItem>
-		</Table>
+					<Text text="{view>time}" />
+					<Text text="{path: 'view>delivery', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+					<Text text="{view>result}" />
+					<Text text="{view>summary}" />
+					<Text text="{
+						parts: [
+							{path: 'view>document/type'},
+							{path: 'view>document/number'},
+							{path: 'view>document/date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}
+						], 
+						formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
+					}" />
+				</ColumnListItem>
+			</Table>
+		</Panel>
 		<endButton>
 			<Button text="{i18n>btnCloseCourtCaseDialogText}" press="onCloseCourtCaseDialog"/>
 		</endButton>

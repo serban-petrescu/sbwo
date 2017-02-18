@@ -2,10 +2,13 @@ package spet.sbwo.data.view;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.embed.GlobalSearchKey;
 
 @Entity
@@ -14,7 +17,8 @@ import spet.sbwo.data.embed.GlobalSearchKey;
 public class GlobalSearch {
 	@Id
 	@Column(name = "C_TYPE")
-	private int type;
+	@Enumerated(EnumType.ORDINAL)
+	private EntityType type;
 
 	@Id
 	@Column(name = "C_SUBTYPE")
@@ -33,11 +37,11 @@ public class GlobalSearch {
 	@Column(name = "C_SEARCH")
 	private String search;
 
-	public int getType() {
+	public EntityType getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(EntityType type) {
 		this.type = type;
 	}
 

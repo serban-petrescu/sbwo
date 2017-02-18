@@ -27,6 +27,9 @@
 					<core:Item key="{Id}" text="{Username}" />
 				</Select>
 			</f:FormElement>
+			<f:FormElement label="{i18n>lblExpertiseNextHearingText}">
+				<DatePicker displayFormat="dd.MM.yyyy" dateValue="{path: 'data>nextHearing', type: 'spet.sbwo.web.util.Timestamp'}" />
+			</f:FormElement>
 		</f:FormContainer>
 	</f:Form>
 </core:FragmentDefinition>

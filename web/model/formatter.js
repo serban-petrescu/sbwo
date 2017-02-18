@@ -2,13 +2,14 @@ sap.ui.define([], function() {
 	var oBundle;
 	
 	var mSearchIcons = {
-		"0": {
+		"PERSON": {
 			"-2": "sap-icon://arobase",
 			"-1": "sap-icon://phone",
 			"0": "sap-icon://customer",
 			"1": "sap-icon://group",
 			"": "sap-icon://person-placeholder"
-		}	
+		},
+		"EXPERTISE": "sap-icon://official-service"
 	};
 	
 	var fnEntityPageTitle = function(bLoaded, sDefault, sPattern) {
@@ -91,6 +92,17 @@ sap.ui.define([], function() {
 				case 1: return oBundle.getText("txtIndentityCardTypeBulletin");
 				case 2: return oBundle.getText("txtIndentityCardTypePassport");
 				default: return oBundle.getText("txtIndentityCardTypeOther");
+			}
+		},
+		
+		expertiseStatus: function(iStatus) {
+			switch(iStatus) {
+				case 0: return oBundle.getText("txtExpertiseStatusNotStudied");
+				case 1: return oBundle.getText("txtExpertiseStatusStudied");
+				case 2: return oBundle.getText("txtExpertiseStatusSubmitted");
+				case 3: return oBundle.getText("txtExpertiseStatusSupplement");
+				case 4: return oBundle.getText("txtExpertiseStatusFinalized");
+				default: return oBundle.getText("txtEnumValueUnknown");
 			}
 		},
 		

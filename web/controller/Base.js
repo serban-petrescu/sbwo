@@ -238,9 +238,10 @@ sap.ui.define([
 		/**
 		 * Retrieves the route name for the given entity type.
 		 */
-		getRouterForEntityType: function(sType) {
+		getRouteForEntityType: function(sType) {
 			switch(sType) {
 				case "PERSON": return "person";
+				case "EXPERTISE": return "expertise";
 			}
 		},
 		
@@ -249,7 +250,7 @@ sap.ui.define([
 		 */
 		navigateToEntity: function(iType, iId) {
 			var oRouter = this.getRouter(),
-				sRoute = this.getRouterForEntityType(iType);
+				sRoute = this.getRouteForEntityType(iType);
 			if (sRoute) {
 				oRouter.navTo(sRoute, {id: iId});
 			}

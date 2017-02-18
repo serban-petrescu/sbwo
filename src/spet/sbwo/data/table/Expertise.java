@@ -1,5 +1,6 @@
 package spet.sbwo.data.table;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -43,6 +44,9 @@ public class Expertise extends JournalizedBaseEntity {
 
 	@Column(name = "C_LAST_CHECKED_ON")
 	private Timestamp lastCheckedOn;
+
+	@Column(name = "C_NEXT_HEARING")
+	private Date nextHearing;
 
 	public String getNumber() {
 		return number;
@@ -106,6 +110,14 @@ public class Expertise extends JournalizedBaseEntity {
 
 	public void setLastCheckedOn(Timestamp lastCheckedOn) {
 		this.lastCheckedOn = lastCheckedOn;
+	}
+
+	public Date getNextHearing() {
+		return nextHearing;
+	}
+
+	public void setNextHearing(Date nextHearing) {
+		this.nextHearing = nextHearing;
 	}
 
 }

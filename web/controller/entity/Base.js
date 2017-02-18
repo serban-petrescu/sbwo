@@ -84,7 +84,7 @@ sap.ui.define([
 		
 		onValueChanged: function() {
 			Base.prototype.onValueChanged.apply(this, arguments);
-			this._saveDraft();
+			this.saveDraft();
 		},
 		
 		onRouteMatched: function(oEvent) {
@@ -99,7 +99,7 @@ sap.ui.define([
 		onToggleEdit: function() {
 			var oModel = this.getModel("view");
 			if (oModel.getProperty("/edit")) {
-				this._restoreDraft();
+				this.restoreDraft();
 			}
 			else {
 				oModel.setProperty("/draft", "Clear");
@@ -111,7 +111,7 @@ sap.ui.define([
 			this.getRouter().getTargets().display("not-found");
 		},
 		
-		_saveDraft: function() {
+		saveDraft: function() {
 			var oModel = this.getModel("view"),
 				oData = {
 					data: this.getModel("data").getData(),
@@ -124,7 +124,7 @@ sap.ui.define([
 			});
 		},
 		
-		_restoreDraft: function() {
+		restoreDraft: function() {
 			var oViewModel = this.getModel("view"),
 				oDataModel = this.getModel("data"),
 				oBundle = this.getResourceBundle(),

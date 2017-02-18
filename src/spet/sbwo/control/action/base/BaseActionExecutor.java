@@ -5,8 +5,8 @@ import java.util.concurrent.Callable;
 import org.slf4j.LoggerFactory;
 
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.action.user.ReadByUsernameAction;
-import spet.sbwo.control.action.user.ReadByUsernameMandatoryAction;
+import spet.sbwo.control.action.user.ReadByUsername;
+import spet.sbwo.control.action.user.ReadByUsernameMandatory;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
@@ -21,7 +21,7 @@ public abstract class BaseActionExecutor {
 
 	protected User getUserByUsername(IDatabaseExecutor executor, String username, boolean mandatory)
 			throws ControlException {
-		return (mandatory ? new ReadByUsernameMandatoryAction() : new ReadByUsernameAction()).run(username, executor);
+		return (mandatory ? new ReadByUsernameMandatory() : new ReadByUsername()).run(username, executor);
 	}
 
 	protected <I, O> O execute(IDatabaseAction<I, O> action, I in) throws ControlException {

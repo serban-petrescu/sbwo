@@ -4,10 +4,10 @@ import java.util.List;
 
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.user.ActivateAction;
-import spet.sbwo.control.action.user.ChangePasswordAction;
-import spet.sbwo.control.action.user.ReadAllPlainsAction;
-import spet.sbwo.control.action.user.RegisterAction;
+import spet.sbwo.control.action.user.ActivateUser;
+import spet.sbwo.control.action.user.ChangePassword;
+import spet.sbwo.control.action.user.ReadAllUserPlains;
+import spet.sbwo.control.action.user.RegisterUser;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
 
@@ -19,11 +19,11 @@ public class ManagementController extends BaseActionExecutor {
 	}
 
 	public void registerUser(String username) throws ControlException {
-		executeAndCommit(username, new RegisterAction(), username);
+		executeAndCommit(username, new RegisterUser(), username);
 	}
 
 	public void activateUser(String username, boolean active) throws ControlException {
-		executeAndCommit(username, new ActivateAction(), active);
+		executeAndCommit(username, new ActivateUser(), active);
 	}
 
 	public void resetUserPassword(String username) throws ControlException {
@@ -31,11 +31,11 @@ public class ManagementController extends BaseActionExecutor {
 	}
 
 	public void changeUserPassword(String username, String password) throws ControlException {
-		executeAndCommit(username, new ChangePasswordAction(), password);
+		executeAndCommit(username, new ChangePassword(), password);
 	}
 
 	public List<UserPlain> listAllPlains() throws ControlException {
-		return execute(new ReadAllPlainsAction(), null);
+		return execute(new ReadAllUserPlains(), null);
 	}
 
 }

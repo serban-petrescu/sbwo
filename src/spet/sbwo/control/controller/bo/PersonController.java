@@ -1,17 +1,17 @@
 package spet.sbwo.control.controller.bo;
 
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.action.bo.base.CreateEntityAction;
-import spet.sbwo.control.action.bo.base.DeleteEntityAction;
-import spet.sbwo.control.action.bo.base.ReadEntityAction;
-import spet.sbwo.control.action.bo.base.RestoreEntityAction;
-import spet.sbwo.control.action.bo.base.UpdateEntityAction;
-import spet.sbwo.control.action.bo.person.CreatePersonAction;
-import spet.sbwo.control.action.bo.person.DeletePersonAction;
-import spet.sbwo.control.action.bo.person.ExportPersonAction;
-import spet.sbwo.control.action.bo.person.ReadPersonAction;
-import spet.sbwo.control.action.bo.person.RestorePersonAction;
-import spet.sbwo.control.action.bo.person.UpdatePersonAction;
+import spet.sbwo.control.action.bo.base.CreateEntity;
+import spet.sbwo.control.action.bo.base.DeleteEntity;
+import spet.sbwo.control.action.bo.base.ReadEntity;
+import spet.sbwo.control.action.bo.base.RestoreEntity;
+import spet.sbwo.control.action.bo.base.UpdateEntity;
+import spet.sbwo.control.action.bo.person.CreatePerson;
+import spet.sbwo.control.action.bo.person.DeletePerson;
+import spet.sbwo.control.action.bo.person.ExportPerson;
+import spet.sbwo.control.action.bo.person.ReadPerson;
+import spet.sbwo.control.action.bo.person.RestorePerson;
+import spet.sbwo.control.action.bo.person.UpdatePerson;
 import spet.sbwo.control.channel.PersonChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Person;
@@ -23,31 +23,31 @@ public class PersonController extends BaseBoController<Person, PersonChannel> {
 	}
 
 	public String export(int id) throws ControlException {
-		return execute(new ExportPersonAction(), id);
+		return execute(new ExportPerson(), id);
 	}
 
 	@Override
-	protected CreateEntityAction<Person, PersonChannel> createAction() {
-		return new CreatePersonAction();
+	protected CreateEntity<Person, PersonChannel> createAction() {
+		return new CreatePerson();
 	}
 
 	@Override
-	protected ReadEntityAction<Person, PersonChannel> readAction() {
-		return new ReadPersonAction();
+	protected ReadEntity<Person, PersonChannel> readAction() {
+		return new ReadPerson();
 	}
 
 	@Override
-	protected UpdateEntityAction<Person, PersonChannel> updateAction() {
-		return new UpdatePersonAction();
+	protected UpdateEntity<Person, PersonChannel> updateAction() {
+		return new UpdatePerson();
 	}
 
 	@Override
-	protected DeleteEntityAction<Person> deleteAction(int directDeleteInterval) {
-		return new DeletePersonAction(directDeleteInterval);
+	protected DeleteEntity<Person> deleteAction(int directDeleteInterval) {
+		return new DeletePerson(directDeleteInterval);
 	}
 
 	@Override
-	protected RestoreEntityAction<Person> restoreAction() {
-		return new RestorePersonAction();
+	protected RestoreEntity<Person> restoreAction() {
+		return new RestorePerson();
 	}
 }
