@@ -10,13 +10,14 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import spet.sbwo.api.service.BaseService;
-import spet.sbwo.api.util.JsonpEntity;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.util.JsonpEntity;
 import spet.sbwo.control.channel.UserPreferenceChannel;
 import spet.sbwo.control.controller.user.PreferenceController;
 
 @Path("/user/preference")
-public class PreferenceService extends BaseService {
+public class PreferenceService extends BaseService implements IPrivate {
 	private final PreferenceController controller;
 
 	public PreferenceService(PreferenceController controller) {

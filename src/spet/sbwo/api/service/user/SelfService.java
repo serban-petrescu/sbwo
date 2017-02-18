@@ -4,11 +4,12 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.controller.user.ManagementController;
 
 @Path("/user")
-public class SelfService extends BaseService {
+public class SelfService extends BaseService implements IPrivate {
 	private final ManagementController managementController;
 
 	public SelfService(ManagementController managementController) {

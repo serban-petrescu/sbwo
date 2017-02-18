@@ -9,14 +9,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import spet.sbwo.api.service.BaseService;
-import spet.sbwo.api.util.JsonFragmentStream;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.util.JsonFragmentStream;
 import spet.sbwo.control.util.FolderScanner;
 import spet.sbwo.control.util.FolderScanner.FileInfo;
 import spet.sbwo.control.util.FolderScanner.QueryResult;
 
 @Path("/utility/file")
-public class LogService extends BaseService {
+public class LogService extends BaseService implements IPrivate {
 	private final String logPath;
 
 	public LogService(String logPath) {

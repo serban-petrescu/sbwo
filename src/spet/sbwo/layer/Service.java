@@ -1,9 +1,10 @@
 package spet.sbwo.layer;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.persistence.EntityManagerFactory;
 
 import org.h2.server.web.WebServlet;
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.parameters.ConstantParameter;
 
 import spet.sbwo.api.odata.ODataFactory;
 import spet.sbwo.api.service.bo.ExpertiseService;
@@ -28,127 +29,26 @@ public class Service {
 	private static final String LOG_PATH = "log";
 	private static final String LOGIN_RELATIVE_PATH = "/../login/index.html";
 
-	private final WebServlet dbWebServlet;
-	private final PersonService personService;
-	private final ConfigurationService configurationService;
-	private final CountService countService;
-	private final FileExploreService fileExploreService;
-	private final LogService logService;
-	private final ScheduleService scheduleService;
-	private final TrashService trashService;
-	private final DataImportService dataImportService;
-	private final LocationImportService locationImportService;
-	private final FavouriteService favouriteService;
-	private final ManagementService managementService;
-	private final PreferenceService preferenceService;
-	private final SessionService sessionService;
-	private final TileService tileService;
-	private final SelfService selfService;
-	private final CourtImportService courtImportService;
-	private final ExpertiseService expertiseService;
-
-	public Service(Integration integration, Control control, Schedule schedule, Database database) {
-		ODataFactory.setEmf(database.getEmf());
-		ODataFactory.setPuName("sbwo");
-		dbWebServlet = new WebServlet();
-		personService = new PersonService(control.getPersonController());
-		configurationService = new ConfigurationService(control.getConfiguration());
-		countService = new CountService(control.getCountController());
-		fileExploreService = new FileExploreService();
-		logService = new LogService(LOG_PATH);
-		scheduleService = new ScheduleService(schedule.getScheduleManager());
-		trashService = new TrashService(control.getTrashController());
-		dataImportService = new DataImportService(control.getDataImportFacade());
-		locationImportService = new LocationImportService(control.getLocationImportController());
-		favouriteService = new FavouriteService(control.getFavouriteController());
-		managementService = new ManagementService(control.getManagementController());
-		preferenceService = new PreferenceService(control.getPreferenceController());
-		sessionService = new SessionService(LOGIN_RELATIVE_PATH);
-		tileService = new TileService(control.getTileController());
-		selfService = new SelfService(control.getManagementController());
-		courtImportService = new CourtImportService(control.getCourtImportController());
-		expertiseService = new ExpertiseService(control.getExpertiseController(), integration.getCourtSystemApi());
-	}
-
-	public List<Object> getPublicServices() {
-		return Arrays.asList(managementService, sessionService);
-	}
-
-	public List<Object> getPrivateServices() {
-		return Arrays.asList(personService, configurationService, countService, fileExploreService, logService,
-				scheduleService, trashService, dataImportService, locationImportService, favouriteService,
-				preferenceService, tileService, selfService, expertiseService, courtImportService);
-	}
-
-	public WebServlet getDbWebServlet() {
-		return dbWebServlet;
-	}
-
-	public PersonService getPersonService() {
-		return personService;
-	}
-
-	public ConfigurationService getConfigurationService() {
-		return configurationService;
-	}
-
-	public CountService getCountService() {
-		return countService;
-	}
-
-	public FileExploreService getFileExploreService() {
-		return fileExploreService;
-	}
-
-	public LogService getLogService() {
-		return logService;
-	}
-
-	public ScheduleService getScheduleService() {
-		return scheduleService;
-	}
-
-	public TrashService getTrashService() {
-		return trashService;
-	}
-
-	public DataImportService getDataImportService() {
-		return dataImportService;
-	}
-
-	public LocationImportService getLocationImportService() {
-		return locationImportService;
-	}
-
-	public FavouriteService getFavouriteService() {
-		return favouriteService;
-	}
-
-	public ManagementService getManagementService() {
-		return managementService;
-	}
-
-	public PreferenceService getPreferenceService() {
-		return preferenceService;
-	}
-
-	public SessionService getSessionService() {
-		return sessionService;
-	}
-
-	public TileService getTileService() {
-		return tileService;
-	}
-
-	public SelfService getSelfService() {
-		return selfService;
-	}
-
-	public CourtImportService getCourtImportService() {
-		return courtImportService;
-	}
-
-	public ExpertiseService getExpertiseService() {
-		return expertiseService;
+	public Service(MutablePicoContainer container) {
+		ODataFactory.setEmf(container.getComponent(EntityManagerFactory.class));
+		ODataFactory.setPuName(Database.SBWO_PU);
+		container.addComponent(WebServlet.class);
+		container.addComponent(PersonService.class);
+		container.addComponent(ConfigurationService.class);
+		container.addComponent(CountService.class);
+		container.addComponent(FileExploreService.class);
+		container.addComponent(LogService.class, LogService.class, new ConstantParameter(LOG_PATH));
+		container.addComponent(ScheduleService.class);
+		container.addComponent(TrashService.class);
+		container.addComponent(DataImportService.class);
+		container.addComponent(LocationImportService.class);
+		container.addComponent(FavouriteService.class);
+		container.addComponent(ManagementService.class);
+		container.addComponent(SessionService.class, SessionService.class, new ConstantParameter(LOGIN_RELATIVE_PATH));
+		container.addComponent(PreferenceService.class);
+		container.addComponent(TileService.class);
+		container.addComponent(SelfService.class);
+		container.addComponent(CourtImportService.class);
+		container.addComponent(ExpertiseService.class);
 	}
 }

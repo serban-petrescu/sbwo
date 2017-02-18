@@ -16,9 +16,10 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPublic;
 
-public class SessionService extends BaseService {
+public class SessionService extends BaseService implements IPublic {
 	private static final Logger LOG = LoggerFactory.getLogger(SessionService.class);
 
 	private String loginPath;

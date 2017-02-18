@@ -16,6 +16,7 @@
 		<olingo-version>2.0.8</olingo-version>
 		<apache-commons-csv-version>1.3</apache-commons-csv-version>
 		<eclipselink-version>2.6.4</eclipselink-version>
+		<picocontainer-version>2.15</picocontainer-version>
 	</properties>
 
 	<dependencies>
@@ -33,6 +34,12 @@
 					<groupId>org.glassfish</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.picocontainer</groupId>
+			<artifactId>picocontainer</artifactId>
+			<version>${picocontainer-version}</version>
 		</dependency>
 
 		<dependency>

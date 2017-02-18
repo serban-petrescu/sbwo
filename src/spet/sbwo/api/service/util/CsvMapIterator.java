@@ -1,4 +1,4 @@
-package spet.sbwo.api.util;
+package spet.sbwo.api.service.util;
 
 import java.util.Iterator;
 import java.util.Map;

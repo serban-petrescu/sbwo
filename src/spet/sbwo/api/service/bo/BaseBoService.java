@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.control.channel.JournalChannel;
 import spet.sbwo.control.controller.bo.IBoController;
 

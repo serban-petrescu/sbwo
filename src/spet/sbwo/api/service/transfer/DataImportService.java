@@ -13,13 +13,14 @@ import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
-import spet.sbwo.api.service.BaseService;
-import spet.sbwo.api.util.CsvMapIteratorHolder;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.util.CsvMapIteratorHolder;
 import spet.sbwo.control.importer.DataImportFacade;
 import spet.sbwo.control.importer.DataImportFacade.Target;
 
 @Path("/import")
-public class DataImportService extends BaseService {
+public class DataImportService extends BaseService implements IPrivate {
 	private DataImportFacade dataImporter;
 
 	public DataImportService(DataImportFacade dataImporter) {

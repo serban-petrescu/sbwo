@@ -6,22 +6,15 @@ import org.slf4j.LoggerFactory;
 
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.user.ReadByUsername;
-import spet.sbwo.control.action.user.ReadByUsernameMandatory;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
-import spet.sbwo.data.table.User;
 
 public abstract class BaseActionExecutor {
 	protected final IDatabaseExecutorCreator database;
 
 	protected BaseActionExecutor(IDatabaseExecutorCreator database) {
 		this.database = database;
-	}
-
-	protected User getUserByUsername(IDatabaseExecutor executor, String username, boolean mandatory)
-			throws ControlException {
-		return (mandatory ? new ReadByUsernameMandatory() : new ReadByUsername()).run(username, executor);
 	}
 
 	protected <I, O> O execute(IDatabaseAction<I, O> action, I in) throws ControlException {
@@ -34,7 +27,7 @@ public abstract class BaseActionExecutor {
 
 	protected <I, O> O execute(String username, IUserDatabaseAction<I, O> action, I in) throws ControlException {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
-			return action.run(in, executor, getUserByUsername(executor, username, false));
+			return action.run(in, executor, new ReadByUsername().run(username, executor));
 		} catch (DatabaseException e) {
 			throw new ControlException(e);
 		}
@@ -43,7 +36,7 @@ public abstract class BaseActionExecutor {
 	protected <I, O> O executeAndCommit(String username, IUserDatabaseAction<I, O> action, I in)
 			throws ControlException {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
-			O o = action.run(in, executor, getUserByUsername(executor, username, false));
+			O o = action.run(in, executor, new ReadByUsername().run(username, executor));
 			executor.commit();
 			return o;
 		} catch (DatabaseException e) {

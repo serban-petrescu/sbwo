@@ -6,11 +6,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.PersonChannel;
 import spet.sbwo.control.controller.bo.PersonController;
 
 @Path("/person")
-public class PersonService extends BaseBoService<PersonChannel, PersonController> {
+public class PersonService extends BaseBoService<PersonChannel, PersonController>implements IPrivate {
 
 	public PersonService(PersonController controller) {
 		super(controller);

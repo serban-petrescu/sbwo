@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class ScheduleManager implements IScheduleManager {
+public class ScheduleManager implements IScheduleManager {
 	private static final Logger LOG = LoggerFactory.getLogger(ScheduleManager.class);
 	protected final ScheduledExecutorService executor;
 	protected final IScheduler[] schedulers;

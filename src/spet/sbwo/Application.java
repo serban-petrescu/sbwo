@@ -1,8 +1,11 @@
 package spet.sbwo;
 
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.PicoBuilder;
+
+import spet.sbwo.control.config.Configuration;
 import spet.sbwo.layer.Control;
 import spet.sbwo.layer.Database;
-import spet.sbwo.layer.Filter;
 import spet.sbwo.layer.Integration;
 import spet.sbwo.layer.Producer;
 import spet.sbwo.layer.Schedule;
@@ -16,16 +19,17 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		Database database = new Database();
-		Control control = new Control(database);
-		Schedule schedule = new Schedule(database, control);
-		Integration integration = new Integration();
-		Filter filter = new Filter();
-		Service service = new Service(integration, control, schedule, database);
-		Producer producer = new Producer();
-		Server server = new Server(filter, service, producer, control);
-		schedule.getScheduleManager().start();
-		server.getServer().start();
+		MutablePicoContainer container = new PicoBuilder().withCaching().withConstructorInjection()
+				.withReflectionLifecycle().build();
+		Configuration configuration = new Configuration("server.json");
+		new Database(container);
+		new Control(container, configuration);
+		new Schedule(container, configuration);
+		new Integration(container);
+		new Service(container);
+		new Producer(container);
+		new Server(container);
+		container.start();
 	}
 
 }

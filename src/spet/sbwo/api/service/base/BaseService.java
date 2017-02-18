@@ -1,4 +1,4 @@
-package spet.sbwo.api.service;
+package spet.sbwo.api.service.base;
 
 import java.util.UUID;
 

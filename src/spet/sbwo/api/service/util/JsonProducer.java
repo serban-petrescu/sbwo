@@ -1,4 +1,4 @@
-package spet.sbwo.api.util;
+package spet.sbwo.api.service.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,10 +18,13 @@ import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
 
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.base.IPublic;
+
 @Provider
 @Produces("application/json")
 @Consumes("application/json")
-public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReader<Object> {
+public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReader<Object>, IPublic, IPrivate {
 	private static final String UTF_8 = "UTF-8";
 
 	private final Gson gson;

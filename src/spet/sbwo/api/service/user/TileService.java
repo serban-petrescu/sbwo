@@ -6,12 +6,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.UserHomeTilesChannel;
 import spet.sbwo.control.controller.user.TileController;
 
 @Path("/user/tiles")
-public class TileService extends BaseService {
+public class TileService extends BaseService implements IPrivate {
 	private final TileController controller;
 
 	public TileService(TileController controller) {

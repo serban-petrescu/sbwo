@@ -14,12 +14,13 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.LocationImportChannel;
 import spet.sbwo.control.controller.transfer.LocationImportController;
 
 @Path("/import")
-public class LocationImportService extends BaseService {
+public class LocationImportService extends BaseService implements IPrivate {
 	private LocationImportController controller;
 
 	public LocationImportService(LocationImportController controller) {

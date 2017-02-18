@@ -1,4 +1,4 @@
-package spet.sbwo.api.util;
+package spet.sbwo.api.service.util;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,10 +15,13 @@ import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
 
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.base.IPublic;
+
 @Provider
 @Produces("application/javascript")
 @SuppressWarnings("rawtypes")
-public class JsonpProducer implements MessageBodyWriter<JsonpEntity> {
+public class JsonpProducer implements MessageBodyWriter<JsonpEntity>, IPublic, IPrivate {
 	private static final String UTF_8 = "UTF-8";
 
 	private final Gson gson;

@@ -1,8 +1,8 @@
 package spet.sbwo.api.filter;
 
-import static spet.sbwo.api.service.BaseService.X_CSRF_TOKEN_HEADER;
-import static spet.sbwo.api.service.BaseService.X_CSRF_TOKEN_HEADER_FETCH;
-import static spet.sbwo.api.service.BaseService.getOrCreateCsrfToken;
+import static spet.sbwo.api.service.base.BaseService.X_CSRF_TOKEN_HEADER;
+import static spet.sbwo.api.service.base.BaseService.X_CSRF_TOKEN_HEADER_FETCH;
+import static spet.sbwo.api.service.base.BaseService.getOrCreateCsrfToken;
 
 import java.io.IOException;
 

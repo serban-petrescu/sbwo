@@ -10,12 +10,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPublic;
 import spet.sbwo.control.controller.user.ManagementController;
 import spet.sbwo.data.view.UserPlain;
 
 @Path("/user/manage")
-public class ManagementService extends BaseService {
+public class ManagementService extends BaseService implements IPublic {
 	private ManagementController controller;
 
 	public ManagementService(ManagementController controller) {

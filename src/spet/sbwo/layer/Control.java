@@ -1,5 +1,9 @@
 package spet.sbwo.layer;
 
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.parameters.ComponentParameter;
+import org.picocontainer.parameters.ConstantParameter;
+
 import spet.sbwo.control.config.Configuration;
 import spet.sbwo.control.controller.bo.ExpertiseController;
 import spet.sbwo.control.controller.bo.PersonController;
@@ -16,92 +20,23 @@ import spet.sbwo.control.controller.user.TileController;
 import spet.sbwo.control.importer.DataImportFacade;
 
 public class Control {
-	private final Configuration configuration;
-	private final FavouriteController favouriteController;
-	private final PreferenceController preferenceController;
-	private final LoginController loginController;
-	private final ManagementController managementController;
-	private final TileController tileController;
-	private final LocationImportController locationImportController;
-	private final PersonController personController;
-	private final TrashController trashController;
-	private final CountController countController;
-	private final DataImportFacade dataImportFacade;
-	private final SessionManager sessionManager;
-	private final ExpertiseController expertiseController;
-	private final CourtImportController courtImportController;
 
-	public Control(Database database) {
-		configuration = new Configuration("server.json");
-		favouriteController = new FavouriteController(database.getFacade());
-		preferenceController = new PreferenceController(database.getFacade());
-		loginController = new LoginController(database.getFacade());
-		managementController = new ManagementController(database.getFacade());
-		tileController = new TileController(database.getFacade());
-		locationImportController = new LocationImportController(database.getFacade());
-		personController = new PersonController(database.getFacade(), configuration.getDirectDeleteInterval());
-		trashController = new TrashController(database.getFacade());
-		countController = new CountController(database.getFacade());
-		dataImportFacade = new DataImportFacade(database.getFacade());
-		sessionManager = new SessionManager(database.getFacade());
-		expertiseController = new ExpertiseController(database.getFacade(), configuration.getDirectDeleteInterval());
-		courtImportController = new CourtImportController(database.getFacade());
+	public Control(MutablePicoContainer container, Configuration configuration) {
+		container.addComponent(configuration);
+		container.addComponent(FavouriteController.class);
+		container.addComponent(PreferenceController.class);
+		container.addComponent(LoginController.class);
+		container.addComponent(ManagementController.class);
+		container.addComponent(TileController.class);
+		container.addComponent(LocationImportController.class);
+		container.addComponent(PersonController.class, PersonController.class, new ComponentParameter(),
+				new ConstantParameter(configuration.getDirectDeleteInterval()));
+		container.addComponent(TrashController.class);
+		container.addComponent(CountController.class);
+		container.addComponent(DataImportFacade.class);
+		container.addComponent(SessionManager.class);
+		container.addComponent(ExpertiseController.class, ExpertiseController.class, new ComponentParameter(),
+				new ConstantParameter(configuration.getDirectDeleteInterval()));
+		container.addComponent(CourtImportController.class);
 	}
-
-	public Configuration getConfiguration() {
-		return configuration;
-	}
-
-	public FavouriteController getFavouriteController() {
-		return favouriteController;
-	}
-
-	public PreferenceController getPreferenceController() {
-		return preferenceController;
-	}
-
-	public LoginController getLoginController() {
-		return loginController;
-	}
-
-	public ManagementController getManagementController() {
-		return managementController;
-	}
-
-	public TileController getTileController() {
-		return tileController;
-	}
-
-	public LocationImportController getLocationImportController() {
-		return locationImportController;
-	}
-
-	public PersonController getPersonController() {
-		return personController;
-	}
-
-	public TrashController getTrashController() {
-		return trashController;
-	}
-
-	public CountController getCountController() {
-		return countController;
-	}
-
-	public DataImportFacade getDataImportFacade() {
-		return dataImportFacade;
-	}
-
-	public SessionManager getSessionManager() {
-		return sessionManager;
-	}
-
-	public ExpertiseController getExpertiseController() {
-		return expertiseController;
-	}
-
-	public CourtImportController getCourtImportController() {
-		return courtImportController;
-	}
-
 }

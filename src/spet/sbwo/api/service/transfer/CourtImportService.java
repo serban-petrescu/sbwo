@@ -14,12 +14,13 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.CourtImportChannel;
 import spet.sbwo.control.controller.transfer.CourtImportController;
 
 @Path("/import")
-public class CourtImportService extends BaseService {
+public class CourtImportService extends BaseService implements IPrivate {
 	private CourtImportController controller;
 
 	public CourtImportService(CourtImportController controller) {

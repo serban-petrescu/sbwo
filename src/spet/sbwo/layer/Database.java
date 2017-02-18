@@ -1,20 +1,17 @@
 package spet.sbwo.layer;
 
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import org.picocontainer.MutablePicoContainer;
 
 import spet.sbwo.data.access.DatabaseFacade;
 
 public class Database {
-	private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sbwo");
-	private final DatabaseFacade facade = new DatabaseFacade(emf);
+	static final String SBWO_PU = "sbwo";
 
-	public EntityManagerFactory getEmf() {
-		return emf;
-	} 
-
-	public DatabaseFacade getFacade() {
-		return facade;
+	public Database(MutablePicoContainer container) {
+		container.addComponent(Persistence.createEntityManagerFactory(SBWO_PU));
+		container.addComponent(DatabaseFacade.class);
 	}
 
 }

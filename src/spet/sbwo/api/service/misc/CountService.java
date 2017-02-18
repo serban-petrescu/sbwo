@@ -4,12 +4,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import spet.sbwo.api.service.BaseService;
+import spet.sbwo.api.service.base.BaseService;
+import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.CountChannel;
 import spet.sbwo.control.controller.misc.CountController;
 
 @Path("/utility")
-public class CountService extends BaseService {
+public class CountService extends BaseService implements IPrivate {
 	private final CountController controller;
 
 	public CountService(CountController utilityController) {

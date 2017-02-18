@@ -1,4 +1,4 @@
-package spet.sbwo.api.util;
+package spet.sbwo.api.service.util;
 
 public class JsonpEntity<T> {
 	private final T entity;
