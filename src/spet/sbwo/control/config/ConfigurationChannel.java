@@ -1,6 +1,6 @@
 package spet.sbwo.control.config;
 
-public class ConfigChannel {
+public class ConfigurationChannel {
 	private int sessionTimeout;
 	private int directDeleteInterval;
 	private int databaseBackupInterval;
@@ -9,12 +9,13 @@ public class ConfigChannel {
 	private int schedulerThreads;
 	private int cleanupStart;
 	private int cleanupThreshold;
+	private int sessionFlushInterval;
 
-	public ConfigChannel() {
+	public ConfigurationChannel() {
 		super();
 	}
 
-	protected ConfigChannel(ConfigData data) {
+	protected ConfigurationChannel(Configuration data) {
 		this.sessionTimeout = data.getSessionTimeout();
 		this.directDeleteInterval = data.getDirectDeleteInterval();
 		this.databaseBackupInterval = data.getDatabaseBackupInterval();
@@ -87,6 +88,14 @@ public class ConfigChannel {
 
 	public void setCleanupThreshold(int cleanupThreshold) {
 		this.cleanupThreshold = cleanupThreshold;
+	}
+
+	public int getSessionFlushInterval() {
+		return sessionFlushInterval;
+	}
+
+	public void setSessionFlushInterval(int sessionFlushInterval) {
+		this.sessionFlushInterval = sessionFlushInterval;
 	}
 
 }

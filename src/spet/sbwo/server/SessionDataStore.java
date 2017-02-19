@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 import org.eclipse.jetty.server.session.AbstractSessionDataStore;
 import org.eclipse.jetty.server.session.SessionData;
 
-import spet.sbwo.control.controller.user.SessionManager;
+import spet.sbwo.control.controller.user.ISessionManager;
 import spet.sbwo.data.table.UserSession;
 
 /**
@@ -24,9 +24,9 @@ import spet.sbwo.data.table.UserSession;
  * @author Serban Petrescu
  */
 public class SessionDataStore extends AbstractSessionDataStore {
-	private final SessionManager manager;
+	private final ISessionManager manager;
 
-	public SessionDataStore(SessionManager manager) {
+	public SessionDataStore(ISessionManager manager) {
 		this.manager = manager;
 	}
 

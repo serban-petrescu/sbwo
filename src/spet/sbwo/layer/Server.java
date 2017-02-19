@@ -11,7 +11,7 @@ import spet.sbwo.api.odata.ODataFactory;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.base.IPublic;
 import spet.sbwo.control.config.Configuration;
-import spet.sbwo.control.controller.user.SessionManager;
+import spet.sbwo.control.controller.user.ISessionManager;
 import spet.sbwo.control.util.ILoginProvider;
 import spet.sbwo.server.IServer;
 import spet.sbwo.server.ServerBuilder;
@@ -34,7 +34,7 @@ public class Server {
 		private final AjaxFilter ajaxDenyFilter = new AjaxFilter(false);
 
 		public Facade(IPublic[] publicSingletons, IPrivate[] privateSingletons, WebServlet webServlet,
-				ILoginProvider loginProvider, SessionManager sessionManager, Configuration configuration) {
+				ILoginProvider loginProvider, ISessionManager sessionManager, Configuration configuration) {
 			ServerBuilder serverBuilder = new ServerBuilder();
 			serverBuilder.setPort(8080);
 

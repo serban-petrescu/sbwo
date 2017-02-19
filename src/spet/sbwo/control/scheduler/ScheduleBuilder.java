@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import spet.sbwo.data.access.IBackupCreator;
@@ -34,6 +35,12 @@ public class ScheduleBuilder {
 		return result;
 	}
 
+	public SimpleSchedulerBuilder simple() {
+		SimpleSchedulerBuilder result = new SimpleSchedulerBuilder();
+		this.schedulers.add(result);
+		return result;
+	}
+
 	public IScheduleManager build() {
 		List<IScheduler> s = schedulers.stream().map(SchedulerBuilder::build).collect(Collectors.toList());
 		return new ScheduleManager(threads, s.toArray(new IScheduler[] {}));
@@ -43,9 +50,51 @@ public class ScheduleBuilder {
 		protected abstract IScheduler build();
 	}
 
+	public static class SimpleSchedulerBuilder extends SchedulerBuilder {
+		protected long interval = 600000;
+		protected long delay = 0;
+		protected SchedulerType type = SchedulerType.OTHER;
+		protected Supplier<Runnable> supplier;
+
+		public SimpleSchedulerBuilder intervalMillis(long interval) {
+			this.interval = interval;
+			return this;
+		}
+
+		public SimpleSchedulerBuilder intervalMins(int interval) {
+			this.interval = interval * 60L * 1000L;
+			return this;
+		}
+
+		public SimpleSchedulerBuilder delayMillis(long delay) {
+			this.delay = delay;
+			return this;
+		}
+
+		public SimpleSchedulerBuilder type(SchedulerType type) {
+			this.type = type;
+			return this;
+		}
+
+		public SimpleSchedulerBuilder supplier(Supplier<Runnable> supplier) {
+			this.supplier = supplier;
+			return this;
+		}
+
+		public SimpleSchedulerBuilder runnable(Runnable runnable) {
+			this.supplier = () -> runnable;
+			return this;
+		}
+
+		@Override
+		protected IScheduler build() {
+			return new SimpleScheduler(type, interval, delay, supplier);
+		}
+	}
+
 	public static class CleanupSchedulerBuilder extends SchedulerBuilder {
-		protected long delay;
-		protected long maxAge;
+		protected long delay = 0;
+		protected long maxAge = 24L * 3600L * 1000L;
 		protected List<CleanupScheduler.CleanerBase> cleaners;
 
 		protected CleanupSchedulerBuilder() {
@@ -93,8 +142,8 @@ public class ScheduleBuilder {
 	}
 
 	public static class BackupSchedulerBuilder extends SchedulerBuilder {
-		protected long delay;
-		protected long interval;
+		protected long delay = 0;
+		protected long interval = 24L * 3600L * 1000L;
 		protected File directory;
 		protected IBackupCreator backuper;
 

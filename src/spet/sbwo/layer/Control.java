@@ -11,7 +11,9 @@ import spet.sbwo.control.controller.misc.CountController;
 import spet.sbwo.control.controller.misc.TrashController;
 import spet.sbwo.control.controller.transfer.CourtImportController;
 import spet.sbwo.control.controller.transfer.LocationImportController;
+import spet.sbwo.control.controller.user.CachedSessionManager;
 import spet.sbwo.control.controller.user.FavouriteController;
+import spet.sbwo.control.controller.user.ISessionManager;
 import spet.sbwo.control.controller.user.LoginController;
 import spet.sbwo.control.controller.user.ManagementController;
 import spet.sbwo.control.controller.user.PreferenceController;
@@ -22,7 +24,6 @@ import spet.sbwo.control.importer.DataImportFacade;
 public class Control {
 
 	public Control(MutablePicoContainer container, Configuration configuration) {
-		container.addComponent(configuration);
 		container.addComponent(FavouriteController.class);
 		container.addComponent(PreferenceController.class);
 		container.addComponent(LoginController.class);
@@ -38,5 +39,6 @@ public class Control {
 		container.addComponent(ExpertiseController.class, ExpertiseController.class, new ComponentParameter(),
 				new ConstantParameter(configuration.getDirectDeleteInterval()));
 		container.addComponent(CourtImportController.class);
+		container.addComponent(ISessionManager.class, CachedSessionManager.class);
 	}
 }

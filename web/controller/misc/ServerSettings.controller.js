@@ -33,7 +33,7 @@ sap.ui.define([
 		},
 		
 		formatTimestampDate: function(iTs) {
-			return DateFormat.getDateTimeInstance({style: "short"}).format(new Date(iTs));
+			return DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy HH:mm:ss"}).format(new Date(iTs));
 		},
 		
 		formatScheduleType: function(sType) {
@@ -41,6 +41,7 @@ sap.ui.define([
 			switch(sType) {
 			case "BACKUP": return oBundle.getText("txtScheduleTypeBackupText");
 			case "CLEANUP": return oBundle.getText("txtScheduleTypeCleanupText");
+			case "SESSION_CACHE": return oBundle.getText("txtScheduleTypeSessionFlushText");
 			default: return oBundle.getText("txtScheduleTypeUnknownText");
 			}
 		},

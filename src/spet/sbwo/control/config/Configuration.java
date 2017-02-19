@@ -1,82 +1,84 @@
 package spet.sbwo.control.config;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.gson.Gson;
-
-import spet.sbwo.control.ControlError;
-import spet.sbwo.control.ControlException;
 
 public class Configuration {
-	private static final Logger LOG = LoggerFactory.getLogger(Configuration.class);
-	private static final Gson GSON = new Gson();
-	private File configFile;
-	private ConfigData data;
+	private final int sessionTimeout;
+	private final int directDeleteInterval;
+	private final int databaseBackupInterval;
+	private final int databaseBackupStart;
+	private final File databaseBackupLocation;
+	private final int schedulerThreads;
+	private final int cleanupStart;
+	private final int cleanupThreshold;
+	private final int sessionFlushInterval;
 
-	public Configuration(String path) {
-		this.configFile = new File(path);
-		try (FileInputStream fis = new FileInputStream(configFile);
-				InputStreamReader reader = new InputStreamReader(fis)) {
-			this.data = new ConfigData(GSON.fromJson(reader, ConfigChannel.class));
-		} catch (Exception e) {
-			LOG.warn("Unable to open configuration file. Defaulting configuration values.", e);
-			this.data = new ConfigData();
-		}
+	protected Configuration() {
+		this.sessionTimeout = 60;
+		this.directDeleteInterval = 5;
+		this.databaseBackupInterval = 1;
+		this.databaseBackupLocation = new File("backup");
+		this.databaseBackupStart = 10 * 60 * 60 * 1000;
+		this.schedulerThreads = 2;
+		this.cleanupStart = 9 * 60 * 60 * 1000;
+		this.cleanupThreshold = 30;
+		this.sessionFlushInterval = 10;
+		setup();
 	}
 
-	public ConfigChannel external() {
-		return new ConfigChannel(data);
+	public Configuration(ConfigurationChannel channel) {
+		this.sessionTimeout = channel.getSessionTimeout();
+		this.directDeleteInterval = channel.getDirectDeleteInterval();
+		this.databaseBackupInterval = channel.getDatabaseBackupInterval();
+		this.databaseBackupLocation = new File(channel.getDatabaseBackupLocation());
+		this.databaseBackupStart = channel.getDatabaseBackupStart();
+		this.schedulerThreads = channel.getSchedulerThreads();
+		this.cleanupStart = channel.getCleanupStart();
+		this.cleanupThreshold = channel.getCleanupThreshold();
+		this.sessionFlushInterval = channel.getSessionFlushInterval();
+		setup();
 	}
 
-	public synchronized void internal(ConfigChannel channel) throws ControlException {
-		try (FileOutputStream fos = new FileOutputStream(configFile);
-				OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
-			GSON.toJson(channel, writer);
-		} catch (Exception e) {
-			LOG.error("Unable to save configuration {} file.", configFile.getPath(), e);
-			throw new ControlException(ControlError.CONFIG_SAVE_ERROR, ConfigChannel.class);
+	protected void setup() {
+		if (!this.databaseBackupLocation.isDirectory()) {
+			this.databaseBackupLocation.mkdirs();
 		}
-		this.data = new ConfigData(channel);
 	}
 
 	public int getSessionTimeout() {
-		return data.getSessionTimeout();
+		return sessionTimeout;
 	}
 
 	public int getDirectDeleteInterval() {
-		return data.getDirectDeleteInterval();
+		return directDeleteInterval;
 	}
 
 	public int getDatabaseBackupInterval() {
-		return data.getDatabaseBackupInterval();
+		return databaseBackupInterval;
 	}
 
 	public int getDatabaseBackupStart() {
-		return data.getDatabaseBackupStart();
+		return databaseBackupStart;
 	}
 
 	public File getDatabaseBackupLocation() {
-		return data.getDatabaseBackupLocation();
+		return databaseBackupLocation;
 	}
 
 	public int getSchedulerThreads() {
-		return data.getSchedulerThreads();
+		return schedulerThreads;
 	}
 
 	public int getCleanupStart() {
-		return data.getCleanupStart();
+		return cleanupStart;
 	}
 
 	public int getCleanupThreshold() {
-		return data.getCleanupThreshold();
+		return cleanupThreshold;
+	}
+
+	public int getSessionFlushInterval() {
+		return sessionFlushInterval;
 	}
 
 }

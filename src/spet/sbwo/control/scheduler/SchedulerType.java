@@ -1,5 +1,5 @@
 package spet.sbwo.control.scheduler;
 
 public enum SchedulerType {
-	BACKUP, CLEANUP
+	BACKUP, CLEANUP, SESSION_CACHE, OTHER
 }

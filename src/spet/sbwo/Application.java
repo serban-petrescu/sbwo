@@ -4,6 +4,7 @@ import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
 
 import spet.sbwo.control.config.Configuration;
+import spet.sbwo.control.config.ConfigurationManager;
 import spet.sbwo.layer.Control;
 import spet.sbwo.layer.Database;
 import spet.sbwo.layer.Integration;
@@ -21,7 +22,10 @@ public class Application {
 	public static void main(String[] args) {
 		MutablePicoContainer container = new PicoBuilder().withCaching().withConstructorInjection()
 				.withReflectionLifecycle().build();
-		Configuration configuration = new Configuration("server.json");
+		ConfigurationManager manager = new ConfigurationManager("server.json");
+		Configuration configuration = manager.loadData();
+		container.addComponent(manager);
+		container.addComponent(configuration);
 		new Database(container);
 		new Control(container, configuration);
 		new Schedule(container, configuration);

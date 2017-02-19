@@ -19,7 +19,7 @@
 		<f:FormElement label="{i18n>lblDatabaseBackupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
 				<TimePicker value="{path: 'data>/databaseBackupStart', type: 'spet.sbwo.web.util.TimeOfDay'}" 
-					change="onValueChanged"  width="100%"/>
+					change="onValueChanged"  width="100%" displayFormat="HH:mm:ss"/>
 				<Text text="{i18n>txtDatabaseBackupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
@@ -51,7 +51,7 @@
 		<f:FormElement label="{i18n>lblCleanupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
 				<TimePicker value="{path: 'data>/cleanupStart', type: 'spet.sbwo.web.util.TimeOfDay'}" 
-					change="onValueChanged"  width="100%"/>
+					change="onValueChanged"  width="100%" displayFormat="HH:mm:ss"/>
 				<Text text="{i18n>txtCleanupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
@@ -62,6 +62,15 @@
 					<Label class="sapUiTinyMarginBegin" text="{i18n>inpCleanupThresholdDesc}" />
 				</HBox>
 				<Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblSessionFlushIntervalText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<HBox alignItems="Center" width="100%">
+					<StepInput value="{data>/sessionFlushInterval}" min="1" max="600" width="100%"  change="onValueChanged" />
+					<Label class="sapUiTinyMarginBegin" text="{i18n>inpSessionFlushIntervalDesc}" />
+				</HBox>
+				<Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 	</f:FormContainer>
