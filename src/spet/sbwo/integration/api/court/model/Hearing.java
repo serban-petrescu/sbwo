@@ -1,18 +1,20 @@
 package spet.sbwo.integration.api.court.model;
 
+import java.time.LocalDate;
+
 public class Hearing {
-	private Long date;
+	private LocalDate date;
 	private String time;
 	private String result;
 	private String summary;
-	private Long delivery;
+	private LocalDate delivery;
 	private Document document;
 
-	public Long getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Long date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -40,11 +42,11 @@ public class Hearing {
 		this.summary = summary;
 	}
 
-	public Long getDelivery() {
+	public LocalDate getDelivery() {
 		return delivery;
 	}
 
-	public void setDelivery(Long delivery) {
+	public void setDelivery(LocalDate delivery) {
 		this.delivery = delivery;
 	}
 

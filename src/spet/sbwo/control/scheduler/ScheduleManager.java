@@ -1,5 +1,7 @@
 package spet.sbwo.control.scheduler;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.IdentityHashMap;
@@ -28,7 +30,7 @@ public class ScheduleManager implements IScheduleManager {
 	@Override
 	public void start() {
 		for (IScheduler scheduler : schedulers) {
-			schedule(scheduler, 0);
+			schedule(scheduler, null);
 		}
 	}
 
@@ -39,10 +41,10 @@ public class ScheduleManager implements IScheduleManager {
 		return consumer.getResult();
 	}
 
-	protected void schedule(IScheduler scheduler, long previous) {
+	protected void schedule(IScheduler scheduler, LocalDateTime previous) {
 		ScheduleInfo info = scheduler.next(previous);
 		if (info != null) {
-			long when = Math.max(info.getTimestamp() - System.currentTimeMillis(), 0);
+			long when = Math.max(Duration.between(LocalDateTime.now(), info.getTime()).toMillis(), 0);
 			Wrapper task = new Wrapper(info, scheduler);
 			tasks.add(task);
 			executor.schedule(task, when, TimeUnit.MILLISECONDS);
@@ -73,7 +75,7 @@ public class ScheduleManager implements IScheduleManager {
 		}
 
 		public ScheduleChannel toChannel() {
-			return new ScheduleChannel(info.getTimestamp(), parent.type());
+			return new ScheduleChannel(info.getTime(), parent.type());
 		}
 
 		@Override
@@ -84,7 +86,7 @@ public class ScheduleManager implements IScheduleManager {
 				LOG.error("Error while running scheduled task.", e);
 			}
 			tasks.remove(this);
-			schedule(parent, System.currentTimeMillis());
+			schedule(parent, LocalDateTime.now());
 		}
 
 	}

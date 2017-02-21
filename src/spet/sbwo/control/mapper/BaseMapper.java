@@ -13,8 +13,8 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.BaseEntity;
 
 public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
+	private List<PersistentEntityOperation> ops;
 	protected boolean returnNullOnNullId;
-	protected List<PersistentEntityOperation> ops;
 	protected IDatabaseExecutor executor;
 
 	public BaseMapper(IDatabaseExecutor executor) {
@@ -86,6 +86,22 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 			op.execute(executor);
 		}
 		ops.clear();
+	}
+
+	protected void addOperations(int index, BaseMapper<?, ?> mapper) {
+		ops.addAll(index, mapper.ops);
+	}
+
+	protected void addOperations(BaseMapper<?, ?> mapper) {
+		ops.addAll(mapper.ops);
+	}
+
+	protected void addOperation(PersistentEntityOperation op) {
+		ops.add(op);
+	}
+
+	protected void addOperation(int index, PersistentEntityOperation op) {
+		ops.add(index, op);
 	}
 
 	protected abstract I newInternal(O external) throws ControlException;

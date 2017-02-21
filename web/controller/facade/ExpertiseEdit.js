@@ -7,18 +7,26 @@ sap.ui.define([
 	
 	return jQuery.extend({}, BaseEdit, {
 		
+		onAddExpertiseFine: function(oEvent) {
+			this.onAddCollection(oEvent, "fines", {date: new Date().getTime(), sum: 0});
+		},
+		
+		onDeleteExpertiseLastFine: function(oEvent) {
+			this.onDeleteCollectionLastItem(oEvent, "fines");
+		},
+		
 		getCaseNumberInput: function() {
 			// must be overriden by target controllers
 		},
 		
 		getNextHearing: function(oData) {
-			var iMaxTs = -1;
+			var sMax = "";
 			if (oData && oData.hearings) {
 				for (var i = 0; i < oData.hearings.length; ++i) {
-					iMaxTs = Math.max(oData.hearings[i].date, iMaxTs);
+					sMax = sMax > oData.hearings[i].date ? sMax : oData.hearings[i].date;
 				}
 			}
-			return iMaxTs === -1 ? null : iMaxTs;
+			return sMax === "" ? null : sMax;
 		},
 	
 		onLoadCase: function() {
@@ -73,7 +81,7 @@ sap.ui.define([
 				sOldCode = oModel.getProperty("/court/code"),
 				fnUpdateCourt = function(oData) {
 					if (oData && oData.results && oData.results.length) {
-						this.onCourtLoaded(oData);
+						this.onCourtLoaded(oData.results[0]);
 					}
 					else {
 						this.onCourtClear();

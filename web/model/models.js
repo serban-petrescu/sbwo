@@ -1,7 +1,9 @@
 sap.ui.define([
+	"spet/sbwo/web/util/Period",
+	"spet/sbwo/web/util/Duration",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/Device"
-], function(JSONModel, Device) {
+], function(Period, Duration, JSONModel, Device) {
 	"use strict";
 
 	return {

@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -15,34 +18,34 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class CleanupScheduler extends BaseScheduler {
+class CleanupScheduler extends BasePeriodScheduler {
 	private static final Logger LOG = LoggerFactory.getLogger(CleanupScheduler.class);
-	protected final long maxAge;
+	protected final Period maxAge;
 	protected final List<CleanerBase> cleaners;
 
-	public CleanupScheduler(long delay, long maxAge, List<CleanerBase> cleaners) {
-		super(SchedulerType.CLEANUP, 24L * 3600L * 1000L, delay);
+	public CleanupScheduler(LocalTime time, Period maxAge, List<CleanerBase> cleaners) {
+		super(SchedulerType.CLEANUP, time, Period.ofDays(1));
 		this.maxAge = maxAge;
 		this.cleaners = cleaners;
 	}
 
 	@Override
-	protected long persistedPrevious() {
-		return 0;
+	protected LocalDate persistedPreviousDate() {
+		return null;
 	}
 
 	@Override
-	protected ScheduleInfo build(long when) {
+	protected ScheduleInfo build(LocalDateTime when) {
 		return new ScheduleInfo(() -> cleaners.forEach(this::clean), when);
 	}
 
 	protected void clean(CleanerBase cleaner) {
 		File[] files = cleaner.directory.listFiles();
-		long minTs = System.currentTimeMillis() - maxAge;
+		LocalDateTime now = LocalDateTime.now();
 		if (files != null) {
 			for (File file : files) {
-				long create = cleaner.getCreationTimestamp(file);
-				if (create != 0 && create < minTs && !file.delete()) {
+				LocalDateTime create = cleaner.getCreatedOn(file);
+				if (create != null && create.plus(maxAge).isBefore(now) && !file.delete()) {
 					LOG.warn("Unable to remove file {}.", file.getAbsolutePath());
 				}
 			}
@@ -56,7 +59,7 @@ class CleanupScheduler extends BaseScheduler {
 			this.directory = directory;
 		}
 
-		protected abstract long getCreationTimestamp(File file);
+		protected abstract LocalDateTime getCreatedOn(File file);
 	}
 
 	protected static class PatternFormattedCleaner extends FormattedCleaner {
@@ -68,7 +71,7 @@ class CleanupScheduler extends BaseScheduler {
 		}
 
 		@Override
-		protected long parse(String name) {
+		protected LocalDateTime parse(String name) {
 			Matcher matcher = pattern.matcher(name);
 			if (matcher.find()) {
 				StringBuilder builder = new StringBuilder();
@@ -77,12 +80,12 @@ class CleanupScheduler extends BaseScheduler {
 				}
 				String result = builder.toString();
 				if (result.isEmpty()) {
-					return 0;
+					return null;
 				} else {
 					return super.parse(result);
 				}
 			} else {
-				return 0;
+				return null;
 			}
 		}
 	}
@@ -96,17 +99,17 @@ class CleanupScheduler extends BaseScheduler {
 		}
 
 		@Override
-		protected long getCreationTimestamp(File file) {
+		protected LocalDateTime getCreatedOn(File file) {
 			try {
 				return parse(file.getName());
 			} catch (Exception e) {
 				LOG.warn("Invalid file exists in cleanup directory: {}.", file.getAbsolutePath(), e);
-				return 0;
+				return null;
 			}
 		}
 
-		protected long parse(String name) {
-			return Instant.from(formatter.parse(base(name))).toEpochMilli();
+		protected LocalDateTime parse(String name) {
+			return LocalDateTime.from(formatter.parse(base(name)));
 		}
 	}
 
@@ -116,12 +119,14 @@ class CleanupScheduler extends BaseScheduler {
 		}
 
 		@Override
-		protected long getCreationTimestamp(File file) {
+		protected LocalDateTime getCreatedOn(File file) {
 			try {
-				return Files.readAttributes(file.toPath(), BasicFileAttributes.class).creationTime().toMillis();
+				return LocalDateTime.ofInstant(
+						Files.readAttributes(file.toPath(), BasicFileAttributes.class).creationTime().toInstant(),
+						ZoneId.systemDefault());
 			} catch (IOException e) {
 				LOG.warn("Unable to read file properties from cleanup directory: {}.", file.getAbsolutePath(), e);
-				return 0;
+				return null;
 			}
 		}
 

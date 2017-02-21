@@ -16,10 +16,9 @@ import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
-import com.google.gson.Gson;
-
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.base.IPublic;
+import spet.sbwo.control.util.ISerializationHelper;
 
 @Provider
 @Produces("application/json")
@@ -27,10 +26,10 @@ import spet.sbwo.api.service.base.IPublic;
 public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReader<Object>, IPublic, IPrivate {
 	private static final String UTF_8 = "UTF-8";
 
-	private final Gson gson;
+	private final ISerializationHelper helper;
 
-	public JsonProducer() {
-		this.gson = new Gson();
+	public JsonProducer(ISerializationHelper helper) {
+		this.helper = helper;
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReade
 	@Override
 	public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException {
-		return gson.fromJson(new InputStreamReader(entityStream, UTF_8), genericType);
+		return helper.deserialize(genericType, new InputStreamReader(entityStream, UTF_8));
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReade
 	public void writeTo(Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException {
 		OutputStreamWriter writer = new OutputStreamWriter(entityStream, UTF_8);
-		gson.toJson(t, genericType, writer);
+		helper.serialize(t, genericType, writer);
 		writer.flush();
 	}
 

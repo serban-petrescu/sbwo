@@ -1,6 +1,7 @@
 package spet.sbwo.control.action.bo.base;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
@@ -8,20 +9,20 @@ import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
 
 public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAction<T, Integer, Void> {
-	protected final long directDeleteInterval;
+	protected final Duration directDeleteInterval;
 
 	public DeleteEntity(Class<T> entity, Class<?> channel) {
-		this(entity, channel, -1);
+		this(entity, channel, null);
 	}
 
-	public DeleteEntity(Class<T> entity, Class<?> channel, long directDeleteInterval) {
+	public DeleteEntity(Class<T> entity, Class<?> channel, Duration directDeleteInterval) {
 		super(entity, channel, true);
 		this.directDeleteInterval = directDeleteInterval;
 	}
 
 	@Override
 	protected Void doRun(Integer id, T t, IDatabaseExecutor executor, User user) throws DatabaseException {
-		if (directDeleteInterval < 0 || shouldDeleteDirectly(t)) {
+		if (shouldDeleteDirectly(t)) {
 			delete(executor, t);
 		} else {
 			mark(user, t);
@@ -39,8 +40,8 @@ public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAct
 	}
 
 	protected boolean shouldDeleteDirectly(JournalizedBaseEntity entity) {
-		long millis = System.currentTimeMillis() - entity.getCreatedOn().getTime();
-		return TimeUnit.MILLISECONDS.toMinutes(millis) < directDeleteInterval;
+		return directDeleteInterval == null
+				|| directDeleteInterval.compareTo(Duration.between(entity.getCreatedOn(), LocalDateTime.now())) > 0;
 	}
 
 	@Override

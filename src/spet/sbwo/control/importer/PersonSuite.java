@@ -1,7 +1,6 @@
 package spet.sbwo.control.importer;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -54,7 +53,7 @@ class PersonSuite implements ISuite {
 		while (personData.hasNext()) {
 			Person current = person.process(personData.next());
 			current.setCreatedBy(user);
-			current.setCreatedOn(new Timestamp(new Date().getTime()));
+			current.setCreatedOn(LocalDateTime.now());
 		}
 
 		if (email != null) {

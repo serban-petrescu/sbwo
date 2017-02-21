@@ -1,7 +1,7 @@
 package spet.sbwo.data.table;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +19,9 @@ public class ExpertiseFine extends BaseEntity {
 	private Expertise expertise;
 
 	@Column(name = "C_DATE")
-	private Date date;
+	private LocalDate date;
 
-	@Column(name = "C_SUM")
+	@Column(name = "C_SUM", nullable = true, precision = 16, scale = 2)
 	private BigDecimal sum;
 	
 	public Expertise getExpertise() {
@@ -32,11 +32,11 @@ public class ExpertiseFine extends BaseEntity {
 		this.expertise = expertise;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

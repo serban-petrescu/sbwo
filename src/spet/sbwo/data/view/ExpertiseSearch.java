@@ -33,6 +33,9 @@ public class ExpertiseSearch {
 	@Column(name = "C_COURT")
 	private String court;
 
+	@Column(name = "C_STATUS")
+	private int status;
+
 	@Column(name = "C_SEARCH")
 	private String search;
 
@@ -98,6 +101,14 @@ public class ExpertiseSearch {
 
 	public void setNextHearing(Date nextHearing) {
 		this.nextHearing = nextHearing;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

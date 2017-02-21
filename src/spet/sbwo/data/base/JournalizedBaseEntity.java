@@ -1,6 +1,6 @@
 package spet.sbwo.data.base;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -16,14 +16,14 @@ public class JournalizedBaseEntity extends BaseEntity {
 	protected User createdBy;
 
 	@Column(name = "C_CREATEDON")
-	protected Timestamp createdOn;
+	protected LocalDateTime createdOn;
 
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "C_CHANGEDBY_ID", nullable = true)
 	protected User changedBy;
 
 	@Column(name = "C_CHANGEDON")
-	protected Timestamp changedOn;
+	protected LocalDateTime changedOn;
 
 	@Column(name = "C_DELETED", nullable = false)
 	protected boolean deleted;
@@ -37,11 +37,11 @@ public class JournalizedBaseEntity extends BaseEntity {
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedOn() {
+	public LocalDateTime getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Timestamp createdOn) {
+	public void setCreatedOn(LocalDateTime createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -53,11 +53,11 @@ public class JournalizedBaseEntity extends BaseEntity {
 		this.changedBy = changedBy;
 	}
 
-	public Timestamp getChangedOn() {
+	public LocalDateTime getChangedOn() {
 		return changedOn;
 	}
 
-	public void setChangedOn(Timestamp changedOn) {
+	public void setChangedOn(LocalDateTime changedOn) {
 		this.changedOn = changedOn;
 	}
 

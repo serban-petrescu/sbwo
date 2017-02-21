@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.config.ConfigurationChannel;
+import spet.sbwo.control.config.Configuration;
 import spet.sbwo.control.config.ConfigurationManager;
 
 @Path("/utility/file/config")
@@ -22,9 +22,9 @@ public class ConfigurationService extends BaseService implements IPrivate {
 	@GET
 	@Path("/read")
 	@Produces("application/json")
-	public ConfigurationChannel readConfiguration() {
+	public Configuration readConfiguration() {
 		try {
-			return manager.loadChannel();
+			return manager.read();
 		} catch (Exception e) {
 			throw mapException(e);
 		}
@@ -34,7 +34,7 @@ public class ConfigurationService extends BaseService implements IPrivate {
 	@Path("/update")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public ConfigurationChannel updateConfiguration(ConfigurationChannel data) {
+	public Configuration updateConfiguration(Configuration data) {
 		try {
 			return manager.update(data);
 		} catch (Exception e) {

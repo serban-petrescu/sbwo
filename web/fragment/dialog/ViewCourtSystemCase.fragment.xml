@@ -13,7 +13,7 @@
 						<Text text="{view>number}" />
 					</f:FormElement>
 					<f:FormElement label="{i18n>lblCourtCaseDate}" visible="{= !!${view>date} }">
-						<Text text="{path: 'view>date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+						<Text text="{path: 'view>date', formatter: 'spet.sbwo.web.model.formatter.date'}" />
 					</f:FormElement>
 					<f:FormElement label="{i18n>lblCourtCaseMatter}" visible="{= !!${view>matter} }">
 						<Text text="{view>matter}" />
@@ -39,16 +39,16 @@
 					<Column minScreenWidth="Tablet" demandPopin="true"><header><Label text="{i18n>lblCourtCaseHearingDocument}"/></header></Column>
 				</columns>
 				<ColumnListItem>
-					<Text text="{path: 'view>date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+					<Text text="{path: 'view>date', formatter: 'spet.sbwo.web.model.formatter.date'}" />
 					<Text text="{view>time}" />
-					<Text text="{path: 'view>delivery', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+					<Text text="{path: 'view>delivery', formatter: 'spet.sbwo.web.model.formatter.date'}" />
 					<Text text="{view>result}" />
 					<Text text="{view>summary}" />
 					<Text text="{
 						parts: [
 							{path: 'view>document/type'},
 							{path: 'view>document/number'},
-							{path: 'view>document/date', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}
+							{path: 'view>document/date'}
 						], 
 						formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
 					}" />

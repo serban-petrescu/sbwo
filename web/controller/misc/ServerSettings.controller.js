@@ -1,9 +1,8 @@
 sap.ui.define([
 	"spet/sbwo/web/controller/entity/Base",
-	"spet/sbwo/web/util/TimeOfDay",
 	"sap/ui/core/format/DateFormat",
 	"sap/m/MessageBox"
-], function(Base, TimeOfDay, DateFormat, MessageBox) {
+], function(Base, DateFormat, MessageBox) {
 	"use strict";
 	
 	var sBaseApiPath = "/private/api/rest/utility/file";
@@ -30,10 +29,6 @@ sap.ui.define([
 			case "WARN": return "Critical";
 			default: return "Neutral";
 			}
-		},
-		
-		formatTimestampDate: function(iTs) {
-			return DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy HH:mm:ss"}).format(new Date(iTs));
 		},
 		
 		formatScheduleType: function(sType) {

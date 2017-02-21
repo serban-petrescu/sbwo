@@ -6,6 +6,11 @@
 		<mapping-file>META-INF/queries.xml</mapping-file>
 		<class>spet.sbwo.data.base.BaseEntity</class>
 		<class>spet.sbwo.data.base.JournalizedBaseEntity</class>
+		<class>spet.sbwo.data.domain.LocalDateConverter</class>
+		<class>spet.sbwo.data.domain.LocalDateTimeConverter</class>
+		<class>spet.sbwo.data.embed.DeletedEntityKey</class>
+		<class>spet.sbwo.data.embed.GlobalSearchKey</class>
+		<class>spet.sbwo.data.embed.Tariff</class>
 		<class>spet.sbwo.data.table.Court</class>
 		<class>spet.sbwo.data.table.Expertise</class>
 		<class>spet.sbwo.data.table.ExpertiseFine</class>
@@ -20,24 +25,31 @@
 		<class>spet.sbwo.data.table.PersonNatural</class>
 		<class>spet.sbwo.data.table.PersonTelephone</class>
 		<class>spet.sbwo.data.table.User</class>
-		<class>spet.sbwo.data.table.UserHomeTile</class>
 		<class>spet.sbwo.data.table.UserFavourite</class>
+		<class>spet.sbwo.data.table.UserHomeTile</class>
 		<class>spet.sbwo.data.table.UserPreference</class>
 		<class>spet.sbwo.data.table.UserSession</class>
-		<class>spet.sbwo.data.view.UserPlain</class>
-		<class>spet.sbwo.data.view.PersonSearch</class>
+		<class>spet.sbwo.data.view.CourtSearch</class>
+		<class>spet.sbwo.data.view.DeletedEntity</class>
+		<class>spet.sbwo.data.view.ExpertiseDistinctCourt</class>
+		<class>spet.sbwo.data.view.ExpertiseDistinctYear</class>
 		<class>spet.sbwo.data.view.ExpertiseSearch</class>
 		<class>spet.sbwo.data.view.GlobalSearch</class>
-		<class>spet.sbwo.data.view.DeletedEntity</class>
-		<class>spet.sbwo.data.view.CourtSearch</class>
-		<class>spet.sbwo.data.embed.DeletedEntityKey</class>
-		<class>spet.sbwo.data.embed.GlobalSearchKey</class>
+		<class>spet.sbwo.data.view.PersonSearch</class>
+		<class>spet.sbwo.data.view.UserPlain</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./data/sbwo;TRACE_LEVEL_FILE=4" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="zPZN-WJq4Prio&amp;nOuP2Z" />
 			<property name="eclipselink.logging.logger" value="spet.sbwo.logging.EclipseLinkLogger"/>
+			<property name="eclipselink.deploy-on-startup" value="true" />
+			<!-- 
+				<property name="eclipselink.ddl-generation" value="create-tables"/>
+				<property name="eclipselink.application-location" value="E:/Downloads/sql" />
+				<property name="eclipselink.create-ddl-jdbc-file-name" value="create.sql"/>
+				<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/>
+			 -->
 		</properties>
 	</persistence-unit>
 </persistence>

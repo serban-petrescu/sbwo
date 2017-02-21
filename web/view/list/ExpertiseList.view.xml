@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:html="http://www.w3.org/1999/xhtml" 
+<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:core="sap.ui.core" 
 	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
 	<Page id="pagList" 
 		title="{i18n>pagExpertiseListTitle}"
@@ -7,16 +7,22 @@
 		<subHeader>
 			<Toolbar>
 				<SearchField id="seaMain" width="100%" search="onSearch"/>
+				<Button tooltip="{i18n>btnViewSettingsTooltip}" icon="sap-icon://drop-down-list" press="onOpenViewSettingsDialog"/>
 			</Toolbar>
 		</subHeader>
 		<Table id="lstMain" items="{
 				path: '/ExpertiseSearchs', 
-				sorter: [
-					{path: 'Year', descending: true}, 
-					{path: 'NextHearing', descending: true}
-				]
+				sorter: {path: 'NextHearing', descending: true},
+				groupHeaderFactory: '.buildGroupHeader'
 			}" 
 			growing="true" growingScrollToLoad="true">
+			<infoToolbar>
+				<Toolbar visible="{view>/settings/applied}">
+					<Title text="{i18n>titViewSettingsAppliedText}" />
+					<ToolbarSpacer />
+					<core:Icon src="sap-icon://sys-cancel" alt="{i18n>btnClearViewSettingsTooltip}" press="onResetViewSettings" />
+				</Toolbar>
+			</infoToolbar>
 			<columns>
 				<Column width="9em"><header><Label text="{i18n>lblCaseNumberText}" /></header></Column>
 				<Column width="7em"><header><Label text="{i18n>lblExpertiseNextHearingText}" /></header></Column>
@@ -34,5 +40,9 @@
 				<Text text="{Title}"/>
 			</ColumnListItem>
 		</Table>
+		
+		<dependents>
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ExpertiseListViewSettings" type="XML" />
+		</dependents>
 	</Page>
 </mvc:View>

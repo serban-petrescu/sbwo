@@ -1,9 +1,11 @@
 package spet.sbwo.integration.api.court.model;
 
+import java.time.LocalDate;
+
 public class Document {
 	private String type;
 	private String number;
-	private Long date;
+	private LocalDate date;
 
 	public String getType() {
 		return type;
@@ -21,11 +23,11 @@ public class Document {
 		this.number = number;
 	}
 
-	public Long getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Long date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

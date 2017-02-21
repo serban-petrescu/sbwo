@@ -7,11 +7,20 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Tariff {
-	@Column(name = "C_PRICE")
+	@Column(name = "C_PRICE", nullable = true, precision = 16, scale = 2)
 	private BigDecimal price;
 
-	@Column(name = "C_ADVANCE")
+	@Column(name = "C_ADVANCE", nullable = true, precision = 16, scale = 2)
 	private BigDecimal advance;
+
+	public Tariff() {
+		super();
+	}
+
+	public Tariff(BigDecimal price, BigDecimal advance) {
+		this.price = price;
+		this.advance = advance;
+	}
 
 	public BigDecimal getPrice() {
 		return price;

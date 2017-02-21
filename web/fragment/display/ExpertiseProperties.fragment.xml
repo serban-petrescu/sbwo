@@ -7,17 +7,20 @@
 				columnsL="1"	columnsM="1" />
 		</f:layout>
 		<f:FormContainer >
-			<f:FormElement label="{i18n>lblExpertiseTitleText}">
+			<f:FormElement label="{i18n>lblExpertiseTitleText}"  visible="{= !!${data>title} }" > 
 				<Text text="{data>title}" />
 			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseStatusText}">
+			<f:FormElement label="{i18n>lblExpertiseStatusText}" >
 				<Text text="{path: 'data>status', formatter: 'spet.sbwo.web.model.formatter.expertiseStatus'}" />
 			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseResponsibleText}">
-				<Text selectedKey="{data>responsible/username}" />
+			<f:FormElement label="{i18n>lblExpertiseResponsibleText}" visible="{= !!${data>responsible/username} }" >
+				<Text text="{data>responsible/username}" />
 			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseNextHearingText}">
-				<Text text="{path: 'data>/nextHearing', type: 'spet.sbwo.web.util.Timestamp', formatOptions: {pattern: 'dd.MM.yyyy'}}" />
+			<f:FormElement label="{i18n>lblExpertiseNextHearingText}" visible="{= !!${data>nextHearing} }" >
+				<Text text="{path: 'data>nextHearing', formatter: 'spet.sbwo.web.model.formatter.date'}" />
+			</f:FormElement>
+			<f:FormElement label="{i18n>lblExpertiseTariffAdvanceText}" visible="{= !!${data>advance} }" >
+				<Text text="{path: 'data>advance', type: 'sap.ui.model.odata.type.Decimal'}" />
 			</f:FormElement>
 		</f:FormContainer>
 	</f:Form>

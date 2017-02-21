@@ -1,5 +1,7 @@
 package spet.sbwo.control.controller.bo;
 
+import java.time.Duration;
+
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.bo.base.CreateEntity;
@@ -11,18 +13,18 @@ import spet.sbwo.control.channel.JournalChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 
-abstract class BaseBoController<E extends JournalizedBaseEntity, C extends JournalChannel>
-		extends BaseActionExecutor implements IBoController<C> {
-	protected final int directDeleteInterval;
+abstract class BaseBoController<E extends JournalizedBaseEntity, C extends JournalChannel> extends BaseActionExecutor
+		implements IBoController<C> {
+	protected final Duration directDeleteInterval;
 
-	public BaseBoController(IDatabaseExecutorCreator database, int directDeleteInterval) {
+	public BaseBoController(IDatabaseExecutorCreator database, Duration directDeleteInterval) {
 		super(database);
 		this.directDeleteInterval = directDeleteInterval;
 	}
 
 	@Override
 	public int create(C data, String username) throws ControlException {
-		return executeAndCommit(username, createAction(), data);
+		return executeAndCommit(username, createAction(), data).getId();
 	}
 
 	@Override
@@ -52,7 +54,7 @@ abstract class BaseBoController<E extends JournalizedBaseEntity, C extends Journ
 
 	protected abstract UpdateEntity<E, C> updateAction();
 
-	protected abstract DeleteEntity<E> deleteAction(int directDeleteInterval);
+	protected abstract DeleteEntity<E> deleteAction(Duration directDeleteInterval);
 
 	protected abstract RestoreEntity<E> restoreAction();
 

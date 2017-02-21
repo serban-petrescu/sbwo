@@ -1,10 +1,11 @@
 package spet.sbwo.integration.api.court.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Case {
 	private String number;
-	private Long date;
+	private LocalDate date;
 	private String matter;
 	private String status;
 	private String category;
@@ -35,11 +36,11 @@ public class Case {
 		this.number = number;
 	}
 
-	public Long getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Long date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

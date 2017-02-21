@@ -1,5 +1,6 @@
 package spet.sbwo.integration.web.rojustportal;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -117,19 +118,18 @@ public class RoJustPortalFacade implements ICourtSystemApi {
 	}
 
 	protected long timestamp(XMLGregorianCalendar calendar) {
-		Long date = map(calendar);
-		if (date != null) {
-			return date;
+		if (calendar != null) {
+			return calendar.toGregorianCalendar().getTimeInMillis();
 		} else {
 			return -1;
 		}
 	}
 
-	protected Long map(XMLGregorianCalendar calendar) {
+	protected LocalDate map(XMLGregorianCalendar calendar) {
 		if (calendar == null) {
 			return null;
 		} else {
-			return calendar.toGregorianCalendar().getTime().getTime();
+			return calendar.toGregorianCalendar().toZonedDateTime().toLocalDate();
 		}
 	}
 

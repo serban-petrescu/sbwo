@@ -9,7 +9,7 @@
 					<Button icon="sap-icon://refresh" tooltip="{i18n>btnServerSchedulesRefreshTooltip}" press="onReadSchedules"/>
 				</Toolbar>
 			</headerToolbar>
-			<DisplayListItem label="{path: 'view>timestamp', formatter: '.formatTimestampDate'}" 
+			<DisplayListItem label="{path: 'view>time', formatter: 'spet.sbwo.web.model.formatter.dateTime'}" 
 				value="{path: 'view>type', formatter: '.formatScheduleType'}" />
 		</List>
 	</ScrollContainer>

@@ -15,6 +15,14 @@
 			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.Notes" />
 		</l:VerticalLayout>
 	</IconTabFilter>
+	<IconTabFilter icon="sap-icon://unpaid-leave" binding="{data>/}" visible="{= ${view>/edit} || !!${data>/fines/length} }">
+		<l:VerticalLayout width="100%" visible="{= !${view>/edit} &amp;&amp; !!${data>/fines/length} }">
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.ExpertiseFines" />
+		</l:VerticalLayout>
+		<l:VerticalLayout width="100%" visible="{view>/edit}">
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.ExpertiseFines" />
+		</l:VerticalLayout>
+	</IconTabFilter>
 	<!-- <IconTabFilter icon="sap-icon://map" binding="{data>/location}">
 		<l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
 			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>

@@ -1,9 +1,8 @@
 sap.ui.define([
 	"./Base",
-	"spet/sbwo/web/util/Timestamp",
 	"spet/sbwo/web/controller/facade/ExpertiseEdit",
 	"sap/m/MessageBox"
-], function(Base, Timestamp, ExpertiseEdit, MessageBox) {
+], function(Base, ExpertiseEdit, MessageBox) {
 	"use strict";
 	
 	var sBaseApiPath = "/private/api/rest/expertise";
@@ -32,11 +31,6 @@ sap.ui.define([
 		
 		getEntityListRoute: function() {
 			return "expertise-list";
-		},
-		
-		restoreDraft: function() {
-			Base.prototype.restoreDraft.apply(this, arguments);
-			this.onLoadCase();
 		},
 		
 		onReadSuccess: function() {

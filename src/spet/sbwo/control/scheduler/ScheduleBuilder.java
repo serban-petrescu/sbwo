@@ -1,6 +1,9 @@
 package spet.sbwo.control.scheduler;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,23 +54,12 @@ public class ScheduleBuilder {
 	}
 
 	public static class SimpleSchedulerBuilder extends SchedulerBuilder {
-		protected long interval = 600000;
-		protected long delay = 0;
+		protected Duration duration;
 		protected SchedulerType type = SchedulerType.OTHER;
 		protected Supplier<Runnable> supplier;
 
-		public SimpleSchedulerBuilder intervalMillis(long interval) {
-			this.interval = interval;
-			return this;
-		}
-
-		public SimpleSchedulerBuilder intervalMins(int interval) {
-			this.interval = interval * 60L * 1000L;
-			return this;
-		}
-
-		public SimpleSchedulerBuilder delayMillis(long delay) {
-			this.delay = delay;
+		public SimpleSchedulerBuilder duration(Duration duration) {
+			this.duration = duration;
 			return this;
 		}
 
@@ -88,13 +80,13 @@ public class ScheduleBuilder {
 
 		@Override
 		protected IScheduler build() {
-			return new SimpleScheduler(type, interval, delay, supplier);
+			return new SimpleDurationScheduler(type, duration, supplier);
 		}
 	}
 
 	public static class CleanupSchedulerBuilder extends SchedulerBuilder {
-		protected long delay = 0;
-		protected long maxAge = 24L * 3600L * 1000L;
+		protected LocalTime time = LocalTime.of(10, 0);
+		protected Period maxAge = Period.ofDays(1);
 		protected List<CleanupScheduler.CleanerBase> cleaners;
 
 		protected CleanupSchedulerBuilder() {
@@ -102,13 +94,13 @@ public class ScheduleBuilder {
 			cleaners = new LinkedList<>();
 		}
 
-		public CleanupSchedulerBuilder delayMillis(long delay) {
-			this.delay = delay;
+		public CleanupSchedulerBuilder time(LocalTime time) {
+			this.time = time;
 			return this;
 		}
 
-		public CleanupSchedulerBuilder maxAgeDays(int age) {
-			this.maxAge = age * 24L * 3600L * 1000L;
+		public CleanupSchedulerBuilder maxAge(Period maxAge) {
+			this.maxAge = maxAge;
 			return this;
 		}
 
@@ -134,16 +126,13 @@ public class ScheduleBuilder {
 
 		@Override
 		protected IScheduler build() {
-			if (delay < 0) {
-				throw new IllegalArgumentException();
-			}
-			return new CleanupScheduler(delay, maxAge, cleaners);
+			return new CleanupScheduler(time, maxAge, cleaners);
 		}
 	}
 
 	public static class BackupSchedulerBuilder extends SchedulerBuilder {
-		protected long delay = 0;
-		protected long interval = 24L * 3600L * 1000L;
+		protected LocalTime time = LocalTime.of(10, 0);
+		protected Period period;
 		protected File directory;
 		protected IBackupCreator backuper;
 
@@ -166,22 +155,19 @@ public class ScheduleBuilder {
 			return this;
 		}
 
-		public BackupSchedulerBuilder delayMillis(long delay) {
-			this.delay = delay;
+		public BackupSchedulerBuilder time(LocalTime time) {
+			this.time = time;
 			return this;
 		}
 
-		public BackupSchedulerBuilder intervalDays(int interval) {
-			this.interval = interval * 24L * 3600L * 1000L;
+		public BackupSchedulerBuilder period(Period period) {
+			this.period = period;
 			return this;
 		}
 
 		@Override
 		protected IScheduler build() {
-			if (interval <= 0 || delay < 0 || backuper == null || directory == null) {
-				throw new IllegalArgumentException();
-			}
-			return new BackupScheduler(directory, interval, delay, backuper);
+			return new BackupScheduler(directory, time, period, backuper);
 		}
 	}
 }

@@ -1,10 +1,12 @@
 package spet.sbwo.control.channel;
 
-public class JournalChannel extends BaseChannel{
+import java.time.LocalDateTime;
+
+public class JournalChannel extends BaseChannel {
 	private UserChannel createdBy;
-	private Long createdOn;
+	private LocalDateTime createdOn;
 	private UserChannel changedBy;
-	private Long changedOn;
+	private LocalDateTime changedOn;
 	private Boolean deleted;
 
 	public UserChannel getCreatedBy() {
@@ -15,11 +17,11 @@ public class JournalChannel extends BaseChannel{
 		this.createdBy = createdBy;
 	}
 
-	public Long getCreatedOn() {
+	public LocalDateTime getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Long createdOn) {
+	public void setCreatedOn(LocalDateTime createdOn) {
 		this.createdOn = createdOn;
 	}
 
@@ -31,11 +33,11 @@ public class JournalChannel extends BaseChannel{
 		this.changedBy = changedBy;
 	}
 
-	public Long getChangedOn() {
+	public LocalDateTime getChangedOn() {
 		return changedOn;
 	}
 
-	public void setChangedOn(Long changedOn) {
+	public void setChangedOn(LocalDateTime changedOn) {
 		this.changedOn = changedOn;
 	}
 

@@ -1,8 +1,7 @@
 sap.ui.define([
-	"spet/sbwo/web/util/Timestamp",
 	"./Base",
 	"spet/sbwo/web/controller/facade/ExpertiseEdit"
-], function(Timestamp, Base, ExpertiseEdit) {
+], function(Base, ExpertiseEdit) {
 	"use strict";
 	
 	var sBaseApiPath = "/private/api/rest/expertise";

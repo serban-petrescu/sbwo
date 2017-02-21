@@ -4,6 +4,10 @@ import static spet.sbwo.control.util.FileNameUtils.*;
 
 import java.io.File;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IBackupCreator;
 
-class BackupScheduler extends BaseScheduler {
+class BackupScheduler extends BasePeriodScheduler {
 	private static final Logger LOG = LoggerFactory.getLogger(BackupScheduler.class);
 	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("'backup_'yyyyMMdd'_'HHmmss")
 			.withZone(ZoneId.systemDefault());
@@ -23,8 +27,8 @@ class BackupScheduler extends BaseScheduler {
 	protected final File directory;
 	protected final IBackupCreator backuper;
 
-	public BackupScheduler(File directory, long interval, long delay, IBackupCreator backuper) {
-		super(SchedulerType.BACKUP, interval, delay);
+	public BackupScheduler(File directory, LocalTime time, Period period, IBackupCreator backuper) {
+		super(SchedulerType.BACKUP, time, period);
 		this.directory = directory;
 		if (!this.directory.isDirectory() && !this.directory.mkdirs()) {
 			LOG.error("Unable to create database backup directory.");
@@ -33,31 +37,34 @@ class BackupScheduler extends BaseScheduler {
 	}
 
 	@Override
-	protected long persistedPrevious() {
-		long max = 0;
+	protected LocalDate persistedPreviousDate() {
+		LocalDateTime max = null;
 		File[] files = directory.listFiles();
 		if (files != null) {
 			for (File file : files) {
-				max = Math.max(max, getBackupCandidateTimestamp(file));
+				LocalDateTime candidate = getBackupCandidateTimestamp(file);
+				if (max == null || (candidate != null && max.isBefore(candidate))) {
+					max = candidate;
+				}
 			}
 		}
-		return max;
+		return max == null ? null : max.toLocalDate();
 	}
-
-	protected long getBackupCandidateTimestamp(File file) {
+	
+	protected LocalDateTime getBackupCandidateTimestamp(File file) {
 		String name = base(file.getName());
 		if (name.matches(FILE_PATTERN)) {
 			try {
-				return Instant.from(DATE_FORMAT.parse(name)).toEpochMilli();
+				return LocalDateTime.from(DATE_FORMAT.parse(name));
 			} catch (DateTimeParseException e) {
 				LOG.warn("Invalid file exists in backup directory: {}.", name);
 			}
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	protected ScheduleInfo build(long when) {
+	protected ScheduleInfo build(LocalDateTime when) {
 		return new ScheduleInfo(new BackupRunnable(), when);
 	}
 

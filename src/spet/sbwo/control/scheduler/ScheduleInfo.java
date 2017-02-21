@@ -1,21 +1,22 @@
 package spet.sbwo.control.scheduler;
 
-class ScheduleInfo {
-	private Runnable task;
-	private long timestamp;
+import java.time.LocalDateTime;
 
-	public ScheduleInfo(Runnable task, long timestamp) {
-		super();
+class ScheduleInfo {
+	private final Runnable task;
+	private final LocalDateTime time;
+
+	public ScheduleInfo(Runnable task, LocalDateTime time) {
 		this.task = task;
-		this.timestamp = timestamp;
+		this.time = time;
 	}
 
 	public Runnable getTask() {
 		return task;
 	}
 
-	public long getTimestamp() {
-		return timestamp;
+	public LocalDateTime getTime() {
+		return time;
 	}
 
 }

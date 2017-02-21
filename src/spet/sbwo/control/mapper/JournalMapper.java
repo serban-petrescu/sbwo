@@ -1,8 +1,5 @@
 package spet.sbwo.control.mapper;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,55 +20,23 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 	}
 
 	@Override
-	public void merge(O result, I input) throws ControlException {
-		super.merge(result, input);
-		result.setChangedBy(this.toExternal(input.getChangedBy()));
-		result.setChangedOn(this.toExternalTimestamp(input.getChangedOn()));
-		result.setCreatedBy(this.toExternal(input.getChangedBy()));
-		result.setCreatedOn(this.toExternalTimestamp(input.getCreatedOn()));
-		result.setDeleted(input.isDeleted());
+	public void merge(O external, I internal) throws ControlException {
+		super.merge(external, internal);
+		external.setChangedBy(toExternal(internal.getChangedBy()));
+		external.setChangedOn(internal.getChangedOn());
+		external.setCreatedBy(toExternal(internal.getChangedBy()));
+		external.setCreatedOn(internal.getCreatedOn());
+		external.setDeleted(internal.isDeleted());
 	}
 
 	@Override
 	public void merge(I internal, O external) throws ControlException {
 		super.merge(internal, external);
-		internal.setChangedBy(this.toInternal(external.getChangedBy()));
-		internal.setChangedOn(this.toInternalTimestamp(external.getChangedOn()));
-		internal.setCreatedBy(this.toInternal(external.getCreatedBy()));
-		internal.setCreatedOn(this.toInternalTimestamp(external.getCreatedOn()));
+		internal.setChangedBy(toInternal(external.getChangedBy()));
+		internal.setChangedOn(external.getChangedOn());
+		internal.setCreatedBy(toInternal(external.getCreatedBy()));
+		internal.setCreatedOn(external.getCreatedOn());
 		this.ifNotNull(external.getDeleted(), internal::setDeleted);
-	}
-
-	protected Long toExternalTimestamp(Timestamp ts) {
-		if (ts != null) {
-			return ts.getTime();
-		} else {
-			return null;
-		}
-	}
-
-	protected Long toExternalDate(Date ts) {
-		if (ts != null) {
-			return ts.getTime();
-		} else {
-			return null;
-		}
-	}
-
-	protected Timestamp toInternalTimestamp(Long ts) {
-		if (ts != null) {
-			return new Timestamp(ts);
-		} else {
-			return null;
-		}
-	}
-
-	protected Date toInternalDate(Long ts) {
-		if (ts != null) {
-			return new Date(ts);
-		} else {
-			return null;
-		}
 	}
 
 	protected User toInternal(UserChannel user) throws ControlException {

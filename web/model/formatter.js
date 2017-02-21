@@ -1,4 +1,4 @@
-sap.ui.define([], function() {
+sap.ui.define(["sap/ui/core/format/DateFormat"], function(DateFormat) {
 	var oBundle;
 	
 	var mSearchIcons = {
@@ -21,6 +21,55 @@ sap.ui.define([], function() {
 		}
 	};
 	
+	var oDisplayDateFormat = DateFormat.getDateInstance({pattern: "dd.MM.yyyy"}),
+		oDisplayTimeFormat = DateFormat.getTimeInstance({pattern: "HH:mm:ss"}),
+		oDisplayDateTimeFormat = DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy HH:mm:ss"}),
+		oBackendDateFormat = DateFormat.getDateInstance({pattern: "yyyy-MM-dd"}),
+		oBackendTimeFormat = DateFormat.getTimeInstance({pattern: "HH:mm:ss.SSSSSSSSS"}),
+		oBackendDateTimeFormat = DateFormat.getDateTimeInstance({pattern: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"});
+	
+	var fnFormatDate = function(oDate) {
+		var oD;
+		if (oDate instanceof Date) {
+			oD = oDate;
+		}
+		else if (typeof oDate === "number") {
+			oD = new Date(oDate);
+		}
+		else {
+			oD = oBackendDateFormat.parse(oDate);
+		}
+		return oDisplayDateFormat.format(oD);
+	};
+	
+	var fnFormatTime = function(oDate) {
+		var oD;
+		if (oDate instanceof Date) {
+			oD = oDate;
+		}
+		else if (typeof oDate === "number") {
+			oD = new Date(oDate);
+		}
+		else {
+			oD = oBackendTimeFormat.parse(oDate);
+		}
+		return oDisplayTimeFormat.format(oD);
+	};
+	
+	var fnFormatDateTime = function(oDate) {
+		var oD;
+		if (oDate instanceof Date) {
+			oD = oDate;
+		}
+		else if (typeof oDate === "number") {
+			oD = new Date(oDate);
+		}
+		else {
+			oD = oBackendDateTimeFormat.parse(oDate);
+		}
+		return oDisplayDateTimeFormat.format(oD);
+	};
+	
 	return {
 		
 		setResourceBundle: function(oResourceBundle) {
@@ -35,10 +84,10 @@ sap.ui.define([], function() {
 		
 		courtCaseDocument: function(sType, sNumber, sDate) {
 			if (sType && sNumber && sDate) {
-				return oBundle.getText("txtCourtCaseDocumentFullPattern", [sType, sNumber, sDate]);
+				return oBundle.getText("txtCourtCaseDocumentFullPattern", [sType, sNumber, fnFormatDate(sDate)]);
 			}
 			else if (sType && sDate) {
-				return oBundle.getText("txtCourtCaseDocumentPartialPattern", [sType, sDate]);
+				return oBundle.getText("txtCourtCaseDocumentPartialPattern", [sType, fnFormatDate(sDate)]);
 			}
 			else if (sType) {
 				return sType;
@@ -47,6 +96,12 @@ sap.ui.define([], function() {
 				return "";
 			}
 		},
+		
+		date: fnFormatDate,
+		
+		time: fnFormatTime,
+		
+		dateTime: fnFormatDateTime,
 		
 		personPageTitle: function(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
 			if (iType === 0) {

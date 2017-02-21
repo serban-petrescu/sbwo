@@ -64,21 +64,21 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		internal.setBankAccounts(this.ifNotNullForEach(
 				this.bankAccountMapper.merge(internal.getBankAccounts(), external.getBankAccounts()), internal,
 				PersonBankAccount::setPerson));
-		this.ops.addAll(this.bankAccountMapper.ops);
+		addOperations(bankAccountMapper);
 
 		internal.setTelephones(
 				this.ifNotNullForEach(this.telephoneMapper.merge(internal.getTelephones(), external.getTelephones()),
 						internal, PersonTelephone::setPerson));
-		this.ops.addAll(this.telephoneMapper.ops);
+		addOperations(telephoneMapper);
 
 		internal.setEmailAddresses(this.ifNotNullForEach(
 				this.emailMapper.merge(internal.getEmailAddresses(), external.getEmailAddresses()), internal,
 				PersonEmailAddress::setPerson));
-		this.ops.addAll(this.emailMapper.ops);
+		addOperations(emailMapper);
 
 		if (external.getLocation() == null) {
 			if (internal.getLocation() != null) {
-				this.ops.add(0, this.buildDelete(internal.getLocation()));
+				addOperation(0, this.buildDelete(internal.getLocation()));
 			}
 			internal.setLocation(null);
 		} else {
@@ -87,7 +87,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 			} else {
 				internal.setLocation(this.locationMapper.toInternal(external.getLocation()));
 			}
-			this.ops.addAll(0, this.locationMapper.ops);
+			addOperations(0, locationMapper);
 		}
 
 		if (internal instanceof PersonNatural) {

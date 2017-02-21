@@ -15,14 +15,12 @@ public class Schedule {
 	public Schedule(MutablePicoContainer container, Configuration configuration) {
 		ScheduleBuilder scheduleBuilder = new ScheduleBuilder().threads(configuration.getSchedulerThreads());
 		scheduleBuilder.backup().backuper(container.getComponent(DatabaseFacade.class))
-				.directory(configuration.getDatabaseBackupLocation())
-				.intervalDays(configuration.getDatabaseBackupInterval())
-				.delayMillis(configuration.getDatabaseBackupStart());
-		scheduleBuilder.cleanup().delayMillis(configuration.getCleanupStart())
-				.maxAgeDays(configuration.getCleanupThreshold())
+				.directory(configuration.getDatabaseBackupLocation()).period(configuration.getDatabaseBackupInterval())
+				.time(configuration.getDatabaseBackupStart());
+		scheduleBuilder.cleanup().time(configuration.getCleanupStart()).maxAge(configuration.getCleanupThreshold())
 				.addBackupBased(configuration.getDatabaseBackupLocation())
 				.addPatternBased(new File("logs"), "yyyyMMdd", "log_(\\d{8})_\\d+");
-		scheduleBuilder.simple().intervalMins(configuration.getSessionFlushInterval()).type(SchedulerType.SESSION_CACHE)
+		scheduleBuilder.simple().duration(configuration.getSessionFlushInterval()).type(SchedulerType.SESSION_CACHE)
 				.runnable(container.getComponent(CachedSessionManager.class)::flush);
 		container.addComponent(scheduleBuilder.build());
 	}

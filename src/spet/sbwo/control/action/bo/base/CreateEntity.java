@@ -1,6 +1,6 @@
 package spet.sbwo.control.action.bo.base;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
@@ -12,7 +12,7 @@ import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
 
 public abstract class CreateEntity<T extends JournalizedBaseEntity, C extends JournalChannel>
-		extends BaseUserDatabaseAction<C, Integer> {
+		extends BaseUserDatabaseAction<C, T> {
 	protected final Class<T> entity;
 
 	protected CreateEntity(Class<T> entity, Class<C> channel) {
@@ -21,13 +21,13 @@ public abstract class CreateEntity<T extends JournalizedBaseEntity, C extends Jo
 	}
 
 	@Override
-	public Integer doRun(C input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException {
+	public T doRun(C input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException {
 		BaseMapper<T, C> mapper = mapper(executor);
 		T t = mapper.toInternal(input);
 		t.setCreatedBy(user);
-		t.setCreatedOn(new Timestamp(System.currentTimeMillis()));
+		t.setCreatedOn(LocalDateTime.now());
 		mapper.flush();
-		return t.getId();
+		return t;
 	}
 
 	protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);

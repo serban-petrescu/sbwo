@@ -1,5 +1,7 @@
 package spet.sbwo.server;
 
+import java.time.Duration;
+
 import javax.servlet.ServletRequest;
 
 import org.eclipse.jetty.security.AbstractLoginService;
@@ -27,7 +29,7 @@ public class SecurityBuilder {
 	private String securedPath;
 	private String loginPage;
 	private String errorPage;
-	private int sessionTimeout = 0;
+	private long sessionTimeout = 0;
 	private SessionDataStore sessionDataStore;
 
 	/**
@@ -64,10 +66,10 @@ public class SecurityBuilder {
 	}
 
 	/**
-	 * Sets the session timeout in minutes.
+	 * Sets the session timeout.
 	 */
-	public SecurityBuilder sessionTimeout(int minutes) {
-		this.sessionTimeout = minutes * 60;
+	public SecurityBuilder sessionTimeout(Duration duration) {
+		this.sessionTimeout = duration.getSeconds();
 		return this;
 	}
 
@@ -107,7 +109,7 @@ public class SecurityBuilder {
 			cache.setRemoveUnloadableSessions(true);
 			cache.setSaveOnCreate(false);
 			session.setSessionCache(cache);
-			session.setMaxInactiveInterval(sessionTimeout);
+			session.setMaxInactiveInterval((int) sessionTimeout);
 		}
 
 		ServletContextHandler root = new ServletContextHandler(null, "/", true, true);

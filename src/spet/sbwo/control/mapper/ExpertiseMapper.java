@@ -6,45 +6,58 @@ import org.slf4j.LoggerFactory;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.CourtChannel;
 import spet.sbwo.control.channel.ExpertiseChannel;
+import spet.sbwo.control.channel.ExpertiseChannel.Fine;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.domain.ExpertiseStatus;
+import spet.sbwo.data.embed.Tariff;
 import spet.sbwo.data.table.Court;
 import spet.sbwo.data.table.Expertise;
+import spet.sbwo.data.table.ExpertiseFine;
 
 public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> {
 	private static final Logger LOG = LoggerFactory.getLogger(ExpertiseMapper.class);
+	private final FineMapper fineMapper;
 
 	public ExpertiseMapper(IDatabaseExecutor executor) {
 		super(executor);
+		fineMapper = new FineMapper(executor);
 	}
 
 	@Override
 	public void merge(Expertise internal, ExpertiseChannel external) throws ControlException {
 		super.merge(internal, external);
 		internal.setCourt(toInternal(external.getCourt()));
-		internal.setLastCheckedOn(toInternalTimestamp(external.getLastCheckedOn()));
+		internal.setLastCheckedOn(external.getLastCheckedOn());
 		internal.setNote(external.getNote());
 		internal.setNumber(external.getNumber());
 		internal.setResponsible(toInternal(external.getResponsible()));
 		internal.setStatus(getEnumValue(ExpertiseStatus.values(), external.getStatus()));
 		internal.setTitle(external.getTitle());
-		internal.setNextHearing(toInternalDate(external.getNextHearing()));
-		this.ifNotNull(external.getYear(), internal::setYear);
+		internal.setNextHearing(external.getNextHearing());
+		ifNotNull(external.getYear(), internal::setYear);
+		internal.setTariff(new Tariff(external.getPrice(), external.getAdvance()));
+		internal.setFines(fineMapper.merge(internal.getFines(), external.getFines()));
+		addOperations(fineMapper);
 	}
 
 	@Override
-	public void merge(ExpertiseChannel result, Expertise input) throws ControlException {
-		super.merge(result, input);
-		result.setCourt(toExternal(input.getCourt()));
-		result.setLastCheckedOn(toExternalTimestamp(input.getLastCheckedOn()));
-		result.setNote(input.getNote());
-		result.setNumber(input.getNumber());
-		result.setResponsible(toExternal(input.getResponsible()));
-		result.setStatus(input.getStatus() == null ? null : input.getStatus().ordinal());
-		result.setTitle(input.getTitle());
-		result.setYear(input.getYear());
-		result.setNextHearing(toExternalDate(input.getNextHearing()));
+	public void merge(ExpertiseChannel external, Expertise internal) throws ControlException {
+		super.merge(external, internal);
+		external.setCourt(toExternal(internal.getCourt()));
+		external.setLastCheckedOn(internal.getLastCheckedOn());
+		external.setNote(internal.getNote());
+		external.setNumber(internal.getNumber());
+		external.setResponsible(toExternal(internal.getResponsible()));
+		external.setStatus(internal.getStatus() == null ? null : internal.getStatus().ordinal());
+		external.setTitle(internal.getTitle());
+		external.setYear(internal.getYear());
+		external.setNextHearing(internal.getNextHearing());
+		ifNotNull(internal.getTariff(), t -> {
+			external.setPrice(t.getPrice());
+			external.setAdvance(t.getAdvance());
+		});
+		external.setFines(fineMapper.toExternal(internal.getFines()));
 	}
 
 	@Override
@@ -82,4 +95,34 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 		}
 	}
 
+	protected static class FineMapper extends BaseMapper<ExpertiseFine, Fine> {
+		public FineMapper(IDatabaseExecutor executor) {
+			super(executor);
+		}
+
+		@Override
+		protected ExpertiseFine newInternal(Fine external) throws ControlException {
+			return new ExpertiseFine();
+		}
+
+		@Override
+		protected Fine newExternal(ExpertiseFine internal) throws ControlException {
+			return new Fine();
+		}
+
+		@Override
+		public void merge(ExpertiseFine internal, Fine external) throws ControlException {
+			super.merge(internal, external);
+			internal.setDate(external.getDate());
+			internal.setSum(external.getSum());
+		}
+
+		@Override
+		public void merge(Fine external, ExpertiseFine internal) throws ControlException {
+			super.merge(external, internal);
+			external.setDate(internal.getDate());
+			external.setSum(internal.getSum());
+		}
+
+	}
 }

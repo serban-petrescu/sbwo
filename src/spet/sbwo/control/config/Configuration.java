@@ -1,63 +1,34 @@
 package spet.sbwo.control.config;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.Period;
 
 public class Configuration {
-	private final int sessionTimeout;
-	private final int directDeleteInterval;
-	private final int databaseBackupInterval;
-	private final int databaseBackupStart;
-	private final File databaseBackupLocation;
-	private final int schedulerThreads;
-	private final int cleanupStart;
-	private final int cleanupThreshold;
-	private final int sessionFlushInterval;
+	private Duration sessionTimeout;
+	private Duration directDeleteInterval;
+	private Period databaseBackupInterval;
+	private LocalTime databaseBackupStart;
+	private File databaseBackupLocation;
+	private int schedulerThreads;
+	private LocalTime cleanupStart;
+	private Period cleanupThreshold;
+	private Duration sessionFlushInterval;
 
-	protected Configuration() {
-		this.sessionTimeout = 60;
-		this.directDeleteInterval = 5;
-		this.databaseBackupInterval = 1;
-		this.databaseBackupLocation = new File("backup");
-		this.databaseBackupStart = 10 * 60 * 60 * 1000;
-		this.schedulerThreads = 2;
-		this.cleanupStart = 9 * 60 * 60 * 1000;
-		this.cleanupThreshold = 30;
-		this.sessionFlushInterval = 10;
-		setup();
-	}
-
-	public Configuration(ConfigurationChannel channel) {
-		this.sessionTimeout = channel.getSessionTimeout();
-		this.directDeleteInterval = channel.getDirectDeleteInterval();
-		this.databaseBackupInterval = channel.getDatabaseBackupInterval();
-		this.databaseBackupLocation = new File(channel.getDatabaseBackupLocation());
-		this.databaseBackupStart = channel.getDatabaseBackupStart();
-		this.schedulerThreads = channel.getSchedulerThreads();
-		this.cleanupStart = channel.getCleanupStart();
-		this.cleanupThreshold = channel.getCleanupThreshold();
-		this.sessionFlushInterval = channel.getSessionFlushInterval();
-		setup();
-	}
-
-	protected void setup() {
-		if (!this.databaseBackupLocation.isDirectory()) {
-			this.databaseBackupLocation.mkdirs();
-		}
-	}
-
-	public int getSessionTimeout() {
+	public Duration getSessionTimeout() {
 		return sessionTimeout;
 	}
 
-	public int getDirectDeleteInterval() {
+	public Duration getDirectDeleteInterval() {
 		return directDeleteInterval;
 	}
 
-	public int getDatabaseBackupInterval() {
+	public Period getDatabaseBackupInterval() {
 		return databaseBackupInterval;
 	}
 
-	public int getDatabaseBackupStart() {
+	public LocalTime getDatabaseBackupStart() {
 		return databaseBackupStart;
 	}
 
@@ -69,16 +40,30 @@ public class Configuration {
 		return schedulerThreads;
 	}
 
-	public int getCleanupStart() {
+	public LocalTime getCleanupStart() {
 		return cleanupStart;
 	}
 
-	public int getCleanupThreshold() {
+	public Period getCleanupThreshold() {
 		return cleanupThreshold;
 	}
 
-	public int getSessionFlushInterval() {
+	public Duration getSessionFlushInterval() {
 		return sessionFlushInterval;
+	}
+
+	public static Configuration createDefault() {
+		Configuration config = new Configuration();
+		config.sessionTimeout = Duration.ofMinutes(60);
+		config.directDeleteInterval = Duration.ofMinutes(5);
+		config.databaseBackupInterval = Period.ofDays(1);
+		config.databaseBackupLocation = new File("backup");
+		config.databaseBackupStart = LocalTime.of(9, 0);
+		config.schedulerThreads = 2;
+		config.cleanupStart = LocalTime.of(10, 0);
+		config.cleanupThreshold = Period.ofDays(30);
+		config.sessionFlushInterval = Duration.ofMinutes(15);
+		return config;
 	}
 
 }

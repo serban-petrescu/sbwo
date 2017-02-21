@@ -1,6 +1,6 @@
 package spet.sbwo.control.action.bo.base;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
@@ -35,6 +35,6 @@ public abstract class BaseUserBoAction<T extends JournalizedBaseEntity, I, O> ex
 
 	protected void changed(User user, T t) {
 		t.setChangedBy(user);
-		t.setChangedOn(new Timestamp(System.currentTimeMillis()));
+		t.setChangedOn(LocalDateTime.now());
 	}
 }

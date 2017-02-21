@@ -2,43 +2,25 @@
 	<f:FormContainer visible="{= !${view>/edit} }">
 		<f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{data>/sessionTimeout}" />
+				<Text text="{path: 'data>/sessionTimeout', type: 'spet.sbwo.web.util.Duration'}" />
 				<Text text="{i18n>txtSessionExpirationMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					parts: [
-						'i18n>txtServerSettingsDispayNumberUnitPattern', 
-						'data>/directDeleteInterval', 
-						'i18n>inpSessionExpirationMinutesDesc'
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}" />
+				<Text text="{path: 'data>/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}" />
 				<Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblDatabaseBackupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					path: 'data>/databaseBackupStart', 
-					type: 'spet.sbwo.web.util.TimeOfDay', 
-					formatOptions: {pattern: 'HH:mm:ss'}
-				}" />
+				<Text text="{path: 'data>/databaseBackupStart', formatter: 'spet.sbwo.web.model.formatter.time'}" />
 				<Text text="{i18n>txtDatabaseBackupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					parts: [
-						'i18n>txtServerSettingsDispayNumberUnitPattern', 
-						'data>/databaseBackupInterval', 
-						'i18n>inpDatabaseBackupIntervalDesc'
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}" />
+				<Text text="{path: 'data>/databaseBackupInterval', type: 'spet.sbwo.web.util.Period'}" />
 				<Text text="{i18n>txtDatabaseBackupIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
@@ -63,37 +45,19 @@
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblCleanupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					path: 'data>/cleanupStart', 
-					type: 'spet.sbwo.web.util.TimeOfDay', 
-					formatOptions: {pattern: 'HH:mm:ss'}
-				}" />
+				<Text text="{path: 'data>/cleanupStart', formatter: 'spet.sbwo.web.model.formatter.time'}" />
 				<Text text="{i18n>txtCleanupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblCleanupThresholdText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					parts: [
-						'i18n>txtServerSettingsDispayNumberUnitPattern', 
-						'data>/cleanupThreshold', 
-						'i18n>inpCleanupThresholdDesc'
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}"/>
+				<Text text="{path: 'data>/cleanupThreshold', type: 'spet.sbwo.web.util.Period'}"/>
 				<Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblSessionFlushIntervalText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
-					parts: [
-						'i18n>txtServerSettingsDispayNumberUnitPattern', 
-						'data>/sessionFlushInterval', 
-						'i18n>inpSessionFlushIntervalDesc'
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}"/>
+				<Text text="{path: 'data>/sessionFlushInterval', type: 'spet.sbwo.web.util.Duration'}"/>
 				<Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>

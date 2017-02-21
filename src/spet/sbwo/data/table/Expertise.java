@@ -1,7 +1,7 @@
 package spet.sbwo.data.table;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -47,10 +47,10 @@ public class Expertise extends JournalizedBaseEntity {
 	private User responsible;
 
 	@Column(name = "C_LAST_CHECKED_ON")
-	private Timestamp lastCheckedOn;
+	private LocalDateTime lastCheckedOn;
 
 	@Column(name = "C_NEXT_HEARING")
-	private Date nextHearing;
+	private LocalDate nextHearing;
 
 	@Embedded
 	private Tariff tariff;
@@ -114,19 +114,19 @@ public class Expertise extends JournalizedBaseEntity {
 		this.responsible = responsible;
 	}
 
-	public Timestamp getLastCheckedOn() {
+	public LocalDateTime getLastCheckedOn() {
 		return lastCheckedOn;
 	}
 
-	public void setLastCheckedOn(Timestamp lastCheckedOn) {
+	public void setLastCheckedOn(LocalDateTime lastCheckedOn) {
 		this.lastCheckedOn = lastCheckedOn;
 	}
 
-	public Date getNextHearing() {
+	public LocalDate getNextHearing() {
 		return nextHearing;
 	}
 
-	public void setNextHearing(Date nextHearing) {
+	public void setNextHearing(LocalDate nextHearing) {
 		this.nextHearing = nextHearing;
 	}
 

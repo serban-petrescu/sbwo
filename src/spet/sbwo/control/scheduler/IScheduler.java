@@ -1,8 +1,10 @@
 package spet.sbwo.control.scheduler;
 
+import java.time.LocalDateTime;
+
 interface IScheduler {
 
-	ScheduleInfo next(long previous);
+	ScheduleInfo next(LocalDateTime previous);
 
 	SchedulerType type();
 	
