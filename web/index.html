@@ -15,12 +15,13 @@
 			<div id="ring" class='uil-ring-css' style='transform:scale(1);'><div></div></div>
 		</div>
 		<script type="text/javascript">
-			var oUserPreference = {"language": "en", "theme": "sap_belize", "draftResumeDelay": 30};
+			var oUserData;
 			
-			function mergePreference(oPreference) {
-				oUserPreference.language = oPreference.language || oUserPreference.language;
-				oUserPreference.theme = oPreference.theme || oUserPreference.theme;
-				oUserPreference.draftResumeDelay = oPreference.draftResumeDelay || oUserPreference.draftResumeDelay;
+			function mergeUserData(oData) {
+				oData.preference.language = oData.language || "en";
+				oData.preference.theme = oData.theme || "sap_belize"
+				oData.preference.draftResumeDelay = oData.draftResumeDelay || 30;
+				oUserData = oData;
 			}
 			
 			function browserSupportsCSSProperty(sPropertyName) {
@@ -50,11 +51,11 @@
 		<div id="content">
 		</div>
 		
-		<script src="/private/api/rest/user/preference/read?callback=mergePreference" ></script>
+		<script src="/public/rest/user/current?callback=mergeUserData" ></script>
 		<script type="text/javascript">
 			window["sap-ui-config"] = {
-				theme: oUserPreference.theme,
-				language: oUserPreference.language
+				theme: oUserData.preference.theme,
+				language: oUserData.preference.language
             };
 		</script>
 		

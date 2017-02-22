@@ -37,6 +37,9 @@ sap.ui.define([
 			// set the context model
 			this.setModel(models.createContextModel(), "context");
 			
+			// set the user model
+			this.setModel(models.createUserModel(), "user");
+			
 			//put the bundle in the formatter
 			formatter.setResourceBundle(this.getModel("i18n").getResourceBundle());
 			

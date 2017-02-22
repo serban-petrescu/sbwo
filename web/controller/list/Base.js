@@ -1,12 +1,15 @@
 sap.ui.define([
 	"spet/sbwo/web/controller/Base",
 	"sap/ui/model/Sorter",
+	"sap/ui/model/Filter",
 	"sap/m/GroupHeaderListItem"
-], function(Base, Sorter, GroupHeaderListItem) {
+], function(Base, Sorter, Filter, GroupHeaderListItem) {
 	"use strict";
 	
 	return Base.extend("spet.sbwo.web.controller.list.Base", {
 		_groupHeaderFormatter: null,
+		_filters: [],
+		_query: "",
 		
 		getEntityRoute: function(/*oContext*/){},
 		
@@ -14,6 +17,10 @@ sap.ui.define([
 		
 		getDefaultSortSettings: function() {
 			return [];
+		},
+		
+		getCustomFilterForKey: function(/* sKey */) {
+			return null;
 		},
 		
 		getFormatterForColumn: function(/* sColumn */) {
@@ -56,6 +63,7 @@ sap.ui.define([
 			if (oField.getValue() !== sQuery) {
 				oField.setValue(sQuery);
 			}
+			this._query = sQuery;
 			this._filterList(sQuery);
 		},
 		
@@ -72,6 +80,8 @@ sap.ui.define([
 			});
 			this.getModel("view").setData({settings: {applied: false}});
 			this.getList().getBinding("items").sort(aSorters);
+			this._filters = [];
+			this._filterList(this._query);
 		},
 		
 		onOpenViewSettingsDialog: function() {
@@ -79,17 +89,76 @@ sap.ui.define([
 		},
 		
 		onViewSettingsConfirm: function(oEvent) {
-			var aSorters = [],
-				oGroup = oEvent.getParameter("groupItem"),
-				oSort = oEvent.getParameter("sortItem");
-			if (oGroup) {
-				aSorters.push(new Sorter(oGroup.getKey(), oEvent.getParameter("groupDescending"), true));
-				this._groupHeaderFormatter = this.getFormatterForColumn(oGroup.getKey());
-			}
-			if (oSort) {
-				aSorters.push(new Sorter(oSort.getKey(), oEvent.getParameter("sortDescending"), false));
-			}
-			this.getList().getBinding("items").sort(aSorters);
+			var fnApplySorting = function() {
+					var aSorters = [],
+						oGroup = oEvent.getParameter("groupItem"),
+						oSort = oEvent.getParameter("sortItem");
+					if (oGroup) {
+						aSorters.push(new Sorter(oGroup.getKey(), oEvent.getParameter("groupDescending"), true));
+						this._groupHeaderFormatter = this.getFormatterForColumn(oGroup.getKey());
+					}
+					if (oSort) {
+						aSorters.push(new Sorter(oSort.getKey(), oEvent.getParameter("sortDescending"), false));
+					}
+					this.getList().getBinding("items").sort(aSorters);
+				},
+				
+				fnGetExternal = this.getCustomFilterForKey.bind(this),
+				
+				fnMapParent = function(mKeys, sParentKey) {
+					var aFilters = [];
+					for (var sKey in mKeys) {
+						if (mKeys.hasOwnProperty(sKey) && mKeys[sKey]) {
+							aFilters.push(new Filter(sParentKey, "EQ", sKey));
+						}
+					}
+					return aFilters;
+				},
+				
+				fnBuildFilterFromArray = function(bAnd, aFilters) {
+					if (aFilters.length === 0) {
+						return null;
+					}
+					else if (aFilters.length === 1) {
+						return aFilters[0];
+					}
+					else {
+						return new Filter({filters: aFilters, and: bAnd});
+					}
+				},
+				
+				fnComputeFilters = function() {
+					var oComposite = oEvent.getParameter("filterCompoundKeys") || {},
+						aFilters = [],
+						sKey,
+						oFilter;
+					
+					for (sKey in oComposite) {
+						if (oComposite.hasOwnProperty(sKey) && sKey) {
+							oFilter = fnBuildFilterFromArray(false, fnMapParent(oComposite[sKey], sKey));
+							if (oFilter) {
+								aFilters.push(oFilter);
+							}
+						}
+					}
+					
+					if (oComposite[""]) {
+						for (sKey in oComposite[""]) {
+							if (oComposite[""].hasOwnProperty(sKey) && oComposite[""][sKey]) {
+								oFilter = fnGetExternal(sKey);
+								if (oFilter) {
+									aFilters.push(oFilter);
+								}
+							}
+						}
+					}
+					
+					return aFilters;
+				};
+				
+			fnApplySorting.call(this);
+			this._filters = fnComputeFilters();
+			this._filterList(this._query);
 			this.getModel("view").setProperty("/settings/applied", true);
 		},
 		
@@ -99,7 +168,18 @@ sap.ui.define([
 		},
 		
 		_filterList: function(sQuery) {
-			this.applySearchFilter(sQuery, this.getSearchAttribute(), this.getList().getBinding("items"));
+			var aFilters = this.getSearchFilters(sQuery, this.getSearchAttribute()),
+				oBinding = this.getList().getBinding("items");
+			aFilters.push.apply(aFilters, this._filters);
+			if (aFilters.length){
+				oBinding.filter(new Filter({
+					filters: aFilters,
+					and: true
+				}));
+			}
+			else {
+				oBinding.filter(aFilters);
+			}
 		}
 		
 	});

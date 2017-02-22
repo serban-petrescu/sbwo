@@ -33,6 +33,6 @@ public abstract class BaseUserDatabaseAction<I, O> implements IUserDatabaseActio
 		}
 	}
 
-	public abstract O doRun(I input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException;
+	protected abstract O doRun(I input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException;
 
 }

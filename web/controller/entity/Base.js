@@ -4,9 +4,8 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/HashChanger",
 	"spet/sbwo/web/util/DraftService",
-	"sap/ui/core/format/DateFormat",
-	"spet/sbwo/web/model/preference"
-], function(Base, JSONModel, MessageBox, HashChanger, DraftService, DateFormat, preference) {
+	"sap/ui/core/format/DateFormat"
+], function(Base, JSONModel, MessageBox, HashChanger, DraftService, DateFormat) {
 	"use strict";
 	
 	var oDtFormat = DateFormat.getDateTimeInstance({style: "short"});
@@ -155,7 +154,8 @@ sap.ui.define([
 				
 			DraftService.load(HashChanger.getInstance().getHash()).then(function(oData){
 				if (oData && oData.data) {
-					if ((new Date().getTime() - oData.time) <= preference.draftResumeDelay * 60 * 1000) {
+					var iDelay = this.getModel("user").getProperty("/preference/draftResumeDelay");
+					if ((new Date().getTime() - oData.time) <= iDelay * 60 * 1000) {
 						fnOnConfirm(oData);
 					}
 					else {

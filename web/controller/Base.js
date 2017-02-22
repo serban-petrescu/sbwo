@@ -220,10 +220,7 @@ sap.ui.define([
 		 * @returns {void}
 		 */
 		applySearchFilter: function(sQuery, sAttribute, oBinding) {
-			var aParts = sQuery.split(" "),
-				aFilters = aParts.map(function(sPart) {
-					return new Filter(sAttribute, FilterOperator.Contains, (sPart || "").toUpperCase());
-				});
+			var aFilters = this.getSearchFilters(sQuery, sAttribute);
 			if (aFilters.length){
 				oBinding.filter(new Filter({
 					filters: aFilters,
@@ -233,6 +230,25 @@ sap.ui.define([
 			else {
 				oBinding.filter(aFilters);
 			}
+		},
+		
+		/**
+		 * Gets the search filters. Search filters work by splitting the search query into words
+		 * and applying a filter on a single attribute. This filter will be a conjunction of Contains
+		 * filters for each word. The search is case insensitive (the words are converted to upper case)
+		 * and the target attribute is expected to be upper case as well.
+		 * @param	{string}	sQuery		The search query.
+		 * @param	{string}	sAttribute	The target search attribute.
+		 * @returns {Filter[]}	The array of filters which should be applied;
+		 */
+		getSearchFilters: function(sQuery, sAttribute) {
+			var fnMap = function(sPart) {
+					return new Filter(sAttribute, FilterOperator.Contains, (sPart || "").toUpperCase());
+				},
+				fnFilter = function(sPart) {
+					return !!sPart;
+				};
+			return (sQuery || "").split(" ").filter(fnFilter).map(fnMap);
 		},
 		
 		/**

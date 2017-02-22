@@ -32,7 +32,6 @@ sap.ui.define([
 			});
 			
 			this.attachHashAndRoutes();
-			this.onReadUser();
 		},
 		
 		attachHashAndRoutes: function() {
@@ -70,13 +69,6 @@ sap.ui.define([
 		
 		onOpenHelpDialog: function() {
 			this.byId("dlgHelpVideo").open();
-		},
-		
-		onReadUser: function() {
-			var fnSuccess = function(oData) {
-				this.getModel("view").setProperty("/user", oData);
-			};
-			this.get("/public/rest/user/current", fnSuccess);
 		},
 		
 		onLogoff: function() {

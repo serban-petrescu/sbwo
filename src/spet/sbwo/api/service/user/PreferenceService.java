@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.api.service.util.JsonpEntity;
+import spet.sbwo.api.service.util.JsonpUtils;
 import spet.sbwo.control.channel.UserPreferenceChannel;
 import spet.sbwo.control.controller.user.PreferenceController;
 
@@ -28,12 +28,7 @@ public class PreferenceService extends BaseService implements IPrivate {
 	@Path("/read")
 	public Response readPreference(@QueryParam("callback") String callback) {
 		try {
-			UserPreferenceChannel preference = controller.readPreference(currentUsername());
-			if (callback == null) {
-				return Response.ok(preference, "application/json").build();
-			} else {
-				return Response.ok(new JsonpEntity<>(preference, callback), "application/javascript").build();
-			}
+			return JsonpUtils.response(controller.readPreference(currentUsername()), callback);
 		} catch (Exception e) {
 			throw mapException(e);
 		}

@@ -4,6 +4,7 @@ import javax.persistence.EntityManagerFactory;
 
 import org.h2.server.web.WebServlet;
 import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.parameters.ComponentParameter;
 import org.picocontainer.parameters.ConstantParameter;
 
 import spet.sbwo.api.odata.ODataFactory;
@@ -44,7 +45,8 @@ public class Service {
 		container.addComponent(LocationImportService.class);
 		container.addComponent(FavouriteService.class);
 		container.addComponent(ManagementService.class);
-		container.addComponent(SessionService.class, SessionService.class, new ConstantParameter(LOGIN_RELATIVE_PATH));
+		container.addComponent(SessionService.class, SessionService.class, new ComponentParameter(),
+				new ConstantParameter(LOGIN_RELATIVE_PATH));
 		container.addComponent(PreferenceService.class);
 		container.addComponent(TileService.class);
 		container.addComponent(SelfService.class);

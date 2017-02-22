@@ -32,7 +32,7 @@
 			<u:ShellHeadUserItem
 				showPopupIndicator="false"
 				image="sap-icon://person-placeholder"
-				username="{view>/user/username}"
+				username="{user>/username}"
 				press="onPressPersonalization" />
 		</u:user>
 		<u:search>

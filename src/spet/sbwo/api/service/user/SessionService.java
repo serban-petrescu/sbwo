@@ -9,7 +9,7 @@ import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.HEAD;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
@@ -18,23 +18,31 @@ import org.slf4j.LoggerFactory;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPublic;
+import spet.sbwo.api.service.util.JsonpUtils;
+import spet.sbwo.control.ControlException;
+import spet.sbwo.control.controller.user.ManagementController;
 
 public class SessionService extends BaseService implements IPublic {
 	private static final Logger LOG = LoggerFactory.getLogger(SessionService.class);
 
-	private String loginPath;
+	private final String loginPath;
+	private final ManagementController controller;
 
-	public SessionService(String loginPath) {
+	public SessionService(ManagementController controller, String loginPath) {
 		this.loginPath = loginPath;
+		this.controller = controller;
 	}
 
 	@GET
 	@Path("/user/current")
-	@Produces("application/json")
-	public String readCurrent() {
+	public Response readCurrent(@QueryParam("callback") String callback) {
 		String username = currentUsername();
 		if (username != null) {
-			return "{\"username\": \"" + username + "\"}";
+			try {
+				return JsonpUtils.response(controller.readInfo(username), callback);
+			} catch (ControlException e) {
+				throw mapException(e);
+			}
 		} else {
 			throw new ForbiddenException();
 		}

@@ -7,7 +7,9 @@ import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.user.ActivateUser;
 import spet.sbwo.control.action.user.ChangePassword;
 import spet.sbwo.control.action.user.ReadAllUserPlains;
+import spet.sbwo.control.action.user.ReadCurrentUserInfo;
 import spet.sbwo.control.action.user.RegisterUser;
+import spet.sbwo.control.channel.UserInfoChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
 
@@ -36,6 +38,10 @@ public class ManagementController extends BaseActionExecutor {
 
 	public List<UserPlain> listAllPlains() throws ControlException {
 		return execute(new ReadAllUserPlains(), null);
+	}
+
+	public UserInfoChannel readInfo(String username) throws ControlException {
+		return execute(username, new ReadCurrentUserInfo(), null);
 	}
 
 }

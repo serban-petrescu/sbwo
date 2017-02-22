@@ -1,6 +1,6 @@
 package spet.sbwo.api.service.util;
 
-public class JsonpEntity<T> {
+class JsonpEntity<T> {
 	private final T entity;
 	private final String callback;
 
