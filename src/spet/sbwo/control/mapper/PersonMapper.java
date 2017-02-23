@@ -61,34 +61,23 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 	public void merge(Person internal, PersonChannel external) throws ControlException {
 		super.merge(internal, external);
 
-		internal.setBankAccounts(this.ifNotNullForEach(
-				this.bankAccountMapper.merge(internal.getBankAccounts(), external.getBankAccounts()), internal,
-				PersonBankAccount::setPerson));
+		internal.setBankAccounts(
+				ifNotNullForEach(bankAccountMapper.merge(internal.getBankAccounts(), external.getBankAccounts()),
+						internal, PersonBankAccount::setPerson));
 		addOperations(bankAccountMapper);
 
 		internal.setTelephones(
-				this.ifNotNullForEach(this.telephoneMapper.merge(internal.getTelephones(), external.getTelephones()),
-						internal, PersonTelephone::setPerson));
+				ifNotNullForEach(telephoneMapper.merge(internal.getTelephones(), external.getTelephones()), internal,
+						PersonTelephone::setPerson));
 		addOperations(telephoneMapper);
 
-		internal.setEmailAddresses(this.ifNotNullForEach(
-				this.emailMapper.merge(internal.getEmailAddresses(), external.getEmailAddresses()), internal,
-				PersonEmailAddress::setPerson));
+		internal.setEmailAddresses(
+				ifNotNullForEach(emailMapper.merge(internal.getEmailAddresses(), external.getEmailAddresses()),
+						internal, PersonEmailAddress::setPerson));
 		addOperations(emailMapper);
 
-		if (external.getLocation() == null) {
-			if (internal.getLocation() != null) {
-				addOperation(0, this.buildDelete(internal.getLocation()));
-			}
-			internal.setLocation(null);
-		} else {
-			if (internal.getLocation() != null) {
-				this.locationMapper.merge(internal.getLocation(), external.getLocation());
-			} else {
-				internal.setLocation(this.locationMapper.toInternal(external.getLocation()));
-			}
-			addOperations(0, locationMapper);
-		}
+		internal.setLocation(locationMapper.toInternalMandatory(internal.getLocation(), external.getLocation()));
+		addOperations(0, locationMapper);
 
 		if (internal instanceof PersonNatural) {
 			PersonNatural person = (PersonNatural) internal;

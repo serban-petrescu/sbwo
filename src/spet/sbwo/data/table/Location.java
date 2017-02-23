@@ -31,6 +31,9 @@ public class Location extends BaseEntity{
 	
 	@Column(name = "C_LONGITUDE")
 	private Double longitude;
+	
+	@Column(name = "C_GEOCODED")
+	private boolean geocoded;
 
 	public LocationCountry getCountry() {
 		return country;
@@ -78,6 +81,14 @@ public class Location extends BaseEntity{
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public boolean isGeocoded() {
+		return geocoded;
+	}
+
+	public void setGeocoded(boolean geocoded) {
+		this.geocoded = geocoded;
 	}
 
 	@Override

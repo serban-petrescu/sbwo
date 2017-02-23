@@ -7,12 +7,12 @@
 			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.ExpertisePropertiesMerged" />
 		</l:VerticalLayout>
 	</IconTabFilter>
-	<IconTabFilter icon="sap-icon://write-new-document" binding="{data>/}">
+	<IconTabFilter icon="sap-icon://map" binding="{data>/location}">
 		<l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.Notes" />
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>
 		</l:VerticalLayout>
 		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.Notes" />
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.LocationFullForm" />
 		</l:VerticalLayout>
 	</IconTabFilter>
 	<IconTabFilter icon="sap-icon://unpaid-leave" binding="{data>/}" visible="{= ${view>/edit} || !!${data>/fines/length} }">
@@ -23,12 +23,12 @@
 			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.ExpertiseFines" />
 		</l:VerticalLayout>
 	</IconTabFilter>
-	<!-- <IconTabFilter icon="sap-icon://map" binding="{data>/location}">
+	<IconTabFilter icon="sap-icon://write-new-document" binding="{data>/}">
 		<l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.Notes" />
 		</l:VerticalLayout>
 		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.LocationFullForm" />
+			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.Notes" />
 		</l:VerticalLayout>
-	</IconTabFilter>-->
+	</IconTabFilter>
 </core:FragmentDefinition>

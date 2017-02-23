@@ -7,6 +7,7 @@ public class LocationChannel extends BaseChannel {
 	private String address;
 	private Double latitude;
 	private Double longitude;
+	private Boolean geocoded;
 
 	public Country getCountry() {
 		return country;
@@ -56,6 +57,14 @@ public class LocationChannel extends BaseChannel {
 		this.longitude = longitude;
 	}
 
+	public Boolean getGeocoded() {
+		return geocoded;
+	}
+
+	public void setGeocoded(Boolean geocoded) {
+		this.geocoded = geocoded;
+	}
+
 	public static class Country extends BaseChannel {
 		private String name;
 		private String code;
@@ -97,6 +106,7 @@ public class LocationChannel extends BaseChannel {
 			this.code = code;
 		}
 	}
+
 	public static class Region extends BaseChannel {
 		private String name;
 		private String code;

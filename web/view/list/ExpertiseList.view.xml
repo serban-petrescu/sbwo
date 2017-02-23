@@ -10,6 +10,11 @@
 				<Button tooltip="{i18n>btnViewSettingsTooltip}" icon="sap-icon://drop-down-list" press="onOpenViewSettingsDialog"/>
 			</Toolbar>
 		</subHeader>
+		<IconTabHeader select="onTabChanged" selectedKey="{view>/currentTab}" items="{view>/tabs}">
+			<items>
+				<IconTabFilter key="{view>key}" text="{view>title}" iconColor="{view>type}" />
+			</items>
+		</IconTabHeader>
 		<Table id="lstMain" items="{
 				path: '/ExpertiseSearchs', 
 				sorter: {path: 'NextHearing', descending: true},

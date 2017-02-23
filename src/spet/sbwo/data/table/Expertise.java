@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import spet.sbwo.data.base.JournalizedBaseEntity;
@@ -54,6 +55,10 @@ public class Expertise extends JournalizedBaseEntity {
 
 	@Embedded
 	private Tariff tariff;
+
+	@OneToOne(optional = false)
+	@JoinColumn(name = "C_LOCATION_ID")
+	private Location location;
 
 	@OneToMany(mappedBy = "expertise")
 	private List<ExpertiseFine> fines;
@@ -144,6 +149,19 @@ public class Expertise extends JournalizedBaseEntity {
 
 	public void setFines(List<ExpertiseFine> fines) {
 		this.fines = fines;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	@Override
+	public String toString() {
+		return "Expertise [id=" + id + ", number=" + number + ", title=" + title + ", responsible=" + responsible + "]";
 	}
 
 }

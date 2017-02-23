@@ -28,7 +28,7 @@ public class ExpertiseSearch {
 	private String title;
 
 	@Column(name = "C_RESPONSIBLE")
-	private String responsible;
+	private int responsible;
 
 	@Column(name = "C_COURT")
 	private String court;
@@ -63,11 +63,11 @@ public class ExpertiseSearch {
 		this.title = title;
 	}
 
-	public String getResponsible() {
+	public int getResponsible() {
 		return responsible;
 	}
 
-	public void setResponsible(String responsible) {
+	public void setResponsible(int responsible) {
 		this.responsible = responsible;
 	}
 

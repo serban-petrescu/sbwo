@@ -1,16 +1,20 @@
 sap.ui.define([
-	"./Base",
+	"./BaseWithTabs",
 	"spet/sbwo/web/model/formatter"
-], function(Base, formatter) {
+], function(BaseWithTabs, formatter) {
 	"use strict";
 	
-	return Base.extend("spet.sbwo.web.controller.list.ExpertiseList", {
+	return BaseWithTabs.extend("spet.sbwo.web.controller.list.ExpertiseList", {
 		getEntityRoute: function() {
 			return "expertise";
 		},
 		
 		getListRoute: function() {
 			return "expertise-list";
+		},
+		
+		getUserAttribute: function() {
+			return "Responsible";
 		},
 		
 		getDefaultSortSettings: function() {

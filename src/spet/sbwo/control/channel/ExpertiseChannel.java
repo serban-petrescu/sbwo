@@ -18,6 +18,7 @@ public class ExpertiseChannel extends JournalChannel {
 	private BigDecimal price;
 	private BigDecimal advance;
 	private List<Fine> fines;
+	private LocationChannel location;
 
 	public String getNumber() {
 		return number;
@@ -113,6 +114,14 @@ public class ExpertiseChannel extends JournalChannel {
 
 	public void setFines(List<Fine> fines) {
 		this.fines = fines;
+	}
+
+	public LocationChannel getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationChannel location) {
+		this.location = location;
 	}
 
 	public static class Fine extends BaseChannel {

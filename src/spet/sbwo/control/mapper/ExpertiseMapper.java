@@ -18,10 +18,12 @@ import spet.sbwo.data.table.ExpertiseFine;
 public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> {
 	private static final Logger LOG = LoggerFactory.getLogger(ExpertiseMapper.class);
 	private final FineMapper fineMapper;
+	private final LocationMapper locationMapper;
 
 	public ExpertiseMapper(IDatabaseExecutor executor) {
 		super(executor);
 		fineMapper = new FineMapper(executor);
+		locationMapper = new LocationMapper(executor);
 	}
 
 	@Override
@@ -39,6 +41,8 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 		internal.setTariff(new Tariff(external.getPrice(), external.getAdvance()));
 		internal.setFines(fineMapper.merge(internal.getFines(), external.getFines()));
 		addOperations(fineMapper);
+		internal.setLocation(locationMapper.toInternalMandatory(internal.getLocation(), external.getLocation()));
+		addOperations(0, locationMapper);
 	}
 
 	@Override
@@ -58,6 +62,7 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 			external.setAdvance(t.getAdvance());
 		});
 		external.setFines(fineMapper.toExternal(internal.getFines()));
+		external.setLocation(locationMapper.toExternal(internal.getLocation()));
 	}
 
 	@Override

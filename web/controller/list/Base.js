@@ -64,7 +64,7 @@ sap.ui.define([
 				oField.setValue(sQuery);
 			}
 			this._query = sQuery;
-			this._filterList(sQuery);
+			this._filterList();
 		},
 		
 		onPressItem: function(oEvent) {
@@ -81,7 +81,7 @@ sap.ui.define([
 			this.getModel("view").setData({settings: {applied: false}});
 			this.getList().getBinding("items").sort(aSorters);
 			this._filters = [];
-			this._filterList(this._query);
+			this._filterList();
 		},
 		
 		onOpenViewSettingsDialog: function() {
@@ -158,7 +158,7 @@ sap.ui.define([
 				
 			fnApplySorting.call(this);
 			this._filters = fnComputeFilters();
-			this._filterList(this._query);
+			this._filterList();
 			this.getModel("view").setProperty("/settings/applied", true);
 		},
 		
@@ -167,10 +167,15 @@ sap.ui.define([
 			return new GroupHeaderListItem({title: sTitle});
 		},
 		
-		_filterList: function(sQuery) {
-			var aFilters = this.getSearchFilters(sQuery, this.getSearchAttribute()),
-				oBinding = this.getList().getBinding("items");
+		getAllFilters: function() {
+			var aFilters = this.getSearchFilters(this._query, this.getSearchAttribute());
 			aFilters.push.apply(aFilters, this._filters);
+			return aFilters;
+		},
+		
+		_filterList: function() {
+			var aFilters = this.getAllFilters(),
+				oBinding = this.getList().getBinding("items");
 			if (aFilters.length){
 				oBinding.filter(new Filter({
 					filters: aFilters,

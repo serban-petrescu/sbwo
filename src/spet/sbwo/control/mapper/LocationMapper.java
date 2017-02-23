@@ -46,6 +46,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		external.setLatitude(internal.getLatitude());
 		external.setLongitude(internal.getLongitude());
 		external.setRegion(this.regionMapper.toExternal(internal.getRegion()));
+		external.setGeocoded(internal.isGeocoded());
 	}
 
 	@Override
@@ -57,6 +58,21 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		internal.setLatitude(external.getLatitude());
 		internal.setLongitude(external.getLongitude());
 		internal.setRegion(this.regionMapper.toInternal(external.getRegion()));
+		ifNotNull(external.getGeocoded(), internal::setGeocoded);
+	}
+
+	public Location toInternalMandatory(Location internal, LocationChannel external) throws ControlException {
+		if (external != null) {
+			if (internal != null) {
+				merge(internal, external);
+				return internal;
+			} else {
+				return toInternal(external);
+			}
+		} else if (internal == null) {
+			return new Location();
+		}
+		return internal;
 	}
 
 	public static class CountryMapper extends BaseMapper<LocationCountry, LocationChannel.Country> {
