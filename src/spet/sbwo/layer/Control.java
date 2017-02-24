@@ -20,6 +20,7 @@ import spet.sbwo.control.controller.user.PreferenceController;
 import spet.sbwo.control.controller.user.SessionManager;
 import spet.sbwo.control.controller.user.TileController;
 import spet.sbwo.control.importer.DataImportFacade;
+import spet.sbwo.control.runnable.RunCheckCourtBatch;
 
 public class Control {
 
@@ -40,5 +41,8 @@ public class Control {
 				new ConstantParameter(configuration.getDirectDeleteInterval()));
 		container.addComponent(CourtImportController.class);
 		container.addComponent(ISessionManager.class, CachedSessionManager.class);
+		container.addComponent(RunCheckCourtBatch.class, RunCheckCourtBatch.class, new ComponentParameter(),
+				new ComponentParameter(), new ConstantParameter(configuration.getCheckCourtMaxAge()),
+				new ConstantParameter(configuration.getCheckCourtCount()));
 	}
 }

@@ -148,4 +148,20 @@ class DatabaseExecutor implements IDatabaseExecutor {
 		return queryList(name, resultType, params).stream().findFirst();
 	}
 
+	@Override
+	public <T> List<T> queryListLimit(String name, Class<T> resultType, int maxResults, Object... params)
+			throws DatabaseException {
+		try {
+			TypedQuery<T> query = em.createNamedQuery(name, resultType);
+			for (int i = 0; i < params.length; ++i) {
+				query.setParameter(i + 1, params[i]);
+			}
+			query.setMaxResults(maxResults);
+			return query.getResultList();
+		} catch (Exception e) {
+			LOG.error("Unable to run named query {}.", name);
+			throw new DatabaseException(e);
+		}
+	}
+
 }

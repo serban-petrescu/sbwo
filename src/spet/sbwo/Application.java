@@ -33,8 +33,8 @@ public class Application {
 
 		new Database(container);
 		new Control(container, configuration);
-		new Schedule(container, configuration);
 		new Integration(container);
+		new Schedule(container, configuration);
 		new Service(container);
 		new Producer(container);
 		new Server(container);

@@ -24,6 +24,8 @@ public interface IDatabaseExecutor extends AutoCloseable {
 	<T> void create(T entity) throws DatabaseException;
 
 	<T> List<T> queryList(String name, Class<T> resultType, Object... params) throws DatabaseException;
+	
+	<T> List<T> queryListLimit(String name, Class<T> resultType, int maxResults, Object... params) throws DatabaseException;
 
 	<T> Optional<T> querySingle(String name, Class<T> resultType, Object... params) throws DatabaseException;
 

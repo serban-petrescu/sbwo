@@ -15,6 +15,17 @@ public class Configuration {
 	private LocalTime cleanupStart;
 	private Period cleanupThreshold;
 	private Duration sessionFlushInterval;
+	private Duration checkCourtInterval;
+	private Duration checkCourtMaxAge;
+	private int checkCourtCount;
+
+	public Duration getCheckCourtInterval() {
+		return checkCourtInterval;
+	}
+
+	public int getCheckCourtCount() {
+		return checkCourtCount;
+	}
 
 	public Duration getSessionTimeout() {
 		return sessionTimeout;
@@ -52,6 +63,10 @@ public class Configuration {
 		return sessionFlushInterval;
 	}
 
+	public Duration getCheckCourtMaxAge() {
+		return checkCourtMaxAge;
+	}
+
 	public static Configuration createDefault() {
 		Configuration config = new Configuration();
 		config.sessionTimeout = Duration.ofMinutes(60);
@@ -63,6 +78,9 @@ public class Configuration {
 		config.cleanupStart = LocalTime.of(10, 0);
 		config.cleanupThreshold = Period.ofDays(30);
 		config.sessionFlushInterval = Duration.ofMinutes(15);
+		config.checkCourtInterval = Duration.ofMinutes(17);
+		config.checkCourtMaxAge = Duration.ofDays(1);
+		config.checkCourtCount = 5;
 		return config;
 	}
 
