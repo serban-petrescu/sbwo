@@ -2,6 +2,7 @@ package spet.sbwo.control.controller.bo;
 
 import java.time.Duration;
 
+import spet.sbwo.config.ControlEntry;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.bo.base.CreateEntity;
 import spet.sbwo.control.action.bo.base.DeleteEntity;
@@ -20,8 +21,8 @@ import spet.sbwo.data.table.Person;
 
 public class PersonController extends BaseBoController<Person, PersonChannel> {
 
-	public PersonController(IDatabaseExecutorCreator database, Duration directDeleteInterval) {
-		super(database, directDeleteInterval);
+	public PersonController(IDatabaseExecutorCreator database, ControlEntry config) {
+		super(database, config);
 	}
 
 	public String export(int id) throws ControlException {

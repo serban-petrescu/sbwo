@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:maps="openui5.googlemaps">
+	<Dialog id="dlgLocationMap" stretch="{device>/system/phone}" horizontalScrolling="false" verticalScrolling="false"
+		binding="{view>/help}" contentHeight="90%" contentWidth="90%">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="{i18n>dlgLocationMapTitle}" />
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" tooltip="{i18n>btnMapDialogCloseTooltip}" press="onCloseLocationMapDialog" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<FlexBox height="100%" width="100%" fitContainer="true" alignItems="Center" justifyContent="Center">
+			<maps:Map lat="{data>latitude}" lng="{data>longitude}" zoom="10" 
+				height="{= (${device>/system/phone} ? parseInt(${device>/resize/height} * 9 / 10, 10) : 
+					${device>/resize/height}) - 48 + 'px' }" >
+				<maps:Marker lat="{data>latitude}" lng="{data>longitude}" />
+				<maps:layoutData>
+					<FlexItemData growFactor="1" />
+				</maps:layoutData>
+			</maps:Map>
+		</FlexBox>
+	</Dialog>
+</core:FragmentDefinition>

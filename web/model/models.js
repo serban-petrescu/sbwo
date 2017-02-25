@@ -18,6 +18,10 @@ sap.ui.define([
 		createContextModel: function() {
 			var oModel = new JSONModel(jQuery.sap.getModulePath("spet.sbwo.web.model") + "/context.json");
 			oModel.setDefaultBindingMode("OneWay");
+			Device.resize.attachHandler(function() {
+				oModel.setProperty("/resize/height", Device.resize.height);
+				oModel.setProperty("/resize/width", Device.resize.width);
+			});
 			return oModel;
 		},
 		

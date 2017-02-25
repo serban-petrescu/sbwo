@@ -49,6 +49,10 @@
 			</headerContainer>
 		</ObjectHeader>
 		
+		<dependents>
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML" binding="{data>/location}" />
+		</dependents>
+		
 		<footer>
 			<Toolbar>
 				<spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}" />

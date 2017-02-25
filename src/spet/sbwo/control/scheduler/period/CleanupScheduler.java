@@ -1,4 +1,4 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.period;
 
 import static spet.sbwo.control.util.FileNameUtils.*;
 import java.io.File;
@@ -7,10 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,15 +18,21 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class CleanupScheduler extends BasePeriodScheduler {
+import spet.sbwo.config.CleanupEntry;
+import spet.sbwo.config.DatabaseBackupEntry;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
+
+public class CleanupScheduler extends BasePeriodScheduler {
 	private static final Logger LOG = LoggerFactory.getLogger(CleanupScheduler.class);
 	protected final Period maxAge;
 	protected final List<CleanerBase> cleaners;
 
-	public CleanupScheduler(LocalTime time, Period maxAge, List<CleanerBase> cleaners) {
-		super(SchedulerType.CLEANUP, time, Period.ofDays(1));
-		this.maxAge = maxAge;
-		this.cleaners = cleaners;
+	public CleanupScheduler(CleanupEntry config, DatabaseBackupEntry backupConfig) {
+		super(SchedulerType.CLEANUP, config.getStart(), Period.ofDays(1));
+		this.maxAge = config.getThreshold();
+		this.cleaners = Arrays.asList(new FormattedCleaner(backupConfig.getLocation(), BackupScheduler.DATE_FORMAT),
+				new PatternFormattedCleaner(new File("logs"), "yyyyMMdd", "log_(\\d{8})_\\d+"));
 	}
 
 	@Override

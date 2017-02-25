@@ -1,5 +1,15 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-	<Dialog id="dlgCourtCase" stretch="true" title="{i18n>dlgCourtCaseTitle}">
+	<Dialog id="dlgCourtCase" stretch="true">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="{i18n>dlgCourtCaseTitle}" />
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" tooltip="{i18n>btnDialogCloseTooltip}" press="onCloseCourtCaseDialog" />
+				</contentRight>
+			</Bar>
+		</customHeader>
 		<Panel busy="{= ${view>} === null }">
 			<f:Form editable="false">
 				<f:layout>
@@ -55,8 +65,5 @@
 				</ColumnListItem>
 			</Table>
 		</Panel>
-		<endButton>
-			<Button text="{i18n>btnCloseCourtCaseDialogText}" press="onCloseCourtCaseDialog"/>
-		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

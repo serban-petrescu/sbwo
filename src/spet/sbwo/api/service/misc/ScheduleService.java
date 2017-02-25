@@ -9,8 +9,8 @@ import javax.ws.rs.Produces;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.scheduler.IScheduleManager;
-import spet.sbwo.control.scheduler.ScheduleChannel;
+import spet.sbwo.control.scheduler.manager.IScheduleManager;
+import spet.sbwo.control.scheduler.model.ScheduleChannel;
 
 @Path("/utility/file/schedules")
 public class ScheduleService extends BaseService implements IPrivate {

@@ -3,10 +3,7 @@ package spet.sbwo;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
 
-import spet.sbwo.control.config.Configuration;
-import spet.sbwo.control.config.ConfigurationManager;
-import spet.sbwo.control.util.GsonSerializationHelper;
-import spet.sbwo.control.util.ISerializationHelper;
+import spet.sbwo.layer.Config;
 import spet.sbwo.layer.Control;
 import spet.sbwo.layer.Database;
 import spet.sbwo.layer.Integration;
@@ -22,23 +19,20 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		MutablePicoContainer container = new PicoBuilder().withCaching().withConstructorInjection()
-				.withReflectionLifecycle().build();
-		ISerializationHelper helper = new GsonSerializationHelper();
-		ConfigurationManager manager = new ConfigurationManager(helper, "server.json");
-		Configuration configuration = manager.read();
-		container.addComponent(helper);
-		container.addComponent(manager);
-		container.addComponent(configuration);
-
-		new Database(container);
-		new Control(container, configuration);
-		new Integration(container);
-		new Schedule(container, configuration);
-		new Service(container);
-		new Producer(container);
-		new Server(container);
+		MutablePicoContainer container = buildContainer();
+		Database.install(container);
+		Config.install(container);
+		Control.install(container);
+		Integration.install(container);
+		Schedule.install(container);
+		Service.install(container);
+		Producer.install(container);
+		Server.install(container);
 		container.start();
+	}
+
+	protected static MutablePicoContainer buildContainer() {
+		return new PicoBuilder().withCaching().withConstructorInjection().withReflectionLifecycle().build();
 	}
 
 }

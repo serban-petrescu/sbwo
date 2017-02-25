@@ -13,6 +13,7 @@ import spet.sbwo.api.service.bo.PersonService;
 import spet.sbwo.api.service.misc.ConfigurationService;
 import spet.sbwo.api.service.misc.CountService;
 import spet.sbwo.api.service.misc.FileExploreService;
+import spet.sbwo.api.service.misc.GeocodingService;
 import spet.sbwo.api.service.misc.LogService;
 import spet.sbwo.api.service.misc.ScheduleService;
 import spet.sbwo.api.service.misc.TrashService;
@@ -30,7 +31,11 @@ public class Service {
 	private static final String LOG_PATH = "log";
 	private static final String LOGIN_RELATIVE_PATH = "/../login/index.html";
 
-	public Service(MutablePicoContainer container) {
+	private Service() {
+		super();
+	}
+
+	public static void install(MutablePicoContainer container) {
 		ODataFactory.setEmf(container.getComponent(EntityManagerFactory.class));
 		ODataFactory.setPuName(Database.SBWO_PU);
 		container.addComponent(WebServlet.class);
@@ -52,5 +57,6 @@ public class Service {
 		container.addComponent(SelfService.class);
 		container.addComponent(CourtImportService.class);
 		container.addComponent(ExpertiseService.class);
+		container.addComponent(GeocodingService.class);
 	}
 }

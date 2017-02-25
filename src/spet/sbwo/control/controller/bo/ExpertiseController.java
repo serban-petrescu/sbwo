@@ -2,6 +2,7 @@ package spet.sbwo.control.controller.bo;
 
 import java.time.Duration;
 
+import spet.sbwo.config.ControlEntry;
 import spet.sbwo.control.action.bo.base.CreateEntity;
 import spet.sbwo.control.action.bo.base.DeleteEntity;
 import spet.sbwo.control.action.bo.base.ReadEntity;
@@ -18,8 +19,8 @@ import spet.sbwo.data.table.Expertise;
 
 public class ExpertiseController extends BaseBoController<Expertise, ExpertiseChannel> {
 
-	public ExpertiseController(IDatabaseExecutorCreator database, Duration directDeleteInterval) {
-		super(database, directDeleteInterval);
+	public ExpertiseController(IDatabaseExecutorCreator database, ControlEntry config) {
+		super(database, config);
 	}
 
 	@Override

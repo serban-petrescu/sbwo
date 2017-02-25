@@ -1,4 +1,4 @@
-package spet.sbwo.control.action.bo.expertise;
+package spet.sbwo.control.action.batch;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -7,6 +7,7 @@ import java.util.List;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.action.base.IDatabaseAction;
+import spet.sbwo.control.action.bo.expertise.CheckCourtSystem;
 import spet.sbwo.control.channel.ExpertiseChannel;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;

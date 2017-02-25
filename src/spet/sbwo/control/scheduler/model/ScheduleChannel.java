@@ -1,4 +1,4 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.model;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,7 @@ public class ScheduleChannel {
 	private final LocalDateTime time;
 	private final SchedulerType type;
 
-	protected ScheduleChannel(LocalDateTime time, SchedulerType type) {
+	public ScheduleChannel(LocalDateTime time, SchedulerType type) {
 		this.time = time;
 		this.type = type;
 	}

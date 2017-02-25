@@ -1,4 +1,4 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.period;
 
 import static spet.sbwo.control.util.FileNameUtils.*;
 
@@ -6,8 +6,6 @@ import java.io.File;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -15,10 +13,13 @@ import java.time.format.DateTimeParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import spet.sbwo.config.DatabaseBackupEntry;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IBackupCreator;
 
-class BackupScheduler extends BasePeriodScheduler {
+public class BackupScheduler extends BasePeriodScheduler {
 	private static final Logger LOG = LoggerFactory.getLogger(BackupScheduler.class);
 	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("'backup_'yyyyMMdd'_'HHmmss")
 			.withZone(ZoneId.systemDefault());
@@ -27,9 +28,9 @@ class BackupScheduler extends BasePeriodScheduler {
 	protected final File directory;
 	protected final IBackupCreator backuper;
 
-	public BackupScheduler(File directory, LocalTime time, Period period, IBackupCreator backuper) {
-		super(SchedulerType.BACKUP, time, period);
-		this.directory = directory;
+	public BackupScheduler(DatabaseBackupEntry config, IBackupCreator backuper) {
+		super(SchedulerType.BACKUP, config.getStart(), config.getInterval());
+		this.directory = config.getLocation();
 		if (!this.directory.isDirectory() && !this.directory.mkdirs()) {
 			LOG.error("Unable to create database backup directory.");
 		}
@@ -50,7 +51,7 @@ class BackupScheduler extends BasePeriodScheduler {
 		}
 		return max == null ? null : max.toLocalDate();
 	}
-	
+
 	protected LocalDateTime getBackupCandidateTimestamp(File file) {
 		String name = base(file.getName());
 		if (name.matches(FILE_PATTERN)) {

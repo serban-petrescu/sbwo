@@ -14,7 +14,6 @@
 		navButtonPress="onNavBack">
 		
 		<headerContent>
-			<Button icon="sap-icon://detail-view" tooltip="{i18n>btnShowExpteriseExternalText}" press="onOpenCourtCaseDialog"/>
 			<Button icon="sap-icon://save" visible="{= ${view>/loaded} &amp;&amp; ${view>/edit} &amp;&amp; !${data>/deleted} }" 
 				press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
 			<Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}" 
@@ -45,6 +44,8 @@
 			<Toolbar>
 				<spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}" />
 				<ToolbarSpacer />
+				<Button icon="sap-icon://detail-view" text="{i18n>btnShowExpteriseExternalText}" 
+					press="onOpenCourtCaseDialog" type="Emphasized"/>
 				<Button icon="sap-icon://delete" visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} &amp;&amp; ${view>/loaded}}" 
 					press="onDelete" text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}" type="Reject"/>
 				<Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}" visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}" 
@@ -54,6 +55,7 @@
 		
 		<dependents>
 			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML" binding="{view>/case}" />
+			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML" binding="{data>/location}" />
 		</dependents>
 	</Page>
 </mvc:View>

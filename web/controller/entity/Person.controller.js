@@ -34,6 +34,14 @@ sap.ui.define([
 		
 		formatExportPath: function(sId) {
 			return sBaseApiPath + "/export/" + sId;
+		},
+		
+		onOpenLocationMapDialog: function() {
+			this.byId("dlgLocationMap").open();
+		},
+		
+		onCloseLocationMapDialog: function() {
+			this.byId("dlgLocationMap").close();
 		}
 	}));
 

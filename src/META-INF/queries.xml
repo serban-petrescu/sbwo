@@ -36,7 +36,7 @@
 	<named-query name="Expertise.selectByLastChecked">
 		<query>
 			SELECT d FROM Expertise d WHERE d.deleted = false AND (d.lastCheckedOn IS NULL OR d.lastCheckedOn &lt; ?1) 
-				ORDER BY d.lastCheckedOn ASC
+				AND d.status != spet.sbwo.data.domain.ExpertiseStatus.FINALIZED ORDER BY d.lastCheckedOn ASC
 		</query>
 	</named-query>
 
@@ -55,6 +55,12 @@
 	<named-query name="UserPlain.readAll">
 		<query>
 			SELECT d FROM UserPlain d
+		</query>
+	</named-query>
+
+	<named-query name="Location.getNotGeocoded">
+		<query>
+			SELECT l FROM Location l WHERE l.geocoded = false AND l.address IS NOT NULL
 		</query>
 	</named-query>
 

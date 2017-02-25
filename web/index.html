@@ -15,7 +15,11 @@
 			<div id="ring" class='uil-ring-css' style='transform:scale(1);'><div></div></div>
 		</div>
 		<script type="text/javascript">
-			var oUserData;
+			var oUserData, sGoogleApiKey;
+			
+			function setGoogleApiKey(sKey) {
+				sGoogleApiKey = sKey;
+			}
 			
 			function mergeUserData(oData) {
 				oData.preference.language = oData.language || "en";
@@ -52,6 +56,7 @@
 		</div>
 		
 		<script src="/public/rest/user/current?callback=mergeUserData" ></script>
+		<script src="/private/api/rest/utility/geocode/key?callback=setGoogleApiKey" ></script>
 		<script type="text/javascript">
 			window["sap-ui-config"] = {
 				theme: oUserData.preference.theme,
@@ -61,21 +66,27 @@
 		
 		<script id="sap-ui-bootstrap"
 			src="/public/resources/openui5/sap-ui-core.js"
-			data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified"
+			data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified,openui5.googlemaps"
 			data-sap-ui-preload="async" 
 			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"spet.sbwo.web": ""}'>
+			data-sap-ui-resourceroots='{"spet.sbwo.web": "", "openui5.googlemaps": "/public/resources/googlemaps"}'>
 		</script>
 
 		<script type="text/javascript">
 			sap.ui.getCore().attachInit(function() {
-				new sap.m.Shell({
-					backgroundImage: "/public/images/background.jpg",
-					app: new sap.ui.core.ComponentContainer({
-						height : "100%",
-						name : "spet.sbwo.web"
-					})
-				}).placeAt("content");
+				sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
+					new MapsApi({
+						language: oUserData.preference.language,
+						apiKey: sGoogleApiKey
+					}).load();
+					new Shell({
+						backgroundImage: "/public/images/background.jpg",
+						app: new sap.ui.core.ComponentContainer({
+							height : "100%",
+							name : "spet.sbwo.web"
+						})
+					}).placeAt("content");
+				})
 			});
 		</script>
 

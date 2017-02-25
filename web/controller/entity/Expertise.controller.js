@@ -83,6 +83,14 @@ sap.ui.define([
 		
 		onCloseCourtCaseDialog: function() {
 			this.byId("dlgCourtCase").close();
+		},
+		
+		onOpenLocationMapDialog: function() {
+			this.byId("dlgLocationMap").open();
+		},
+		
+		onCloseLocationMapDialog: function() {
+			this.byId("dlgLocationMap").close();
 		}
 		
 	}));

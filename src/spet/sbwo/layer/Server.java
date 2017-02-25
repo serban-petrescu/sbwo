@@ -10,7 +10,7 @@ import spet.sbwo.api.filter.LocalAddressFilter;
 import spet.sbwo.api.odata.ODataFactory;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.base.IPublic;
-import spet.sbwo.control.config.Configuration;
+import spet.sbwo.config.Configuration;
 import spet.sbwo.control.controller.user.ISessionManager;
 import spet.sbwo.control.util.ILoginProvider;
 import spet.sbwo.server.IServer;
@@ -21,7 +21,11 @@ public class Server {
 	private static final String LOGIN_PATH = "/public/login/index.html";
 	private static final String WEB_INDEX_PATH = "/private/web/index.html";
 
-	public Server(MutablePicoContainer container) {
+	private Server() {
+		super();
+	}
+
+	public static void install(MutablePicoContainer container) {
 		container.addComponent(Facade.class);
 	}
 
@@ -64,7 +68,7 @@ public class Server {
 			serverBuilder.security().securedPath("/private/*").loginPage(LOGIN_PATH)
 					.errorPage("/public/login/index.html#/error").loginProvider(loginProvider)
 					.sessionDataStore(new SessionDataStore(sessionManager))
-					.sessionTimeout(configuration.getSessionTimeout());
+					.sessionTimeout(configuration.getSession().getTimeout());
 
 			result = serverBuilder.build();
 		}

@@ -2,7 +2,10 @@ package spet.sbwo.control.scheduler;
 
 import java.time.LocalDateTime;
 
-interface IScheduler {
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
+
+public interface IScheduler {
 
 	ScheduleInfo next(LocalDateTime previous);
 

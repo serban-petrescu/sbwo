@@ -15,7 +15,7 @@ import spet.sbwo.integration.api.court.model.Hearing;
 public class CheckCourtSystem extends BaseDatabaseAction<Expertise, Void> {
 	private final ICourtSystemApi api;
 
-	protected CheckCourtSystem(ICourtSystemApi api) {
+	public CheckCourtSystem(ICourtSystemApi api) {
 		super(ExpertiseChannel.class);
 		this.api = api;
 	}

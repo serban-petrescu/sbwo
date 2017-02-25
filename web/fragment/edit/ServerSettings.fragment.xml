@@ -1,23 +1,42 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
-	<f:FormContainer visible="{view>/edit}">
-		<f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
+	<f:FormContainer expandable="true" title="{i18n>frcServerSchedulerTitle}" visible="{view>/edit}">
+		<f:FormElement label="{i18n>lblSchedulerThreadsText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{path: 'data>/sessionTimeout', type: 'spet.sbwo.web.util.Duration'}" 
-					change="onValueChanged"  width="100%"/>
-				<Text text="{i18n>txtSessionExpirationMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+				<StepInput value="{data>/scheduler/threads}" min="1" max="16" width="100%"  change="onValueChanged" />
+				<Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerControlTitle}" visible="{view>/edit}">
 		<f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{path: 'data>/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}" 
+				<Input value="{path: 'data>/control/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}" 
 					change="onValueChanged"  width="100%"/>
 				<Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerSessionTitle}" visible="{view>/edit}">
+		<f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Input value="{path: 'data>/session/timeout', type: 'spet.sbwo.web.util.Duration'}" 
+					change="onValueChanged"  width="100%"/>
+				<Text text="{i18n>txtSessionExpirationMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblSessionFlushIntervalText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Input value="{path: 'data>/session/flushInterval', type: 'spet.sbwo.web.util.Duration'}" 
+					change="onValueChanged"  width="100%"/>
+				<Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerBackupTitle}" visible="{view>/edit}">
 		<f:FormElement label="{i18n>lblDatabaseBackupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
 				<TimePicker value="{
-						path: 'data>/databaseBackupStart', 
+						path: 'data>/databaseBackup/start', 
 						type: 'sap.ui.model.type.Time', 
 						formatOptions: {pattern: 'HH:mm:ss', source: {pattern: 'HH:mm:ss.SSSSSSSSS'}}
 					}" change="onValueChanged"  width="100%"/>
@@ -26,31 +45,24 @@
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{path: 'data>/databaseBackupInterval', type: 'spet.sbwo.web.util.Period'}" 
+				<Input value="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.util.Period'}" 
 					change="onValueChanged"  width="100%"/>
 				<Text text="{i18n>txtDatabaseBackupIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblDatabaseBackupLocationText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{data>/databaseBackupLocation}" valueHelpOnly="true"  width="100%"
+				<Input value="{data>/databaseBackup/location}" valueHelpOnly="true"  width="100%"
 					showValueHelp="true" valueHelpRequest="onDatabaseBackupLocationVh" />
 				<Text text="{i18n>txtDatabaseBackupLocationInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
-		<f:FormElement label="{i18n>lblSchedulerThreadsText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<HBox alignItems="Center" width="100%">
-					<StepInput value="{data>/schedulerThreads}" min="1" max="16" width="100%"  change="onValueChanged" />
-					<Label class="sapUiTinyMarginBegin" text="{i18n>inpSchedulerThreadsDesc}" />
-				</HBox>
-				<Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerCleanupTitle}" visible="{view>/edit}">
 		<f:FormElement label="{i18n>lblCleanupStartText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
 				<TimePicker value="{
-						path: 'data>/cleanupStart', 
+						path: 'data>/cleanup/start', 
 						type: 'sap.ui.model.type.Time', 
 						formatOptions: {pattern: 'HH:mm:ss', source: {pattern: 'HH:mm:ss.SSSSSSSSS'}}
 					}" change="onValueChanged"  width="100%" />
@@ -59,16 +71,52 @@
 		</f:FormElement>
 		<f:FormElement label="{i18n>lblCleanupThresholdText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{path: 'data>/cleanupThreshold', type: 'spet.sbwo.web.util.Period'}" 
+				<Input value="{path: 'data>/cleanup/threshold', type: 'spet.sbwo.web.util.Period'}" 
 					change="onValueChanged"  width="100%"/>
 				<Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
-		<f:FormElement label="{i18n>lblSessionFlushIntervalText}">
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerCheckCourtTitle}" visible="{view>/edit}">
+		<f:FormElement label="{i18n>lblCheckCourtMaxAgeText}">
 			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Input value="{path: 'data>/sessionFlushInterval', type: 'spet.sbwo.web.util.Duration'}" 
+				<Input value="{path: 'data>/checkCourt/maxAge', type: 'spet.sbwo.web.util.Duration'}" 
 					change="onValueChanged"  width="100%"/>
-				<Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+				<Text text="{i18n>txtCheckCourtMaxAgeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblCheckCourtIntervalText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Input value="{path: 'data>/checkCourt/interval', type: 'spet.sbwo.web.util.Duration'}" 
+					change="onValueChanged"  width="100%"/>
+				<Text text="{i18n>txtCheckCourtIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblCheckCourtCountText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<StepInput value="{data>/checkCourt/count}" min="1" max="16" width="100%" change="onValueChanged" />
+				<Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+	</f:FormContainer>
+	<f:FormContainer expandable="true" title="{i18n>frcServerGeocodingTitle}" visible="{view>/edit}">
+		<f:FormElement label="{i18n>lblGeocodingKeyText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Input value="{data>/geocoding/key}" change="onValueChanged" width="100%"/>
+				<Text text="{i18n>txtGeocodingKeyInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblGeocodingIntervalText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<Input value="{path: 'data>/geocoding/interval', type: 'spet.sbwo.web.util.Duration'}" 
+					change="onValueChanged"  width="100%"/>
+				<Text text="{i18n>txtGeocodingIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+			</l:VerticalLayout>
+		</f:FormElement>
+		<f:FormElement label="{i18n>lblGeocodingCountText}">
+			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+				<StepInput value="{data>/geocoding/count}" min="1" max="16" width="100%" change="onValueChanged" />
+				<Text text="{i18n>txtGeocodingCountInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
 			</l:VerticalLayout>
 		</f:FormElement>
 	</f:FormContainer>

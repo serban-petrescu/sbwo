@@ -8,8 +8,8 @@ import javax.ws.rs.Produces;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.config.Configuration;
-import spet.sbwo.control.config.ConfigurationManager;
+import spet.sbwo.config.Configuration;
+import spet.sbwo.config.ConfigurationManager;
 
 @Path("/utility/file/config")
 public class ConfigurationService extends BaseService implements IPrivate {

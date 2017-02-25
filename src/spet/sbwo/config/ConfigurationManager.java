@@ -1,4 +1,4 @@
-package spet.sbwo.control.config;
+package spet.sbwo.config;
 
 import java.io.File;
 import java.io.FileInputStream;

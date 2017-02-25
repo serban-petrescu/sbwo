@@ -37,6 +37,8 @@ sap.ui.define([
 			case "BACKUP": return oBundle.getText("txtScheduleTypeBackupText");
 			case "CLEANUP": return oBundle.getText("txtScheduleTypeCleanupText");
 			case "SESSION_CACHE": return oBundle.getText("txtScheduleTypeSessionFlushText");
+			case "COURT_API_BATCH": return oBundle.getText("txtScheduleTypeCheckCourtText");
+			case "GEOCODING_BATCH": return oBundle.getText("txtScheduleTypeGeocodeText");
 			default: return oBundle.getText("txtScheduleTypeUnknownText");
 			}
 		},

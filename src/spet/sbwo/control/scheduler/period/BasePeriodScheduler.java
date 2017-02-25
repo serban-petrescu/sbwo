@@ -1,9 +1,13 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.period;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
+
+import spet.sbwo.control.scheduler.IScheduler;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
 
 abstract class BasePeriodScheduler implements IScheduler {
 	protected final SchedulerType type;

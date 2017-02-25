@@ -1,7 +1,11 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.duration;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+
+import spet.sbwo.control.scheduler.IScheduler;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
 
 abstract class BaseDurationScheduler implements IScheduler {
 	protected final SchedulerType type;

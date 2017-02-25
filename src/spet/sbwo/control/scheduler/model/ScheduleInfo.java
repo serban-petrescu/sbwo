@@ -1,8 +1,8 @@
-package spet.sbwo.control.scheduler;
+package spet.sbwo.control.scheduler.model;
 
 import java.time.LocalDateTime;
 
-class ScheduleInfo {
+public class ScheduleInfo {
 	private final Runnable task;
 	private final LocalDateTime time;
 
