@@ -11,3 +11,5 @@
 /server.json
 /backup/
 /bin/
+**.vscode
+/.externalToolBuilders

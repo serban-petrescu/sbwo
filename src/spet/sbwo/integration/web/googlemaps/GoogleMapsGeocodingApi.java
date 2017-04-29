@@ -34,10 +34,14 @@ public class GoogleMapsGeocodingApi implements IGeocodingApi {
 
 	@Override
 	public Position geocode(Location location) {
-		try {
-			return callApi(buildUrl(location));
-		} catch (Exception e) {
-			LOG.error("Suppressed error while performing location-based geocoding.", e);
+		if (location.getAddress() != null) {
+			try {
+				return callApi(buildUrl(location));
+			} catch (Exception e) {
+				LOG.error("Suppressed error while performing location-based geocoding.", e);
+				return null;
+			}
+		} else {
 			return null;
 		}
 	}
