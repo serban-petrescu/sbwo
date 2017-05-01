@@ -13,3 +13,10 @@
 /bin/
 **.vscode
 /.externalToolBuilders
+/web/lib
+/bower_components
+/node_modules
+/node
+/dependency-reduced-pom.xml
+/dist
+/sbwo.zip

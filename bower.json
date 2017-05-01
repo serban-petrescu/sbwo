@@ -1,0 +1,23 @@
+{
+  "name": "spet-sbwo",
+  "homepage": "https://github.com/serban-petrescu/sbwo",
+  "authors": [
+    "Serban Petrescu <Serban.Petrescu@outlook.com>"
+  ],
+  "description": "Simple business work organizer",
+  "main": "",
+  "keywords": [
+    "java"
+  ],
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "openui5-sap.ui.core": "^1.40.0",
+    "openui5-sap.m": "^1.40.0",
+    "openui5-sap.ui.layout": "^1.40.0",
+    "openui5-sap.ui.unified": "^1.40.0",
+    "openui5-googlemaps": "^1.0.2",
+    "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#^1.40.0",
+    "openui5-themelib_sap_belize": "openui5/packaged-themelib_sap_belize#^1.40.0"
+  }
+}

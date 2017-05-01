@@ -83,8 +83,8 @@ sap.ui.define([
 			
 			jQuery.each(oTargets._mTargets, function(sKey, oTarget) {
 				var oInfo;
-				if (oTarget._oTitleProvider && oTarget._oTitleProvider.getBindingInfo) {
-					oInfo = oTarget._oTitleProvider.getBindingInfo("title");
+				if (oTarget._oOptions && oTarget._oOptions.title) {
+					oInfo = oTarget._oOptions.title;
 					if (oInfo && oInfo.formatter) {
 						oInfo.formatter = jQuery.sap.getObject(oInfo.formatter);
 					}

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
@@ -76,11 +75,12 @@ class DatabaseExecutor implements IDatabaseExecutor {
 		if (this.tr != null) {
 			try {
 				this.tr.commit();
-			} catch (RollbackException e) {
+			} catch (Exception e) {
 				LOG.warn("Transaction commit has failed.");
 				throw new DatabaseException(e);
+			} finally {
+				this.tr = null;
 			}
-			this.tr = null;
 		}
 		if (start) {
 			this.start();
@@ -95,11 +95,15 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	@Override
 	public void rollback(boolean start) throws DatabaseException {
 		if (this.tr != null) {
-			this.tr.rollback();
-		} else {
-			throw new DatabaseException(DatabaseError.OTHER, "Attempted to rolback without a transaction.");
+			try {
+				this.tr.rollback();
+			} catch (Exception e) {
+				LOG.warn("Transaction rollback has failed.");
+				throw new DatabaseException(e);
+			} finally {
+				this.tr = null;
+			}
 		}
-		this.tr = null;
 		if (start) {
 			this.start();
 		}

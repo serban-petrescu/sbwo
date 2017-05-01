@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
 	<persistence-unit name="sbwo" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<mapping-file>META-INF/queries.xml</mapping-file>
 		<class>spet.sbwo.data.base.BaseEntity</class>
 		<class>spet.sbwo.data.base.JournalizedBaseEntity</class>
@@ -42,14 +43,8 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./data/sbwo;TRACE_LEVEL_FILE=4" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="zPZN-WJq4Prio&amp;nOuP2Z" />
-			<property name="eclipselink.logging.logger" value="spet.sbwo.logging.EclipseLinkLogger"/>
+			<property name="eclipselink.logging.logger" value="spet.sbwo.logging.EclipseLinkLogger" />
 			<property name="eclipselink.deploy-on-startup" value="true" />
-			<!-- 
-				<property name="eclipselink.ddl-generation" value="create-tables"/>
-				<property name="eclipselink.application-location" value="E:/Downloads/sql" />
-				<property name="eclipselink.create-ddl-jdbc-file-name" value="create.sql"/>
-				<property name="eclipselink.ddl-generation.output-mode" value="sql-script"/>
-			 -->
 		</properties>
 	</persistence-unit>
 </persistence>

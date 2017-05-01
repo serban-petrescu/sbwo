@@ -52,7 +52,8 @@ public class Server {
 			serverBuilder.filter().path("/public/users/*").filter(localAddressFilter);
 			serverBuilder.filter().path(LOGIN_PATH).filter(ajaxDenyFilter);
 			serverBuilder.service().path("/public/rest/*").addAll((Object[]) publicSingletons);
-			serverBuilder.file().path("/public/*").directory("public");
+			serverBuilder.file().path("/public/*").directory("web/public");
+			serverBuilder.file().path("/lib/*").directory("web/lib");
 
 			// Db console
 			serverBuilder.filter().path("/db/*").filter(localAddressFilter);
@@ -60,7 +61,7 @@ public class Server {
 
 			// Private area
 			serverBuilder.filter().path("/private/api/*").filter(csrfTokenFilter);
-			serverBuilder.file().path("/private/web/*").directory("web");
+			serverBuilder.file().path("/private/web/*").directory("web/private");
 			serverBuilder.odata().path("/private/api/odata/*").factory(ODataFactory.class);
 			serverBuilder.service().path("/private/api/rest/*").addAll((Object[]) privateSingletons);
 

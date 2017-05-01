@@ -1,0 +1,17 @@
+language: java
+dist: trusty
+sudo: false
+jdk: oraclejdk8
+cache:
+  directories:
+  - "$HOME/.m2"
+  - node_modules
+  - node
+  - bower_components
+deploy:
+  provider: releases
+  api_key:
+    secure: juf+iIE3T3MP59HtHVii6xWorpODd5Zl4vlvckd7v0D/gC4NbifcrIHg/dZ26XoRajHaFPcEePA7kG7V2pMY/3hSkuczSY3BO7Kcz2hu+PcIYm9eIZMvjSPdZJUdHH2nXStIogJSSKFfURgKdYsR9dL4fD/+Qdzoe7MXxVSTSpG6zoJYSd7FiT0HsA8glQ5Ya1gKwl6uQX4zDyhOlUYNqveaIo/VvsGgMum9+4SZHNTx7ncfGmV9QdIIvRMqWBHvP/JSQZ/logfPAOkFS3ayhj40HQyMnkKdgcRhw92wdn/9aPIZl7UKI1PbV9q5XpeQxnXmcE32BSo/3cnOgXReH1+Nohz4BB7Wt+DHyiYiYCh45Uik3nInvFAZX2RmNWZenD/BmA/ZYXkiYtmNGSY/l9r6/iY3fddvx2PwBaEJbu0yuOqtOVO5Wf4vlURe9HcjFJAU7ISxCO3eeGSi1/5iYgNuBosMZhPA7HRYW69Vzl/Ur3FDY34CY4N2QFBgG0oTqtEZBawmKp7QehZs7S/vZcmNDjgLAZ4SFuo0fijyP43fbYKNtsY5AlrzqbfnC4tpEsOc5bYSgWAVzgUWe1TSxHWewrvaKe8evWh/d66/ptajAhQ/lW7BuvIKo1FRzvt5dQPiWd+gGM9LrT7WVq+5nSzsfVnTs9c0VGvCL++Qwvk=
+  file: sbwo.zip
+  on:
+    tags: true

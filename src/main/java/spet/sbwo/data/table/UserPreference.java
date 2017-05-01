@@ -59,7 +59,7 @@ public class UserPreference extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "UserPreference [id=" + id + ", user=" + user + ", language=" + language + ", theme=" + theme
+		return "UserPreference [id=" + id + ", language=" + language + ", theme=" + theme
 				+ ", draftResumeDelay=" + draftResumeDelay + "]";
 	}
 
