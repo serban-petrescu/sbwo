@@ -10,19 +10,19 @@ import spet.sbwo.data.view.DeletedEntity;
 
 public class ReadAllTrash extends BaseDatabaseAction<Void, List<TrashChannel>> {
 
-	public ReadAllTrash() {
-		super(TrashChannel.class);
-	}
+    public ReadAllTrash() {
+        super(TrashChannel.class);
+    }
 
-	@Override
-	public List<TrashChannel> doRun(Void input, IDatabaseExecutor executor)  {
-		List<DeletedEntity> entities = executor.queryList("DeletedEntity.readAll", DeletedEntity.class);
-		return entities.stream().map(entity -> {
-			TrashChannel channel = new TrashChannel();
-			channel.setId(entity.getId());
-			channel.setType(entity.getType());
-			return channel;
-		}).collect(Collectors.toList());
-	}
+    @Override
+    public List<TrashChannel> doRun(Void input, IDatabaseExecutor executor) {
+        List<DeletedEntity> entities = executor.queryList("DeletedEntity.readAll", DeletedEntity.class);
+        return entities.stream().map(entity -> {
+            TrashChannel channel = new TrashChannel();
+            channel.setId(entity.getId());
+            channel.setType(entity.getType());
+            return channel;
+        }).collect(Collectors.toList());
+    }
 
 }

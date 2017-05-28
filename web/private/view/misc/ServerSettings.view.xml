@@ -1,48 +1,52 @@
 <mvc:View controllerName="spet.sbwo.web.controller.misc.ServerSettings" xmlns:f="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
-	<Page id="pagServerSettings" 
-		title="{i18n>pagServerSettingsTitle}"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		
-		<headerContent>
-			<Button icon="sap-icon://save" visible="{view>/edit}" press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
-			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"	press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
-		</headerContent>
-		
-		<IconTabBar stretchContentHeight="true">
-			<items>
-				<IconTabFilter text="{i18n>itfServerSettingsSettingsText}">
-					<ScrollContainer width="100%" height="100%" vertical="true" horizontal="false">
-						<f:Form editable="{view>/edit}">
-							<f:layout>
-								<f:ResponsiveGridLayout labelSpanL="4" labelSpanM="5" emptySpanL="4" emptySpanM="2" columnsL="1" columnsM="1" />
-							</f:layout>
-							<core:Fragment fragmentName="spet.sbwo.web.fragment.display.ServerSettings" type="XML" />
-							<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ServerSettings" type="XML" />
-						</f:Form>
-					</ScrollContainer>
-				</IconTabFilter>
-				<IconTabFilter text="{i18n>itfServerSettingsLogsText}">
-					<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerLogs" type="XML" />
-				</IconTabFilter>
-				<IconTabFilter text="{i18n>itfServerSettingsSchedulesText}">
-					<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerSchedules" type="XML" />
-				</IconTabFilter>
-			</items>
-		</IconTabBar>
-		
-		<footer>
-			<Toolbar>
-				<spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}" />
-				<ToolbarSpacer />
-				<Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}" visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}" 
-					tooltip="{i18n>btnEntityResetTooltip}" press="onReset" />
-			</Toolbar>
-		</footer>
-		
-		<dependents>
-			<mvc:XMLView viewName="spet.sbwo.web.view.misc.FileExplorer" id="viewFileExporer"/>
-		</dependents>
-	</Page>
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+    <Page id="pagServerSettings"
+          title="{i18n>pagServerSettingsTitle}"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+
+        <headerContent>
+            <Button icon="sap-icon://save" visible="{view>/edit}" press="onSave"
+                    tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
+            <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" press="onToggleEdit"
+                          tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+        </headerContent>
+
+        <IconTabBar stretchContentHeight="true">
+            <items>
+                <IconTabFilter text="{i18n>itfServerSettingsSettingsText}">
+                    <ScrollContainer width="100%" height="100%" vertical="true" horizontal="false">
+                        <f:Form editable="{view>/edit}">
+                            <f:layout>
+                                <f:ResponsiveGridLayout labelSpanL="4" labelSpanM="5" emptySpanL="4" emptySpanM="2"
+                                                        columnsL="1" columnsM="1"/>
+                            </f:layout>
+                            <core:Fragment fragmentName="spet.sbwo.web.fragment.display.ServerSettings" type="XML"/>
+                            <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ServerSettings" type="XML"/>
+                        </f:Form>
+                    </ScrollContainer>
+                </IconTabFilter>
+                <IconTabFilter text="{i18n>itfServerSettingsLogsText}">
+                    <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerLogs" type="XML"/>
+                </IconTabFilter>
+                <IconTabFilter text="{i18n>itfServerSettingsSchedulesText}">
+                    <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerSchedules" type="XML"/>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+
+        <footer>
+            <Toolbar>
+                <spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}"
+                        visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}"
+                        tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
+            </Toolbar>
+        </footer>
+
+        <dependents>
+            <mvc:XMLView viewName="spet.sbwo.web.view.misc.FileExplorer" id="viewFileExporer"/>
+        </dependents>
+    </Page>
 </mvc:View>

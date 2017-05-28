@@ -6,8 +6,8 @@ import spet.sbwo.data.table.Person;
 
 public class RestorePerson extends RestoreEntity<Person> {
 
-	public RestorePerson() {
-		super(Person.class, PersonChannel.class);
-	}
+    public RestorePerson() {
+        super(Person.class, PersonChannel.class);
+    }
 
 }

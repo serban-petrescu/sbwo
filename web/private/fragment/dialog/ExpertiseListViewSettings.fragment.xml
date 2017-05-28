@@ -1,35 +1,35 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
-	<ViewSettingsDialog id="vsdMain" confirm="onViewSettingsConfirm">
-		<sortItems>
-			<ViewSettingsItem text="{i18n>lblCaseNumberText}" key="Number" />
-			<ViewSettingsItem text="{i18n>lblExpertiseNextHearingText}" key="NextHearing"  />
-			<ViewSettingsItem text="{i18n>lblExpertiseTitleText}" key="Title" />
-		</sortItems>
-		<groupItems>
-			<ViewSettingsItem text="{i18n>lblCourtHouseText}" key="Court" />
-			<ViewSettingsItem text="{i18n>lblCaseYearText}" key="Year" />
-			<ViewSettingsItem text="{i18n>lblExpertiseStatusText}" key="Status" />
-		</groupItems>
-		<filterItems>
-			<ViewSettingsFilterItem text="{i18n>lblCaseYearText}" key="Year" items="{/ExpertiseDistinctYears}">
-				<items>
-					<ViewSettingsItem text="{Year}" key="{Year}" />
-				</items>
-			</ViewSettingsFilterItem>
-			<ViewSettingsFilterItem text="{i18n>lblCourtHouseText}" key="Court" items="{/ExpertiseDistinctCourts}">
-				<items>
-					<ViewSettingsItem text="{Name}" key="{Id}" />
-				</items>
-			</ViewSettingsFilterItem>
-			<ViewSettingsFilterItem text="{i18n>lblExpertiseStatusText}" key="Status">
-				<items>
-					<ViewSettingsItem text="{i18n>txtExpertiseStatusNotStudied}" key="0" />
-					<ViewSettingsItem text="{i18n>txtExpertiseStatusStudied}" key="1" />
-					<ViewSettingsItem text="{i18n>txtExpertiseStatusSubmitted}" key="2" />
-					<ViewSettingsItem text="{i18n>txtExpertiseStatusSupplement}" key="3" />
-					<ViewSettingsItem text="{i18n>txtExpertiseStatusFinalized}" key="4" />
-				</items>
-			</ViewSettingsFilterItem>
-		</filterItems>
-	</ViewSettingsDialog>
+    <ViewSettingsDialog id="vsdMain" confirm="onViewSettingsConfirm">
+        <sortItems>
+            <ViewSettingsItem text="{i18n>lblCaseNumberText}" key="Number"/>
+            <ViewSettingsItem text="{i18n>lblExpertiseNextHearingText}" key="NextHearing"/>
+            <ViewSettingsItem text="{i18n>lblExpertiseTitleText}" key="Title"/>
+        </sortItems>
+        <groupItems>
+            <ViewSettingsItem text="{i18n>lblCourtHouseText}" key="Court"/>
+            <ViewSettingsItem text="{i18n>lblCaseYearText}" key="Year"/>
+            <ViewSettingsItem text="{i18n>lblExpertiseStatusText}" key="Status"/>
+        </groupItems>
+        <filterItems>
+            <ViewSettingsFilterItem text="{i18n>lblCaseYearText}" key="Year" items="{/ExpertiseDistinctYears}">
+                <items>
+                    <ViewSettingsItem text="{Year}" key="{Year}"/>
+                </items>
+            </ViewSettingsFilterItem>
+            <ViewSettingsFilterItem text="{i18n>lblCourtHouseText}" key="Court" items="{/ExpertiseDistinctCourts}">
+                <items>
+                    <ViewSettingsItem text="{Name}" key="{Id}"/>
+                </items>
+            </ViewSettingsFilterItem>
+            <ViewSettingsFilterItem text="{i18n>lblExpertiseStatusText}" key="Status">
+                <items>
+                    <ViewSettingsItem text="{i18n>txtExpertiseStatusNotStudied}" key="0"/>
+                    <ViewSettingsItem text="{i18n>txtExpertiseStatusStudied}" key="1"/>
+                    <ViewSettingsItem text="{i18n>txtExpertiseStatusSubmitted}" key="2"/>
+                    <ViewSettingsItem text="{i18n>txtExpertiseStatusSupplement}" key="3"/>
+                    <ViewSettingsItem text="{i18n>txtExpertiseStatusFinalized}" key="4"/>
+                </items>
+            </ViewSettingsFilterItem>
+        </filterItems>
+    </ViewSettingsDialog>
 </core:FragmentDefinition>

@@ -1,16 +1,17 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
-	<Dialog id="dlgHelpVideo" stretch="{device>/system/phone}" horizontalScrolling="false" verticalScrolling="false"
-		binding="{view>/help}" contentHeight="90%" contentWidth="90%">
-		<customHeader>
-			<Bar>
-				<contentMiddle>
-					<Title text="{view>title}" />
-				</contentMiddle>
-				<contentRight>
-					<Button icon="sap-icon://decline" tooltip="{i18n>btnHelpDialogCloseTooltip}" press="onCloseHelpDialog" />
-				</contentRight>
-			</Bar>
-		</customHeader>
-		<spet:HelpVideo name="{view>id}" trackLabel="{i18n>lblHelpTrackText}"/>
-	</Dialog>
+    <Dialog id="dlgHelpVideo" stretch="{device>/system/phone}" horizontalScrolling="false" verticalScrolling="false"
+            binding="{view>/help}" contentHeight="90%" contentWidth="90%">
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Title text="{view>title}"/>
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://decline" tooltip="{i18n>btnHelpDialogCloseTooltip}"
+                            press="onCloseHelpDialog"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <spet:HelpVideo name="{view>id}" trackLabel="{i18n>lblHelpTrackText}"/>
+    </Dialog>
 </core:FragmentDefinition>

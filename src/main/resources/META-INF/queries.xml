@@ -1,84 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings version="2.1"
-	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+                 xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 
-	<named-query name="User.getByUsername">
-		<query>
-			SELECT u FROM User u WHERE u.username = ?1
-		</query>
-	</named-query>
+    <named-query name="User.getByUsername">
+        <query>
+            SELECT u FROM User u WHERE u.username = ?1
+        </query>
+    </named-query>
 
-	<named-query name="DeletedEntity.countAll">
-		<query>
-			SELECT COUNT(d.id) FROM DeletedEntity d
-		</query>
-	</named-query>
+    <named-query name="DeletedEntity.countAll">
+        <query>
+            SELECT COUNT(d.id) FROM DeletedEntity d
+        </query>
+    </named-query>
 
-	<named-query name="DeletedEntity.readAll">
-		<query>
-			SELECT d FROM DeletedEntity d
-		</query>
-	</named-query>
+    <named-query name="DeletedEntity.readAll">
+        <query>
+            SELECT d FROM DeletedEntity d
+        </query>
+    </named-query>
 
-	<named-query name="Person.countByDeleted">
-		<query>
-			SELECT COUNT(d.id) FROM Person d WHERE d.deleted = ?1
-		</query>
-	</named-query>
+    <named-query name="Person.countByDeleted">
+        <query>
+            SELECT COUNT(d.id) FROM Person d WHERE d.deleted = ?1
+        </query>
+    </named-query>
 
-	<named-query name="Expertise.countByDeleted">
-		<query>
-			SELECT COUNT(d.id) FROM Expertise d WHERE d.deleted = ?1
-		</query>
-	</named-query>
+    <named-query name="Expertise.countByDeleted">
+        <query>
+            SELECT COUNT(d.id) FROM Expertise d WHERE d.deleted = ?1
+        </query>
+    </named-query>
 
-	<named-query name="Expertise.selectByLastChecked">
-		<query>
-			SELECT d FROM Expertise d WHERE d.deleted = false AND (d.lastCheckedOn IS NULL OR d.lastCheckedOn &lt; ?1) 
-				AND d.status != spet.sbwo.data.domain.ExpertiseStatus.FINALIZED ORDER BY d.lastCheckedOn ASC
-		</query>
-	</named-query>
+    <named-query name="Expertise.selectByLastChecked">
+        <query>
+            SELECT d FROM Expertise d WHERE d.deleted = false AND (d.lastCheckedOn IS NULL OR d.lastCheckedOn &lt; ?1)
+            AND d.status != spet.sbwo.data.domain.ExpertiseStatus.FINALIZED ORDER BY d.lastCheckedOn ASC
+        </query>
+    </named-query>
 
-	<named-query name="UserSession.readAllExpiredIds">
-		<query>
-			SELECT u.id FROM UserSession u WHERE u.expiryTime &lt; ?1
-		</query>
-	</named-query>
+    <named-query name="UserSession.readAllExpiredIds">
+        <query>
+            SELECT u.id FROM UserSession u WHERE u.expiryTime &lt; ?1
+        </query>
+    </named-query>
 
-	<named-query name="Court.readAll">
-		<query>
-			SELECT d FROM Court d
-		</query>
-	</named-query>
+    <named-query name="Court.readAll">
+        <query>
+            SELECT d FROM Court d
+        </query>
+    </named-query>
 
-	<named-query name="UserPlain.readAll">
-		<query>
-			SELECT d FROM UserPlain d
-		</query>
-	</named-query>
+    <named-query name="UserPlain.readAll">
+        <query>
+            SELECT d FROM UserPlain d
+        </query>
+    </named-query>
 
-	<named-query name="Location.getNotGeocoded">
-		<query>
-			SELECT l FROM Location l WHERE l.geocoded = false AND l.address IS NOT NULL
-		</query>
-	</named-query>
+    <named-query name="Location.getNotGeocoded">
+        <query>
+            SELECT l FROM Location l WHERE l.geocoded = false AND l.address IS NOT NULL
+        </query>
+    </named-query>
 
-	<named-query name="LocationCountry.getByCode">
-		<query>
-			SELECT u FROM LocationCountry u WHERE u.code = ?1
-		</query>
-	</named-query>
+    <named-query name="LocationCountry.getByCode">
+        <query>
+            SELECT u FROM LocationCountry u WHERE u.code = ?1
+        </query>
+    </named-query>
 
-	<named-query name="LocationRegion.getByCountryAndCode">
-		<query>
-			SELECT u FROM LocationRegion u WHERE u.country = ?1 AND u.code = ?2
-		</query>
-	</named-query>
+    <named-query name="LocationRegion.getByCountryAndCode">
+        <query>
+            SELECT u FROM LocationRegion u WHERE u.country = ?1 AND u.code = ?2
+        </query>
+    </named-query>
 
-	<named-query name="LocationAdministrativeUnit.getByRegionAndCode">
-		<query>
-			SELECT u FROM LocationAdministrativeUnit u WHERE u.region = ?1 AND u.code = ?2
-		</query>
-	</named-query>
+    <named-query name="LocationAdministrativeUnit.getByRegionAndCode">
+        <query>
+            SELECT u FROM LocationAdministrativeUnit u WHERE u.region = ?1 AND u.code = ?2
+        </query>
+    </named-query>
 </entity-mappings>

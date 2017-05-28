@@ -11,9 +11,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for SedintaDosar complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="SedintaDosar"&gt;
  *   &lt;complexContent&gt;
@@ -32,8 +32,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "SedintaDosar", propOrder = {
@@ -66,11 +64,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the numar property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumar() {
         return numar;
@@ -78,11 +74,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the numar property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumar(String value) {
         this.numar = value;
@@ -90,11 +84,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the numarVechi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumarVechi() {
         return numarVechi;
@@ -102,11 +94,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the numarVechi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumarVechi(String value) {
         this.numarVechi = value;
@@ -114,11 +104,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the data property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getData() {
         return data;
@@ -126,11 +114,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the data property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
@@ -138,11 +124,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the ora property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOra() {
         return ora;
@@ -150,11 +134,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the ora property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOra(String value) {
         this.ora = value;
@@ -162,11 +144,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the categorieCaz property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CategorieCaz }
-     *     
+     *
+     * @return possible object is
+     * {@link CategorieCaz }
      */
     public CategorieCaz getCategorieCaz() {
         return categorieCaz;
@@ -174,11 +154,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the categorieCaz property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CategorieCaz }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CategorieCaz }
      */
     public void setCategorieCaz(CategorieCaz value) {
         this.categorieCaz = value;
@@ -186,11 +164,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the stadiuProcesual property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link StadiuProcesual }
-     *     
+     *
+     * @return possible object is
+     * {@link StadiuProcesual }
      */
     public StadiuProcesual getStadiuProcesual() {
         return stadiuProcesual;
@@ -198,11 +174,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the stadiuProcesual property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StadiuProcesual }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link StadiuProcesual }
      */
     public void setStadiuProcesual(StadiuProcesual value) {
         this.stadiuProcesual = value;
@@ -210,11 +184,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the categorieCazNume property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCategorieCazNume() {
         return categorieCazNume;
@@ -222,11 +194,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the categorieCazNume property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCategorieCazNume(String value) {
         this.categorieCazNume = value;
@@ -234,11 +204,9 @@ public class SedintaDosar {
 
     /**
      * Gets the value of the stadiuProcesualNume property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getStadiuProcesualNume() {
         return stadiuProcesualNume;
@@ -246,11 +214,9 @@ public class SedintaDosar {
 
     /**
      * Sets the value of the stadiuProcesualNume property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setStadiuProcesualNume(String value) {
         this.stadiuProcesualNume = value;

@@ -11,21 +11,21 @@ import spet.sbwo.integration.api.court.model.Case;
 import spet.sbwo.integration.api.court.model.Hearing;
 
 public class CheckCourtSystem extends BaseDatabaseAction<Expertise, Void> {
-	private final ICourtSystemApi api;
+    private final ICourtSystemApi api;
 
-	public CheckCourtSystem(ICourtSystemApi api) {
-		super(ExpertiseChannel.class);
-		this.api = api;
-	}
+    public CheckCourtSystem(ICourtSystemApi api) {
+        super(ExpertiseChannel.class);
+        this.api = api;
+    }
 
-	@Override
-	protected Void doRun(Expertise input, IDatabaseExecutor executor)  {
-		Case result = api.read(input.getNumber());
-		if (result != null) {
-			result.getHearings().stream().map(Hearing::getDate).reduce((a, b) -> a.isBefore(b) ? b : a)
-					.ifPresent(input::setNextHearing);
-		}
-		input.setLastCheckedOn(LocalDateTime.now());
-		return null;
-	}
+    @Override
+    protected Void doRun(Expertise input, IDatabaseExecutor executor) {
+        Case result = api.read(input.getNumber());
+        if (result != null) {
+            result.getHearings().stream().map(Hearing::getDate).reduce((a, b) -> a.isBefore(b) ? b : a)
+                .ifPresent(input::setNextHearing);
+        }
+        input.setLastCheckedOn(LocalDateTime.now());
+        return null;
+    }
 }

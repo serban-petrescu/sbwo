@@ -1,18 +1,18 @@
 package spet.sbwo.config;
 
 public class SchedulerEntry {
-	protected int threads;
+    protected int threads;
 
-	public SchedulerEntry() {
-		super();
-	}
+    public SchedulerEntry() {
+        super();
+    }
 
-	public SchedulerEntry(int threads) {
-		this.threads = threads;
-	}
+    public SchedulerEntry(int threads) {
+        this.threads = threads;
+    }
 
-	public int getThreads() {
-		return threads;
-	}
+    public int getThreads() {
+        return threads;
+    }
 
 }

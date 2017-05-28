@@ -28,35 +28,35 @@ import spet.sbwo.api.service.user.SessionService;
 import spet.sbwo.api.service.user.TileService;
 
 public class Service {
-	private static final String LOG_PATH = "log";
-	private static final String LOGIN_RELATIVE_PATH = "/../login/index.html";
+    private static final String LOG_PATH = "log";
+    private static final String LOGIN_RELATIVE_PATH = "/../login/index.html";
 
-	private Service() {
-		super();
-	}
+    private Service() {
+        super();
+    }
 
-	public static void install(MutablePicoContainer container) {
-		ODataFactory.setEmf(container.getComponent(EntityManagerFactory.class));
-		ODataFactory.setPuName(Database.SBWO_PU);
-		container.addComponent(WebServlet.class);
-		container.addComponent(PersonService.class);
-		container.addComponent(ConfigurationService.class);
-		container.addComponent(CountService.class);
-		container.addComponent(FileExploreService.class);
-		container.addComponent(LogService.class, LogService.class, new ConstantParameter(LOG_PATH));
-		container.addComponent(ScheduleService.class);
-		container.addComponent(TrashService.class);
-		container.addComponent(DataImportService.class);
-		container.addComponent(LocationImportService.class);
-		container.addComponent(FavouriteService.class);
-		container.addComponent(ManagementService.class);
-		container.addComponent(SessionService.class, SessionService.class, new ComponentParameter(),
-				new ConstantParameter(LOGIN_RELATIVE_PATH));
-		container.addComponent(PreferenceService.class);
-		container.addComponent(TileService.class);
-		container.addComponent(SelfService.class);
-		container.addComponent(CourtImportService.class);
-		container.addComponent(ExpertiseService.class);
-		container.addComponent(GeocodingService.class);
-	}
+    public static void install(MutablePicoContainer container) {
+        ODataFactory.setEmf(container.getComponent(EntityManagerFactory.class));
+        ODataFactory.setPuName(Database.SBWO_PU);
+        container.addComponent(WebServlet.class);
+        container.addComponent(PersonService.class);
+        container.addComponent(ConfigurationService.class);
+        container.addComponent(CountService.class);
+        container.addComponent(FileExploreService.class);
+        container.addComponent(LogService.class, LogService.class, new ConstantParameter(LOG_PATH));
+        container.addComponent(ScheduleService.class);
+        container.addComponent(TrashService.class);
+        container.addComponent(DataImportService.class);
+        container.addComponent(LocationImportService.class);
+        container.addComponent(FavouriteService.class);
+        container.addComponent(ManagementService.class);
+        container.addComponent(SessionService.class, SessionService.class, new ComponentParameter(),
+            new ConstantParameter(LOGIN_RELATIVE_PATH));
+        container.addComponent(PreferenceService.class);
+        container.addComponent(TileService.class);
+        container.addComponent(SelfService.class);
+        container.addComponent(CourtImportService.class);
+        container.addComponent(ExpertiseService.class);
+        container.addComponent(GeocodingService.class);
+    }
 }

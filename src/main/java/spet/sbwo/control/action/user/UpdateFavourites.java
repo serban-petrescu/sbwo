@@ -9,19 +9,18 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 
 public class UpdateFavourites
-		extends BaseUserDatabaseAction<List<UserFavouriteChannel>, List<UserFavouriteChannel>> {
+    extends BaseUserDatabaseAction<List<UserFavouriteChannel>, List<UserFavouriteChannel>> {
 
-	public UpdateFavourites() {
-		super(UserFavouriteChannel.class, true);
-	}
+    public UpdateFavourites() {
+        super(UserFavouriteChannel.class, true);
+    }
 
-	@Override
-	public List<UserFavouriteChannel> doRun(List<UserFavouriteChannel> input, IDatabaseExecutor executor, User user)
-			 {
-		UserFavouriteMapper mapper = new UserFavouriteMapper(executor, user);
-		user.setFavourites(mapper.merge(user.getFavourites(), input));
-		mapper.flush();
-		return mapper.toExternal(user.getFavourites());
-	}
+    @Override
+    public List<UserFavouriteChannel> doRun(List<UserFavouriteChannel> input, IDatabaseExecutor executor, User user) {
+        UserFavouriteMapper mapper = new UserFavouriteMapper(executor, user);
+        user.setFavourites(mapper.merge(user.getFavourites(), input));
+        mapper.flush();
+        return mapper.toExternal(user.getFavourites());
+    }
 
 }

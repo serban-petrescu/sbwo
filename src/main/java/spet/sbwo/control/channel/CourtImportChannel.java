@@ -1,28 +1,28 @@
 package spet.sbwo.control.channel;
 
 public class CourtImportChannel {
-	private String code;
-	private String name;
+    private String code;
+    private String name;
 
-	public CourtImportChannel(String code, String name) {
-		this.code = code;
-		this.name = name;
-	}
+    public CourtImportChannel(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

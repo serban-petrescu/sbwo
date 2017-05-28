@@ -8,16 +8,16 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class TileController extends BaseActionExecutor {
 
-	public TileController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public TileController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public UserHomeTilesChannel readTiles(String username)  {
-		return execute(username, new ReadTiles(), null);
-	}
+    public UserHomeTilesChannel readTiles(String username) {
+        return execute(username, new ReadTiles(), null);
+    }
 
-	public UserHomeTilesChannel updateTiles(UserHomeTilesChannel data, String username)  {
-		return executeAndCommit(username, new UpdateTiles(), data);
-	}
+    public UserHomeTilesChannel updateTiles(UserHomeTilesChannel data, String username) {
+        return executeAndCommit(username, new UpdateTiles(), data);
+    }
 
 }

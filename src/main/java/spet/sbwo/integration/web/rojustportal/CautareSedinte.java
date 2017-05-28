@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -27,8 +27,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -47,11 +45,9 @@ public class CautareSedinte {
 
     /**
      * Gets the value of the dataSedinta property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataSedinta() {
         return dataSedinta;
@@ -59,11 +55,9 @@ public class CautareSedinte {
 
     /**
      * Sets the value of the dataSedinta property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataSedinta(XMLGregorianCalendar value) {
         this.dataSedinta = value;
@@ -71,11 +65,9 @@ public class CautareSedinte {
 
     /**
      * Gets the value of the institutie property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Institutie }
-     *     
+     *
+     * @return possible object is
+     * {@link Institutie }
      */
     public Institutie getInstitutie() {
         return institutie;
@@ -83,11 +75,9 @@ public class CautareSedinte {
 
     /**
      * Sets the value of the institutie property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Institutie }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Institutie }
      */
     public void setInstitutie(Institutie value) {
         this.institutie = value;

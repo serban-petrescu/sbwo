@@ -9,13 +9,13 @@ import spet.sbwo.data.table.Person;
 
 public class UpdatePerson extends UpdateEntity<Person, PersonChannel> {
 
-	public UpdatePerson() {
-		super(Person.class, PersonChannel.class);
-	}
+    public UpdatePerson() {
+        super(Person.class, PersonChannel.class);
+    }
 
-	@Override
-	protected BaseMapper<Person, PersonChannel> mapper(IDatabaseExecutor executor) {
-		return new PersonMapper(executor);
-	}
+    @Override
+    protected BaseMapper<Person, PersonChannel> mapper(IDatabaseExecutor executor) {
+        return new PersonMapper(executor);
+    }
 
 }

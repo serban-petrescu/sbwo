@@ -7,15 +7,15 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 
 public class EncryptPassword extends BaseUserDatabaseAction<String, String> {
-	private static final PasswordHasher HASHER = new PasswordHasher();
+    private static final PasswordHasher HASHER = new PasswordHasher();
 
-	public EncryptPassword() {
-		super(UserChannel.class, false);
-	}
+    public EncryptPassword() {
+        super(UserChannel.class, false);
+    }
 
-	@Override
-	public String doRun(String input, IDatabaseExecutor executor, User u)  {
-		return u == null ? null : HASHER.hashPassword(input, u.getSalt());
-	}
+    @Override
+    public String doRun(String input, IDatabaseExecutor executor, User u) {
+        return u == null ? null : HASHER.hashPassword(input, u.getSalt());
+    }
 
 }

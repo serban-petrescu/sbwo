@@ -21,31 +21,31 @@ import spet.sbwo.control.controller.transfer.CourtImportController;
 
 @Path("/import")
 public class CourtImportService extends BaseService implements IPrivate {
-	private CourtImportController controller;
+    private CourtImportController controller;
 
-	public CourtImportService(CourtImportController controller) {
-		this.controller = controller;
-	}
+    public CourtImportService(CourtImportController controller) {
+        this.controller = controller;
+    }
 
-	@POST
-	@Path("/courts/{separator}/{header}")
-	public void importCourtsFromCsv(@PathParam("separator") String separator, @PathParam("header") boolean header,
-			InputStream body) {
-		CSVFormat format = CSVFormat.DEFAULT.withDelimiter(separator.charAt(0)).withSkipHeaderRecord(header);
-		try (CSVParser parser = new CSVParser(new InputStreamReader(body), format)) {
-			controller.importCourts(extractChannels(parser));
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @POST
+    @Path("/courts/{separator}/{header}")
+    public void importCourtsFromCsv(@PathParam("separator") String separator, @PathParam("header") boolean header,
+                                    InputStream body) {
+        CSVFormat format = CSVFormat.DEFAULT.withDelimiter(separator.charAt(0)).withSkipHeaderRecord(header);
+        try (CSVParser parser = new CSVParser(new InputStreamReader(body), format)) {
+            controller.importCourts(extractChannels(parser));
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
-	protected List<CourtImportChannel> extractChannels(CSVParser parser) {
-		List<CourtImportChannel> channels = new ArrayList<>();
-		Iterator<CSVRecord> iterator = parser.iterator();
-		while (iterator.hasNext()) {
-			CSVRecord record = iterator.next();
-			channels.add(new CourtImportChannel(record.get(0), record.get(1)));
-		}
-		return channels;
-	}
+    protected List<CourtImportChannel> extractChannels(CSVParser parser) {
+        List<CourtImportChannel> channels = new ArrayList<>();
+        Iterator<CSVRecord> iterator = parser.iterator();
+        while (iterator.hasNext()) {
+            CSVRecord record = iterator.next();
+            channels.add(new CourtImportChannel(record.get(0), record.get(1)));
+        }
+        return channels;
+    }
 }

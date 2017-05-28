@@ -4,68 +4,68 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Case {
-	private String number;
-	private LocalDate date;
-	private String matter;
-	private String status;
-	private String category;
-	private List<Side> sides;
-	private List<Hearing> hearings;
+    private String number;
+    private LocalDate date;
+    private String matter;
+    private String status;
+    private String category;
+    private List<Side> sides;
+    private List<Hearing> hearings;
 
-	public List<Side> getSides() {
-		return sides;
-	}
+    public List<Side> getSides() {
+        return sides;
+    }
 
-	public void setSides(List<Side> sides) {
-		this.sides = sides;
-	}
+    public void setSides(List<Side> sides) {
+        this.sides = sides;
+    }
 
-	public List<Hearing> getHearings() {
-		return hearings;
-	}
+    public List<Hearing> getHearings() {
+        return hearings;
+    }
 
-	public void setHearings(List<Hearing> hearings) {
-		this.hearings = hearings;
-	}
+    public void setHearings(List<Hearing> hearings) {
+        this.hearings = hearings;
+    }
 
-	public String getNumber() {
-		return number;
-	}
+    public String getNumber() {
+        return number;
+    }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-	public LocalDate getDate() {
-		return date;
-	}
+    public LocalDate getDate() {
+        return date;
+    }
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
-	public String getMatter() {
-		return matter;
-	}
+    public String getMatter() {
+        return matter;
+    }
 
-	public void setMatter(String matter) {
-		this.matter = matter;
-	}
+    public void setMatter(String matter) {
+        this.matter = matter;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
 }

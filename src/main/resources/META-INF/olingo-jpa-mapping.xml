@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <JPAEDMMappingModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.apache.org/olingo/odata2/jpa/processor/api/model/mapping">
-	<PersistenceUnit name="sbwo">
-		<JPAEntityTypes>
-			<JPAEntityType name="Expertise" exclude="true" />
-			<JPAEntityType name="ExpertiseFine" exclude="true" />
-			<JPAEntityType name="Person" exclude="true" />
-			<JPAEntityType name="Location" exclude="true" />
-			<JPAEntityType name="PersonNatural" exclude="true" />
-			<JPAEntityType name="PersonJuridical" exclude="true" />
-			<JPAEntityType name="PersonBankAccount" exclude="true" />
-			<JPAEntityType name="PersonEmailAddress" exclude="true" />
-			<JPAEntityType name="PersonTelephone" exclude="true" />
-			<JPAEntityType name="User" exclude="true" />
-			<JPAEntityType name="UserHomeTile" exclude="true" />
-			<JPAEntityType name="UserFavourite" exclude="true" />
-			<JPAEntityType name="UserPreference" exclude="true" />
-			<JPAEntityType name="UserSession" exclude="true" />
-		</JPAEntityTypes>
-		<JPAEmbeddableTypes></JPAEmbeddableTypes>
-	</PersistenceUnit>
+                    xmlns="http://www.apache.org/olingo/odata2/jpa/processor/api/model/mapping">
+    <PersistenceUnit name="sbwo">
+        <JPAEntityTypes>
+            <JPAEntityType name="Expertise" exclude="true"/>
+            <JPAEntityType name="ExpertiseFine" exclude="true"/>
+            <JPAEntityType name="Person" exclude="true"/>
+            <JPAEntityType name="Location" exclude="true"/>
+            <JPAEntityType name="PersonNatural" exclude="true"/>
+            <JPAEntityType name="PersonJuridical" exclude="true"/>
+            <JPAEntityType name="PersonBankAccount" exclude="true"/>
+            <JPAEntityType name="PersonEmailAddress" exclude="true"/>
+            <JPAEntityType name="PersonTelephone" exclude="true"/>
+            <JPAEntityType name="User" exclude="true"/>
+            <JPAEntityType name="UserHomeTile" exclude="true"/>
+            <JPAEntityType name="UserFavourite" exclude="true"/>
+            <JPAEntityType name="UserPreference" exclude="true"/>
+            <JPAEntityType name="UserSession" exclude="true"/>
+        </JPAEntityTypes>
+        <JPAEmbeddableTypes></JPAEmbeddableTypes>
+    </PersistenceUnit>
 </JPAEDMMappingModel>

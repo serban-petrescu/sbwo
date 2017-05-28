@@ -11,42 +11,42 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_USER_FAVOURITE")
 public class UserFavourite extends BaseEntity {
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "C_USER_ID")
-	private User user;
-	
-	@Column(name = "C_TITLE", length = 64)
-	private String title;
-	
-	@Column(name = "C_HASH", length = 64)
-	private String hash;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "C_USER_ID")
+    private User user;
 
-	public User getUser() {
-		return user;
-	}
+    @Column(name = "C_TITLE", length = 64)
+    private String title;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    @Column(name = "C_HASH", length = 64)
+    private String hash;
 
-	public String getTitle() {
-		return title;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public String getHash() {
-		return hash;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setHash(String hash) {
-		this.hash = hash;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	@Override
-	public String toString() {
-		return "UserFavourite [user=" + user + ", title=" + title + ", hash=" + hash + ", id=" + id + "]";
-	}
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    @Override
+    public String toString() {
+        return "UserFavourite [user=" + user + ", title=" + title + ", hash=" + hash + ", id=" + id + "]";
+    }
 }

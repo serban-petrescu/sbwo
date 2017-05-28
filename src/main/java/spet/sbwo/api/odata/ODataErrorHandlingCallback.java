@@ -9,12 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ODataErrorHandlingCallback implements ODataErrorCallback {
-	private static final Logger LOG = LoggerFactory.getLogger(ODataErrorHandlingCallback.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ODataErrorHandlingCallback.class);
 
-	@Override
-	public ODataResponse handleError(ODataErrorContext context) throws ODataApplicationException {
-		LOG.error("Error in OData call.", context.getException());
-		return EntityProvider.writeErrorDocument(context);
-	}
+    @Override
+    public ODataResponse handleError(ODataErrorContext context) throws ODataApplicationException {
+        LOG.error("Error in OData call.", context.getException());
+        return EntityProvider.writeErrorDocument(context);
+    }
 
 }

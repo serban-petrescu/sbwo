@@ -11,20 +11,20 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class TrashController extends BaseActionExecutor {
 
-	public TrashController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public TrashController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public void delete(List<TrashChannel> entities, String username)  {
-		executeAndCommit(username, new ForceDeleteList(), entities);
-	}
+    public void delete(List<TrashChannel> entities, String username) {
+        executeAndCommit(username, new ForceDeleteList(), entities);
+    }
 
-	public void restore(List<TrashChannel> entities, String username)  {
-		executeAndCommit(username, new RestoreList(), entities);
-	}
+    public void restore(List<TrashChannel> entities, String username) {
+        executeAndCommit(username, new RestoreList(), entities);
+    }
 
-	public void deleteAll(String username)  {
-		executeAndCommit(username, new ReadAllTrash().then(new ForceDeleteList()), null);
-	}
+    public void deleteAll(String username) {
+        executeAndCommit(username, new ReadAllTrash().then(new ForceDeleteList()), null);
+    }
 
 }

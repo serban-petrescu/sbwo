@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for Institutie.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
@@ -263,7 +263,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "Institutie")
 @XmlEnum
@@ -772,7 +771,7 @@ public enum Institutie {
     }
 
     public static Institutie fromValue(String v) {
-        for (Institutie c: Institutie.values()) {
+        for (Institutie c : Institutie.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -7,8 +7,8 @@ import spet.sbwo.control.scheduler.model.SchedulerType;
 
 public interface IScheduler {
 
-	ScheduleInfo next(LocalDateTime previous);
+    ScheduleInfo next(LocalDateTime previous);
 
-	SchedulerType type();
-	
+    SchedulerType type();
+
 }

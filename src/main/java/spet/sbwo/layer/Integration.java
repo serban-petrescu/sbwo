@@ -9,24 +9,24 @@ import spet.sbwo.integration.web.googlemaps.GoogleMapsGeocodingApi;
 import spet.sbwo.integration.web.rojustportal.RoJustPortalFacade;
 
 public class Integration {
-	private static final Logger LOG = LoggerFactory.getLogger(Integration.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Integration.class);
 
-	private Integration() {
-		super();
-	}
+    private Integration() {
+        super();
+    }
 
-	public static void install(MutablePicoContainer container) {
-		container.addComponent(court());
-		container.addComponent(GoogleMapsGeocodingApi.class);
-	}
+    public static void install(MutablePicoContainer container) {
+        container.addComponent(court());
+        container.addComponent(GoogleMapsGeocodingApi.class);
+    }
 
-	protected static ICourtSystemApi court() {
-		try {
-			return new RoJustPortalFacade();
-		} catch (Exception e) {
-			LOG.error("Unable to initialize the just.ro integration.", e);
-			return n -> null;
-		}
-	}
+    protected static ICourtSystemApi court() {
+        try {
+            return new RoJustPortalFacade();
+        } catch (Exception e) {
+            LOG.error("Unable to initialize the just.ro integration.", e);
+            return n -> null;
+        }
+    }
 
 }

@@ -20,36 +20,36 @@ import spet.sbwo.data.table.Person;
 
 public class PersonController extends BaseBoController<Person, PersonChannel> {
 
-	public PersonController(IDatabaseExecutorCreator database, ControlEntry config) {
-		super(database, config);
-	}
+    public PersonController(IDatabaseExecutorCreator database, ControlEntry config) {
+        super(database, config);
+    }
 
-	public String export(int id)  {
-		return execute(new ExportPerson(), id);
-	}
+    public String export(int id) {
+        return execute(new ExportPerson(), id);
+    }
 
-	@Override
-	protected CreateEntity<Person, PersonChannel> createAction() {
-		return new CreatePerson();
-	}
+    @Override
+    protected CreateEntity<Person, PersonChannel> createAction() {
+        return new CreatePerson();
+    }
 
-	@Override
-	protected ReadEntity<Person, PersonChannel> readAction() {
-		return new ReadPerson();
-	}
+    @Override
+    protected ReadEntity<Person, PersonChannel> readAction() {
+        return new ReadPerson();
+    }
 
-	@Override
-	protected UpdateEntity<Person, PersonChannel> updateAction() {
-		return new UpdatePerson();
-	}
+    @Override
+    protected UpdateEntity<Person, PersonChannel> updateAction() {
+        return new UpdatePerson();
+    }
 
-	@Override
-	protected DeleteEntity<Person> deleteAction(Duration directDeleteInterval) {
-		return new DeletePerson(directDeleteInterval);
-	}
+    @Override
+    protected DeleteEntity<Person> deleteAction(Duration directDeleteInterval) {
+        return new DeletePerson(directDeleteInterval);
+    }
 
-	@Override
-	protected RestoreEntity<Person> restoreAction() {
-		return new RestorePerson();
-	}
+    @Override
+    protected RestoreEntity<Person> restoreAction() {
+        return new RestorePerson();
+    }
 }

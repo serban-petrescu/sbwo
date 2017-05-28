@@ -11,9 +11,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for Dosar complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="Dosar"&gt;
  *   &lt;complexContent&gt;
@@ -38,8 +38,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Dosar", propOrder = {
@@ -87,11 +85,9 @@ public class Dosar {
 
     /**
      * Gets the value of the parti property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfDosarParte }
-     *     
+     *
+     * @return possible object is
+     * {@link ArrayOfDosarParte }
      */
     public ArrayOfDosarParte getParti() {
         return parti;
@@ -99,11 +95,9 @@ public class Dosar {
 
     /**
      * Sets the value of the parti property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfDosarParte }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfDosarParte }
      */
     public void setParti(ArrayOfDosarParte value) {
         this.parti = value;
@@ -111,11 +105,9 @@ public class Dosar {
 
     /**
      * Gets the value of the sedinte property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfDosarSedinta }
-     *     
+     *
+     * @return possible object is
+     * {@link ArrayOfDosarSedinta }
      */
     public ArrayOfDosarSedinta getSedinte() {
         return sedinte;
@@ -123,11 +115,9 @@ public class Dosar {
 
     /**
      * Sets the value of the sedinte property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfDosarSedinta }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfDosarSedinta }
      */
     public void setSedinte(ArrayOfDosarSedinta value) {
         this.sedinte = value;
@@ -135,11 +125,9 @@ public class Dosar {
 
     /**
      * Gets the value of the caiAtac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfDosarCaleAtac }
-     *     
+     *
+     * @return possible object is
+     * {@link ArrayOfDosarCaleAtac }
      */
     public ArrayOfDosarCaleAtac getCaiAtac() {
         return caiAtac;
@@ -147,11 +135,9 @@ public class Dosar {
 
     /**
      * Sets the value of the caiAtac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfDosarCaleAtac }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfDosarCaleAtac }
      */
     public void setCaiAtac(ArrayOfDosarCaleAtac value) {
         this.caiAtac = value;
@@ -159,11 +145,9 @@ public class Dosar {
 
     /**
      * Gets the value of the numar property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumar() {
         return numar;
@@ -171,11 +155,9 @@ public class Dosar {
 
     /**
      * Sets the value of the numar property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumar(String value) {
         this.numar = value;
@@ -183,11 +165,9 @@ public class Dosar {
 
     /**
      * Gets the value of the numarVechi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumarVechi() {
         return numarVechi;
@@ -195,11 +175,9 @@ public class Dosar {
 
     /**
      * Sets the value of the numarVechi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumarVechi(String value) {
         this.numarVechi = value;
@@ -207,11 +185,9 @@ public class Dosar {
 
     /**
      * Gets the value of the data property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getData() {
         return data;
@@ -219,11 +195,9 @@ public class Dosar {
 
     /**
      * Sets the value of the data property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
@@ -231,11 +205,9 @@ public class Dosar {
 
     /**
      * Gets the value of the institutie property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Institutie }
-     *     
+     *
+     * @return possible object is
+     * {@link Institutie }
      */
     public Institutie getInstitutie() {
         return institutie;
@@ -243,11 +215,9 @@ public class Dosar {
 
     /**
      * Sets the value of the institutie property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Institutie }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Institutie }
      */
     public void setInstitutie(Institutie value) {
         this.institutie = value;
@@ -255,11 +225,9 @@ public class Dosar {
 
     /**
      * Gets the value of the departament property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDepartament() {
         return departament;
@@ -267,11 +235,9 @@ public class Dosar {
 
     /**
      * Sets the value of the departament property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDepartament(String value) {
         this.departament = value;
@@ -279,11 +245,9 @@ public class Dosar {
 
     /**
      * Gets the value of the categorieCaz property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CategorieCaz }
-     *     
+     *
+     * @return possible object is
+     * {@link CategorieCaz }
      */
     public CategorieCaz getCategorieCaz() {
         return categorieCaz;
@@ -291,11 +255,9 @@ public class Dosar {
 
     /**
      * Sets the value of the categorieCaz property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CategorieCaz }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CategorieCaz }
      */
     public void setCategorieCaz(CategorieCaz value) {
         this.categorieCaz = value;
@@ -303,11 +265,9 @@ public class Dosar {
 
     /**
      * Gets the value of the stadiuProcesual property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link StadiuProcesual }
-     *     
+     *
+     * @return possible object is
+     * {@link StadiuProcesual }
      */
     public StadiuProcesual getStadiuProcesual() {
         return stadiuProcesual;
@@ -315,11 +275,9 @@ public class Dosar {
 
     /**
      * Sets the value of the stadiuProcesual property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link StadiuProcesual }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link StadiuProcesual }
      */
     public void setStadiuProcesual(StadiuProcesual value) {
         this.stadiuProcesual = value;
@@ -327,11 +285,9 @@ public class Dosar {
 
     /**
      * Gets the value of the obiect property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getObiect() {
         return obiect;
@@ -339,11 +295,9 @@ public class Dosar {
 
     /**
      * Sets the value of the obiect property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setObiect(String value) {
         this.obiect = value;
@@ -351,11 +305,9 @@ public class Dosar {
 
     /**
      * Gets the value of the dataModificare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataModificare() {
         return dataModificare;
@@ -363,11 +315,9 @@ public class Dosar {
 
     /**
      * Sets the value of the dataModificare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataModificare(XMLGregorianCalendar value) {
         this.dataModificare = value;
@@ -375,11 +325,9 @@ public class Dosar {
 
     /**
      * Gets the value of the categorieCazNume property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCategorieCazNume() {
         return categorieCazNume;
@@ -387,11 +335,9 @@ public class Dosar {
 
     /**
      * Sets the value of the categorieCazNume property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCategorieCazNume(String value) {
         this.categorieCazNume = value;
@@ -399,11 +345,9 @@ public class Dosar {
 
     /**
      * Gets the value of the stadiuProcesualNume property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getStadiuProcesualNume() {
         return stadiuProcesualNume;
@@ -411,11 +355,9 @@ public class Dosar {
 
     /**
      * Sets the value of the stadiuProcesualNume property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setStadiuProcesualNume(String value) {
         this.stadiuProcesualNume = value;

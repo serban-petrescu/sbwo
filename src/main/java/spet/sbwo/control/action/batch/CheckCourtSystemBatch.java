@@ -13,44 +13,44 @@ import spet.sbwo.data.table.Expertise;
 import spet.sbwo.integration.api.court.ICourtSystemApi;
 
 public class CheckCourtSystemBatch extends BaseDatabaseAction<CheckCourtSystemBatch.Input, Void> {
-	private final CheckCourtSystem check;
+    private final CheckCourtSystem check;
 
-	public CheckCourtSystemBatch(ICourtSystemApi api) {
-		super(ExpertiseChannel.class);
-		this.check = new CheckCourtSystem(api);
-	}
+    public CheckCourtSystemBatch(ICourtSystemApi api) {
+        super(ExpertiseChannel.class);
+        this.check = new CheckCourtSystem(api);
+    }
 
-	@Override
-	protected Void doRun(Input input, IDatabaseExecutor executor)  {
-		LocalDateTime newest = LocalDateTime.now().minus(input.getDuration());
-		List<Expertise> exps = executor.queryListLimit("Expertise.selectByLastChecked", Expertise.class,
-				input.getCount(), newest);
-		for (Expertise expertise : exps) {
-			check.run(expertise, executor);
-		}
-		return null;
-	}
+    @Override
+    protected Void doRun(Input input, IDatabaseExecutor executor) {
+        LocalDateTime newest = LocalDateTime.now().minus(input.getDuration());
+        List<Expertise> exps = executor.queryListLimit("Expertise.selectByLastChecked", Expertise.class,
+            input.getCount(), newest);
+        for (Expertise expertise : exps) {
+            check.run(expertise, executor);
+        }
+        return null;
+    }
 
-	public static IDatabaseAction<Void, Void> forInput(Duration duration, int count, ICourtSystemApi api) {
-		return (i, e) -> new CheckCourtSystemBatch(api).run(new Input(duration, count), e);
-	}
+    public static IDatabaseAction<Void, Void> forInput(Duration duration, int count, ICourtSystemApi api) {
+        return (i, e) -> new CheckCourtSystemBatch(api).run(new Input(duration, count), e);
+    }
 
-	public static class Input {
-		private final Duration duration;
-		private final int count;
+    public static class Input {
+        private final Duration duration;
+        private final int count;
 
-		public Input(Duration duration, int count) {
-			this.duration = duration;
-			this.count = count;
-		}
+        public Input(Duration duration, int count) {
+            this.duration = duration;
+            this.count = count;
+        }
 
-		public Duration getDuration() {
-			return duration;
-		}
+        public Duration getDuration() {
+            return duration;
+        }
 
-		public int getCount() {
-			return count;
-		}
+        public int getCount() {
+            return count;
+        }
 
-	}
+    }
 }

@@ -1,61 +1,68 @@
-<mvc:View controllerName="spet.sbwo.web.controller.entity.Expertise" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
-	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<Page id="pagEntity" 
-		title="{
+<mvc:View controllerName="spet.sbwo.web.controller.entity.Expertise" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+          xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="pagEntity"
+          title="{
 			parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, 
 				{path: 'i18n>pagEntityExpertisePatternTitle'}, {path: 'data>/number'}
 			],
 			formatter: 'spet.sbwo.web.model.formatter.entityPageTitle'
 		}"
-		busy="{= !${view>/loaded} }"
-		busyIndicatorDelay="500"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		
-		<headerContent>
-			<Button icon="sap-icon://save" visible="{= ${view>/loaded} &amp;&amp; ${view>/edit} &amp;&amp; !${data>/deleted} }" 
-				press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
-			<Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}" 
-				press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
-			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}" 
-				press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
-		</headerContent>
-		
-		<ObjectHeader
-			responsive="true"
-			fullScreenOptimized="true"
-			icon="sap-icon://official-service"
-			title="{data>/number}"
-			intro="{data>/title}">
-			<statuses>
-				<ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
-			</statuses>
-			<headerContainer>
-				<IconTabBar class="sapUiResponsiveContentPadding" >
-					<items>
-						<core:Fragment fragmentName="spet.sbwo.web.fragment.entity.ExpertiseTabs" type="XML" />
-					</items>
-				</IconTabBar>
-			</headerContainer>
-		</ObjectHeader>
-		
-		<footer>
-			<Toolbar>
-				<spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}" />
-				<ToolbarSpacer />
-				<Button icon="sap-icon://detail-view" text="{i18n>btnShowExpteriseExternalText}" 
-					press="onOpenCourtCaseDialog" type="Emphasized"/>
-				<Button icon="sap-icon://delete" visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} &amp;&amp; ${view>/loaded}}" 
-					press="onDelete" text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}" type="Reject"/>
-				<Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}" visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}" 
-					tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
-			</Toolbar>
-		</footer>
-		
-		<dependents>
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML" binding="{view>/case}" />
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML" binding="{data>/location}" />
-		</dependents>
-	</Page>
+          busy="{= !${view>/loaded} }"
+          busyIndicatorDelay="500"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+
+        <headerContent>
+            <Button icon="sap-icon://save"
+                    visible="{= ${view>/loaded} &amp;&amp; ${view>/edit} &amp;&amp; !${data>/deleted} }"
+                    press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
+            <Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}"
+                    press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
+            <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"
+                          visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
+                          press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+        </headerContent>
+
+        <ObjectHeader
+            responsive="true"
+            fullScreenOptimized="true"
+            icon="sap-icon://official-service"
+            title="{data>/number}"
+            intro="{data>/title}">
+            <statuses>
+                <ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
+            </statuses>
+            <headerContainer>
+                <IconTabBar class="sapUiResponsiveContentPadding">
+                    <items>
+                        <core:Fragment fragmentName="spet.sbwo.web.fragment.entity.ExpertiseTabs" type="XML"/>
+                    </items>
+                </IconTabBar>
+            </headerContainer>
+        </ObjectHeader>
+
+        <footer>
+            <Toolbar>
+                <spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://detail-view" text="{i18n>btnShowExpteriseExternalText}"
+                        press="onOpenCourtCaseDialog" type="Emphasized"/>
+                <Button icon="sap-icon://delete"
+                        visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} &amp;&amp; ${view>/loaded}}"
+                        press="onDelete" text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}"
+                        type="Reject"/>
+                <Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}"
+                        visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}"
+                        tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
+            </Toolbar>
+        </footer>
+
+        <dependents>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML"
+                           binding="{view>/case}"/>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
+                           binding="{data>/location}"/>
+        </dependents>
+    </Page>
 </mvc:View>

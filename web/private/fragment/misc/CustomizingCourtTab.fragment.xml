@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-	<IconTabFilter text="{i18n>itfCustomizingCourtsText}">
-		<List items="{path: '/Courts', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
-			<StandardListItem info="{Code}" title="{Name}" />
-		</List>
-	</IconTabFilter>
+    <IconTabFilter text="{i18n>itfCustomizingCourtsText}">
+        <List items="{path: '/Courts', sorter: {path: 'Name'}}" growing="true" growingScrollToLoad="true">
+            <StandardListItem info="{Code}" title="{Name}"/>
+        </List>
+    </IconTabFilter>
 </core:FragmentDefinition>

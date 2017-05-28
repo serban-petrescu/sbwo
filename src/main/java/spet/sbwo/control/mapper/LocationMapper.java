@@ -11,191 +11,190 @@ import spet.sbwo.data.table.LocationCountry;
 import spet.sbwo.data.table.LocationRegion;
 
 public class LocationMapper extends BaseMapper<Location, LocationChannel> {
-	private CountryMapper countryMapper;
-	private RegionMapper regionMapper;
-	private AdmUnitMapper admUnitMapper;
+    private CountryMapper countryMapper;
+    private RegionMapper regionMapper;
+    private AdmUnitMapper admUnitMapper;
 
-	public LocationMapper(IDatabaseExecutor executor) {
-		super(executor);
-		this.countryMapper = new CountryMapper(executor);
-		this.regionMapper = new RegionMapper(executor);
-		this.admUnitMapper = new AdmUnitMapper(executor);
+    public LocationMapper(IDatabaseExecutor executor) {
+        super(executor);
+        this.countryMapper = new CountryMapper(executor);
+        this.regionMapper = new RegionMapper(executor);
+        this.admUnitMapper = new AdmUnitMapper(executor);
 
-		this.countryMapper.setReturnNullOnNullId(true);
-		this.regionMapper.setReturnNullOnNullId(true);
-		this.admUnitMapper.setReturnNullOnNullId(true);
-	}
+        this.countryMapper.setReturnNullOnNullId(true);
+        this.regionMapper.setReturnNullOnNullId(true);
+        this.admUnitMapper.setReturnNullOnNullId(true);
+    }
 
-	@Override
-	protected Location newInternal(LocationChannel external) {
-		return new Location();
-	}
+    @Override
+    protected Location newInternal(LocationChannel external) {
+        return new Location();
+    }
 
-	@Override
-	protected LocationChannel newExternal(Location internal) {
-		return new LocationChannel();
-	}
+    @Override
+    protected LocationChannel newExternal(Location internal) {
+        return new LocationChannel();
+    }
 
-	@Override
-	public void merge(LocationChannel external, Location internal)  {
-		super.merge(external, internal);
-		external.setAddress(internal.getAddress());
-		external.setAdministrativeUnit(this.admUnitMapper.toExternal(internal.getAdministrativeUnit()));
-		external.setCountry(this.countryMapper.toExternal(internal.getCountry()));
-		external.setLatitude(internal.getLatitude());
-		external.setLongitude(internal.getLongitude());
-		external.setRegion(this.regionMapper.toExternal(internal.getRegion()));
-		external.setGeocoded(internal.isGeocoded());
-	}
+    @Override
+    public void merge(LocationChannel external, Location internal) {
+        super.merge(external, internal);
+        external.setAddress(internal.getAddress());
+        external.setAdministrativeUnit(this.admUnitMapper.toExternal(internal.getAdministrativeUnit()));
+        external.setCountry(this.countryMapper.toExternal(internal.getCountry()));
+        external.setLatitude(internal.getLatitude());
+        external.setLongitude(internal.getLongitude());
+        external.setRegion(this.regionMapper.toExternal(internal.getRegion()));
+        external.setGeocoded(internal.isGeocoded());
+    }
 
-	@Override
-	public void merge(Location internal, LocationChannel external)  {
-		super.merge(internal, external);
-		internal.setAddress(external.getAddress());
-		internal.setAdministrativeUnit(this.admUnitMapper.toInternal(external.getAdministrativeUnit()));
-		internal.setCountry(this.countryMapper.toInternal(external.getCountry()));
-		internal.setLatitude(external.getLatitude());
-		internal.setLongitude(external.getLongitude());
-		internal.setRegion(this.regionMapper.toInternal(external.getRegion()));
-		ifNotNull(external.getGeocoded(), internal::setGeocoded);
-	}
+    @Override
+    public void merge(Location internal, LocationChannel external) {
+        super.merge(internal, external);
+        internal.setAddress(external.getAddress());
+        internal.setAdministrativeUnit(this.admUnitMapper.toInternal(external.getAdministrativeUnit()));
+        internal.setCountry(this.countryMapper.toInternal(external.getCountry()));
+        internal.setLatitude(external.getLatitude());
+        internal.setLongitude(external.getLongitude());
+        internal.setRegion(this.regionMapper.toInternal(external.getRegion()));
+        ifNotNull(external.getGeocoded(), internal::setGeocoded);
+    }
 
-	public Location toInternalMandatory(Location internal, LocationChannel external)  {
-		if (external != null) {
-			if (internal != null) {
-				merge(internal, external);
-				return internal;
-			} else {
-				return toInternal(external);
-			}
-		} else if (internal == null) {
-			return new Location();
-		}
-		return internal;
-	}
+    public Location toInternalMandatory(Location internal, LocationChannel external) {
+        if (external != null) {
+            if (internal != null) {
+                merge(internal, external);
+                return internal;
+            } else {
+                return toInternal(external);
+            }
+        } else if (internal == null) {
+            return new Location();
+        }
+        return internal;
+    }
 
-	public static class CountryMapper extends BaseMapper<LocationCountry, LocationChannel.Country> {
-		public CountryMapper(IDatabaseExecutor executor) {
-			super(executor);
-		}
+    public static class CountryMapper extends BaseMapper<LocationCountry, LocationChannel.Country> {
+        public CountryMapper(IDatabaseExecutor executor) {
+            super(executor);
+        }
 
-		@Override
-		protected LocationCountry newInternal(LocationChannel.Country external) {
-			return new LocationCountry();
-		}
+        @Override
+        protected LocationCountry newInternal(LocationChannel.Country external) {
+            return new LocationCountry();
+        }
 
-		@Override
-		protected LocationChannel.Country newExternal(LocationCountry internal) {
-			return new LocationChannel.Country();
-		}
+        @Override
+        protected LocationChannel.Country newExternal(LocationCountry internal) {
+            return new LocationChannel.Country();
+        }
 
-		@Override
-		public LocationChannel.Country toExternal(LocationCountry input)  {
-			LocationChannel.Country result = this.newExternal(input);
-			if (input != null) {
-				this.merge(result, input);
-			} else {
-				result.setId(null);
-			}
-			return result;
-		}
+        @Override
+        public LocationChannel.Country toExternal(LocationCountry input) {
+            LocationChannel.Country result = this.newExternal(input);
+            if (input != null) {
+                this.merge(result, input);
+            } else {
+                result.setId(null);
+            }
+            return result;
+        }
 
-		@Override
-		public void merge(Country external, LocationCountry internal)  {
-			super.merge(external, internal);
-			external.setName(internal.getName());
-			external.setCode(internal.getCode());
-		}
+        @Override
+        public void merge(Country external, LocationCountry internal) {
+            super.merge(external, internal);
+            external.setName(internal.getName());
+            external.setCode(internal.getCode());
+        }
 
-		@Override
-		public void merge(LocationCountry internal, LocationChannel.Country external)  {
-			super.merge(internal, external);
-			internal.setName(external.getName());
-			internal.setCode(external.getCode());
-		}
-	}
+        @Override
+        public void merge(LocationCountry internal, LocationChannel.Country external) {
+            super.merge(internal, external);
+            internal.setName(external.getName());
+            internal.setCode(external.getCode());
+        }
+    }
 
-	public static class RegionMapper extends BaseMapper<LocationRegion, LocationChannel.Region> {
-		public RegionMapper(IDatabaseExecutor executor) {
-			super(executor);
-		}
+    public static class RegionMapper extends BaseMapper<LocationRegion, LocationChannel.Region> {
+        public RegionMapper(IDatabaseExecutor executor) {
+            super(executor);
+        }
 
-		@Override
-		protected LocationRegion newInternal(LocationChannel.Region external) {
-			return new LocationRegion();
-		}
+        @Override
+        protected LocationRegion newInternal(LocationChannel.Region external) {
+            return new LocationRegion();
+        }
 
-		@Override
-		protected LocationChannel.Region newExternal(LocationRegion internal) {
-			return new LocationChannel.Region();
-		}
+        @Override
+        protected LocationChannel.Region newExternal(LocationRegion internal) {
+            return new LocationChannel.Region();
+        }
 
-		@Override
-		public LocationChannel.Region toExternal(LocationRegion input)  {
-			LocationChannel.Region result = this.newExternal(input);
-			if (input != null) {
-				this.merge(result, input);
-			} else {
-				result.setId(null);
-			}
-			return result;
-		}
+        @Override
+        public LocationChannel.Region toExternal(LocationRegion input) {
+            LocationChannel.Region result = this.newExternal(input);
+            if (input != null) {
+                this.merge(result, input);
+            } else {
+                result.setId(null);
+            }
+            return result;
+        }
 
-		@Override
-		public void merge(Region external, LocationRegion internal)  {
-			super.merge(external, internal);
-			external.setName(internal.getName());
-			external.setCode(internal.getCode());
-		}
+        @Override
+        public void merge(Region external, LocationRegion internal) {
+            super.merge(external, internal);
+            external.setName(internal.getName());
+            external.setCode(internal.getCode());
+        }
 
-		@Override
-		public void merge(LocationRegion internal, LocationChannel.Region external)  {
-			super.merge(internal, external);
-			internal.setName(external.getName());
-			internal.setCode(external.getCode());
-		}
-	}
+        @Override
+        public void merge(LocationRegion internal, LocationChannel.Region external) {
+            super.merge(internal, external);
+            internal.setName(external.getName());
+            internal.setCode(external.getCode());
+        }
+    }
 
-	public static class AdmUnitMapper extends BaseMapper<LocationAdministrativeUnit, LocationChannel.AdmUnit> {
-		public AdmUnitMapper(IDatabaseExecutor executor) {
-			super(executor);
-		}
+    public static class AdmUnitMapper extends BaseMapper<LocationAdministrativeUnit, LocationChannel.AdmUnit> {
+        public AdmUnitMapper(IDatabaseExecutor executor) {
+            super(executor);
+        }
 
-		@Override
-		protected LocationAdministrativeUnit newInternal(LocationChannel.AdmUnit external) {
-			return new LocationAdministrativeUnit();
-		}
+        @Override
+        protected LocationAdministrativeUnit newInternal(LocationChannel.AdmUnit external) {
+            return new LocationAdministrativeUnit();
+        }
 
-		@Override
-		protected LocationChannel.AdmUnit newExternal(LocationAdministrativeUnit internal) {
-			return new LocationChannel.AdmUnit();
-		}
+        @Override
+        protected LocationChannel.AdmUnit newExternal(LocationAdministrativeUnit internal) {
+            return new LocationChannel.AdmUnit();
+        }
 
-		@Override
-		public LocationChannel.AdmUnit toExternal(LocationAdministrativeUnit input)  {
-			LocationChannel.AdmUnit result = this.newExternal(input);
-			if (input != null) {
-				this.merge(result, input);
-			} else {
-				result.setId(null);
-			}
-			return result;
-		}
+        @Override
+        public LocationChannel.AdmUnit toExternal(LocationAdministrativeUnit input) {
+            LocationChannel.AdmUnit result = this.newExternal(input);
+            if (input != null) {
+                this.merge(result, input);
+            } else {
+                result.setId(null);
+            }
+            return result;
+        }
 
-		@Override
-		public void merge(AdmUnit external, LocationAdministrativeUnit internal)  {
-			super.merge(external, internal);
-			external.setName(internal.getName());
-			external.setCode(internal.getCode());
-		}
+        @Override
+        public void merge(AdmUnit external, LocationAdministrativeUnit internal) {
+            super.merge(external, internal);
+            external.setName(internal.getName());
+            external.setCode(internal.getCode());
+        }
 
-		@Override
-		public void merge(LocationAdministrativeUnit internal, LocationChannel.AdmUnit external)
-				 {
-			super.merge(internal, external);
-			internal.setName(external.getName());
-			internal.setCode(external.getCode());
-		}
-	}
+        @Override
+        public void merge(LocationAdministrativeUnit internal, LocationChannel.AdmUnit external) {
+            super.merge(internal, external);
+            internal.setName(external.getName());
+            internal.setCode(external.getCode());
+        }
+    }
 
 }

@@ -8,13 +8,13 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 
 public class ReadAllExpired extends BaseDatabaseAction<Long, List<String>> {
 
-	public ReadAllExpired() {
-		super(SessionChannel.class);
-	}
+    public ReadAllExpired() {
+        super(SessionChannel.class);
+    }
 
-	@Override
-	public List<String> doRun(Long input, IDatabaseExecutor executor)  {
-		return executor.queryList("UserSession.readAllExpiredIds", String.class, input);
-	}
+    @Override
+    public List<String> doRun(Long input, IDatabaseExecutor executor) {
+        return executor.queryList("UserSession.readAllExpiredIds", String.class, input);
+    }
 
 }

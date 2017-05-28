@@ -6,7 +6,7 @@ import spet.sbwo.control.scheduler.model.ScheduleChannel;
 
 public interface IScheduleManager {
 
-	void start();
+    void start();
 
-	List<ScheduleChannel> channels();
+    List<ScheduleChannel> channels();
 }

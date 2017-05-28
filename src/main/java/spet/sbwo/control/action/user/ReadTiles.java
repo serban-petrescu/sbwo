@@ -8,17 +8,17 @@ import spet.sbwo.data.table.UserHomeTile;
 
 public class ReadTiles extends BaseUserDatabaseAction<Void, UserHomeTilesChannel> {
 
-	public ReadTiles() {
-		super(UserHomeTilesChannel.class, true);
-	}
+    public ReadTiles() {
+        super(UserHomeTilesChannel.class, true);
+    }
 
-	@Override
-	public UserHomeTilesChannel doRun(Void input, IDatabaseExecutor executor, User user)  {
-		UserHomeTilesChannel result = new UserHomeTilesChannel();
-		for (UserHomeTile tile : user.getHomeTiles()) {
-			result.addTile(tile.getName(), tile.getOrder(), tile.isVisible());
-		}
-		return result;
-	}
+    @Override
+    public UserHomeTilesChannel doRun(Void input, IDatabaseExecutor executor, User user) {
+        UserHomeTilesChannel result = new UserHomeTilesChannel();
+        for (UserHomeTile tile : user.getHomeTiles()) {
+            result.addTile(tile.getName(), tile.getOrder(), tile.isVisible());
+        }
+        return result;
+    }
 
 }

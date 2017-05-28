@@ -1,16 +1,18 @@
 <mvc:View controllerName="spet.sbwo.web.controller.vh.Basic" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Dialog id="dlgMain" stretch="{device>/system/phone}" contentHeight="90%" resizable="true" title="{i18n>dlgValueHelpCourtTitle}">
-		<subHeader>
-			<Toolbar>
-				<SearchField id="seaMain" width="100%" showRefreshButton="{:= !${device>/support/touch} }" search="search"/>
-			</Toolbar>
-		</subHeader>
-		<PullToRefresh visible="{device>/support/touch}" refresh="refresh" />
-		<List id="lstMain" items="{/CourtSearchs}" growing="true" growingScrollToLoad="true">
-			<StandardListItem title="{Name}" info="{Code}" type="Active" press="select" />
-		</List>
-		<endButton>
-			<Button text="{i18n>btnValueHelpCloseText}" press="close" />
-		</endButton>
-	</Dialog>
+    <Dialog id="dlgMain" stretch="{device>/system/phone}" contentHeight="90%" resizable="true"
+            title="{i18n>dlgValueHelpCourtTitle}">
+        <subHeader>
+            <Toolbar>
+                <SearchField id="seaMain" width="100%" showRefreshButton="{:= !${device>/support/touch} }"
+                             search="search"/>
+            </Toolbar>
+        </subHeader>
+        <PullToRefresh visible="{device>/support/touch}" refresh="refresh"/>
+        <List id="lstMain" items="{/CourtSearchs}" growing="true" growingScrollToLoad="true">
+            <StandardListItem title="{Name}" info="{Code}" type="Active" press="select"/>
+        </List>
+        <endButton>
+            <Button text="{i18n>btnValueHelpCloseText}" press="close"/>
+        </endButton>
+    </Dialog>
 </mvc:View>

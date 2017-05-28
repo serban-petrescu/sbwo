@@ -10,137 +10,137 @@ import javax.persistence.Table;
 @Table(name = "T_USER_SESSION")
 public class UserSession {
 
-	@Id
-	@Column(name = "C_ID", length = 128)
-	private String id;
-	
-	@Column(name = "C_CONTEXT_PATH", length = 64)
-	private String contextPath;
+    @Id
+    @Column(name = "C_ID", length = 128)
+    private String id;
 
-	@Column(name = "C_VIRTUAL_HOST", length = 64)
-	private String virtualHost;
+    @Column(name = "C_CONTEXT_PATH", length = 64)
+    private String contextPath;
 
-	@Column(name = "C_LAST_NODE", length = 64)
-	private String lastNode;
+    @Column(name = "C_VIRTUAL_HOST", length = 64)
+    private String virtualHost;
 
-	@Column(name = "C_ACCESS_TIME")
-	private long accessTime;
+    @Column(name = "C_LAST_NODE", length = 64)
+    private String lastNode;
 
-	@Column(name = "C_LAST_ACCESS_TIME")
-	private long lastAccessTime;
+    @Column(name = "C_ACCESS_TIME")
+    private long accessTime;
 
-	@Column(name = "C_CREATE_TIME")
-	private long createTime;
+    @Column(name = "C_LAST_ACCESS_TIME")
+    private long lastAccessTime;
 
-	@Column(name = "C_COOKIE_TIME")
-	private long cookieTime;
+    @Column(name = "C_CREATE_TIME")
+    private long createTime;
 
-	@Column(name = "C_LAST_SAVE_TIME")
-	private long lastSaveTime;
+    @Column(name = "C_COOKIE_TIME")
+    private long cookieTime;
 
-	@Column(name = "C_EXPIRY_TIME")
-	private long expiryTime;
+    @Column(name = "C_LAST_SAVE_TIME")
+    private long lastSaveTime;
 
-	@Column(name = "C_MAX_INTERVAL")
-	private long maxInterval;
+    @Column(name = "C_EXPIRY_TIME")
+    private long expiryTime;
 
-	@Lob
-	@Column(name = "C_ATTRIBUTES")
-	private byte[] attributes;
+    @Column(name = "C_MAX_INTERVAL")
+    private long maxInterval;
 
-	public String getId() {
-		return id;
-	}
+    @Lob
+    @Column(name = "C_ATTRIBUTES")
+    private byte[] attributes;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getContextPath() {
-		return contextPath;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setContextPath(String contextPath) {
-		this.contextPath = contextPath;
-	}
+    public String getContextPath() {
+        return contextPath;
+    }
 
-	public String getVirtualHost() {
-		return virtualHost;
-	}
+    public void setContextPath(String contextPath) {
+        this.contextPath = contextPath;
+    }
 
-	public void setVirtualHost(String virtualHost) {
-		this.virtualHost = virtualHost;
-	}
+    public String getVirtualHost() {
+        return virtualHost;
+    }
 
-	public String getLastNode() {
-		return lastNode;
-	}
+    public void setVirtualHost(String virtualHost) {
+        this.virtualHost = virtualHost;
+    }
 
-	public void setLastNode(String lastNode) {
-		this.lastNode = lastNode;
-	}
+    public String getLastNode() {
+        return lastNode;
+    }
 
-	public long getAccessTime() {
-		return accessTime;
-	}
+    public void setLastNode(String lastNode) {
+        this.lastNode = lastNode;
+    }
 
-	public void setAccessTime(long accessTime) {
-		this.accessTime = accessTime;
-	}
+    public long getAccessTime() {
+        return accessTime;
+    }
 
-	public long getLastAccessTime() {
-		return lastAccessTime;
-	}
+    public void setAccessTime(long accessTime) {
+        this.accessTime = accessTime;
+    }
 
-	public void setLastAccessTime(long lastAccessTime) {
-		this.lastAccessTime = lastAccessTime;
-	}
+    public long getLastAccessTime() {
+        return lastAccessTime;
+    }
 
-	public long getCreateTime() {
-		return createTime;
-	}
+    public void setLastAccessTime(long lastAccessTime) {
+        this.lastAccessTime = lastAccessTime;
+    }
 
-	public void setCreateTime(long createTime) {
-		this.createTime = createTime;
-	}
+    public long getCreateTime() {
+        return createTime;
+    }
 
-	public long getCookieTime() {
-		return cookieTime;
-	}
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setCookieTime(long cookieTime) {
-		this.cookieTime = cookieTime;
-	}
+    public long getCookieTime() {
+        return cookieTime;
+    }
 
-	public long getLastSaveTime() {
-		return lastSaveTime;
-	}
+    public void setCookieTime(long cookieTime) {
+        this.cookieTime = cookieTime;
+    }
 
-	public void setLastSaveTime(long lastSaveTime) {
-		this.lastSaveTime = lastSaveTime;
-	}
+    public long getLastSaveTime() {
+        return lastSaveTime;
+    }
 
-	public long getExpiryTime() {
-		return expiryTime;
-	}
+    public void setLastSaveTime(long lastSaveTime) {
+        this.lastSaveTime = lastSaveTime;
+    }
 
-	public void setExpiryTime(long expiryTime) {
-		this.expiryTime = expiryTime;
-	}
+    public long getExpiryTime() {
+        return expiryTime;
+    }
 
-	public long getMaxInterval() {
-		return maxInterval;
-	}
+    public void setExpiryTime(long expiryTime) {
+        this.expiryTime = expiryTime;
+    }
 
-	public void setMaxInterval(long maxInterval) {
-		this.maxInterval = maxInterval;
-	}
+    public long getMaxInterval() {
+        return maxInterval;
+    }
 
-	public byte[] getAttributes() {
-		return attributes;
-	}
+    public void setMaxInterval(long maxInterval) {
+        this.maxInterval = maxInterval;
+    }
 
-	public void setAttributes(byte[] attributes) {
-		this.attributes = attributes;
-	}
+    public byte[] getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(byte[] attributes) {
+        this.attributes = attributes;
+    }
 }

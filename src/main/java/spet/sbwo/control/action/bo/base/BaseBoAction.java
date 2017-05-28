@@ -7,25 +7,25 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 
 public abstract class BaseBoAction<T extends JournalizedBaseEntity, I, O> extends BaseDatabaseAction<I, O> {
-	protected final Class<T> entity;
+    protected final Class<T> entity;
 
-	protected BaseBoAction(Class<T> entity, Class<?> channel) {
-		super(channel);
-		this.entity = entity;
-	}
+    protected BaseBoAction(Class<T> entity, Class<?> channel) {
+        super(channel);
+        this.entity = entity;
+    }
 
-	@Override
-	public O doRun(I input, IDatabaseExecutor executor)  {
-		T t = executor.find(entity, keyFromInput(input));
-		if (t != null) {
-			return doRun(input, t, executor);
-		} else {
-			throw new ControlException(ControlError.ENTITY_NOT_FOUND, channel);
-		}
-	}
+    @Override
+    public O doRun(I input, IDatabaseExecutor executor) {
+        T t = executor.find(entity, keyFromInput(input));
+        if (t != null) {
+            return doRun(input, t, executor);
+        } else {
+            throw new ControlException(ControlError.ENTITY_NOT_FOUND, channel);
+        }
+    }
 
-	protected abstract Integer keyFromInput(I input);
+    protected abstract Integer keyFromInput(I input);
 
-	protected abstract O doRun(I input, T t, IDatabaseExecutor executor) ;
+    protected abstract O doRun(I input, T t, IDatabaseExecutor executor);
 
 }

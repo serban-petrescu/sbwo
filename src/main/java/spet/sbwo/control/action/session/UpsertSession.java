@@ -6,18 +6,18 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.UserSession;
 
 public class UpsertSession extends BaseDatabaseAction<UserSession, Void> {
-	public UpsertSession() {
-		super(SessionChannel.class);
-	}
+    public UpsertSession() {
+        super(SessionChannel.class);
+    }
 
-	@Override
-	public Void doRun(UserSession input, IDatabaseExecutor executor)  {
-		UserSession attached = executor.find(UserSession.class, input.getId());
-		if (attached == null) {
-			executor.create(input);
-		} else {
-			executor.update(input);
-		}
-		return null;
-	}
+    @Override
+    public Void doRun(UserSession input, IDatabaseExecutor executor) {
+        UserSession attached = executor.find(UserSession.class, input.getId());
+        if (attached == null) {
+            executor.create(input);
+        } else {
+            executor.update(input);
+        }
+        return null;
+    }
 }

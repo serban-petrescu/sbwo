@@ -13,34 +13,34 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
 
 public class ManagementController extends BaseActionExecutor {
-	private static final String INITIAL_CREDENT = "init";
+    private static final String INITIAL_CREDENT = "init";
 
-	public ManagementController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public ManagementController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public void registerUser(String username)  {
-		executeAndCommit(username, new RegisterUser(), username);
-	}
+    public void registerUser(String username) {
+        executeAndCommit(username, new RegisterUser(), username);
+    }
 
-	public void activateUser(String username, boolean active)  {
-		executeAndCommit(username, new ActivateUser(), active);
-	}
+    public void activateUser(String username, boolean active) {
+        executeAndCommit(username, new ActivateUser(), active);
+    }
 
-	public void resetUserPassword(String username)  {
-		changeUserPassword(username, INITIAL_CREDENT);
-	}
+    public void resetUserPassword(String username) {
+        changeUserPassword(username, INITIAL_CREDENT);
+    }
 
-	public void changeUserPassword(String username, String password)  {
-		executeAndCommit(username, new ChangePassword(), password);
-	}
+    public void changeUserPassword(String username, String password) {
+        executeAndCommit(username, new ChangePassword(), password);
+    }
 
-	public List<UserPlain> listAllPlains()  {
-		return execute(new ReadAllUserPlains(), null);
-	}
+    public List<UserPlain> listAllPlains() {
+        return execute(new ReadAllUserPlains(), null);
+    }
 
-	public UserInfoChannel readInfo(String username)  {
-		return execute(username, new ReadCurrentUserInfo(), null);
-	}
+    public UserInfoChannel readInfo(String username) {
+        return execute(username, new ReadCurrentUserInfo(), null);
+    }
 
 }

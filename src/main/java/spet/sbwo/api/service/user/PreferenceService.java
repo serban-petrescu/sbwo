@@ -18,32 +18,32 @@ import spet.sbwo.control.controller.user.PreferenceController;
 
 @Path("/user/preference")
 public class PreferenceService extends BaseService implements IPrivate {
-	private final PreferenceController controller;
+    private final PreferenceController controller;
 
-	public PreferenceService(PreferenceController controller) {
-		this.controller = controller;
-	}
+    public PreferenceService(PreferenceController controller) {
+        this.controller = controller;
+    }
 
-	@GET
-	@Path("/read")
-	public Response readPreference(@QueryParam("callback") String callback) {
-		try {
-			return JsonpUtils.response(controller.readPreference(currentUsername()), callback);
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @GET
+    @Path("/read")
+    public Response readPreference(@QueryParam("callback") String callback) {
+        try {
+            return JsonpUtils.response(controller.readPreference(currentUsername()), callback);
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
-	@PUT
-	@Path("/update")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public UserPreferenceChannel updatePreference(@Context HttpServletRequest request,
-			UserPreferenceChannel preference) {
-		try {
-			return controller.updatePreference(currentUsername(), preference);
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @PUT
+    @Path("/update")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public UserPreferenceChannel updatePreference(@Context HttpServletRequest request,
+                                                  UserPreferenceChannel preference) {
+        try {
+            return controller.updatePreference(currentUsername(), preference);
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 }

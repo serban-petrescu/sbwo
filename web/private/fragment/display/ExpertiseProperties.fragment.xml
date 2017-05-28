@@ -1,27 +1,27 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-	<f:Form editable="false" >
-		<f:layout>
-			<f:ResponsiveGridLayout
-				labelSpanL="4"	labelSpanM="5"
-				emptySpanL="4"	emptySpanM="2"
-				columnsL="1"	columnsM="1" />
-		</f:layout>
-		<f:FormContainer >
-			<f:FormElement label="{i18n>lblExpertiseTitleText}"  visible="{= !!${data>title} }" > 
-				<Text text="{data>title}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseStatusText}" >
-				<Text text="{path: 'data>status', formatter: 'spet.sbwo.web.model.formatter.expertiseStatus'}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseResponsibleText}" visible="{= !!${data>responsible/username} }" >
-				<Text text="{data>responsible/username}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseNextHearingText}" visible="{= !!${data>nextHearing} }" >
-				<Text text="{path: 'data>nextHearing', formatter: 'spet.sbwo.web.model.formatter.date'}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblExpertiseTariffAdvanceText}" visible="{= !!${data>advance} }" >
-				<Text text="{path: 'data>advance', type: 'sap.ui.model.odata.type.Decimal'}" />
-			</f:FormElement>
-		</f:FormContainer>
-	</f:Form>
+    <f:Form editable="false">
+        <f:layout>
+            <f:ResponsiveGridLayout
+                labelSpanL="4" labelSpanM="5"
+                emptySpanL="4" emptySpanM="2"
+                columnsL="1" columnsM="1"/>
+        </f:layout>
+        <f:FormContainer>
+            <f:FormElement label="{i18n>lblExpertiseTitleText}" visible="{= !!${data>title} }">
+                <Text text="{data>title}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblExpertiseStatusText}">
+                <Text text="{path: 'data>status', formatter: 'spet.sbwo.web.model.formatter.expertiseStatus'}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblExpertiseResponsibleText}" visible="{= !!${data>responsible/username} }">
+                <Text text="{data>responsible/username}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblExpertiseNextHearingText}" visible="{= !!${data>nextHearing} }">
+                <Text text="{path: 'data>nextHearing', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblExpertiseTariffAdvanceText}" visible="{= !!${data>advance} }">
+                <Text text="{path: 'data>advance', type: 'sap.ui.model.odata.type.Decimal'}"/>
+            </f:FormElement>
+        </f:FormContainer>
+    </f:Form>
 </core:FragmentDefinition>

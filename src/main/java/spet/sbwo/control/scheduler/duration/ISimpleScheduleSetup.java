@@ -5,9 +5,9 @@ import java.time.Duration;
 import spet.sbwo.control.scheduler.model.SchedulerType;
 
 public interface ISimpleScheduleSetup {
-	Duration getInterval();
+    Duration getInterval();
 
-	SchedulerType getType();
+    SchedulerType getType();
 
-	Runnable getRunnable();
+    Runnable getRunnable();
 }

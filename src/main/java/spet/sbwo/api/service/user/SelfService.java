@@ -10,34 +10,34 @@ import spet.sbwo.control.controller.user.ManagementController;
 
 @Path("/user")
 public class SelfService extends BaseService implements IPrivate {
-	private final ManagementController managementController;
+    private final ManagementController managementController;
 
-	public SelfService(ManagementController managementController) {
-		this.managementController = managementController;
-	}
+    public SelfService(ManagementController managementController) {
+        this.managementController = managementController;
+    }
 
-	@PUT
-	@Path("/password/update")
-	@Consumes("application/json")
-	public void changePassword(PasswordChannel data) {
-		try {
-			managementController.changeUserPassword(currentUsername(), data.getPassword());
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @PUT
+    @Path("/password/update")
+    @Consumes("application/json")
+    public void changePassword(PasswordChannel data) {
+        try {
+            managementController.changeUserPassword(currentUsername(), data.getPassword());
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
 }
 
 class PasswordChannel {
-	private String password;
+    private String password;
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }

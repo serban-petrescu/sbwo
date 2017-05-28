@@ -7,26 +7,25 @@ import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
 
 public abstract class UpdateEntity<T extends JournalizedBaseEntity, C extends JournalChannel>
-		extends BaseUserBoAction<T, C, Void> {
+    extends BaseUserBoAction<T, C, Void> {
 
-	protected UpdateEntity(Class<T> entity, Class<C> channel) {
-		super(entity, channel, true);
-	}
+    protected UpdateEntity(Class<T> entity, Class<C> channel) {
+        super(entity, channel, true);
+    }
 
-	protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
+    protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
 
-	@Override
-	protected Void doRun(C input, T t, IDatabaseExecutor executor, User user)
-			 {
-		BaseMapper<T, C> mapper = mapper(executor);
-		mapper.merge(t, input);
-		mapper.flush();
-		changed(user, t);
-		return null;
-	}
+    @Override
+    protected Void doRun(C input, T t, IDatabaseExecutor executor, User user) {
+        BaseMapper<T, C> mapper = mapper(executor);
+        mapper.merge(t, input);
+        mapper.flush();
+        changed(user, t);
+        return null;
+    }
 
-	@Override
-	protected Integer keyFromInput(C input) {
-		return input.getId();
-	}
+    @Override
+    protected Integer keyFromInput(C input) {
+        return input.getId();
+    }
 }

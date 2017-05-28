@@ -11,29 +11,29 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 
 public class RegisterUser extends BaseUserDatabaseAction<String, Void> {
-	private static final String INITIAL_CREDENT = "init";
-	private static final PasswordHasher HASHER = new PasswordHasher();
+    private static final String INITIAL_CREDENT = "init";
+    private static final PasswordHasher HASHER = new PasswordHasher();
 
-	public RegisterUser() {
-		super(UserChannel.class, false);
-	}
+    public RegisterUser() {
+        super(UserChannel.class, false);
+    }
 
-	@Override
-	public Void doRun(String input, IDatabaseExecutor executor, User user)  {
-		if (user != null) {
-			LoggerFactory.getLogger(getClass()).warn("Attempted to create already existing user ({}).", input);
-			throw new ControlException(ControlError.INVALID_PROPERTY_VALUE, UserChannel.class);
-		} else {
-			PasswordHasher.HashedPasswordInfo pwdInfo = HASHER.hashPassword(INITIAL_CREDENT);
-			User newUser = new User();
-			newUser.setUsername(input);
-			newUser.setPassword(pwdInfo.getHash());
-			newUser.setSalt(pwdInfo.getSalt());
-			newUser.setActive(true);
-			executor.create(newUser);
-			new CreateDefaultPreference().run(null, executor, newUser);
-		}
-		return null;
-	}
+    @Override
+    public Void doRun(String input, IDatabaseExecutor executor, User user) {
+        if (user != null) {
+            LoggerFactory.getLogger(getClass()).warn("Attempted to create already existing user ({}).", input);
+            throw new ControlException(ControlError.INVALID_PROPERTY_VALUE, UserChannel.class);
+        } else {
+            PasswordHasher.HashedPasswordInfo pwdInfo = HASHER.hashPassword(INITIAL_CREDENT);
+            User newUser = new User();
+            newUser.setUsername(input);
+            newUser.setPassword(pwdInfo.getHash());
+            newUser.setSalt(pwdInfo.getSalt());
+            newUser.setActive(true);
+            executor.create(newUser);
+            new CreateDefaultPreference().run(null, executor, newUser);
+        }
+        return null;
+    }
 
 }

@@ -1,67 +1,74 @@
-<mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
-	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<Page id="pagEntity" 
-		title="{
+<mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+          xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="pagEntity"
+          title="{
 			parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'}, 
 				{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}
 			],
 			formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
 		}"
-		busy="{= !${view>/loaded} }"
-		busyIndicatorDelay="500"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		
-		<headerContent>
-			<Button icon="sap-icon://save" visible="{= ${view>/loaded} &amp;&amp; ${view>/edit} &amp;&amp; !${data>/deleted} }" 
-				press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
-			<Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}" 
-				press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
-			<Button icon="sap-icon://download" visible="{= !${view>/edit} &amp;&amp; ${view>/loaded}}" 
-				press="doExternalAction" cd:action="download" cd:target="{path: 'view>/id', formatter: '.formatExportPath'}"
-				tooltip="{i18n>btnPersonEntityExportTooltip}"/>
-			<ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}" 
-				press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
-		</headerContent>
-		
-		<ObjectHeader
-			responsive="true"
-			fullScreenOptimized="true"
-			icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
-			title="{
+          busy="{= !${view>/loaded} }"
+          busyIndicatorDelay="500"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+
+        <headerContent>
+            <Button icon="sap-icon://save"
+                    visible="{= ${view>/loaded} &amp;&amp; ${view>/edit} &amp;&amp; !${data>/deleted} }"
+                    press="onSave" tooltip="{i18n>btnEntitySaveChangesTooltip}"/>
+            <Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}"
+                    press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
+            <Button icon="sap-icon://download" visible="{= !${view>/edit} &amp;&amp; ${view>/loaded}}"
+                    press="doExternalAction" cd:action="download"
+                    cd:target="{path: 'view>/id', formatter: '.formatExportPath'}"
+                    tooltip="{i18n>btnPersonEntityExportTooltip}"/>
+            <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"
+                          visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
+                          press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+        </headerContent>
+
+        <ObjectHeader
+            responsive="true"
+            fullScreenOptimized="true"
+            icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
+            title="{
 				parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
 				formatter: 'spet.sbwo.web.model.formatter.personName'
 			}"
-			intro="{
+            intro="{
 				parts: [{path: 'data>/location/country/name'}, {path: 'data>/location/region/name'}, {path: 'data>/location/address'}],
 				formatter: 'spet.sbwo.web.model.formatter.address'
 			}">
-			<statuses>
-				<ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
-			</statuses>
-			<headerContainer>
-				<IconTabBar class="sapUiResponsiveContentPadding" >
-					<items>
-						<core:Fragment fragmentName="spet.sbwo.web.fragment.entity.PersonTabs" type="XML" />
-					</items>
-				</IconTabBar>
-			</headerContainer>
-		</ObjectHeader>
-		
-		<dependents>
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML" binding="{data>/location}" />
-		</dependents>
-		
-		<footer>
-			<Toolbar>
-				<spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}" />
-				<ToolbarSpacer />
-				<Button icon="sap-icon://delete" visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} &amp;&amp; ${view>/loaded}}" 
-					press="onDelete" text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}" type="Reject"/>
-				<Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}" visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}" 
-					tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
-			</Toolbar>
-		</footer>
-	</Page>
+            <statuses>
+                <ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
+            </statuses>
+            <headerContainer>
+                <IconTabBar class="sapUiResponsiveContentPadding">
+                    <items>
+                        <core:Fragment fragmentName="spet.sbwo.web.fragment.entity.PersonTabs" type="XML"/>
+                    </items>
+                </IconTabBar>
+            </headerContainer>
+        </ObjectHeader>
+
+        <dependents>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
+                           binding="{data>/location}"/>
+        </dependents>
+
+        <footer>
+            <Toolbar>
+                <spet:DraftIndicator state="{view>/draft}" visible="{view>/loaded}"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://delete"
+                        visible="{= !${view>/edit} &amp;&amp; !${data>/deleted} &amp;&amp; ${view>/loaded}}"
+                        press="onDelete" text="{i18n>btnEntityDeleteText}" tooltip="{i18n>btnEntityDeleteTooltip}"
+                        type="Reject"/>
+                <Button icon="sap-icon://reset" text="{i18n>btnEntityResetText}"
+                        visible="{= ${view>/edit} &amp;&amp; ${view>/loaded}}"
+                        tooltip="{i18n>btnEntityResetTooltip}" press="onReset"/>
+            </Toolbar>
+        </footer>
+    </Page>
 </mvc:View>

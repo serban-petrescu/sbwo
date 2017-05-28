@@ -21,34 +21,34 @@ import spet.sbwo.control.importer.Target;
 
 @Path("/import")
 public class DataImportService extends BaseService implements IPrivate {
-	private DataImportFacade dataImporter;
+    private DataImportFacade dataImporter;
 
-	public DataImportService(DataImportFacade dataImporter) {
-		this.dataImporter = dataImporter;
-	}
+    public DataImportService(DataImportFacade dataImporter) {
+        this.dataImporter = dataImporter;
+    }
 
-	@POST
-	@Path("/data/{entity}")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	@Produces("application/json")
-	public void importData(@PathParam("entity") String entity, @Multipart(value = "files[]") List<Attachment> files) {
-		try {
-			String username = currentUsername();
-			Target target = getTargetForEntity(entity);
-			Map<String, List<String>> fields = dataImporter.fields(target);
-			try (CsvMapIteratorHolder hoder = new CsvMapIteratorHolder(fields, files)) {
-				dataImporter.execute(target, username, hoder.getResult());
-			}
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @POST
+    @Path("/data/{entity}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces("application/json")
+    public void importData(@PathParam("entity") String entity, @Multipart(value = "files[]") List<Attachment> files) {
+        try {
+            String username = currentUsername();
+            Target target = getTargetForEntity(entity);
+            Map<String, List<String>> fields = dataImporter.fields(target);
+            try (CsvMapIteratorHolder hoder = new CsvMapIteratorHolder(fields, files)) {
+                dataImporter.execute(target, username, hoder.getResult());
+            }
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
-	protected Target getTargetForEntity(String entity) {
-		String lower = entity.toLowerCase();
-		if ("persons".equals(lower)) {
-			return Target.PERSON;
-		}
-		return null;
-	}
+    protected Target getTargetForEntity(String entity) {
+        String lower = entity.toLowerCase();
+        if ("persons".equals(lower)) {
+            return Target.PERSON;
+        }
+        return null;
+    }
 }

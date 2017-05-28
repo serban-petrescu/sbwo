@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -31,8 +31,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -61,11 +59,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the numarDosar property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumarDosar() {
         return numarDosar;
@@ -73,11 +69,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the numarDosar property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumarDosar(String value) {
         this.numarDosar = value;
@@ -85,11 +79,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the obiectDosar property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getObiectDosar() {
         return obiectDosar;
@@ -97,11 +89,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the obiectDosar property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setObiectDosar(String value) {
         this.obiectDosar = value;
@@ -109,11 +99,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the numeParte property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumeParte() {
         return numeParte;
@@ -121,11 +109,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the numeParte property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumeParte(String value) {
         this.numeParte = value;
@@ -133,11 +119,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the institutie property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Institutie }
-     *     
+     *
+     * @return possible object is
+     * {@link Institutie }
      */
     public Institutie getInstitutie() {
         return institutie;
@@ -145,11 +129,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the institutie property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Institutie }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Institutie }
      */
     public void setInstitutie(Institutie value) {
         this.institutie = value;
@@ -157,11 +139,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the dataStart property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataStart() {
         return dataStart;
@@ -169,11 +149,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the dataStart property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataStart(XMLGregorianCalendar value) {
         this.dataStart = value;
@@ -181,11 +159,9 @@ public class CautareDosare {
 
     /**
      * Gets the value of the dataStop property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataStop() {
         return dataStop;
@@ -193,11 +169,9 @@ public class CautareDosare {
 
     /**
      * Sets the value of the dataStop property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataStop(XMLGregorianCalendar value) {
         this.dataStop = value;

@@ -11,17 +11,17 @@ import spet.sbwo.control.scheduler.period.CleanupScheduler;
 
 public class Schedule {
 
-	private Schedule() {
-		super();
-	}
+    private Schedule() {
+        super();
+    }
 
-	public static void install(MutablePicoContainer container) {
-		container.addComponent(CleanupScheduler.class);
-		container.addComponent(BackupScheduler.class);
-		container.addComponent(CheckCourtSchedulerSetup.class);
-		container.addComponent(GeocodeSchedulerSetup.class);
-		container.addComponent(SessionCacheSchedulerSetup.class);
-		container.addComponent(ScheduleManager.class);
-	}
+    public static void install(MutablePicoContainer container) {
+        container.addComponent(CleanupScheduler.class);
+        container.addComponent(BackupScheduler.class);
+        container.addComponent(CheckCourtSchedulerSetup.class);
+        container.addComponent(GeocodeSchedulerSetup.class);
+        container.addComponent(SessionCacheSchedulerSetup.class);
+        container.addComponent(ScheduleManager.class);
+    }
 
 }

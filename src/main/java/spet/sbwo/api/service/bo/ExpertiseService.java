@@ -12,22 +12,22 @@ import spet.sbwo.integration.api.court.ICourtSystemApi;
 import spet.sbwo.integration.api.court.model.Case;
 
 @Path("/expertise")
-public class ExpertiseService extends BaseBoService<ExpertiseChannel, ExpertiseController>implements IPrivate {
-	private final ICourtSystemApi courtSystemApi;
+public class ExpertiseService extends BaseBoService<ExpertiseChannel, ExpertiseController> implements IPrivate {
+    private final ICourtSystemApi courtSystemApi;
 
-	public ExpertiseService(ExpertiseController controller, ICourtSystemApi courtSystemApi) {
-		super(controller);
-		this.courtSystemApi = courtSystemApi;
-	}
+    public ExpertiseService(ExpertiseController controller, ICourtSystemApi courtSystemApi) {
+        super(controller);
+        this.courtSystemApi = courtSystemApi;
+    }
 
-	@GET
-	@Path("/case")
-	@Produces("application/json")
-	public Case readExternalCase(@QueryParam("number") String number) {
-		try {
-			return courtSystemApi.read(number);
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @GET
+    @Path("/case")
+    @Produces("application/json")
+    public Case readExternalCase(@QueryParam("number") String number) {
+        try {
+            return courtSystemApi.read(number);
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 }

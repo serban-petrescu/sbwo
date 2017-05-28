@@ -1,41 +1,45 @@
-<mvc:View controllerName="spet.sbwo.web.controller.wizard.ExpertiseCreate" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.util" xmlns:core="sap.ui.core">
-	<Page id="pagExpertiseCreate" 
-		title="{i18n>pagExpertiseCreateTitle}"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		<Wizard id="wizMain" 
-			finishButtonText="{i18n>wzdCreateExpertiseMainFinishButtonText}"
-			complete="onComplete"
-			width="100%">
-			<WizardStep id="wzsCaseNumber" 
-				icon="sap-icon://number-sign" 
-				title="{i18n>wzsExpertiseCreateCaseNumberTitle}" 
-				validated="{view>/wizard/validity/0}">
-				<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ExpertiseCaseNumber" type="XML" binding="{data>/}" />
-			</WizardStep>
-			<WizardStep id="wzsCaseInfo" 
-				icon="sap-icon://hint" 
-				title="{i18n>wzsExpertiseCreateInfoTitle}" 
-				validated="{view>/wizard/validity/1}">
-				<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ExpertiseProperties" type="XML" binding="{data>/}" />
-			</WizardStep>
-			<WizardStep id="wzsNotes" 
-				icon="sap-icon://write-new-document" 
-				title="{i18n>wzsExpertiseCreateNotesTitle}"
-				validated="{view>/wizard/validity/2}">
-				<core:Fragment fragmentName="spet.sbwo.web.fragment.edit.Notes" type="XML" binding="{data>/}" />
-			</WizardStep>
-		</Wizard>
-		<footer>
-			<Toolbar>
-				<spet:DraftIndicator state="{view>/draft}" />
-				<ToolbarSpacer />
-				<Button icon="sap-icon://reset" text="{i18n>btnWizardResetText}" tooltip="{i18n>btnWizardResetTooltip}" press="onReset"/>
-			</Toolbar>
-		</footer>
-		<dependents>
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML" binding="{view>/case}" />
-		</dependents>
-	</Page>
+<mvc:View controllerName="spet.sbwo.web.controller.wizard.ExpertiseCreate" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.util" xmlns:core="sap.ui.core">
+    <Page id="pagExpertiseCreate"
+          title="{i18n>pagExpertiseCreateTitle}"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+        <Wizard id="wizMain"
+                finishButtonText="{i18n>wzdCreateExpertiseMainFinishButtonText}"
+                complete="onComplete"
+                width="100%">
+            <WizardStep id="wzsCaseNumber"
+                        icon="sap-icon://number-sign"
+                        title="{i18n>wzsExpertiseCreateCaseNumberTitle}"
+                        validated="{view>/wizard/validity/0}">
+                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ExpertiseCaseNumber" type="XML"
+                               binding="{data>/}"/>
+            </WizardStep>
+            <WizardStep id="wzsCaseInfo"
+                        icon="sap-icon://hint"
+                        title="{i18n>wzsExpertiseCreateInfoTitle}"
+                        validated="{view>/wizard/validity/1}">
+                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ExpertiseProperties" type="XML"
+                               binding="{data>/}"/>
+            </WizardStep>
+            <WizardStep id="wzsNotes"
+                        icon="sap-icon://write-new-document"
+                        title="{i18n>wzsExpertiseCreateNotesTitle}"
+                        validated="{view>/wizard/validity/2}">
+                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.Notes" type="XML" binding="{data>/}"/>
+            </WizardStep>
+        </Wizard>
+        <footer>
+            <Toolbar>
+                <spet:DraftIndicator state="{view>/draft}"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://reset" text="{i18n>btnWizardResetText}" tooltip="{i18n>btnWizardResetTooltip}"
+                        press="onReset"/>
+            </Toolbar>
+        </footer>
+        <dependents>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML"
+                           binding="{view>/case}"/>
+        </dependents>
+    </Page>
 </mvc:View>

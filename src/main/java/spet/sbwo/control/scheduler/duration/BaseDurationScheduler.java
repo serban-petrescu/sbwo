@@ -8,36 +8,36 @@ import spet.sbwo.control.scheduler.model.ScheduleInfo;
 import spet.sbwo.control.scheduler.model.SchedulerType;
 
 abstract class BaseDurationScheduler implements IScheduler {
-	protected final SchedulerType type;
-	protected final Duration duration;
-	protected final LocalDateTime start;
-	protected final boolean inclusive;
+    protected final SchedulerType type;
+    protected final Duration duration;
+    protected final LocalDateTime start;
+    protected final boolean inclusive;
 
-	public BaseDurationScheduler(SchedulerType type, Duration duration, LocalDateTime start, boolean inclusive) {
-		super();
-		this.type = type;
-		this.duration = duration;
-		this.start = start;
-		this.inclusive = inclusive;
-	}
+    public BaseDurationScheduler(SchedulerType type, Duration duration, LocalDateTime start, boolean inclusive) {
+        super();
+        this.type = type;
+        this.duration = duration;
+        this.start = start;
+        this.inclusive = inclusive;
+    }
 
-	@Override
-	public SchedulerType type() {
-		return type;
-	}
+    @Override
+    public SchedulerType type() {
+        return type;
+    }
 
-	@Override
-	public ScheduleInfo next(LocalDateTime sessionPrevious) {
-		if (sessionPrevious == null) {
-			if (inclusive) {
-				return build(start);
-			} else {
-				return build(start.plus(duration));
-			}
-		} else {
-			return build(sessionPrevious.plus(duration));
-		}
-	}
+    @Override
+    public ScheduleInfo next(LocalDateTime sessionPrevious) {
+        if (sessionPrevious == null) {
+            if (inclusive) {
+                return build(start);
+            } else {
+                return build(start.plus(duration));
+            }
+        } else {
+            return build(sessionPrevious.plus(duration));
+        }
+    }
 
-	protected abstract ScheduleInfo build(LocalDateTime when);
+    protected abstract ScheduleInfo build(LocalDateTime when);
 }

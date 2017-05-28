@@ -22,26 +22,26 @@ import spet.sbwo.control.runnable.RunGeocodeLocationBatch;
 
 public class Control {
 
-	private Control() {
-		super();
-	}
+    private Control() {
+        super();
+    }
 
-	public static void install(MutablePicoContainer container) {
-		container.addComponent(FavouriteController.class);
-		container.addComponent(PreferenceController.class);
-		container.addComponent(LoginController.class);
-		container.addComponent(ManagementController.class);
-		container.addComponent(TileController.class);
-		container.addComponent(LocationImportController.class);
-		container.addComponent(PersonController.class);
-		container.addComponent(TrashController.class);
-		container.addComponent(CountController.class);
-		container.addComponent(DataImportFacade.class);
-		container.addComponent(SessionManager.class);
-		container.addComponent(ExpertiseController.class);
-		container.addComponent(CourtImportController.class);
-		container.addComponent(ISessionManager.class, CachedSessionManager.class);
-		container.addComponent(RunCheckCourtBatch.class);
-		container.addComponent(RunGeocodeLocationBatch.class);
-	}
+    public static void install(MutablePicoContainer container) {
+        container.addComponent(FavouriteController.class);
+        container.addComponent(PreferenceController.class);
+        container.addComponent(LoginController.class);
+        container.addComponent(ManagementController.class);
+        container.addComponent(TileController.class);
+        container.addComponent(LocationImportController.class);
+        container.addComponent(PersonController.class);
+        container.addComponent(TrashController.class);
+        container.addComponent(CountController.class);
+        container.addComponent(DataImportFacade.class);
+        container.addComponent(SessionManager.class);
+        container.addComponent(ExpertiseController.class);
+        container.addComponent(CourtImportController.class);
+        container.addComponent(ISessionManager.class, CachedSessionManager.class);
+        container.addComponent(RunCheckCourtBatch.class);
+        container.addComponent(RunGeocodeLocationBatch.class);
+    }
 }

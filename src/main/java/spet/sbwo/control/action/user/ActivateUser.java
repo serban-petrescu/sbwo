@@ -7,14 +7,14 @@ import spet.sbwo.data.table.User;
 
 public class ActivateUser extends BaseUserDatabaseAction<Boolean, Void> {
 
-	public ActivateUser() {
-		super(UserChannel.class, true);
-	}
+    public ActivateUser() {
+        super(UserChannel.class, true);
+    }
 
-	@Override
-	public Void doRun(Boolean input, IDatabaseExecutor executor, User user) {
-		user.setActive(input);
-		return null;
-	}
+    @Override
+    public Void doRun(Boolean input, IDatabaseExecutor executor, User user) {
+        user.setActive(input);
+        return null;
+    }
 
 }

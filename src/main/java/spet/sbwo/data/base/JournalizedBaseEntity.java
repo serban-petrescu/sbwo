@@ -11,61 +11,61 @@ import spet.sbwo.data.table.User;
 
 @MappedSuperclass
 public class JournalizedBaseEntity extends BaseEntity {
-	@ManyToOne(optional = true)
-	@JoinColumn(name = "C_CREATEDBY_ID", nullable = true)
-	protected User createdBy;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "C_CREATEDBY_ID", nullable = true)
+    protected User createdBy;
 
-	@Column(name = "C_CREATEDON")
-	protected LocalDateTime createdOn;
+    @Column(name = "C_CREATEDON")
+    protected LocalDateTime createdOn;
 
-	@ManyToOne(optional = true)
-	@JoinColumn(name = "C_CHANGEDBY_ID", nullable = true)
-	protected User changedBy;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "C_CHANGEDBY_ID", nullable = true)
+    protected User changedBy;
 
-	@Column(name = "C_CHANGEDON")
-	protected LocalDateTime changedOn;
+    @Column(name = "C_CHANGEDON")
+    protected LocalDateTime changedOn;
 
-	@Column(name = "C_DELETED", nullable = false)
-	protected boolean deleted;
-	
+    @Column(name = "C_DELETED", nullable = false)
+    protected boolean deleted;
 
-	public User getCreatedBy() {
-		return createdBy;
-	}
 
-	public void setCreatedBy(User createdBy) {
-		this.createdBy = createdBy;
-	}
+    public User getCreatedBy() {
+        return createdBy;
+    }
 
-	public LocalDateTime getCreatedOn() {
-		return createdOn;
-	}
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
 
-	public void setCreatedOn(LocalDateTime createdOn) {
-		this.createdOn = createdOn;
-	}
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
 
-	public User getChangedBy() {
-		return changedBy;
-	}
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
 
-	public void setChangedBy(User changedBy) {
-		this.changedBy = changedBy;
-	}
+    public User getChangedBy() {
+        return changedBy;
+    }
 
-	public LocalDateTime getChangedOn() {
-		return changedOn;
-	}
+    public void setChangedBy(User changedBy) {
+        this.changedBy = changedBy;
+    }
 
-	public void setChangedOn(LocalDateTime changedOn) {
-		this.changedOn = changedOn;
-	}
+    public LocalDateTime getChangedOn() {
+        return changedOn;
+    }
 
-	public boolean isDeleted() {
-		return deleted;
-	}
+    public void setChangedOn(LocalDateTime changedOn) {
+        this.changedOn = changedOn;
+    }
 
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }

@@ -13,34 +13,34 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 public class CsvMapIteratorHolder implements AutoCloseable {
-	private final Map<String, Iterator<Map<String, String>>> result = new HashMap<>();
-	private final List<CSVParser> parsers = new LinkedList<>();
+    private final Map<String, Iterator<Map<String, String>>> result = new HashMap<>();
+    private final List<CSVParser> parsers = new LinkedList<>();
 
-	public CsvMapIteratorHolder(Map<String, List<String>> fields, List<Attachment> files) throws IOException {
-		CSVFormat format = CSVFormat.DEFAULT.withHeader();
-		for (Attachment file : files) {
-			addFile(fields, format, file);
-		}
-	}
+    public CsvMapIteratorHolder(Map<String, List<String>> fields, List<Attachment> files) throws IOException {
+        CSVFormat format = CSVFormat.DEFAULT.withHeader();
+        for (Attachment file : files) {
+            addFile(fields, format, file);
+        }
+    }
 
-	protected void addFile(Map<String, List<String>> fields, CSVFormat format, Attachment file) throws IOException {
-		String filename = file.getContentDisposition().getFilename().replaceFirst("[.][^.]+$", "");
-		if (fields.containsKey(filename)) {
-			CSVParser parser = new CSVParser(new InputStreamReader(file.getDataHandler().getInputStream()), format);
-			result.put(filename, new CsvMapIterator(parser.iterator()));
-			parsers.add(parser);
-		}
-	}
+    protected void addFile(Map<String, List<String>> fields, CSVFormat format, Attachment file) throws IOException {
+        String filename = file.getContentDisposition().getFilename().replaceFirst("[.][^.]+$", "");
+        if (fields.containsKey(filename)) {
+            CSVParser parser = new CSVParser(new InputStreamReader(file.getDataHandler().getInputStream()), format);
+            result.put(filename, new CsvMapIterator(parser.iterator()));
+            parsers.add(parser);
+        }
+    }
 
-	public Map<String, Iterator<Map<String, String>>> getResult() {
-		return result;
-	}
+    public Map<String, Iterator<Map<String, String>>> getResult() {
+        return result;
+    }
 
-	@Override
-	public void close() throws IOException {
-		for (CSVParser parser : parsers) {
-			parser.close();
-		}
-	}
+    @Override
+    public void close() throws IOException {
+        for (CSVParser parser : parsers) {
+            parser.close();
+        }
+    }
 
 }

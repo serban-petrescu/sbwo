@@ -6,22 +6,22 @@ import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 
 public abstract class ReadEntity<T extends JournalizedBaseEntity, C extends JournalChannel>
-		extends BaseBoAction<T, Integer, C> {
+    extends BaseBoAction<T, Integer, C> {
 
-	protected ReadEntity(Class<T> entity, Class<C> channel) {
-		super(entity, channel);
-	}
+    protected ReadEntity(Class<T> entity, Class<C> channel) {
+        super(entity, channel);
+    }
 
-	@Override
-	protected Integer keyFromInput(Integer input) {
-		return input;
-	}
+    @Override
+    protected Integer keyFromInput(Integer input) {
+        return input;
+    }
 
-	protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
+    protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
 
-	@Override
-	protected C doRun(Integer input, T t, IDatabaseExecutor executor)  {
-		return mapper(executor).toExternal(t);
-	}
+    @Override
+    protected C doRun(Integer input, T t, IDatabaseExecutor executor) {
+        return mapper(executor).toExternal(t);
+    }
 
 }

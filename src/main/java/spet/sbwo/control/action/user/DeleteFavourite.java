@@ -8,18 +8,18 @@ import spet.sbwo.data.table.UserFavourite;
 
 public class DeleteFavourite extends BaseUserDatabaseAction<Integer, Void> {
 
-	public DeleteFavourite() {
-		super(UserFavouriteChannel.class, true);
-	}
+    public DeleteFavourite() {
+        super(UserFavouriteChannel.class, true);
+    }
 
-	@Override
-	public Void doRun(Integer input, IDatabaseExecutor executor, User user)  {
-		UserFavourite favourite = executor.find(UserFavourite.class, input);
-		if (favourite != null) {
-			user.getFavourites().remove(favourite);
-			executor.delete(favourite);
-		}
-		return null;
-	}
+    @Override
+    public Void doRun(Integer input, IDatabaseExecutor executor, User user) {
+        UserFavourite favourite = executor.find(UserFavourite.class, input);
+        if (favourite != null) {
+            user.getFavourites().remove(favourite);
+            executor.delete(favourite);
+        }
+        return null;
+    }
 
 }

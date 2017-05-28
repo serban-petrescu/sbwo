@@ -7,20 +7,19 @@ import spet.sbwo.data.table.UserPreference;
 
 public class UpdatePreference extends BasePreferenceAction<UserPreferenceChannel> {
 
-	@Override
-	public UserPreferenceChannel doRun(UserPreferenceChannel input, IDatabaseExecutor executor, User user)
-			 {
-		UserPreference preference = user.getPreference();
-		if (user.getPreference() == null) {
-			preference = new UserPreference();
-			preference.setUser(user);
-			user.setPreference(preference);
-			executor.create(preference);
-		}
-		preference.setDraftResumeDelay(input.getDraftResumeDelay());
-		preference.setLanguage(input.getLanguage());
-		preference.setTheme(input.getTheme());
-		return mapToChannel(preference);
-	}
+    @Override
+    public UserPreferenceChannel doRun(UserPreferenceChannel input, IDatabaseExecutor executor, User user) {
+        UserPreference preference = user.getPreference();
+        if (user.getPreference() == null) {
+            preference = new UserPreference();
+            preference.setUser(user);
+            user.setPreference(preference);
+            executor.create(preference);
+        }
+        preference.setDraftResumeDelay(input.getDraftResumeDelay());
+        preference.setLanguage(input.getLanguage());
+        preference.setTheme(input.getTheme());
+        return mapToChannel(preference);
+    }
 
 }

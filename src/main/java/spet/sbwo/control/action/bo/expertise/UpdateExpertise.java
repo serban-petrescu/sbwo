@@ -9,13 +9,13 @@ import spet.sbwo.data.table.Expertise;
 
 public class UpdateExpertise extends UpdateEntity<Expertise, ExpertiseChannel> {
 
-	public UpdateExpertise() {
-		super(Expertise.class, ExpertiseChannel.class);
-	}
+    public UpdateExpertise() {
+        super(Expertise.class, ExpertiseChannel.class);
+    }
 
-	@Override
-	protected BaseMapper<Expertise, ExpertiseChannel> mapper(IDatabaseExecutor executor) {
-		return new ExpertiseMapper(executor);
-	}
+    @Override
+    protected BaseMapper<Expertise, ExpertiseChannel> mapper(IDatabaseExecutor executor) {
+        return new ExpertiseMapper(executor);
+    }
 
 }

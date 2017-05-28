@@ -9,12 +9,12 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class LocationImportController extends BaseActionExecutor {
 
-	public LocationImportController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public LocationImportController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public void importLocationParts(List<LocationImportChannel> data)  {
-		executeAndCommit(new ImportLocations(), data);
-	}
+    public void importLocationParts(List<LocationImportChannel> data) {
+        executeAndCommit(new ImportLocations(), data);
+    }
 
 }

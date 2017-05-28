@@ -9,19 +9,19 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public abstract class BaseRunnableActionExecutor extends BaseActionExecutor implements Runnable {
 
-	protected BaseRunnableActionExecutor(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    protected BaseRunnableActionExecutor(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	@Override
-	public void run() {
-		try {
-			executeAndCommit(action(), null);
-		} catch (ControlException e) {
-			LoggerFactory.getLogger(this.getClass()).error("Suppressed exception during action execution.", e);
-		}
-	}
+    @Override
+    public void run() {
+        try {
+            executeAndCommit(action(), null);
+        } catch (ControlException e) {
+            LoggerFactory.getLogger(this.getClass()).error("Suppressed exception during action execution.", e);
+        }
+    }
 
-	protected abstract IDatabaseAction<Void, Void> action();
+    protected abstract IDatabaseAction<Void, Void> action();
 
 }

@@ -1,42 +1,45 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
-	<IconTabFilter icon="sap-icon://hint" binding="{data>/}">
-		<l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonProperties" />
-		</l:VerticalLayout>
-		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonProperties" />
-		</l:VerticalLayout>
-	</IconTabFilter>
-	<IconTabFilter icon="sap-icon://map" binding="{data>/location}">
-		<l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>
-		</l:VerticalLayout>
-		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.LocationFullForm" />
-		</l:VerticalLayout>
-	</IconTabFilter>
-	<IconTabFilter icon="sap-icon://phone" visible="{= ${view>/edit} || !!${data>/telephones/length} }" binding="{data>/}">
-		<l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/telephones/length} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonPhones" />
-		</l:VerticalLayout>
-		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonPhones" />
-		</l:VerticalLayout>
-	</IconTabFilter>
-	<IconTabFilter icon="sap-icon://arobase" visible="{= ${view>/edit} || !!${data>/emailAddresses/length} }" binding="{data>/}">
-		<l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/emailAddresses/length} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonEmails" />
-		</l:VerticalLayout>
-		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonEmails" />
-		</l:VerticalLayout>
-	</IconTabFilter>
-	<IconTabFilter icon="sap-icon://loan" visible="{= ${view>/edit} || !!${data>/bankAccounts/length} }" binding="{data>/}">
-		<l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/bankAccounts/length} }">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonBankAccounts" />
-		</l:VerticalLayout>
-		<l:VerticalLayout width="100%" visible="{view>/edit}">
-			<core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonBankAccounts" />
-		</l:VerticalLayout>
-	</IconTabFilter>
+    <IconTabFilter icon="sap-icon://hint" binding="{data>/}">
+        <l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonProperties"/>
+        </l:VerticalLayout>
+        <l:VerticalLayout width="100%" visible="{view>/edit}">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonProperties"/>
+        </l:VerticalLayout>
+    </IconTabFilter>
+    <IconTabFilter icon="sap-icon://map" binding="{data>/location}">
+        <l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.LocationForm"/>
+        </l:VerticalLayout>
+        <l:VerticalLayout width="100%" visible="{view>/edit}">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.LocationFullForm"/>
+        </l:VerticalLayout>
+    </IconTabFilter>
+    <IconTabFilter icon="sap-icon://phone" visible="{= ${view>/edit} || !!${data>/telephones/length} }"
+                   binding="{data>/}">
+        <l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/telephones/length} }">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonPhones"/>
+        </l:VerticalLayout>
+        <l:VerticalLayout width="100%" visible="{view>/edit}">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonPhones"/>
+        </l:VerticalLayout>
+    </IconTabFilter>
+    <IconTabFilter icon="sap-icon://arobase" visible="{= ${view>/edit} || !!${data>/emailAddresses/length} }"
+                   binding="{data>/}">
+        <l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/emailAddresses/length} }">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonEmails"/>
+        </l:VerticalLayout>
+        <l:VerticalLayout width="100%" visible="{view>/edit}">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonEmails"/>
+        </l:VerticalLayout>
+    </IconTabFilter>
+    <IconTabFilter icon="sap-icon://loan" visible="{= ${view>/edit} || !!${data>/bankAccounts/length} }"
+                   binding="{data>/}">
+        <l:VerticalLayout width="100%" visible="{= !${view>/edit}  &amp;&amp; !!${data>/bankAccounts/length} }">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.PersonBankAccounts"/>
+        </l:VerticalLayout>
+        <l:VerticalLayout width="100%" visible="{view>/edit}">
+            <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.PersonBankAccounts"/>
+        </l:VerticalLayout>
+    </IconTabFilter>
 </core:FragmentDefinition>

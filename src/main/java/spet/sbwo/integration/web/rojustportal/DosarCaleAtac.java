@@ -11,9 +11,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for DosarCaleAtac complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="DosarCaleAtac"&gt;
  *   &lt;complexContent&gt;
@@ -27,8 +27,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DosarCaleAtac", propOrder = {
@@ -46,11 +44,9 @@ public class DosarCaleAtac {
 
     /**
      * Gets the value of the dataDeclarare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataDeclarare() {
         return dataDeclarare;
@@ -58,11 +54,9 @@ public class DosarCaleAtac {
 
     /**
      * Sets the value of the dataDeclarare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataDeclarare(XMLGregorianCalendar value) {
         this.dataDeclarare = value;
@@ -70,11 +64,9 @@ public class DosarCaleAtac {
 
     /**
      * Gets the value of the parteDeclaratoare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getParteDeclaratoare() {
         return parteDeclaratoare;
@@ -82,11 +74,9 @@ public class DosarCaleAtac {
 
     /**
      * Sets the value of the parteDeclaratoare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setParteDeclaratoare(String value) {
         this.parteDeclaratoare = value;
@@ -94,11 +84,9 @@ public class DosarCaleAtac {
 
     /**
      * Gets the value of the tipCaleAtac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTipCaleAtac() {
         return tipCaleAtac;
@@ -106,11 +94,9 @@ public class DosarCaleAtac {
 
     /**
      * Sets the value of the tipCaleAtac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTipCaleAtac(String value) {
         this.tipCaleAtac = value;

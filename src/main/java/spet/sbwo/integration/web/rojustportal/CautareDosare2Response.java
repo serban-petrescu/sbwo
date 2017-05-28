@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -24,8 +24,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -39,11 +37,9 @@ public class CautareDosare2Response {
 
     /**
      * Gets the value of the cautareDosare2Result property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfDosar }
-     *     
+     *
+     * @return possible object is
+     * {@link ArrayOfDosar }
      */
     public ArrayOfDosar getCautareDosare2Result() {
         return cautareDosare2Result;
@@ -51,11 +47,9 @@ public class CautareDosare2Response {
 
     /**
      * Sets the value of the cautareDosare2Result property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfDosar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfDosar }
      */
     public void setCautareDosare2Result(ArrayOfDosar value) {
         this.cautareDosare2Result = value;

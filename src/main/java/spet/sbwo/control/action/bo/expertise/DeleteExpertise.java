@@ -9,19 +9,19 @@ import spet.sbwo.data.table.Expertise;
 
 public class DeleteExpertise extends DeleteEntity<Expertise> {
 
-	public DeleteExpertise() {
-		super(Expertise.class, ExpertiseChannel.class);
-	}
+    public DeleteExpertise() {
+        super(Expertise.class, ExpertiseChannel.class);
+    }
 
-	public DeleteExpertise(Duration directDeleteInterval) {
-		super(Expertise.class, ExpertiseChannel.class, directDeleteInterval);
-	}
+    public DeleteExpertise(Duration directDeleteInterval) {
+        super(Expertise.class, ExpertiseChannel.class, directDeleteInterval);
+    }
 
-	@Override
-	protected void delete(IDatabaseExecutor executor, Expertise t)  {
-		super.delete(executor, t);
-		if (t.getLocation() != null) {
-			executor.delete(t.getLocation());
-		}
-	}
+    @Override
+    protected void delete(IDatabaseExecutor executor, Expertise t) {
+        super.delete(executor, t);
+        if (t.getLocation() != null) {
+            executor.delete(t.getLocation());
+        }
+    }
 }

@@ -1,20 +1,22 @@
 <!DOCTYPE HTML>
 <html>
 
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta charset="UTF-8">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8">
 
-		<title>Loading...</title>
+    <title>Loading...</title>
 
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 
-	<body class="sapUiBody" style="overflow:hidden">
-		<div id="overlay">
-			<div id="ring" class='uil-ring-css' style='transform:scale(1);'><div></div></div>
-		</div>
-		<script type="text/javascript">
+<body class="sapUiBody" style="overflow:hidden">
+<div id="overlay">
+    <div id="ring" class='uil-ring-css' style='transform:scale(1);'>
+        <div></div>
+    </div>
+</div>
+<script type="text/javascript">
 			var oUserData, sGoogleApiKey;
 			
 			function setGoogleApiKey(sKey) {
@@ -50,29 +52,31 @@
 			if (!browserSupportsCSSProperty("animation")) {
 				document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
 			}
-		</script>
-		
-		<div id="content">
-		</div>
-		
-		<script src="/public/rest/user/current?callback=mergeUserData" ></script>
-		<script src="/private/api/rest/utility/geocode/key?callback=setGoogleApiKey" ></script>
-		<script type="text/javascript">
+
+</script>
+
+<div id="content">
+</div>
+
+<script src="/public/rest/user/current?callback=mergeUserData"></script>
+<script src="/private/api/rest/utility/geocode/key?callback=setGoogleApiKey"></script>
+<script type="text/javascript">
 			window["sap-ui-config"] = {
 				theme: oUserData.preference.theme,
 				language: oUserData.preference.language
             };
-		</script>
-		
-		<script id="sap-ui-bootstrap"
-			src="/lib/openui5/sap-ui-core.js"
-			data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified,openui5.googlemaps"
-			data-sap-ui-preload="async" 
-			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"spet.sbwo.web": "", "openui5.googlemaps": "/lib/googlemaps"}'>
-		</script>
 
-		<script type="text/javascript">
+</script>
+
+<script id="sap-ui-bootstrap"
+        src="/lib/openui5/sap-ui-core.js"
+        data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified,openui5.googlemaps"
+        data-sap-ui-preload="async"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-resourceroots='{"spet.sbwo.web": "", "openui5.googlemaps": "/lib/googlemaps"}'>
+</script>
+
+<script type="text/javascript">
 			sap.ui.getCore().attachInit(function() {
 				sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
 					new MapsApi({
@@ -88,8 +92,9 @@
 					}).placeAt("content");
 				})
 			});
-		</script>
 
-	</body>
+</script>
+
+</body>
 
 </html>

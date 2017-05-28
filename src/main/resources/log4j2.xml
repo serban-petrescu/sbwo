@@ -2,22 +2,22 @@
 <Configuration packages="spet.sbwo.logging">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-		    <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-		<RollingFile name="File" 
-            fileName="./log/log.txt" 
-            filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
-			<GsonLayout/>
+        <RollingFile name="File"
+                     fileName="./log/log.txt"
+                     filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
+            <GsonLayout/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1 MB"/>
-                <TimeBasedTriggeringPolicy />
+                <TimeBasedTriggeringPolicy/>
             </Policies>
         </RollingFile>
     </Appenders>
     <Loggers>
-    	<Root>
-    		<Appender-ref ref="Console" level="error"/>
-    		<Appender-ref ref="File" level="info"/>
-    	</Root>
+        <Root>
+            <Appender-ref ref="Console" level="error"/>
+            <Appender-ref ref="File" level="info"/>
+        </Root>
     </Loggers>
 </Configuration>

@@ -17,62 +17,62 @@ import spet.sbwo.data.table.LocationCountry;
 import spet.sbwo.data.table.LocationRegion;
 
 public class LocationImporter extends BaseListImporter<Location> {
-	private static final Logger LOG = LoggerFactory.getLogger(LocationImporter.class);
-	private LocationProvider provider;
+    private static final Logger LOG = LoggerFactory.getLogger(LocationImporter.class);
+    private LocationProvider provider;
 
-	public LocationImporter(IDatabaseExecutor executor) {
-		this.provider = new LocationProvider(executor);
-	}
+    public LocationImporter(IDatabaseExecutor executor) {
+        this.provider = new LocationProvider(executor);
+    }
 
-	@Override
-	protected Location build(Map<String, String> entry)  {
-		Location result = new Location();
-		result.setAddress(entry.get("location_address"));
+    @Override
+    protected Location build(Map<String, String> entry) {
+        Location result = new Location();
+        result.setAddress(entry.get("location_address"));
 
-		provider.country(entry.get("location_country_code")).ifPresent(c -> {
-			result.setCountry(c);
-			provider.region(c, entry.get("location_region_code")).ifPresent(r -> {
-				result.setRegion(r);
-				provider.admUnit(r, entry.get("location_adm_unit_code")).ifPresent(result::setAdministrativeUnit);
-			});
-		});
-		return result;
-	}
+        provider.country(entry.get("location_country_code")).ifPresent(c -> {
+            result.setCountry(c);
+            provider.region(c, entry.get("location_region_code")).ifPresent(r -> {
+                result.setRegion(r);
+                provider.admUnit(r, entry.get("location_adm_unit_code")).ifPresent(result::setAdministrativeUnit);
+            });
+        });
+        return result;
+    }
 
-	public static List<String> fields() {
-		return Arrays.asList("location_country_code", "location_region_code", "location_adm_unit_code",
-				"location_address");
-	}
+    public static List<String> fields() {
+        return Arrays.asList("location_country_code", "location_region_code", "location_adm_unit_code",
+            "location_address");
+    }
 
-	public class LocationProvider {
-		private IDatabaseExecutor executor;
+    public class LocationProvider {
+        private IDatabaseExecutor executor;
 
-		public LocationProvider(IDatabaseExecutor executor) {
-			this.executor = executor;
-		}
+        public LocationProvider(IDatabaseExecutor executor) {
+            this.executor = executor;
+        }
 
-		public Optional<LocationCountry> country(String code)  {
-			return executor.querySingle("LocationCountry.getByCode", LocationCountry.class, code);
-		}
+        public Optional<LocationCountry> country(String code) {
+            return executor.querySingle("LocationCountry.getByCode", LocationCountry.class, code);
+        }
 
-		public Optional<LocationRegion> region(LocationCountry country, String region) {
-			try {
-				return executor.querySingle("LocationRegion.getByCountryAndCode", LocationRegion.class, country,
-						region);
-			} catch (DatabaseException e) {
-				LOG.error("Error while reading region.", e);
-				return Optional.empty();
-			}
-		}
+        public Optional<LocationRegion> region(LocationCountry country, String region) {
+            try {
+                return executor.querySingle("LocationRegion.getByCountryAndCode", LocationRegion.class, country,
+                    region);
+            } catch (DatabaseException e) {
+                LOG.error("Error while reading region.", e);
+                return Optional.empty();
+            }
+        }
 
-		public Optional<LocationAdministrativeUnit> admUnit(LocationRegion region, String admUnit) {
-			try {
-				return executor.querySingle("LocationAdministrativeUnit.getByRegionAndCode",
-						LocationAdministrativeUnit.class, region, admUnit);
-			} catch (DatabaseException e) {
-				LOG.error("Error while reading administrative unit.", e);
-				return Optional.empty();
-			}
-		}
-	}
+        public Optional<LocationAdministrativeUnit> admUnit(LocationRegion region, String admUnit) {
+            try {
+                return executor.querySingle("LocationAdministrativeUnit.getByRegionAndCode",
+                    LocationAdministrativeUnit.class, region, admUnit);
+            } catch (DatabaseException e) {
+                LOG.error("Error while reading administrative unit.", e);
+                return Optional.empty();
+            }
+        }
+    }
 }

@@ -9,49 +9,49 @@ import javax.persistence.Table;
 @Table(name = "V_COURT_SEARCH")
 public class CourtSearch {
 
-	@Id
-	@Column(name = "C_ID")
-	private int id;
+    @Id
+    @Column(name = "C_ID")
+    private int id;
 
-	@Column(name = "C_CODE")
-	private String code;
+    @Column(name = "C_CODE")
+    private String code;
 
-	@Column(name = "C_NAME")
-	private String name;
+    @Column(name = "C_NAME")
+    private String name;
 
-	@Column(name = "C_SEARCH")
-	private String search;
+    @Column(name = "C_SEARCH")
+    private String search;
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getSearch() {
-		return search;
-	}
+    public String getSearch() {
+        return search;
+    }
 
-	public void setSearch(String search) {
-		this.search = search;
-	}
+    public void setSearch(String search) {
+        this.search = search;
+    }
 
 }

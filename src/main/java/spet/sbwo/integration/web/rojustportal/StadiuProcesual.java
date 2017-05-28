@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for StadiuProcesual.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
@@ -42,7 +42,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "StadiuProcesual")
 @XmlEnum
@@ -61,43 +60,64 @@ public enum StadiuProcesual {
     @XmlEnumValue("Sesizareprealabila")
     SESIZAREPREALABILA("Sesizareprealabila"),
     @XmlEnumValue("Contesta\u0163ieNCPP")
-    CONTESTA\u0162IE_NCPP("Contesta\u0163ieNCPP"),
+    CONTESTA\
+
+    u0162IE_NCPP("Contesta\u0163ieNCPP"),
+
     @XmlEnumValue("Recursincasatie")
     RECURSINCASATIE("Recursincasatie"),
+
     @XmlEnumValue("ContestatieICCJ")
     CONTESTATIE_ICCJ("ContestatieICCJ"),
+
     @XmlEnumValue("ContestatieInAnulareNCPP")
     CONTESTATIE_IN_ANULARE_NCPP("ContestatieInAnulareNCPP"),
+
     @XmlEnumValue("RevizuireContestatieNCPP")
     REVIZUIRE_CONTESTATIE_NCPP("RevizuireContestatieNCPP"),
+
     @XmlEnumValue("Contestatie")
     CONTESTATIE("Contestatie"),
+
     @XmlEnumValue("Revizuire")
     REVIZUIRE("Revizuire"),
+
     @XmlEnumValue("Contestatieinanulare")
     CONTESTATIEINANULARE("Contestatieinanulare"),
+
     @XmlEnumValue("Stabilireacompetentei")
     STABILIREACOMPETENTEI("Stabilireacompetentei"),
+
     @XmlEnumValue("Recursimpotrivaincheierii")
     RECURSIMPOTRIVAINCHEIERII("Recursimpotrivaincheierii"),
+
     @XmlEnumValue("Recuzare")
     RECUZARE("Recuzare"),
+
     @XmlEnumValue("Stramutare")
     STRAMUTARE("Stramutare"),
+
     @XmlEnumValue("Indreptareeroaremateriala")
     INDREPTAREEROAREMATERIALA("Indreptareeroaremateriala"),
+
     @XmlEnumValue("ContestatieinanulareFond")
     CONTESTATIEINANULARE_FOND("ContestatieinanulareFond"),
+
     @XmlEnumValue("ContestatieinanulareApel")
     CONTESTATIEINANULARE_APEL("ContestatieinanulareApel"),
+
     @XmlEnumValue("ContestatieinanulareRecurs")
     CONTESTATIEINANULARE_RECURS("ContestatieinanulareRecurs"),
+
     @XmlEnumValue("RevizuireFond")
     REVIZUIRE_FOND("RevizuireFond"),
+
     @XmlEnumValue("RevizuireApel")
     REVIZUIRE_APEL("RevizuireApel"),
+
     @XmlEnumValue("RevizuireRecurs")
     REVIZUIRE_RECURS("RevizuireRecurs");
+
     private final String value;
 
     StadiuProcesual(String v) {
@@ -109,7 +129,7 @@ public enum StadiuProcesual {
     }
 
     public static StadiuProcesual fromValue(String v) {
-        for (StadiuProcesual c: StadiuProcesual.values()) {
+        for (StadiuProcesual c : StadiuProcesual.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

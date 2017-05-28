@@ -11,9 +11,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for DosarSedinta complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="DosarSedinta"&gt;
  *   &lt;complexContent&gt;
@@ -33,8 +33,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DosarSedinta", propOrder = {
@@ -69,11 +67,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the complet property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getComplet() {
         return complet;
@@ -81,11 +77,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the complet property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setComplet(String value) {
         this.complet = value;
@@ -93,11 +87,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the data property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getData() {
         return data;
@@ -105,11 +97,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the data property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
@@ -117,11 +107,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the ora property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOra() {
         return ora;
@@ -129,11 +117,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the ora property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOra(String value) {
         this.ora = value;
@@ -141,11 +127,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the solutie property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSolutie() {
         return solutie;
@@ -153,11 +137,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the solutie property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSolutie(String value) {
         this.solutie = value;
@@ -165,11 +147,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the solutieSumar property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSolutieSumar() {
         return solutieSumar;
@@ -177,11 +157,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the solutieSumar property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSolutieSumar(String value) {
         this.solutieSumar = value;
@@ -189,11 +167,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the dataPronuntare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataPronuntare() {
         return dataPronuntare;
@@ -201,11 +177,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the dataPronuntare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataPronuntare(XMLGregorianCalendar value) {
         this.dataPronuntare = value;
@@ -213,11 +187,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the documentSedinta property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDocumentSedinta() {
         return documentSedinta;
@@ -225,11 +197,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the documentSedinta property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDocumentSedinta(String value) {
         this.documentSedinta = value;
@@ -237,11 +207,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the numarDocument property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNumarDocument() {
         return numarDocument;
@@ -249,11 +217,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the numarDocument property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNumarDocument(String value) {
         this.numarDocument = value;
@@ -261,11 +227,9 @@ public class DosarSedinta {
 
     /**
      * Gets the value of the dataDocument property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDataDocument() {
         return dataDocument;
@@ -273,11 +237,9 @@ public class DosarSedinta {
 
     /**
      * Sets the value of the dataDocument property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDataDocument(XMLGregorianCalendar value) {
         this.dataDocument = value;

@@ -10,14 +10,13 @@ import spet.sbwo.data.table.User;
 
 public class ReadFavourites extends BaseUserDatabaseAction<Void, List<UserFavouriteChannel>> {
 
-	public ReadFavourites() {
-		super(UserFavouriteChannel.class, true);
-	}
+    public ReadFavourites() {
+        super(UserFavouriteChannel.class, true);
+    }
 
-	@Override
-	public List<UserFavouriteChannel> doRun(Void input, IDatabaseExecutor e, User u)
-			 {
-		return new UserFavouriteMapper(e, u).toExternal(u.getFavourites());
-	}
+    @Override
+    public List<UserFavouriteChannel> doRun(Void input, IDatabaseExecutor e, User u) {
+        return new UserFavouriteMapper(e, u).toExternal(u.getFavourites());
+    }
 
 }

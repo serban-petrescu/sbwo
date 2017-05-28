@@ -1,29 +1,38 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.util"
-	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<spet:EventWrapper sapshow="onAddExpertiseFine" saphide="onDeleteExpertiseLastFine">
-		<Panel>
-			<headerToolbar>
-				<Toolbar>
-					<Title text="{i18n>tblExpertiseFinesHeader}" />
-					<ToolbarSpacer />
-					<Button icon="sap-icon://add" tooltip="{i18n>btnAddTooltip}" press="onAddExpertiseFine" />
-				</Toolbar>
-			</headerToolbar>
-			<Table items="{data>fines}" keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
-				<columns>
-					<Column><header><Label text="{i18n>colExpertiseFineDateHeaderText}" /></header></Column>
-					<Column><header><Label text="{i18n>colExpertiseFineSumHeaderText}" /></header></Column>
-				</columns>
-				<ColumnListItem vAlign="Middle">
-					<DatePicker value="{
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+                         xmlns:spet="spet.sbwo.web.util"
+                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <spet:EventWrapper sapshow="onAddExpertiseFine" saphide="onDeleteExpertiseLastFine">
+        <Panel>
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>tblExpertiseFinesHeader}"/>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://add" tooltip="{i18n>btnAddTooltip}" press="onAddExpertiseFine"/>
+                </Toolbar>
+            </headerToolbar>
+            <Table items="{data>fines}" keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
+                <columns>
+                    <Column>
+                        <header>
+                            <Label text="{i18n>colExpertiseFineDateHeaderText}"/>
+                        </header>
+                    </Column>
+                    <Column>
+                        <header>
+                            <Label text="{i18n>colExpertiseFineSumHeaderText}"/>
+                        </header>
+                    </Column>
+                </columns>
+                <ColumnListItem vAlign="Middle">
+                    <DatePicker value="{
 							path: 'data>date', 
 							type: 'sap.ui.model.type.Date', 
 							formatOptions: {source: {pattern: 'yyyy-MM-dd'}}
-						}" 
-						displayFormat="dd.MM.yyyy" change="onValueChanged"/>
-					<Input value="{path: 'data>sum', type: 'sap.ui.model.odata.type.Decimal'}" change="onValueChanged"/>
-				</ColumnListItem>
-			</Table>
-		</Panel>
-	</spet:EventWrapper>
+						}"
+                                displayFormat="dd.MM.yyyy" change="onValueChanged"/>
+                    <Input value="{path: 'data>sum', type: 'sap.ui.model.odata.type.Decimal'}" change="onValueChanged"/>
+                </ColumnListItem>
+            </Table>
+        </Panel>
+    </spet:EventWrapper>
 </core:FragmentDefinition>

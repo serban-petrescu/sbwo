@@ -24,112 +24,112 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 public class GsonSerializationHelper implements ISerializationHelper {
-	private final Gson gson;
+    private final Gson gson;
 
-	public GsonSerializationHelper() {
-		gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-				.registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
-				.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-				.registerTypeAdapter(Duration.class, new DurationAdapter())
-				.registerTypeAdapter(Period.class, new PeriodAdapter())
-				.registerTypeAdapter(File.class, new FileAdapter()).create();
-	}
+    public GsonSerializationHelper() {
+        gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(Duration.class, new DurationAdapter())
+            .registerTypeAdapter(Period.class, new PeriodAdapter())
+            .registerTypeAdapter(File.class, new FileAdapter()).create();
+    }
 
-	@Override
-	public void serialize(Object data, Type type, Writer writer) throws IOException {
-		gson.toJson(data, type, writer);
-	}
+    @Override
+    public void serialize(Object data, Type type, Writer writer) throws IOException {
+        gson.toJson(data, type, writer);
+    }
 
-	@Override
-	public <T> T deserialize(Type type, Reader reader) throws IOException {
-		return gson.fromJson(reader, type);
-	}
+    @Override
+    public <T> T deserialize(Type type, Reader reader) throws IOException {
+        return gson.fromJson(reader, type);
+    }
 
-	private static class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
-		private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
+        private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
 
-		@Override
-		public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : LocalDate.from(FORMATTER.parse(json.getAsString()));
-		}
+        @Override
+        public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : LocalDate.from(FORMATTER.parse(json.getAsString()));
+        }
 
-		@Override
-		public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
-		}
-	}
+        @Override
+        public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
+        }
+    }
 
-	private static class LocalTimeAdapter implements JsonSerializer<LocalTime>, JsonDeserializer<LocalTime> {
-		private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
+    private static class LocalTimeAdapter implements JsonSerializer<LocalTime>, JsonDeserializer<LocalTime> {
+        private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
 
-		@Override
-		public LocalTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : LocalTime.from(FORMATTER.parse(json.getAsString()));
-		}
+        @Override
+        public LocalTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : LocalTime.from(FORMATTER.parse(json.getAsString()));
+        }
 
-		@Override
-		public JsonElement serialize(LocalTime src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
-		}
-	}
+        @Override
+        public JsonElement serialize(LocalTime src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
+        }
+    }
 
-	private static class LocalDateTimeAdapter
-			implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
-		private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    private static class LocalDateTimeAdapter
+        implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+        private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
-		@Override
-		public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : LocalDateTime.from(FORMATTER.parse(json.getAsString()));
-		}
+        @Override
+        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : LocalDateTime.from(FORMATTER.parse(json.getAsString()));
+        }
 
-		@Override
-		public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
-		}
-	}
+        @Override
+        public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(FORMATTER.format(src));
+        }
+    }
 
-	private static class DurationAdapter implements JsonSerializer<Duration>, JsonDeserializer<Duration> {
+    private static class DurationAdapter implements JsonSerializer<Duration>, JsonDeserializer<Duration> {
 
-		@Override
-		public Duration deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : Duration.parse(json.getAsString());
-		}
+        @Override
+        public Duration deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : Duration.parse(json.getAsString());
+        }
 
-		@Override
-		public JsonElement serialize(Duration src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.toString());
-		}
-	}
+        @Override
+        public JsonElement serialize(Duration src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.toString());
+        }
+    }
 
-	private static class PeriodAdapter implements JsonSerializer<Period>, JsonDeserializer<Period> {
+    private static class PeriodAdapter implements JsonSerializer<Period>, JsonDeserializer<Period> {
 
-		@Override
-		public Period deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : Period.parse(json.getAsString());
-		}
+        @Override
+        public Period deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : Period.parse(json.getAsString());
+        }
 
-		@Override
-		public JsonElement serialize(Period src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.toString());
-		}
-	}
+        @Override
+        public JsonElement serialize(Period src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.toString());
+        }
+    }
 
-	private static class FileAdapter implements JsonSerializer<File>, JsonDeserializer<File> {
+    private static class FileAdapter implements JsonSerializer<File>, JsonDeserializer<File> {
 
-		@Override
-		public File deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			return json.isJsonNull() ? null : new File(json.getAsString());
-		}
+        @Override
+        public File deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+            return json.isJsonNull() ? null : new File(json.getAsString());
+        }
 
-		@Override
-		public JsonElement serialize(File src, Type typeOfSrc, JsonSerializationContext context) {
-			return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.getAbsolutePath());
-		}
-	}
+        @Override
+        public JsonElement serialize(File src, Type typeOfSrc, JsonSerializationContext context) {
+            return src == null ? JsonNull.INSTANCE : new JsonPrimitive(src.getAbsolutePath());
+        }
+    }
 }

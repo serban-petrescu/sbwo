@@ -7,13 +7,13 @@ import spet.sbwo.api.service.util.JsonpProducer;
 
 public class Producer {
 
-	private Producer() {
-		super();
-	}
+    private Producer() {
+        super();
+    }
 
-	public static void install(MutablePicoContainer container) {
-		container.addComponent(JsonpProducer.class);
-		container.addComponent(JsonProducer.class);
-	}
+    public static void install(MutablePicoContainer container) {
+        container.addComponent(JsonpProducer.class);
+        container.addComponent(JsonProducer.class);
+    }
 
 }

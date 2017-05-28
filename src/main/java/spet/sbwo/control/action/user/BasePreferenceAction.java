@@ -6,15 +6,15 @@ import spet.sbwo.data.table.UserPreference;
 
 public abstract class BasePreferenceAction<I> extends BaseUserDatabaseAction<I, UserPreferenceChannel> {
 
-	protected BasePreferenceAction() {
-		super(UserPreferenceChannel.class, true);
-	}
+    protected BasePreferenceAction() {
+        super(UserPreferenceChannel.class, true);
+    }
 
-	protected UserPreferenceChannel mapToChannel(UserPreference preference) {
-		UserPreferenceChannel channel = new UserPreferenceChannel();
-		channel.setDraftResumeDelay(preference.getDraftResumeDelay());
-		channel.setLanguage(preference.getLanguage());
-		channel.setTheme(preference.getTheme());
-		return channel;
-	}
+    protected UserPreferenceChannel mapToChannel(UserPreference preference) {
+        UserPreferenceChannel channel = new UserPreferenceChannel();
+        channel.setDraftResumeDelay(preference.getDraftResumeDelay());
+        channel.setLanguage(preference.getLanguage());
+        channel.setTheme(preference.getTheme());
+        return channel;
+    }
 }

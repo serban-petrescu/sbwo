@@ -9,13 +9,13 @@ import spet.sbwo.data.table.Person;
 
 public class ReadPerson extends ReadEntity<Person, PersonChannel> {
 
-	public ReadPerson() {
-		super(Person.class, PersonChannel.class);
-	}
+    public ReadPerson() {
+        super(Person.class, PersonChannel.class);
+    }
 
-	@Override
-	protected BaseMapper<Person, PersonChannel> mapper(IDatabaseExecutor executor) {
-		return new PersonMapper(executor);
-	}
+    @Override
+    protected BaseMapper<Person, PersonChannel> mapper(IDatabaseExecutor executor) {
+        return new PersonMapper(executor);
+    }
 
 }

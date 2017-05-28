@@ -14,59 +14,59 @@ import spet.sbwo.data.base.BaseEntity;
 import spet.sbwo.data.base.ICodifiedEntity;
 
 @Entity
-@Table(name = "T_LOCATION_REGION", indexes = { @Index(unique = true, columnList = "C_COUNTRY_ID,C_NAME"),
-		@Index(unique = true, columnList = "C_COUNTRY_ID,C_CODE") })
+@Table(name = "T_LOCATION_REGION", indexes = {@Index(unique = true, columnList = "C_COUNTRY_ID,C_NAME"),
+    @Index(unique = true, columnList = "C_COUNTRY_ID,C_CODE")})
 public class LocationRegion extends BaseEntity implements ICodifiedEntity<String> {
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "C_COUNTRY_ID", nullable = false)
-	private LocationCountry country;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "C_COUNTRY_ID", nullable = false)
+    private LocationCountry country;
 
-	@Column(name = "C_NAME", length = 128)
-	private String name;
+    @Column(name = "C_NAME", length = 128)
+    private String name;
 
-	@Column(name = "C_CODE", length = 16)
-	private String code;
-	
-	@OneToMany(mappedBy = "region")
-	private List<LocationAdministrativeUnit> administrativeUnits;
-	
-	public LocationCountry getCountry() {
-		return country;
-	}
+    @Column(name = "C_CODE", length = 16)
+    private String code;
 
-	public void setCountry(LocationCountry country) {
-		this.country = country;
-	}
-	
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "region")
+    private List<LocationAdministrativeUnit> administrativeUnits;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public LocationCountry getCountry() {
+        return country;
+    }
 
-	@Override
-	public String getCode() {
-		return code;
-	}
+    public void setCountry(LocationCountry country) {
+        this.country = country;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public List<LocationAdministrativeUnit> getAdministrativeUnits() {
-		return administrativeUnits;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAdministrativeUnits(List<LocationAdministrativeUnit> administrativeUnits) {
-		this.administrativeUnits = administrativeUnits;
-	}
+    @Override
+    public String getCode() {
+        return code;
+    }
 
-	@Override
-	public String toString() {
-		return "LocationRegion [country=" + country + ", name=" + name + ", code=" + code + ", administrativeUnits="
-				+ administrativeUnits + ", id=" + id + "]";
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public List<LocationAdministrativeUnit> getAdministrativeUnits() {
+        return administrativeUnits;
+    }
+
+    public void setAdministrativeUnits(List<LocationAdministrativeUnit> administrativeUnits) {
+        this.administrativeUnits = administrativeUnits;
+    }
+
+    @Override
+    public String toString() {
+        return "LocationRegion [country=" + country + ", name=" + name + ", code=" + code + ", administrativeUnits="
+            + administrativeUnits + ", id=" + id + "]";
+    }
 
 }

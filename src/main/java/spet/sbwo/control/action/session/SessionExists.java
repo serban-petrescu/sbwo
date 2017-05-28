@@ -7,13 +7,13 @@ import spet.sbwo.data.table.UserSession;
 
 public class SessionExists extends BaseDatabaseAction<String, Boolean> {
 
-	public SessionExists() {
-		super(SessionChannel.class);
-	}
+    public SessionExists() {
+        super(SessionChannel.class);
+    }
 
-	@Override
-	public Boolean doRun(String input, IDatabaseExecutor executor)  {
-		return executor.find(UserSession.class, input) != null;
-	}
+    @Override
+    public Boolean doRun(String input, IDatabaseExecutor executor) {
+        return executor.find(UserSession.class, input) != null;
+    }
 
 }

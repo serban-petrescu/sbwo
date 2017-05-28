@@ -1,29 +1,31 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-	<f:Form editable="false" visible="{ !!(${data>country/name} || ${data>region/name} || ${data>administrativeUnit/name} || ${data>address})}">
-		<f:layout>
-			<f:ResponsiveGridLayout
-				labelSpanL="4"	labelSpanM="5"
-				emptySpanL="4"	emptySpanM="2"
-				columnsL="1"	columnsM="1" />
-		</f:layout>
-		<f:FormContainer>
-			<f:FormElement label="{i18n>lblLocationCountryText}" visible="{= !!${data>country/name} }">
-				<Text text="{data>country/name}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblLocationRegionText}" visible="{= !!${data>region/name} }">
-				<Text text="{data>region/name}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblLocationAdmUnitText}" visible="{= !!${data>administrativeUnit/name} }">
-				<Text text="{data>administrativeUnit/name}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblLocationAddressText}" visible="{= !!${data>address} }">
-				<Text text="{data>address}" />
-			</f:FormElement>
-			<f:FormElement label="{i18n>lblLocationMapText}" visible="{= !!${data>latitude} &amp;&amp; !!${data>longitude} }">
-				<Link text="{i18n>btnLocationOpenMapText}" press="onOpenLocationMapDialog" />
-			</f:FormElement>
-		</f:FormContainer>
-	</f:Form>
-	<Text text="{i18n>txtUnknownAddressText}" visible="{= !${data>country/name} &amp;&amp; !${data>region/name} 
+    <f:Form editable="false"
+            visible="{ !!(${data>country/name} || ${data>region/name} || ${data>administrativeUnit/name} || ${data>address})}">
+        <f:layout>
+            <f:ResponsiveGridLayout
+                labelSpanL="4" labelSpanM="5"
+                emptySpanL="4" emptySpanM="2"
+                columnsL="1" columnsM="1"/>
+        </f:layout>
+        <f:FormContainer>
+            <f:FormElement label="{i18n>lblLocationCountryText}" visible="{= !!${data>country/name} }">
+                <Text text="{data>country/name}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblLocationRegionText}" visible="{= !!${data>region/name} }">
+                <Text text="{data>region/name}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblLocationAdmUnitText}" visible="{= !!${data>administrativeUnit/name} }">
+                <Text text="{data>administrativeUnit/name}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblLocationAddressText}" visible="{= !!${data>address} }">
+                <Text text="{data>address}"/>
+            </f:FormElement>
+            <f:FormElement label="{i18n>lblLocationMapText}"
+                           visible="{= !!${data>latitude} &amp;&amp; !!${data>longitude} }">
+                <Link text="{i18n>btnLocationOpenMapText}" press="onOpenLocationMapDialog"/>
+            </f:FormElement>
+        </f:FormContainer>
+    </f:Form>
+    <Text text="{i18n>txtUnknownAddressText}" visible="{= !${data>country/name} &amp;&amp; !${data>region/name}
 		&amp;&amp; !${data>administrativeUnit/name} &amp;&amp; !${data>address} }" width="100%" textAlign="Center"/>
 </core:FragmentDefinition>

@@ -13,24 +13,24 @@ import spet.sbwo.data.table.User;
 
 public class RestoreList extends BaseUserDatabaseAction<List<TrashChannel>, Void> {
 
-	public RestoreList() {
-		super(TrashChannel.class, true);
-	}
+    public RestoreList() {
+        super(TrashChannel.class, true);
+    }
 
-	@Override
-	public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user)  {
-		for (TrashChannel c : input) {
-			getActionFor(c.getType()).run(c.getId(), executor, user);
-		}
-		return null;
-	}
+    @Override
+    public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user) {
+        for (TrashChannel c : input) {
+            getActionFor(c.getType()).run(c.getId(), executor, user);
+        }
+        return null;
+    }
 
-	protected RestoreEntity<?> getActionFor(EntityType type) {
-		if (type == EntityType.PERSON) {
-			return new RestorePerson();
-		} else {
-			return new RestoreExpertise();
-		}
-	}
+    protected RestoreEntity<?> getActionFor(EntityType type) {
+        if (type == EntityType.PERSON) {
+            return new RestorePerson();
+        } else {
+            return new RestoreExpertise();
+        }
+    }
 
 }

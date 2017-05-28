@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for DosarParte complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="DosarParte"&gt;
  *   &lt;complexContent&gt;
@@ -23,8 +23,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DosarParte", propOrder = {
@@ -38,11 +36,9 @@ public class DosarParte {
 
     /**
      * Gets the value of the nume property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNume() {
         return nume;
@@ -50,11 +46,9 @@ public class DosarParte {
 
     /**
      * Sets the value of the nume property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNume(String value) {
         this.nume = value;
@@ -62,11 +56,9 @@ public class DosarParte {
 
     /**
      * Gets the value of the calitateParte property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCalitateParte() {
         return calitateParte;
@@ -74,11 +66,9 @@ public class DosarParte {
 
     /**
      * Sets the value of the calitateParte property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCalitateParte(String value) {
         this.calitateParte = value;

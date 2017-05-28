@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for CategorieCaz.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "CategorieCaz")
 @XmlEnum
@@ -67,7 +66,7 @@ public enum CategorieCaz {
     }
 
     public static CategorieCaz fromValue(String v) {
-        for (CategorieCaz c: CategorieCaz.values()) {
+        for (CategorieCaz c : CategorieCaz.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

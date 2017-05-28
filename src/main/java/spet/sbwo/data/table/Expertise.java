@@ -23,145 +23,145 @@ import spet.sbwo.data.embed.Tariff;
 @Table(name = "T_EXPERTISE")
 public class Expertise extends JournalizedBaseEntity {
 
-	@Column(name = "C_NUMBER", length = 32)
-	private String number;
+    @Column(name = "C_NUMBER", length = 32)
+    private String number;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "C_COURT_ID")
-	private Court court;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "C_COURT_ID")
+    private Court court;
 
-	@Column(name = "C_YEAR")
-	private int year;
+    @Column(name = "C_YEAR")
+    private int year;
 
-	@Column(name = "C_TITLE", length = 128)
-	private String title;
+    @Column(name = "C_TITLE", length = 128)
+    private String title;
 
-	@Column(name = "C_STATUS")
-	@Enumerated(EnumType.ORDINAL)
-	private ExpertiseStatus status;
+    @Column(name = "C_STATUS")
+    @Enumerated(EnumType.ORDINAL)
+    private ExpertiseStatus status;
 
-	@Column(name = "C_NOTE", length = 512)
-	private String note;
+    @Column(name = "C_NOTE", length = 512)
+    private String note;
 
-	@ManyToOne
-	@JoinColumn(name = "C_USER_ID")
-	private User responsible;
+    @ManyToOne
+    @JoinColumn(name = "C_USER_ID")
+    private User responsible;
 
-	@Column(name = "C_LAST_CHECKED_ON")
-	private LocalDateTime lastCheckedOn;
+    @Column(name = "C_LAST_CHECKED_ON")
+    private LocalDateTime lastCheckedOn;
 
-	@Column(name = "C_NEXT_HEARING")
-	private LocalDate nextHearing;
+    @Column(name = "C_NEXT_HEARING")
+    private LocalDate nextHearing;
 
-	@Embedded
-	private Tariff tariff;
+    @Embedded
+    private Tariff tariff;
 
-	@OneToOne(optional = false)
-	@JoinColumn(name = "C_LOCATION_ID")
-	private Location location;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "C_LOCATION_ID")
+    private Location location;
 
-	@OneToMany(mappedBy = "expertise")
-	private List<ExpertiseFine> fines;
+    @OneToMany(mappedBy = "expertise")
+    private List<ExpertiseFine> fines;
 
-	public String getNumber() {
-		return number;
-	}
+    public String getNumber() {
+        return number;
+    }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
-	public Court getCourt() {
-		return court;
-	}
+    public Court getCourt() {
+        return court;
+    }
 
-	public void setCourt(Court court) {
-		this.court = court;
-	}
+    public void setCourt(Court court) {
+        this.court = court;
+    }
 
-	public int getYear() {
-		return year;
-	}
+    public int getYear() {
+        return year;
+    }
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+    public void setYear(int year) {
+        this.year = year;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public ExpertiseStatus getStatus() {
-		return status;
-	}
+    public ExpertiseStatus getStatus() {
+        return status;
+    }
 
-	public void setStatus(ExpertiseStatus status) {
-		this.status = status;
-	}
+    public void setStatus(ExpertiseStatus status) {
+        this.status = status;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public User getResponsible() {
-		return responsible;
-	}
+    public User getResponsible() {
+        return responsible;
+    }
 
-	public void setResponsible(User responsible) {
-		this.responsible = responsible;
-	}
+    public void setResponsible(User responsible) {
+        this.responsible = responsible;
+    }
 
-	public LocalDateTime getLastCheckedOn() {
-		return lastCheckedOn;
-	}
+    public LocalDateTime getLastCheckedOn() {
+        return lastCheckedOn;
+    }
 
-	public void setLastCheckedOn(LocalDateTime lastCheckedOn) {
-		this.lastCheckedOn = lastCheckedOn;
-	}
+    public void setLastCheckedOn(LocalDateTime lastCheckedOn) {
+        this.lastCheckedOn = lastCheckedOn;
+    }
 
-	public LocalDate getNextHearing() {
-		return nextHearing;
-	}
+    public LocalDate getNextHearing() {
+        return nextHearing;
+    }
 
-	public void setNextHearing(LocalDate nextHearing) {
-		this.nextHearing = nextHearing;
-	}
+    public void setNextHearing(LocalDate nextHearing) {
+        this.nextHearing = nextHearing;
+    }
 
-	public Tariff getTariff() {
-		return tariff;
-	}
+    public Tariff getTariff() {
+        return tariff;
+    }
 
-	public void setTariff(Tariff tariff) {
-		this.tariff = tariff;
-	}
+    public void setTariff(Tariff tariff) {
+        this.tariff = tariff;
+    }
 
-	public List<ExpertiseFine> getFines() {
-		return fines;
-	}
+    public List<ExpertiseFine> getFines() {
+        return fines;
+    }
 
-	public void setFines(List<ExpertiseFine> fines) {
-		this.fines = fines;
-	}
+    public void setFines(List<ExpertiseFine> fines) {
+        this.fines = fines;
+    }
 
-	public Location getLocation() {
-		return location;
-	}
+    public Location getLocation() {
+        return location;
+    }
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	@Override
-	public String toString() {
-		return "Expertise [id=" + id + ", number=" + number + ", title=" + title + ", responsible=" + responsible + "]";
-	}
+    @Override
+    public String toString() {
+        return "Expertise [id=" + id + ", number=" + number + ", title=" + title + ", responsible=" + responsible + "]";
+    }
 
 }

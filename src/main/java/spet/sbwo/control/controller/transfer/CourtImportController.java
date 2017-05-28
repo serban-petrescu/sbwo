@@ -9,12 +9,12 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class CourtImportController extends BaseActionExecutor {
 
-	public CourtImportController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public CourtImportController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public void importCourts(List<CourtImportChannel> data)  {
-		executeAndCommit(new ImportCourts(), data);
-	}
+    public void importCourts(List<CourtImportChannel> data) {
+        executeAndCommit(new ImportCourts(), data);
+    }
 
 }

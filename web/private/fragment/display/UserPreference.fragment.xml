@@ -1,29 +1,31 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
-	<f:FormContainer visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblUserPreferenceDraftResumeMinutesText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <f:FormContainer visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblUserPreferenceDraftResumeMinutesText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{
 					parts: [
 						'i18n>txtUserPreferenceDispayNumberUnitPattern', 
 						'data>/draftResumeDelay', 
 						'i18n>inpUserPreferenceDraftResumeMinutesUnit'
 					], 
 					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}" />
-				<Text text="{i18n>txtUserPreferenceDraftResumeMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblUserPreferenceLanguageText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/language', formatter: '.formatLanguageText'}" />
-				<Text text="{i18n>txtUserPreferenceLanguageInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblUserPreferenceThemeText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/theme', formatter: '.formatThemeText'}" />
-				<Text text="{i18n>txtUserPreferenceThemeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
+				}"/>
+                <Text text="{i18n>txtUserPreferenceDraftResumeMinutesInfo}"
+                      class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblUserPreferenceLanguageText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/language', formatter: '.formatLanguageText'}"/>
+                <Text text="{i18n>txtUserPreferenceLanguageInfo}"
+                      class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblUserPreferenceThemeText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/theme', formatter: '.formatThemeText'}"/>
+                <Text text="{i18n>txtUserPreferenceThemeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
 </core:FragmentDefinition>

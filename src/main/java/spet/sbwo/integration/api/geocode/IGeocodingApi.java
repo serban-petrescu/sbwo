@@ -5,8 +5,8 @@ import spet.sbwo.integration.api.geocode.model.Position;
 
 public interface IGeocodingApi {
 
-	Position geocode(String address);
+    Position geocode(String address);
 
-	Position geocode(Location location);
+    Position geocode(Location location);
 
 }

@@ -1,20 +1,20 @@
 package spet.sbwo.api.service.util;
 
 class JsonpEntity<T> {
-	private final T entity;
-	private final String callback;
+    private final T entity;
+    private final String callback;
 
-	public JsonpEntity(T entity, String callback) {
-		this.entity = entity;
-		this.callback = callback;
-	}
+    public JsonpEntity(T entity, String callback) {
+        this.entity = entity;
+        this.callback = callback;
+    }
 
-	public T getEntity() {
-		return entity;
-	}
+    public T getEntity() {
+        return entity;
+    }
 
-	public String getCallback() {
-		return callback;
-	}
+    public String getCallback() {
+        return callback;
+    }
 
 }

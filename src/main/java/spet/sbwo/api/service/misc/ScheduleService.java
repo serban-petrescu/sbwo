@@ -14,20 +14,20 @@ import spet.sbwo.control.scheduler.model.ScheduleChannel;
 
 @Path("/utility/file/schedules")
 public class ScheduleService extends BaseService implements IPrivate {
-	private final IScheduleManager scheduleManager;
+    private final IScheduleManager scheduleManager;
 
-	public ScheduleService(IScheduleManager scheduleManager) {
-		this.scheduleManager = scheduleManager;
-	}
+    public ScheduleService(IScheduleManager scheduleManager) {
+        this.scheduleManager = scheduleManager;
+    }
 
-	@GET
-	@Path("/read")
-	@Produces("application/json")
-	public List<ScheduleChannel> readSchedules() {
-		try {
-			return scheduleManager.channels();
-		} catch (Exception e) {
-			throw new NotFoundException(e);
-		}
-	}
+    @GET
+    @Path("/read")
+    @Produces("application/json")
+    public List<ScheduleChannel> readSchedules() {
+        try {
+            return scheduleManager.channels();
+        } catch (Exception e) {
+            throw new NotFoundException(e);
+        }
+    }
 }

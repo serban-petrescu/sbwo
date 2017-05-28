@@ -1,53 +1,68 @@
-<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:core="sap.ui.core" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Page id="pagList" 
-		title="{i18n>pagExpertiseListTitle}"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		<subHeader>
-			<Toolbar>
-				<SearchField id="seaMain" width="100%" search="onSearch"/>
-				<Button tooltip="{i18n>btnViewSettingsTooltip}" icon="sap-icon://drop-down-list" press="onOpenViewSettingsDialog"/>
-			</Toolbar>
-		</subHeader>
-		<IconTabHeader select="onTabChanged" selectedKey="{view>/currentTab}" items="{view>/tabs}">
-			<items>
-				<IconTabFilter key="{view>key}" text="{view>title}" iconColor="{view>type}" />
-			</items>
-		</IconTabHeader>
-		<Table id="lstMain" items="{
+<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:core="sap.ui.core"
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <Page id="pagList"
+          title="{i18n>pagExpertiseListTitle}"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+        <subHeader>
+            <Toolbar>
+                <SearchField id="seaMain" width="100%" search="onSearch"/>
+                <Button tooltip="{i18n>btnViewSettingsTooltip}" icon="sap-icon://drop-down-list"
+                        press="onOpenViewSettingsDialog"/>
+            </Toolbar>
+        </subHeader>
+        <IconTabHeader select="onTabChanged" selectedKey="{view>/currentTab}" items="{view>/tabs}">
+            <items>
+                <IconTabFilter key="{view>key}" text="{view>title}" iconColor="{view>type}"/>
+            </items>
+        </IconTabHeader>
+        <Table id="lstMain" items="{
 				path: '/ExpertiseSearchs', 
 				sorter: {path: 'NextHearing', descending: true},
 				groupHeaderFactory: '.buildGroupHeader'
-			}" 
-			growing="true" growingScrollToLoad="true">
-			<infoToolbar>
-				<Toolbar visible="{view>/settings/applied}">
-					<Title text="{i18n>titViewSettingsAppliedText}" />
-					<ToolbarSpacer />
-					<core:Icon src="sap-icon://sys-cancel" alt="{i18n>btnClearViewSettingsTooltip}" press="onResetViewSettings" />
-				</Toolbar>
-			</infoToolbar>
-			<columns>
-				<Column width="9em"><header><Label text="{i18n>lblCaseNumberText}" /></header></Column>
-				<Column width="7em"><header><Label text="{i18n>lblExpertiseNextHearingText}" /></header></Column>
-				<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
-					<header><Label text="{i18n>lblCourtHouseText}" /></header>
-				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
-					<header><Label text="{i18n>lblExpertiseTitleText}" /></header>
-				</Column>
-			</columns>
-			<ColumnListItem type="Navigation" press="onPressItem">
-				<Text text="{Number}"/>
-				<Text text="{path: 'NextHearing', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
-				<Text text="{Court}"/>
-				<Text text="{Title}"/>
-			</ColumnListItem>
-		</Table>
-		
-		<dependents>
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ExpertiseListViewSettings" type="XML" />
-		</dependents>
-	</Page>
+			}"
+               growing="true" growingScrollToLoad="true">
+            <infoToolbar>
+                <Toolbar visible="{view>/settings/applied}">
+                    <Title text="{i18n>titViewSettingsAppliedText}"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://sys-cancel" alt="{i18n>btnClearViewSettingsTooltip}"
+                               press="onResetViewSettings"/>
+                </Toolbar>
+            </infoToolbar>
+            <columns>
+                <Column width="9em">
+                    <header>
+                        <Label text="{i18n>lblCaseNumberText}"/>
+                    </header>
+                </Column>
+                <Column width="7em">
+                    <header>
+                        <Label text="{i18n>lblExpertiseNextHearingText}"/>
+                    </header>
+                </Column>
+                <Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+                    <header>
+                        <Label text="{i18n>lblCourtHouseText}"/>
+                    </header>
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true">
+                    <header>
+                        <Label text="{i18n>lblExpertiseTitleText}"/>
+                    </header>
+                </Column>
+            </columns>
+            <ColumnListItem type="Navigation" press="onPressItem">
+                <Text text="{Number}"/>
+                <Text
+                    text="{path: 'NextHearing', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd.MM.yyyy'}}"/>
+                <Text text="{Court}"/>
+                <Text text="{Title}"/>
+            </ColumnListItem>
+        </Table>
+
+        <dependents>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ExpertiseListViewSettings" type="XML"/>
+        </dependents>
+    </Page>
 </mvc:View>

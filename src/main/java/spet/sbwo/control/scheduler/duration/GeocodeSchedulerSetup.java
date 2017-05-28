@@ -7,27 +7,27 @@ import spet.sbwo.control.runnable.RunGeocodeLocationBatch;
 import spet.sbwo.control.scheduler.model.SchedulerType;
 
 public class GeocodeSchedulerSetup implements ISimpleScheduleSetup {
-	private final Duration interval;
-	private final RunGeocodeLocationBatch batch;
+    private final Duration interval;
+    private final RunGeocodeLocationBatch batch;
 
-	public GeocodeSchedulerSetup(GeocodingEntry config, RunGeocodeLocationBatch batch) {
-		this.interval = config.getInterval();
-		this.batch = batch;
-	}
+    public GeocodeSchedulerSetup(GeocodingEntry config, RunGeocodeLocationBatch batch) {
+        this.interval = config.getInterval();
+        this.batch = batch;
+    }
 
-	@Override
-	public Duration getInterval() {
-		return interval;
-	}
+    @Override
+    public Duration getInterval() {
+        return interval;
+    }
 
-	@Override
-	public SchedulerType getType() {
-		return SchedulerType.GEOCODING_BATCH;
-	}
+    @Override
+    public SchedulerType getType() {
+        return SchedulerType.GEOCODING_BATCH;
+    }
 
-	@Override
-	public Runnable getRunnable() {
-		return batch;
-	}
+    @Override
+    public Runnable getRunnable() {
+        return batch;
+    }
 
 }

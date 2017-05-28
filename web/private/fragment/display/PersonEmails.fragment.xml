@@ -1,10 +1,10 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<Panel headerText="{i18n>tblPersonEmailsHeader}">
-		<List items="{data>emailAddresses}">
-			<StandardListItem title="{data>email}" description="{data>name}" infoState="Success" 
-				type="Active" cd:target="{data>email}" cd:action="email" press="doExternalAction"
-				info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
-		</List>
-	</Panel>
+                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Panel headerText="{i18n>tblPersonEmailsHeader}">
+        <List items="{data>emailAddresses}">
+            <StandardListItem title="{data>email}" description="{data>name}" infoState="Success"
+                              type="Active" cd:target="{data>email}" cd:action="email" press="doExternalAction"
+                              info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
+        </List>
+    </Panel>
 </core:FragmentDefinition>

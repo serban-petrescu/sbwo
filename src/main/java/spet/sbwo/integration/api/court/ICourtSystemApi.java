@@ -4,5 +4,5 @@ import spet.sbwo.integration.api.court.model.Case;
 
 @FunctionalInterface
 public interface ICourtSystemApi {
-	public Case read(String number);
+    public Case read(String number);
 }

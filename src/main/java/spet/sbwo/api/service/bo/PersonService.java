@@ -11,21 +11,21 @@ import spet.sbwo.control.channel.PersonChannel;
 import spet.sbwo.control.controller.bo.PersonController;
 
 @Path("/person")
-public class PersonService extends BaseBoService<PersonChannel, PersonController>implements IPrivate {
+public class PersonService extends BaseBoService<PersonChannel, PersonController> implements IPrivate {
 
-	public PersonService(PersonController controller) {
-		super(controller);
-	}
+    public PersonService(PersonController controller) {
+        super(controller);
+    }
 
-	@GET
-	@Path("/export/{id}")
-	@Produces("text/vcard")
-	public Response export(@PathParam("id") int id) {
-		try {
-			return Response.ok().entity(controller.export(id))
-					.header("Content-Disposition", "attachment; filename=Contact.vcf").build();
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @GET
+    @Path("/export/{id}")
+    @Produces("text/vcard")
+    public Response export(@PathParam("id") int id) {
+        try {
+            return Response.ok().entity(controller.export(id))
+                .header("Content-Disposition", "attachment; filename=Contact.vcf").build();
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 }

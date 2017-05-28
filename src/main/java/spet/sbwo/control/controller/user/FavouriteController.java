@@ -12,25 +12,24 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class FavouriteController extends BaseActionExecutor {
 
-	public FavouriteController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public FavouriteController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public List<UserFavouriteChannel> readFavourites(String username)  {
-		return execute(username, new ReadFavourites(), null);
-	}
+    public List<UserFavouriteChannel> readFavourites(String username) {
+        return execute(username, new ReadFavourites(), null);
+    }
 
-	public void deleteFavourite(String username, int id)  {
-		executeAndCommit(username, new DeleteFavourite(), id);
-	}
+    public void deleteFavourite(String username, int id) {
+        executeAndCommit(username, new DeleteFavourite(), id);
+    }
 
-	public void addFavourite(String username, UserFavouriteChannel data)  {
-		executeAndCommit(username, new AddFavourite(), data);
-	}
+    public void addFavourite(String username, UserFavouriteChannel data) {
+        executeAndCommit(username, new AddFavourite(), data);
+    }
 
-	public List<UserFavouriteChannel> updateFavourites(String username, List<UserFavouriteChannel> input)
-			 {
-		return executeAndCommit(username, new UpdateFavourites(), input);
-	}
+    public List<UserFavouriteChannel> updateFavourites(String username, List<UserFavouriteChannel> input) {
+        return executeAndCommit(username, new UpdateFavourites(), input);
+    }
 
 }

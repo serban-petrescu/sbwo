@@ -8,16 +8,16 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class PreferenceController extends BaseActionExecutor {
 
-	public PreferenceController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public PreferenceController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public UserPreferenceChannel readPreference(String username)  {
-		return executeAndCommit(username, new ReadPreference(), null);
-	}
+    public UserPreferenceChannel readPreference(String username) {
+        return executeAndCommit(username, new ReadPreference(), null);
+    }
 
-	public UserPreferenceChannel updatePreference(String username, UserPreferenceChannel data)  {
-		return executeAndCommit(username, new UpdatePreference(), data);
-	}
+    public UserPreferenceChannel updatePreference(String username, UserPreferenceChannel data) {
+        return executeAndCommit(username, new UpdatePreference(), data);
+    }
 
 }

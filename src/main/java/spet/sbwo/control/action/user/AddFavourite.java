@@ -9,18 +9,17 @@ import spet.sbwo.data.table.UserFavourite;
 
 public class AddFavourite extends BaseUserDatabaseAction<UserFavouriteChannel, Void> {
 
-	public AddFavourite() {
-		super(UserFavouriteChannel.class, true);
-	}
+    public AddFavourite() {
+        super(UserFavouriteChannel.class, true);
+    }
 
-	@Override
-	public Void doRun(UserFavouriteChannel input, IDatabaseExecutor executor, User user)
-			 {
-		UserFavourite favourite = new UserFavouriteMapper(executor, user).toInternal(input);
-		user.getFavourites().add(favourite);
-		executor.create(favourite);
-		input.setId(favourite.getId());
-		return null;
-	}
+    @Override
+    public Void doRun(UserFavouriteChannel input, IDatabaseExecutor executor, User user) {
+        UserFavourite favourite = new UserFavouriteMapper(executor, user).toInternal(input);
+        user.getFavourites().add(favourite);
+        executor.create(favourite);
+        input.setId(favourite.getId());
+        return null;
+    }
 
 }

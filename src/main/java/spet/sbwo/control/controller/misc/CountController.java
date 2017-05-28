@@ -7,12 +7,12 @@ import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class CountController extends BaseActionExecutor {
 
-	public CountController(IDatabaseExecutorCreator database) {
-		super(database);
-	}
+    public CountController(IDatabaseExecutorCreator database) {
+        super(database);
+    }
 
-	public CountChannel readCounts()  {
-		return execute(new CountEntities(), null);
-	}
+    public CountChannel readCounts() {
+        return execute(new CountEntities(), null);
+    }
 
 }

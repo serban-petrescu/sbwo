@@ -11,9 +11,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for Sedinta complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="Sedinta"&gt;
  *   &lt;complexContent&gt;
@@ -29,8 +29,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sedinta", propOrder = {
@@ -52,11 +50,9 @@ public class Sedinta {
 
     /**
      * Gets the value of the departament property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDepartament() {
         return departament;
@@ -64,11 +60,9 @@ public class Sedinta {
 
     /**
      * Sets the value of the departament property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDepartament(String value) {
         this.departament = value;
@@ -76,11 +70,9 @@ public class Sedinta {
 
     /**
      * Gets the value of the complet property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getComplet() {
         return complet;
@@ -88,11 +80,9 @@ public class Sedinta {
 
     /**
      * Sets the value of the complet property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setComplet(String value) {
         this.complet = value;
@@ -100,11 +90,9 @@ public class Sedinta {
 
     /**
      * Gets the value of the data property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getData() {
         return data;
@@ -112,11 +100,9 @@ public class Sedinta {
 
     /**
      * Sets the value of the data property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
@@ -124,11 +110,9 @@ public class Sedinta {
 
     /**
      * Gets the value of the ora property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOra() {
         return ora;
@@ -136,11 +120,9 @@ public class Sedinta {
 
     /**
      * Sets the value of the ora property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOra(String value) {
         this.ora = value;
@@ -148,11 +130,9 @@ public class Sedinta {
 
     /**
      * Gets the value of the dosare property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfSedintaDosar }
-     *     
+     *
+     * @return possible object is
+     * {@link ArrayOfSedintaDosar }
      */
     public ArrayOfSedintaDosar getDosare() {
         return dosare;
@@ -160,11 +140,9 @@ public class Sedinta {
 
     /**
      * Sets the value of the dosare property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfSedintaDosar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfSedintaDosar }
      */
     public void setDosare(ArrayOfSedintaDosar value) {
         this.dosare = value;

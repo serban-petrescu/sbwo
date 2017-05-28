@@ -1,31 +1,31 @@
-<mvc:View controllerName="spet.sbwo.web.controller.misc.Customizing" xmlns:html="http://www.w3.org/1999/xhtml" 
-	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Page id="pagCustomizing" 
-		title="{i18n>pagCustomizingTitle}"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-		
-		<headerContent>
-			<Button icon="sap-icon://refresh" tooltip="btnRefreshDataTooltip" press="onRefreshODataContent"/>
-		</headerContent>         
-		
-		<IconTabBar>
-			<items>
-				<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingLocationTabs" type="XML" />
-				<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingCourtTab" type="XML" />
-			</items>
-		</IconTabBar>
-		
-		<footer>
-			<Toolbar>
-				<ToolbarSpacer />
-				<Button text="{i18n>btnCustomizingImportText}" icon="sap-icon://upload" press="onOpenUploadSheet"/>
-			</Toolbar>
-		</footer>
-		
-		<dependents>
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingUploadActionSheet" type="XML" />
-			<core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingUploadDialog" type="XML" />
-		</dependents>
-	</Page>
+<mvc:View controllerName="spet.sbwo.web.controller.misc.Customizing" xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Page id="pagCustomizing"
+          title="{i18n>pagCustomizingTitle}"
+          showNavButton="true"
+          navButtonPress="onNavBack">
+
+        <headerContent>
+            <Button icon="sap-icon://refresh" tooltip="btnRefreshDataTooltip" press="onRefreshODataContent"/>
+        </headerContent>
+
+        <IconTabBar>
+            <items>
+                <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingLocationTabs" type="XML"/>
+                <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingCourtTab" type="XML"/>
+            </items>
+        </IconTabBar>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>btnCustomizingImportText}" icon="sap-icon://upload" press="onOpenUploadSheet"/>
+            </Toolbar>
+        </footer>
+
+        <dependents>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingUploadActionSheet" type="XML"/>
+            <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.CustomizingUploadDialog" type="XML"/>
+        </dependents>
+    </Page>
 </mvc:View>

@@ -7,13 +7,13 @@ import spet.sbwo.data.table.User;
 
 public class ReadByUsername extends BaseDatabaseAction<String, User> {
 
-	public ReadByUsername() {
-		super(UserChannel.class);
-	}
+    public ReadByUsername() {
+        super(UserChannel.class);
+    }
 
-	@Override
-	public User doRun(String input, IDatabaseExecutor executor) {
-		return executor.querySingle("User.getByUsername", User.class, input).orElse(null);
-	}
+    @Override
+    public User doRun(String input, IDatabaseExecutor executor) {
+        return executor.querySingle("User.getByUsername", User.class, input).orElse(null);
+    }
 
 }

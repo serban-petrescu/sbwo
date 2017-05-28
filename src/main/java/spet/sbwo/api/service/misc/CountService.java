@@ -11,21 +11,21 @@ import spet.sbwo.control.controller.misc.CountController;
 
 @Path("/utility")
 public class CountService extends BaseService implements IPrivate {
-	private final CountController controller;
+    private final CountController controller;
 
-	public CountService(CountController utilityController) {
-		this.controller = utilityController;
-	}
+    public CountService(CountController utilityController) {
+        this.controller = utilityController;
+    }
 
-	@GET
-	@Path("/count")
-	@Produces("application/json")
-	public CountChannel count() {
-		try {
-			return controller.readCounts();
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @GET
+    @Path("/count")
+    @Produces("application/json")
+    public CountChannel count() {
+        try {
+            return controller.readCounts();
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
 }

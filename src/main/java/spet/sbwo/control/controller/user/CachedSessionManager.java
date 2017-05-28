@@ -7,51 +7,51 @@ import java.util.concurrent.ConcurrentMap;
 import spet.sbwo.data.table.UserSession;
 
 public class CachedSessionManager implements ISessionManager {
-	private final SessionManager inner;
-	private final ConcurrentMap<String, UserSession> sessions;
+    private final SessionManager inner;
+    private final ConcurrentMap<String, UserSession> sessions;
 
-	public CachedSessionManager(SessionManager inner) {
-		this.inner = inner;
-		this.sessions = new ConcurrentHashMap<>();
-	}
+    public CachedSessionManager(SessionManager inner) {
+        this.inner = inner;
+        this.sessions = new ConcurrentHashMap<>();
+    }
 
-	@Override
-	public boolean exists(String id) {
-		return sessions.containsKey(id) || inner.exists(id);
-	}
+    @Override
+    public boolean exists(String id) {
+        return sessions.containsKey(id) || inner.exists(id);
+    }
 
-	@Override
-	public UserSession read(String id) {
-		return sessions.computeIfAbsent(id, inner::read);
-	}
+    @Override
+    public UserSession read(String id) {
+        return sessions.computeIfAbsent(id, inner::read);
+    }
 
-	@Override
-	public boolean remove(String id) {
-		sessions.remove(id);
-		return inner.remove(id);
-	}
+    @Override
+    public boolean remove(String id) {
+        sessions.remove(id);
+        return inner.remove(id);
+    }
 
-	@Override
-	public void upsert(UserSession session) {
-		sessions.compute(session.getId(), (k, v) -> {
-			if (v == null) {
-				inner.upsert(session);
-			}
-			return session;
-		});
-	}
+    @Override
+    public void upsert(UserSession session) {
+        sessions.compute(session.getId(), (k, v) -> {
+            if (v == null) {
+                inner.upsert(session);
+            }
+            return session;
+        });
+    }
 
-	@Override
-	public List<String> readAllExpired(long ts) {
-		return inner.readAllExpired(ts);
-	}
+    @Override
+    public List<String> readAllExpired(long ts) {
+        return inner.readAllExpired(ts);
+    }
 
-	public void flush() {
-		sessions.values().forEach(inner::upsert);
-	}
+    public void flush() {
+        sessions.values().forEach(inner::upsert);
+    }
 
-	public void stop() {
-		flush();
-	}
+    public void stop() {
+        flush();
+    }
 
 }

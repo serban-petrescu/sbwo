@@ -13,24 +13,24 @@ import spet.sbwo.data.table.User;
 
 public class ForceDeleteList extends BaseUserDatabaseAction<List<TrashChannel>, Void> {
 
-	public ForceDeleteList() {
-		super(TrashChannel.class, true);
-	}
+    public ForceDeleteList() {
+        super(TrashChannel.class, true);
+    }
 
-	@Override
-	public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user)  {
-		for (TrashChannel c : input) {
-			getActionFor(c.getType()).run(c.getId(), executor, user);
-		}
-		return null;
-	}
+    @Override
+    public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user) {
+        for (TrashChannel c : input) {
+            getActionFor(c.getType()).run(c.getId(), executor, user);
+        }
+        return null;
+    }
 
-	protected DeleteEntity<?> getActionFor(EntityType type) {
-		if (type == EntityType.PERSON) {
-			return new DeletePerson();
-		} else {
-			return new DeleteExpertise();
-		}
-	}
+    protected DeleteEntity<?> getActionFor(EntityType type) {
+        if (type == EntityType.PERSON) {
+            return new DeletePerson();
+        } else {
+            return new DeleteExpertise();
+        }
+    }
 
 }

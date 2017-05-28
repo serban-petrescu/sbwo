@@ -16,39 +16,39 @@ import spet.sbwo.integration.api.geocode.model.Position;
 
 @Path("/utility/geocode")
 public class GeocodingService extends BaseService implements IPrivate {
-	private final IGeocodingApi api;
-	private final String key;
+    private final IGeocodingApi api;
+    private final String key;
 
-	public GeocodingService(IGeocodingApi api, GeocodingEntry config) {
-		this.api = api;
-		this.key = config.getKey();
-	}
+    public GeocodingService(IGeocodingApi api, GeocodingEntry config) {
+        this.api = api;
+        this.key = config.getKey();
+    }
 
-	@GET
-	@Path("/key")
-	public Response getApiKey(@QueryParam("callback") String callback) {
-		try {
-			return JsonpUtils.response(key, callback);
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-	}
+    @GET
+    @Path("/key")
+    public Response getApiKey(@QueryParam("callback") String callback) {
+        try {
+            return JsonpUtils.response(key, callback);
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+    }
 
-	@GET
-	@Path("/address")
-	@Produces("application/json")
-	public Position geocodeAddress(@QueryParam("address") String address) {
-		Position result = null;
-		try {
-			result = api.geocode(address);
-		} catch (Exception e) {
-			throw mapException(e);
-		}
-		if (result != null) {
-			return result;
-		} else {
-			throw new NotFoundException();
-		}
-	}
+    @GET
+    @Path("/address")
+    @Produces("application/json")
+    public Position geocodeAddress(@QueryParam("address") String address) {
+        Position result = null;
+        try {
+            result = api.geocode(address);
+        } catch (Exception e) {
+            throw mapException(e);
+        }
+        if (result != null) {
+            return result;
+        } else {
+            throw new NotFoundException();
+        }
+    }
 
 }

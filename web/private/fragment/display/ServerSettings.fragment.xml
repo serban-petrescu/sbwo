@@ -1,113 +1,116 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" >
-	<f:FormContainer expandable="true" title="{i18n>frcServerSchedulerTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblSchedulerThreadsText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <f:FormContainer expandable="true" title="{i18n>frcServerSchedulerTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblSchedulerThreadsText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{
 					parts: [
 						'i18n>txtServerSettingsDispayNumberUnitPattern', 
 						'data>/scheduler/threads', 
 						'i18n>inpSchedulerThreadsDesc'
 					], 
 					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}" />
-				<Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerControlTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/control/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}" />
-				<Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerSessionTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/session/timeout', type: 'spet.sbwo.web.util.Duration'}" />
-				<Text text="{i18n>txtSessionExpirationMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblSessionFlushIntervalText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/session/flushInterval', type: 'spet.sbwo.web.util.Duration'}"/>
-				<Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerBackupTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblDatabaseBackupStartText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/databaseBackup/start', formatter: 'spet.sbwo.web.model.formatter.time'}" />
-				<Text text="{i18n>txtDatabaseBackupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.util.Period'}" />
-				<Text text="{i18n>txtDatabaseBackupIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblDatabaseBackupLocationText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{data>/databaseBackup/location}" />
-				<Text text="{i18n>txtDatabaseBackupLocationInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerCleanupTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblCleanupStartText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/cleanup/start', formatter: 'spet.sbwo.web.model.formatter.time'}" />
-				<Text text="{i18n>txtCleanupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblCleanupThresholdText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/cleanup/threshold', type: 'spet.sbwo.web.util.Period'}"/>
-				<Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerCheckCourtTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblCheckCourtMaxAgeText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/checkCourt/maxAge', type: 'spet.sbwo.web.util.Duration'}"/>
-				<Text text="{i18n>txtCheckCourtMaxAgeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblCheckCourtIntervalText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/checkCourt/interval', type: 'spet.sbwo.web.util.Duration'}"/>
-				<Text text="{i18n>txtCheckCourtIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblCheckCourtCountText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{data>/checkCourt/count}"/>
-				<Text text="{i18n>txtCheckCourtCountInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
-	<f:FormContainer expandable="true" title="{i18n>frcServerGeocodingTitle}" visible="{= !${view>/edit} }">
-		<f:FormElement label="{i18n>lblGeocodingKeyText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{data>/geocoding/key}"/>
-				<Text text="{i18n>txtGeocodingKeyInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblGeocodingIntervalText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{path: 'data>/geocoding/interval', type: 'spet.sbwo.web.util.Duration'}"/>
-				<Text text="{i18n>txtGeocodingIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-		<f:FormElement label="{i18n>lblGeocodingCountText}">
-			<l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-				<Text text="{data>/geocoding/count}"/>
-				<Text text="{i18n>txtGeocodingCountInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
-			</l:VerticalLayout>
-		</f:FormElement>
-	</f:FormContainer>
+				}"/>
+                <Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerControlTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/control/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerSessionTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/session/timeout', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtSessionExpirationMinutesInfo}"
+                      class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblSessionFlushIntervalText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/session/flushInterval', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerBackupTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblDatabaseBackupStartText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/databaseBackup/start', formatter: 'spet.sbwo.web.model.formatter.time'}"/>
+                <Text text="{i18n>txtDatabaseBackupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.util.Period'}"/>
+                <Text text="{i18n>txtDatabaseBackupIntervalInfo}"
+                      class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblDatabaseBackupLocationText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{data>/databaseBackup/location}"/>
+                <Text text="{i18n>txtDatabaseBackupLocationInfo}"
+                      class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerCleanupTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblCleanupStartText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/cleanup/start', formatter: 'spet.sbwo.web.model.formatter.time'}"/>
+                <Text text="{i18n>txtCleanupStartInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblCleanupThresholdText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/cleanup/threshold', type: 'spet.sbwo.web.util.Period'}"/>
+                <Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerCheckCourtTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblCheckCourtMaxAgeText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/checkCourt/maxAge', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtCheckCourtMaxAgeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblCheckCourtIntervalText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/checkCourt/interval', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtCheckCourtIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblCheckCourtCountText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{data>/checkCourt/count}"/>
+                <Text text="{i18n>txtCheckCourtCountInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
+    <f:FormContainer expandable="true" title="{i18n>frcServerGeocodingTitle}" visible="{= !${view>/edit} }">
+        <f:FormElement label="{i18n>lblGeocodingKeyText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{data>/geocoding/key}"/>
+                <Text text="{i18n>txtGeocodingKeyInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblGeocodingIntervalText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{path: 'data>/geocoding/interval', type: 'spet.sbwo.web.util.Duration'}"/>
+                <Text text="{i18n>txtGeocodingIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+        <f:FormElement label="{i18n>lblGeocodingCountText}">
+            <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
+                <Text text="{data>/geocoding/count}"/>
+                <Text text="{i18n>txtGeocodingCountInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
+            </l:VerticalLayout>
+        </f:FormElement>
+    </f:FormContainer>
 </core:FragmentDefinition>

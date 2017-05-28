@@ -8,23 +8,23 @@ import java.util.Map;
 import spet.sbwo.data.base.BaseEntity;
 
 public abstract class BaseListImporter<T extends BaseEntity> extends BaseImporter<T> {
-	protected List<T> results;
+    protected List<T> results;
 
-	protected BaseListImporter() {
-		results = new LinkedList<>();
-	}
+    protected BaseListImporter() {
+        results = new LinkedList<>();
+    }
 
-	@Override
-	public T process(Map<String, String> entry)  {
-		T result = build(entry);
-		results.add(result);
-		return result;
-	}
+    @Override
+    public T process(Map<String, String> entry) {
+        T result = build(entry);
+        results.add(result);
+        return result;
+    }
 
-	protected abstract T build(Map<String, String> entry) ;
+    protected abstract T build(Map<String, String> entry);
 
-	@Override
-	public Collection<T> getResults() {
-		return results;
-	}
+    @Override
+    public Collection<T> getResults() {
+        return results;
+    }
 }

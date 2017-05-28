@@ -6,21 +6,20 @@ import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserPreference;
 
 public class CreateDefaultPreference extends BasePreferenceAction<Void> {
-	private static final int DEFAULT_DRAFT_RESUME_DELAY = 30;
-	private static final String DEFAULT_LANGUAGE = "en";
-	private static final String DEFAULT_THEME = "sap_belize";
+    private static final int DEFAULT_DRAFT_RESUME_DELAY = 30;
+    private static final String DEFAULT_LANGUAGE = "en";
+    private static final String DEFAULT_THEME = "sap_belize";
 
-	@Override
-	public UserPreferenceChannel doRun(Void input, IDatabaseExecutor executor, User user)
-			 {
-		UserPreference preference = new UserPreference();
-		preference.setUser(user);
-		preference.setDraftResumeDelay(DEFAULT_DRAFT_RESUME_DELAY);
-		preference.setLanguage(DEFAULT_LANGUAGE);
-		preference.setTheme(DEFAULT_THEME);
-		user.setPreference(preference);
-		executor.create(preference);
-		return mapToChannel(preference);
-	}
+    @Override
+    public UserPreferenceChannel doRun(Void input, IDatabaseExecutor executor, User user) {
+        UserPreference preference = new UserPreference();
+        preference.setUser(user);
+        preference.setDraftResumeDelay(DEFAULT_DRAFT_RESUME_DELAY);
+        preference.setLanguage(DEFAULT_LANGUAGE);
+        preference.setTheme(DEFAULT_THEME);
+        user.setPreference(preference);
+        executor.create(preference);
+        return mapToChannel(preference);
+    }
 
 }

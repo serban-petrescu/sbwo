@@ -7,13 +7,13 @@ import spet.sbwo.data.table.User;
 
 public class UserExists extends BaseUserDatabaseAction<Void, Boolean> {
 
-	public UserExists() {
-		super(UserChannel.class, false);
-	}
+    public UserExists() {
+        super(UserChannel.class, false);
+    }
 
-	@Override
-	public Boolean doRun(Void input, IDatabaseExecutor executor, User user) {
-		return user != null;
-	}
+    @Override
+    public Boolean doRun(Void input, IDatabaseExecutor executor, User user) {
+        return user != null;
+    }
 
 }

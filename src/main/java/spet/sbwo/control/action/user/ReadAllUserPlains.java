@@ -9,13 +9,13 @@ import spet.sbwo.data.view.UserPlain;
 
 public class ReadAllUserPlains extends BaseDatabaseAction<Void, List<UserPlain>> {
 
-	public ReadAllUserPlains() {
-		super(UserChannel.class);
-	}
+    public ReadAllUserPlains() {
+        super(UserChannel.class);
+    }
 
-	@Override
-	public List<UserPlain> doRun(Void input, IDatabaseExecutor e)  {
-		return e.queryList("UserPlain.readAll", UserPlain.class);
-	}
+    @Override
+    public List<UserPlain> doRun(Void input, IDatabaseExecutor e) {
+        return e.queryList("UserPlain.readAll", UserPlain.class);
+    }
 
 }
