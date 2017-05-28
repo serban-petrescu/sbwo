@@ -1,9 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+                        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Panel headerText="{i18n>tblExpertiseFinesHeader}">
         <List items="{data>fines}">
             <StandardListItem info="{path: 'data>sum', type: 'sap.ui.model.odata.type.Decimal'}"
-                              title="{path: 'data>date', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                            title="{path: 'data>date', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
         </List>
     </Panel>
 </core:FragmentDefinition>

@@ -1,10 +1,10 @@
 <mvc:View controllerName="spet.sbwo.web.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-          xmlns:u="sap.ui.unified">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+        xmlns:u="sap.ui.unified">
     <Page id="pagHome"
-          title="{i18n>pagHomeTitle}"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{i18n>pagHomeTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack">
         <headerContent>
             <Button id="btnReset"
                     icon="sap-icon://reset"
@@ -12,16 +12,16 @@
                     visible="{view>/edit}"
                     press="resetTiles"/>
             <ToggleButton id="btnEdit"
-                          icon="sap-icon://edit"
-                          tooltip="{i18n>btnHomeEditTooltip}"
-                          press="onEditButtonPressed"
-                          pressed="{view>/edit}"/>
+                        icon="sap-icon://edit"
+                        tooltip="{i18n>btnHomeEditTooltip}"
+                        press="onEditButtonPressed"
+                        pressed="{view>/edit}"/>
         </headerContent>
         <TileContainer id="tlcHome"
-                       editable="{view>/edit}"
-                       allowAdd="false"
-                       tileDelete="onTileDelete"
-                       tileMove="onTileMove"
-                       tiles="{path: 'view>/tiles', sorter: {path: 'order'}, factory: '.buildTile'}"/>
+                        editable="{view>/edit}"
+                        allowAdd="false"
+                        tileDelete="onTileDelete"
+                        tileMove="onTileMove"
+                        tiles="{path: 'view>/tiles', sorter: {path: 'order'}, factory: '.buildTile'}"/>
     </Page>
 </mvc:View>

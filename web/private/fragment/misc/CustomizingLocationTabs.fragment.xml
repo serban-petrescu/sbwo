@@ -11,7 +11,7 @@
     </IconTabFilter>
     <IconTabFilter text="{i18n>itfCustomizingAdmUnitsText}">
         <List items="{path: '/LocationAdministrativeUnits', sorter: {path: 'Name'}}" growing="true"
-              growingScrollToLoad="true">
+            growingScrollToLoad="true">
             <StandardListItem info="{Code}" title="{Name}"/>
         </List>
     </IconTabFilter>

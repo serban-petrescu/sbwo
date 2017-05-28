@@ -1,9 +1,9 @@
 <mvc:View controllerName="spet.sbwo.web.controller.wizard.PersonCreate" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.util" xmlns:core="sap.ui.core">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.util" xmlns:core="sap.ui.core">
     <Page id="pagPersonCreate"
-          title="{i18n>pagPersonCreateTitle}"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{i18n>pagPersonCreateTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack">
         <Wizard id="wizMain"
                 finishButtonText="{i18n>wzdCreatePersonMainFinishButtonText}"
                 complete="onComplete"
@@ -19,14 +19,14 @@
                         title="{i18n>wzsPersonCreateInfoTitle}"
                         validated="{view>/wizard/validity/1}">
                 <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonProperties" type="XML"
-                               binding="{data>/}"/>
+                                binding="{data>/}"/>
             </WizardStep>
             <WizardStep id="wzsPersonLocationInfo"
                         icon="sap-icon://map"
                         title="{i18n>wzsPersonCreateLocationTitle}"
                         validated="{view>/wizard/validity/2}">
                 <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.LocationPartialForm" type="XML"
-                               binding="{data>/location}"/>
+                                binding="{data>/location}"/>
             </WizardStep>
             <WizardStep id="wzsPersonContact"
                         icon="sap-icon://customer-briefing"
@@ -37,7 +37,7 @@
                 <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonPhones" type="XML" binding="{data>/}"/>
                 <html:div class="sapUiTinyMarginBottom"/>
                 <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonBankAccounts" type="XML"
-                               binding="{data>/}"/>
+                                binding="{data>/}"/>
                 <html:div class="sapUiTinyMarginBottom"/>
             </WizardStep>
         </Wizard>

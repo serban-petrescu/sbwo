@@ -1,19 +1,19 @@
 <mvc:View controllerName="spet.sbwo.web.controller.list.DeletedEntityList" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
     <Page id="pagList"
-          title="{i18n>pagDeletedEntitiesTitle}"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{i18n>pagDeletedEntitiesTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack">
         <subHeader>
             <Toolbar>
                 <SearchField id="seaMain" width="100%" search="onSearch"/>
             </Toolbar>
         </subHeader>
         <Table id="lstMain"
-               mode="MultiSelect"
-               selectionChange="onSelectionChange"
-               growing="true" growingScrollToLoad="true"
-               items="{path: '/DeletedEntitys', sorter: {path: 'DeletedOn', descending: true}}">
+                mode="MultiSelect"
+                selectionChange="onSelectionChange"
+                growing="true" growingScrollToLoad="true"
+                items="{path: '/DeletedEntitys', sorter: {path: 'DeletedOn', descending: true}}">
             <columns>
                 <Column width="3em"/>
                 <Column>

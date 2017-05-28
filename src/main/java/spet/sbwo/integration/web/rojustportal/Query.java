@@ -61,40 +61,40 @@ public class Query extends Service {
     }
 
     /**
-     * @return returns QuerySoap
-     */
+    * @return returns QuerySoap
+    */
     @WebEndpoint(name = "QuerySoap12")
     public QuerySoap getQuerySoap12() {
         return super.getPort(QuerySoap12, QuerySoap.class);
     }
 
     /**
-     * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure
-     *                 on the proxy. Supported features not in the
-     *                 <code>features</code> parameter will have their default
-     *                 values.
-     * @return returns QuerySoap
-     */
+    * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure
+    *                 on the proxy. Supported features not in the
+    *                 <code>features</code> parameter will have their default
+    *                 values.
+    * @return returns QuerySoap
+    */
     @WebEndpoint(name = "QuerySoap12")
     public QuerySoap getQuerySoap12(WebServiceFeature... features) {
         return super.getPort(QuerySoap12, QuerySoap.class, features);
     }
 
     /**
-     * @return returns QuerySoap
-     */
+    * @return returns QuerySoap
+    */
     @WebEndpoint(name = "QuerySoap")
     public QuerySoap getQuerySoap() {
         return super.getPort(QuerySoap, QuerySoap.class);
     }
 
     /**
-     * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure
-     *                 on the proxy. Supported features not in the
-     *                 <code>features</code> parameter will have their default
-     *                 values.
-     * @return returns QuerySoap
-     */
+    * @param features A list of {@link javax.xml.ws.WebServiceFeature} to configure
+    *                 on the proxy. Supported features not in the
+    *                 <code>features</code> parameter will have their default
+    *                 values.
+    * @return returns QuerySoap
+    */
     @WebEndpoint(name = "QuerySoap")
     public QuerySoap getQuerySoap(WebServiceFeature... features) {
         return super.getPort(QuerySoap, QuerySoap.class, features);

@@ -3,13 +3,13 @@
         <f:FormElement label="{i18n>lblSchedulerThreadsText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
                 <Text text="{
-					parts: [
-						'i18n>txtServerSettingsDispayNumberUnitPattern', 
-						'data>/scheduler/threads', 
-						'i18n>inpSchedulerThreadsDesc'
-					], 
-					formatter: 'spet.sbwo.web.model.formatter.pattern'
-				}"/>
+                    parts: [
+                        'i18n>txtServerSettingsDispayNumberUnitPattern',
+                        'data>/scheduler/threads',
+                        'i18n>inpSchedulerThreadsDesc'
+                    ],
+                    formatter: 'spet.sbwo.web.model.formatter.pattern'
+                }"/>
                 <Text text="{i18n>txtSchedulerThreadsInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
@@ -27,7 +27,7 @@
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
                 <Text text="{path: 'data>/session/timeout', type: 'spet.sbwo.web.util.Duration'}"/>
                 <Text text="{i18n>txtSessionExpirationMinutesInfo}"
-                      class="sapThemeHighlight-asColor infoTextDescription"/>
+                    class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
         <f:FormElement label="{i18n>lblSessionFlushIntervalText}">
@@ -48,14 +48,14 @@
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
                 <Text text="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.util.Period'}"/>
                 <Text text="{i18n>txtDatabaseBackupIntervalInfo}"
-                      class="sapThemeHighlight-asColor infoTextDescription"/>
+                    class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
         <f:FormElement label="{i18n>lblDatabaseBackupLocationText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
                 <Text text="{data>/databaseBackup/location}"/>
                 <Text text="{i18n>txtDatabaseBackupLocationInfo}"
-                      class="sapThemeHighlight-asColor infoTextDescription"/>
+                    class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
     </f:FormContainer>

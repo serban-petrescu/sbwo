@@ -24,7 +24,7 @@ public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, Us
     }
 
     protected void createNew(IDatabaseExecutor executor, User user, UserHomeTilesChannel result,
-                             Map<String, HomeTile> input) {
+                            Map<String, HomeTile> input) {
         for (Map.Entry<String, HomeTile> entry : input.entrySet()) {
             if (!result.getTiles().containsKey(entry.getKey())) {
                 result.getTiles().put(entry.getKey(), entry.getValue());

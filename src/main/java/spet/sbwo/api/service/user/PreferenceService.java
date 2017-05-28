@@ -39,7 +39,7 @@ public class PreferenceService extends BaseService implements IPrivate {
     @Consumes("application/json")
     @Produces("application/json")
     public UserPreferenceChannel updatePreference(@Context HttpServletRequest request,
-                                                  UserPreferenceChannel preference) {
+                                                UserPreferenceChannel preference) {
         try {
             return controller.updatePreference(currentUsername(), preference);
         } catch (Exception e) {

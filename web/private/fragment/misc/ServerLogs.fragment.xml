@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
-                         xmlns:f="sap.ui.layout.form">
+                        xmlns:f="sap.ui.layout.form">
     <NavContainer id="navLogs" height="100%">
         <ScrollContainer id="sccLogList" width="100%" height="100%" vertical="true" horizontal="false">
             <List id="lstLogs" items="{view>/logs/content}" growing="true" growingScrollToLoad="true">
@@ -8,12 +8,12 @@
                         <Title text="{i18n>titServerSettingsLogsText}"/>
                         <ToolbarSpacer/>
                         <SearchField search="onSearchLogs" showRefreshButton="true"
-                                     width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
+                                    width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
                     </Toolbar>
                 </headerToolbar>
                 <StandardListItem type="Navigation" title="{view>name}" icon="sap-icon://attachment-text-file"
-                                  press="onShowLogEvents"
-                                  info="{path: 'view>size', type: 'sap.ui.model.type.FileSize', formatOptions: {binaryFilesize: true, decimals: 2}}"/>
+                                press="onShowLogEvents"
+                                info="{path: 'view>size', type: 'sap.ui.model.type.FileSize', formatOptions: {binaryFilesize: true, decimals: 2}}"/>
             </List>
         </ScrollContainer>
         <ScrollContainer id="sccLogEvents" width="100%" height="100%" vertical="true" horizontal="false">
@@ -24,7 +24,7 @@
                         <Title text="{i18n>titServerSettingsLogEventsText}"/>
                         <ToolbarSpacer/>
                         <SearchField search="onSearchLogEvents" showRefreshButton="true"
-                                     width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
+                                    width="{:= ${device>/system/phone} ? '50%' : '15em'}"/>
                     </Toolbar>
                 </headerToolbar>
                 <columns>
@@ -47,7 +47,7 @@
                 </columns>
                 <ColumnListItem>
                     <core:Icon color="{path: 'view>level/name', formatter: '.formatLogColorFromLevel'}"
-                               src="sap-icon://circle-task-2"/>
+                                src="sap-icon://circle-task-2"/>
                     <Text text="{path: 'view>timeMillis', formatter: 'spet.sbwo.web.model.formatter.dateTime'}"/>
                     <Text text="{view>loggerName}"/>
                     <Text text="{view>message/message}"/>

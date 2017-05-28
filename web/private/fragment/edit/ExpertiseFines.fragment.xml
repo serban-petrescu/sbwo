@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-                         xmlns:spet="spet.sbwo.web.util"
-                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+                        xmlns:spet="spet.sbwo.web.util"
+                        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <spet:EventWrapper sapshow="onAddExpertiseFine" saphide="onDeleteExpertiseLastFine">
         <Panel>
             <headerToolbar>
@@ -25,10 +25,10 @@
                 </columns>
                 <ColumnListItem vAlign="Middle">
                     <DatePicker value="{
-							path: 'data>date', 
-							type: 'sap.ui.model.type.Date', 
-							formatOptions: {source: {pattern: 'yyyy-MM-dd'}}
-						}"
+                            path: 'data>date',
+                            type: 'sap.ui.model.type.Date',
+                            formatOptions: {source: {pattern: 'yyyy-MM-dd'}}
+                        }"
                                 displayFormat="dd.MM.yyyy" change="onValueChanged"/>
                     <Input value="{path: 'data>sum', type: 'sap.ui.model.odata.type.Decimal'}" change="onValueChanged"/>
                 </ColumnListItem>

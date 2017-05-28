@@ -9,7 +9,7 @@ public class LocationImportChannel implements Comparable<LocationImportChannel> 
     private String admUnitName;
 
     public LocationImportChannel(String countryCode, String countryName, String regionCode, String regionName,
-                                 String admUnitCode, String admUnitName) {
+                                String admUnitCode, String admUnitName) {
         this.countryCode = countryCode;
         this.countryName = countryName;
         this.regionCode = regionCode;

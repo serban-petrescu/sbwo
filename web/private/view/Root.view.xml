@@ -1,6 +1,6 @@
 <mvc:View controllerName="spet.sbwo.web.controller.Root" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc"
-          xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
     <u:Shell id="shlMain" showPane="{= ${view>/menu} &amp;&amp; !${device>/system/phone} }">
         <u:headItems>
             <u:ShellHeadItem
@@ -48,26 +48,26 @@
 
         <u:dependents>
             <Popover id="popGlobalSearch"
-                     placement="Bottom"
-                     showArrow="false"
-                     showHeader="false"
-                     contentHeight="50%"
-                     horizontalScrolling="false">
+                    placement="Bottom"
+                    showArrow="false"
+                    showHeader="false"
+                    contentHeight="50%"
+                    horizontalScrolling="false">
                 <List growing="true" growingScrollToLoad="true" items="{/GlobalSearchs}" id="lstSearchPopover">
                     <StandardListItem title="{Title}" description="{Description}" type="Active"
-                                      press="onSelectSearchPopover"
-                                      icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+                                    press="onSelectSearchPopover"
+                                    icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
                 </List>
             </Popover>
 
             <SelectDialog id="sedGlobalSearch"
-                          title="{i18n>sedGlobalSearchTitle}"
-                          multiSelect="false"
-                          items="{/GlobalSearchs}"
-                          confirm="onSelectSearchDialog"
-                          search="onSearchDialog">
+                        title="{i18n>sedGlobalSearchTitle}"
+                        multiSelect="false"
+                        items="{/GlobalSearchs}"
+                        confirm="onSelectSearchDialog"
+                        search="onSearchDialog">
                 <StandardListItem title="{Title}" description="{Description}"
-                                  icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+                                icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
             </SelectDialog>
 
             <Dialog id="dlgFavourites" stretch="true" showHeader="false">

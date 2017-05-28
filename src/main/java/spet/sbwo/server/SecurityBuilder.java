@@ -32,49 +32,49 @@ public class SecurityBuilder {
     private SessionDataStore sessionDataStore;
 
     /**
-     * Sets the login provider for the server.
-     */
+    * Sets the login provider for the server.
+    */
     public SecurityBuilder loginProvider(ILoginProvider loginProvider) {
         this.loginProvider = loginProvider;
         return this;
     }
 
     /**
-     * Sets the location of the login page.
-     */
+    * Sets the location of the login page.
+    */
     public SecurityBuilder loginPage(String loginPage) {
         this.loginPage = loginPage;
         return this;
     }
 
     /**
-     * Sets the location of the error page.
-     */
+    * Sets the location of the error page.
+    */
     public SecurityBuilder errorPage(String errorPage) {
         this.errorPage = errorPage;
         return this;
     }
 
     /**
-     * Sets the path specification which should be protected against
-     * un-authenticated access.
-     */
+    * Sets the path specification which should be protected against
+    * un-authenticated access.
+    */
     public SecurityBuilder securedPath(String securedPath) {
         this.securedPath = securedPath;
         return this;
     }
 
     /**
-     * Sets the session timeout.
-     */
+    * Sets the session timeout.
+    */
     public SecurityBuilder sessionTimeout(Duration duration) {
         this.sessionTimeout = duration.getSeconds();
         return this;
     }
 
     /**
-     * Sets the underlying session data store.
-     */
+    * Sets the underlying session data store.
+    */
     public SecurityBuilder sessionDataStore(SessionDataStore sessionDataStore) {
         this.sessionDataStore = sessionDataStore;
         return this;
@@ -118,9 +118,9 @@ public class SecurityBuilder {
     }
 
     /**
-     * Custom form authenticator which encrypts the user credentials before
-     * passing them to lower layers.
-     */
+    * Custom form authenticator which encrypts the user credentials before
+    * passing them to lower layers.
+    */
     private static class CustomFormAuthenticator extends FormAuthenticator {
         private ILoginProvider loginProvider;
 
@@ -142,9 +142,9 @@ public class SecurityBuilder {
     }
 
     /**
-     * Adapter class between the control layer login provider and the Jetty
-     * login service.
-     */
+    * Adapter class between the control layer login provider and the Jetty
+    * login service.
+    */
     private static class CustomLoginService extends AbstractLoginService {
         private ILoginProvider loginProvider;
 
@@ -173,8 +173,8 @@ public class SecurityBuilder {
     }
 
     /**
-     * (Temporary) Custom credential class to do password matching.
-     */
+    * (Temporary) Custom credential class to do password matching.
+    */
     private static class CustomCredential extends Credential {
         private static final long serialVersionUID = 1L;
 

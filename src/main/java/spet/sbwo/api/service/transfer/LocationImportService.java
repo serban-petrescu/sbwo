@@ -30,7 +30,7 @@ public class LocationImportService extends BaseService implements IPrivate {
     @POST
     @Path("/locations/{separator}/{header}")
     public void importLocationsFromCsv(@PathParam("separator") String separator, @PathParam("header") boolean header,
-                                       InputStream body) {
+                                        InputStream body) {
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(separator.charAt(0)).withSkipHeaderRecord(header);
         try (CSVParser parser = new CSVParser(new InputStreamReader(body), format)) {
             controller.importLocationParts(extractChannels(parser));

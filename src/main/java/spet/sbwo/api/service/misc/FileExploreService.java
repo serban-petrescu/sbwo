@@ -25,7 +25,7 @@ public class FileExploreService extends BaseService implements IPrivate {
     @Path("/files")
     @Produces("application/json")
     public QueryResult<FileInfo> exploreFiles(@QueryParam("base") String base,
-                                              @QueryParam("extension") @DefaultValue("") String extension) {
+                                            @QueryParam("extension") @DefaultValue("") String extension) {
         try {
             return new FolderScanner(base).files(extension);
         } catch (Exception e) {

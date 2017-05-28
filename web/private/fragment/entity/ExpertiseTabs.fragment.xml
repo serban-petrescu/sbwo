@@ -16,7 +16,7 @@
         </l:VerticalLayout>
     </IconTabFilter>
     <IconTabFilter icon="sap-icon://unpaid-leave" binding="{data>/}"
-                   visible="{= ${view>/edit} || !!${data>/fines/length} }">
+                    visible="{= ${view>/edit} || !!${data>/fines/length} }">
         <l:VerticalLayout width="100%" visible="{= !${view>/edit} &amp;&amp; !!${data>/fines/length} }">
             <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.ExpertiseFines"/>
         </l:VerticalLayout>

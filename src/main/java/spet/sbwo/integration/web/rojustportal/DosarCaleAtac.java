@@ -43,61 +43,61 @@ public class DosarCaleAtac {
     protected String tipCaleAtac;
 
     /**
-     * Gets the value of the dataDeclarare property.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
-     */
+    * Gets the value of the dataDeclarare property.
+    *
+    * @return possible object is
+    * {@link XMLGregorianCalendar }
+    */
     public XMLGregorianCalendar getDataDeclarare() {
         return dataDeclarare;
     }
 
     /**
-     * Sets the value of the dataDeclarare property.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
-     */
+    * Sets the value of the dataDeclarare property.
+    *
+    * @param value allowed object is
+    *              {@link XMLGregorianCalendar }
+    */
     public void setDataDeclarare(XMLGregorianCalendar value) {
         this.dataDeclarare = value;
     }
 
     /**
-     * Gets the value of the parteDeclaratoare property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the parteDeclaratoare property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getParteDeclaratoare() {
         return parteDeclaratoare;
     }
 
     /**
-     * Sets the value of the parteDeclaratoare property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the parteDeclaratoare property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setParteDeclaratoare(String value) {
         this.parteDeclaratoare = value;
     }
 
     /**
-     * Gets the value of the tipCaleAtac property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the tipCaleAtac property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getTipCaleAtac() {
         return tipCaleAtac;
     }
 
     /**
-     * Sets the value of the tipCaleAtac property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the tipCaleAtac property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setTipCaleAtac(String value) {
         this.tipCaleAtac = value;
     }

@@ -5,8 +5,8 @@
             <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>
         </Console>
         <RollingFile name="File"
-                     fileName="./log/log.txt"
-                     filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
+                    fileName="./log/log.txt"
+                    filePattern="./log/log_%d{yyyyMMdd}_%i.txt">
             <GsonLayout/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1 MB"/>

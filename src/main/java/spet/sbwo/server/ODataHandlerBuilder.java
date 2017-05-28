@@ -18,24 +18,24 @@ public class ODataHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-     * Enables or disables the cache.
-     */
+    * Enables or disables the cache.
+    */
     public ODataHandlerBuilder cache(boolean enabled) {
         this.cacheEnabled = enabled;
         return this;
     }
 
     /**
-     * Sets the OData service factory class.
-     */
+    * Sets the OData service factory class.
+    */
     public ODataHandlerBuilder factory(Class<? extends ODataServiceFactory> factory) {
         this.factory = factory;
         return this;
     }
 
     /**
-     * Sets the handler's path specification.
-     */
+    * Sets the handler's path specification.
+    */
     public ODataHandlerBuilder path(String path) {
         this.path = path;
         return this;
@@ -47,9 +47,9 @@ public class ODataHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-     * Helper class for passing the class reference to the CXF servlet instead
-     * of the class name.
-     */
+    * Helper class for passing the class reference to the CXF servlet instead
+    * of the class name.
+    */
     private class CustomODataApplication extends AbstractODataApplication {
         @Override
         public Class<? extends ODataServiceFactory> getServiceFactoryClass() {

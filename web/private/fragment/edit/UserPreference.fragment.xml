@@ -4,11 +4,11 @@
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
                 <HBox alignItems="Center" width="100%">
                     <StepInput value="{data>/draftResumeDelay}" min="1" max="10000" width="100%"
-                               change="onValueChanged"/>
+                                change="onValueChanged"/>
                     <Label class="sapUiTinyMarginBegin" text="{i18n>inpUserPreferenceDraftResumeMinutesUnit}"/>
                 </HBox>
                 <Text text="{i18n>txtUserPreferenceDraftResumeMinutesInfo}"
-                      class="sapThemeHighlight-asColor infoTextDescription"/>
+                    class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
         <f:FormElement label="{i18n>lblUserPreferenceLanguageText}">
@@ -18,7 +18,7 @@
                     <core:Item key="ro" text="{i18n>txtLanguageRomanianText}"/>
                 </Select>
                 <Text text="{i18n>txtUserPreferenceLanguageInfo}"
-                      class="sapThemeHighlight-asColor infoTextDescription"/>
+                    class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
         <f:FormElement label="{i18n>lblUserPreferenceThemeText}">

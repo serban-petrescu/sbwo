@@ -21,11 +21,11 @@
                 <Text text="{data>address}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblLocationMapText}"
-                           visible="{= !!${data>latitude} &amp;&amp; !!${data>longitude} }">
+                            visible="{= !!${data>latitude} &amp;&amp; !!${data>longitude} }">
                 <Link text="{i18n>btnLocationOpenMapText}" press="onOpenLocationMapDialog"/>
             </f:FormElement>
         </f:FormContainer>
     </f:Form>
     <Text text="{i18n>txtUnknownAddressText}" visible="{= !${data>country/name} &amp;&amp; !${data>region/name}
-		&amp;&amp; !${data>administrativeUnit/name} &amp;&amp; !${data>address} }" width="100%" textAlign="Center"/>
+        &amp;&amp; !${data>administrativeUnit/name} &amp;&amp; !${data>address} }" width="100%" textAlign="Center"/>
 </core:FragmentDefinition>

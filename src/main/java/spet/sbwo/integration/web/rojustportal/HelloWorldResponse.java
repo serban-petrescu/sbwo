@@ -36,21 +36,21 @@ public class HelloWorldResponse {
     protected String helloWorldResult;
 
     /**
-     * Gets the value of the helloWorldResult property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the helloWorldResult property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getHelloWorldResult() {
         return helloWorldResult;
     }
 
     /**
-     * Sets the value of the helloWorldResult property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the helloWorldResult property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setHelloWorldResult(String value) {
         this.helloWorldResult = value;
     }

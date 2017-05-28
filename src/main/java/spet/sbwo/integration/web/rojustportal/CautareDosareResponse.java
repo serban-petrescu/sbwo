@@ -36,21 +36,21 @@ public class CautareDosareResponse {
     protected ArrayOfDosar cautareDosareResult;
 
     /**
-     * Gets the value of the cautareDosareResult property.
-     *
-     * @return possible object is
-     * {@link ArrayOfDosar }
-     */
+    * Gets the value of the cautareDosareResult property.
+    *
+    * @return possible object is
+    * {@link ArrayOfDosar }
+    */
     public ArrayOfDosar getCautareDosareResult() {
         return cautareDosareResult;
     }
 
     /**
-     * Sets the value of the cautareDosareResult property.
-     *
-     * @param value allowed object is
-     *              {@link ArrayOfDosar }
-     */
+    * Sets the value of the cautareDosareResult property.
+    *
+    * @param value allowed object is
+    *              {@link ArrayOfDosar }
+    */
     public void setCautareDosareResult(ArrayOfDosar value) {
         this.cautareDosareResult = value;
     }

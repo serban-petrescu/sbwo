@@ -1,20 +1,20 @@
 <mvc:View controllerName="spet.sbwo.web.controller.misc.Import" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
-          xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page id="pagImport"
-          title="{i18n>pagImportTitle}"
-          showNavButton="true"
-          busy="{view>/busy}"
-          busyIndicatorDelay="0"
-          navButtonPress="onNavBack">
+        title="{i18n>pagImportTitle}"
+        showNavButton="true"
+        busy="{view>/busy}"
+        busyIndicatorDelay="0"
+        navButtonPress="onNavBack">
 
         <Panel>
             <u:FileUploader
                 id="fupImport"
                 uploadUrl="{
-					path: 'view>name', 
-					formatter: '.formatUploadUrl'
-				}"
+                    path: 'view>name',
+                    formatter: '.formatUploadUrl'
+                }"
                 multiple="true"
                 width="100%"
                 sendXHR="true"
@@ -48,10 +48,10 @@
                     <List items="{path: 'view>files', templateShareable: true}">
                         <ObjectListItem title="{view>name}"
                                         number="{
-								path: 'view>size', 
-								type: 'sap.ui.model.type.FileSize', 
-								formatOptions: {binaryFilesize: true, decimals: 2}
-							}">
+                                path: 'view>size',
+                                type: 'sap.ui.model.type.FileSize',
+                                formatOptions: {binaryFilesize: true, decimals: 2}
+                            }">
                             <firstStatus>
                                 <ObjectStatus
                                     text="{= ${view>exists} ? ${i18n>obsImportFileStatusExists} : ${i18n>obsImportFileStatusNotExists} }"

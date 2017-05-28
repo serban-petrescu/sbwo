@@ -49,101 +49,101 @@ public class Sedinta {
     protected ArrayOfSedintaDosar dosare;
 
     /**
-     * Gets the value of the departament property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the departament property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getDepartament() {
         return departament;
     }
 
     /**
-     * Sets the value of the departament property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the departament property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setDepartament(String value) {
         this.departament = value;
     }
 
     /**
-     * Gets the value of the complet property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the complet property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getComplet() {
         return complet;
     }
 
     /**
-     * Sets the value of the complet property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the complet property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setComplet(String value) {
         this.complet = value;
     }
 
     /**
-     * Gets the value of the data property.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
-     */
+    * Gets the value of the data property.
+    *
+    * @return possible object is
+    * {@link XMLGregorianCalendar }
+    */
     public XMLGregorianCalendar getData() {
         return data;
     }
 
     /**
-     * Sets the value of the data property.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
-     */
+    * Sets the value of the data property.
+    *
+    * @param value allowed object is
+    *              {@link XMLGregorianCalendar }
+    */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
     }
 
     /**
-     * Gets the value of the ora property.
-     *
-     * @return possible object is
-     * {@link String }
-     */
+    * Gets the value of the ora property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
     public String getOra() {
         return ora;
     }
 
     /**
-     * Sets the value of the ora property.
-     *
-     * @param value allowed object is
-     *              {@link String }
-     */
+    * Sets the value of the ora property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
     public void setOra(String value) {
         this.ora = value;
     }
 
     /**
-     * Gets the value of the dosare property.
-     *
-     * @return possible object is
-     * {@link ArrayOfSedintaDosar }
-     */
+    * Gets the value of the dosare property.
+    *
+    * @return possible object is
+    * {@link ArrayOfSedintaDosar }
+    */
     public ArrayOfSedintaDosar getDosare() {
         return dosare;
     }
 
     /**
-     * Sets the value of the dosare property.
-     *
-     * @param value allowed object is
-     *              {@link ArrayOfSedintaDosar }
-     */
+    * Sets the value of the dosare property.
+    *
+    * @param value allowed object is
+    *              {@link ArrayOfSedintaDosar }
+    */
     public void setDosare(ArrayOfSedintaDosar value) {
         this.dosare = value;
     }

@@ -18,7 +18,7 @@
             </f:FormElement>
             <f:FormElement label="{i18n>lblPersonJointStockText}">
                 <Input change="onValueChanged"
-                       value="{path: 'data>jointStock', type: 'sap.ui.model.odata.type.Decimal'}"/>
+                        value="{path: 'data>jointStock', type: 'sap.ui.model.odata.type.Decimal'}"/>
             </f:FormElement>
         </f:FormContainer>
         <f:FormContainer visible="{= ${data>type} === 0 }">

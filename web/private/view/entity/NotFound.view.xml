@@ -1,9 +1,9 @@
 <mvc:View controllerName="spet.sbwo.web.controller.entity.NotFound" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
     <MessagePage showHeader="true"
-                 showNavButton="true"
-                 navButtonPress="onNavBack"
-                 title="{i18n>pagEntityNotFoundTitle}"
-                 text="{i18n>pagEntityNotFoundText}"
-                 description="{i18n>pagEntityNotFoundDescription}"/>
+                showNavButton="true"
+                navButtonPress="onNavBack"
+                title="{i18n>pagEntityNotFoundTitle}"
+                text="{i18n>pagEntityNotFoundText}"
+                description="{i18n>pagEntityNotFoundDescription}"/>
 </mvc:View>

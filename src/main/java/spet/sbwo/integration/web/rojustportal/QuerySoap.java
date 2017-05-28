@@ -18,8 +18,8 @@ import javax.xml.ws.ResponseWrapper;
 public interface QuerySoap {
 
     /**
-     * Cautare sedinte dupa data, institutie
-     */
+    * Cautare sedinte dupa data, institutie
+    */
     @WebMethod(operationName = "CautareSedinte", action = "portalquery.just.ro/CautareSedinte")
     @RequestWrapper(localName = "CautareSedinte", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareSedinte")
     @ResponseWrapper(localName = "CautareSedinteResponse", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareSedinteResponse")
@@ -38,8 +38,8 @@ public interface QuerySoap {
     public java.lang.String helloWorld();
 
     /**
-     * Cautare dosare dupa numar, obiect, parte, institutie, data
-     */
+    * Cautare dosare dupa numar, obiect, parte, institutie, data
+    */
     @WebMethod(operationName = "CautareDosare", action = "portalquery.just.ro/CautareDosare")
     @RequestWrapper(localName = "CautareDosare", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare")
     @ResponseWrapper(localName = "CautareDosareResponse", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosareResponse")
@@ -60,8 +60,8 @@ public interface QuerySoap {
     );
 
     /**
-     * Cautare dosare dupa numar, obiect, parte, institutie, data, data ultima modificare
-     */
+    * Cautare dosare dupa numar, obiect, parte, institutie, data, data ultima modificare
+    */
     @WebMethod(operationName = "CautareDosare2", action = "portalquery.just.ro/CautareDosare2")
     @RequestWrapper(localName = "CautareDosare2", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare2")
     @ResponseWrapper(localName = "CautareDosare2Response", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare2Response")

@@ -14,8 +14,8 @@
         </customHeader>
         <FlexBox height="100%" width="100%" fitContainer="true" alignItems="Center" justifyContent="Center">
             <maps:Map lat="{data>latitude}" lng="{data>longitude}" zoom="10"
-                      height="{= (${device>/system/phone} ? parseInt(${device>/resize/height} * 9 / 10, 10) :
-					${device>/resize/height}) - 48 + 'px' }">
+                    height="{= (${device>/system/phone} ? parseInt(${device>/resize/height} * 9 / 10, 10) :
+                    ${device>/resize/height}) - 48 + 'px' }">
                 <maps:Marker lat="{data>latitude}" lng="{data>longitude}"/>
                 <maps:layoutData>
                     <FlexItemData growFactor="1"/>

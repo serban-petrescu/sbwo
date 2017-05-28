@@ -15,22 +15,22 @@
     </script>
 
     <script>
-			jQuery.ajax({
-				method: "HEAD",
-				url:	"/public/rest/csrf",
-				success: function(sData, sStatus, oResponse) {
-					var sToken = oResponse.getResponseHeader("X-CSRF-TOKEN");
-					jQuery.ajaxSetup({
-					    beforeSend: function(oXhr) {
-					    	oXhr.setRequestHeader("X-CSRF-TOKEN", sToken);     
-					    }
-					});
-				}
-			});
-			
-			sap.ui.getCore().attachInit(function() {
-				sap.ui.xmlview("users.view.Main").placeAt("content");
-			});
+            jQuery.ajax({
+                method: "HEAD",
+                url:	"/public/rest/csrf",
+                success: function(sData, sStatus, oResponse) {
+                    var sToken = oResponse.getResponseHeader("X-CSRF-TOKEN");
+                    jQuery.ajaxSetup({
+                        beforeSend: function(oXhr) {
+                            oXhr.setRequestHeader("X-CSRF-TOKEN", sToken);
+                        }
+                    });
+                }
+            });
+
+            sap.ui.getCore().attachInit(function() {
+                sap.ui.xmlview("users.view.Main").placeAt("content");
+            });
 
     </script>
 </head>

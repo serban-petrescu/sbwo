@@ -17,41 +17,41 @@
     </div>
 </div>
 <script type="text/javascript">
-			var oUserData, sGoogleApiKey;
-			
-			function setGoogleApiKey(sKey) {
-				sGoogleApiKey = sKey;
-			}
-			
-			function mergeUserData(oData) {
-				oData.preference.language = oData.preference.language || "en";
-				oData.preference.theme = oData.preference.theme || "sap_belize"
-				oData.preference.draftResumeDelay = oData.preference.draftResumeDelay || 30;
-				oUserData = oData;
-			}
-			
-			function browserSupportsCSSProperty(sPropertyName) {
-				var oElem = document.createElement('div');
-					sPropertyName = sPropertyName.toLowerCase();
-				
-				if (oElem.style[sPropertyName] !== undefined) {
-					return true;
-				}
-				
-				var sPropertyNameCapital = sPropertyName.charAt(0).toUpperCase() + sPropertyName.substr(1),
-					aDomPrefixes = 'Webkit Moz ms O'.split(' ');
-				
-				for (var i = 0; i < aDomPrefixes.length; ++i) {
-					if (oElem.style[aDomPrefixes[i] + sPropertyNameCapital] !== undefined) {
-						return true;
-					}
-				}
-				return false;
-			}
-			
-			if (!browserSupportsCSSProperty("animation")) {
-				document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
-			}
+            var oUserData, sGoogleApiKey;
+
+            function setGoogleApiKey(sKey) {
+                sGoogleApiKey = sKey;
+            }
+
+            function mergeUserData(oData) {
+                oData.preference.language = oData.preference.language || "en";
+                oData.preference.theme = oData.preference.theme || "sap_belize"
+                oData.preference.draftResumeDelay = oData.preference.draftResumeDelay || 30;
+                oUserData = oData;
+            }
+
+            function browserSupportsCSSProperty(sPropertyName) {
+                var oElem = document.createElement('div');
+                    sPropertyName = sPropertyName.toLowerCase();
+
+                if (oElem.style[sPropertyName] !== undefined) {
+                    return true;
+                }
+
+                var sPropertyNameCapital = sPropertyName.charAt(0).toUpperCase() + sPropertyName.substr(1),
+                    aDomPrefixes = 'Webkit Moz ms O'.split(' ');
+
+                for (var i = 0; i < aDomPrefixes.length; ++i) {
+                    if (oElem.style[aDomPrefixes[i] + sPropertyNameCapital] !== undefined) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            if (!browserSupportsCSSProperty("animation")) {
+                document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
+            }
 
 </script>
 
@@ -61,9 +61,9 @@
 <script src="/public/rest/user/current?callback=mergeUserData"></script>
 <script src="/private/api/rest/utility/geocode/key?callback=setGoogleApiKey"></script>
 <script type="text/javascript">
-			window["sap-ui-config"] = {
-				theme: oUserData.preference.theme,
-				language: oUserData.preference.language
+            window["sap-ui-config"] = {
+                theme: oUserData.preference.theme,
+                language: oUserData.preference.language
             };
 
 </script>
@@ -77,21 +77,21 @@
 </script>
 
 <script type="text/javascript">
-			sap.ui.getCore().attachInit(function() {
-				sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
-					new MapsApi({
-						language: oUserData.preference.language,
-						apiKey: sGoogleApiKey
-					}).load();
-					new Shell({
-						backgroundImage: "/public/images/background.jpg",
-						app: new sap.ui.core.ComponentContainer({
-							height : "100%",
-							name : "spet.sbwo.web"
-						})
-					}).placeAt("content");
-				})
-			});
+            sap.ui.getCore().attachInit(function() {
+                sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
+                    new MapsApi({
+                        language: oUserData.preference.language,
+                        apiKey: sGoogleApiKey
+                    }).load();
+                    new Shell({
+                        backgroundImage: "/public/images/background.jpg",
+                        app: new sap.ui.core.ComponentContainer({
+                            height : "100%",
+                            name : "spet.sbwo.web"
+                        })
+                    }).placeAt("content");
+                })
+            });
 
 </script>
 

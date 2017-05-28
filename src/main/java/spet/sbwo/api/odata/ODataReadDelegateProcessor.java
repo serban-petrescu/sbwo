@@ -50,13 +50,13 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
 
     @Override
     public ODataResponse createEntity(PostUriInfo uriInfo, InputStream content, String requestContentType,
-                                      String contentType) throws ODataException {
+                                    String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse createEntityLink(PostUriInfo uriInfo, InputStream content, String requestContentType,
-                                          String contentType) throws ODataException {
+                                        String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
@@ -184,25 +184,25 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
 
     @Override
     public ODataResponse updateEntity(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                      boolean merge, String contentType) throws ODataException {
+                                    boolean merge, String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityComplexProperty(PutMergePatchUriInfo uriInfo, InputStream content,
-                                                     String requestContentType, boolean merge, String contentType) throws ODataException {
+                                                    String requestContentType, boolean merge, String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityLink(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                          String contentType) throws ODataException {
+                                        String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityMedia(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                           String contentType) throws ODataException {
+                                            String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
@@ -214,7 +214,7 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
 
     @Override
     public ODataResponse updateEntitySimplePropertyValue(PutMergePatchUriInfo uriInfo, InputStream content,
-                                                         String requestContentType, String contentType) throws ODataException {
+                                                        String requestContentType, String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 }

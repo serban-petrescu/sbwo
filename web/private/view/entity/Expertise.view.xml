@@ -1,17 +1,17 @@
 <mvc:View controllerName="spet.sbwo.web.controller.entity.Expertise" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
-          xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page id="pagEntity"
-          title="{
-			parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, 
-				{path: 'i18n>pagEntityExpertisePatternTitle'}, {path: 'data>/number'}
-			],
-			formatter: 'spet.sbwo.web.model.formatter.entityPageTitle'
-		}"
-          busy="{= !${view>/loaded} }"
-          busyIndicatorDelay="500"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{
+            parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'},
+                {path: 'i18n>pagEntityExpertisePatternTitle'}, {path: 'data>/number'}
+            ],
+            formatter: 'spet.sbwo.web.model.formatter.entityPageTitle'
+        }"
+        busy="{= !${view>/loaded} }"
+        busyIndicatorDelay="500"
+        showNavButton="true"
+        navButtonPress="onNavBack">
 
         <headerContent>
             <Button icon="sap-icon://save"
@@ -20,8 +20,8 @@
             <Button icon="sap-icon://undo" visible="{= ${view>/loaded} &amp;&amp; ${data>/deleted}}"
                     press="onRestore" tooltip="{i18n>btnEntityRestoreTooltip}"/>
             <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"
-                          visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
-                          press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+                        visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
+                        press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
         </headerContent>
 
         <ObjectHeader
@@ -60,9 +60,9 @@
 
         <dependents>
             <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML"
-                           binding="{view>/case}"/>
+                            binding="{view>/case}"/>
             <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
-                           binding="{data>/location}"/>
+                            binding="{data>/location}"/>
         </dependents>
     </Page>
 </mvc:View>

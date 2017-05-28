@@ -70,7 +70,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
     }
 
     protected LocationRegion getRegion(IDatabaseExecutor executor, Map<String, LocationRegion> regions,
-                                       LocationCountry country, String code, String name) {
+                                        LocationCountry country, String code, String name) {
         LocationRegion result = regions.get(code);
         if (result == null) {
             result = new LocationRegion();
@@ -88,7 +88,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
     }
 
     protected LocationAdministrativeUnit getUnit(IDatabaseExecutor executor,
-                                                 Map<String, LocationAdministrativeUnit> units, LocationRegion region, String code, String name) {
+                                                Map<String, LocationAdministrativeUnit> units, LocationRegion region, String code, String name) {
         LocationAdministrativeUnit result = units.get(code);
         if (result == null) {
             result = new LocationAdministrativeUnit();

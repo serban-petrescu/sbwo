@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-                         xmlns:spet="spet.sbwo.web.util">
+                        xmlns:spet="spet.sbwo.web.util">
     <f:Form editable="true">
         <f:layout>
             <f:ResponsiveGridLayout
@@ -19,7 +19,7 @@
             </f:FormElement>
             <f:FormElement label="{i18n>lblLocationRegionText}">
                 <spet:IndirectBindingWrapper pattern="/LocationCountrys(#)"
-                                             value="{data>country/id}">
+                                            value="{data>country/id}">
                     <Select selectedKey="{data>region/id}"
                             items="{path: 'LocationRegionDetails', sorter: {path: 'Name'}}"
                             width="100%"
@@ -31,7 +31,7 @@
             </f:FormElement>
             <f:FormElement label="{i18n>lblLocationAddressText}">
                 <TextArea value="{data>address}" width="100%" rows="2" growing="true" growingMaxLines="5"
-                          change="onValueChanged"/>
+                        change="onValueChanged"/>
             </f:FormElement>
         </f:FormContainer>
     </f:Form>

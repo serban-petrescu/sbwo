@@ -1,11 +1,11 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+                        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Panel headerText="{i18n>tblPersonPhonesHeader}">
         <List items="{data>telephones}">
             <StandardListItem title="{data>telephone}" description="{data>name}" infoState="Success"
-                              type="{:= ${device>/system/phone} ? 'Active' : 'Inactive' }"
-                              cd:target="{data>telephone}" cd:action="phone" press="doExternalAction"
-                              info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
+                            type="{:= ${device>/system/phone} ? 'Active' : 'Inactive' }"
+                            cd:target="{data>telephone}" cd:action="phone" press="doExternalAction"
+                            info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
         </List>
     </Panel>
 </core:FragmentDefinition>

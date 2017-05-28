@@ -1,12 +1,12 @@
 <mvc:View controllerName="users.view.Main" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-          height="100%">
+        xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+        height="100%">
     <Shell backgroundImage="../images/background.jpg">
         <App>
             <Page title="{i18n>pageTitle}" showFooter="false" showNavButton="true" navButtonPress="onNavBack"
-                  backgroundDesign="Translucent">
+                backgroundDesign="Translucent">
                 <List id="lstUsers" growing="true" growingScrollToLoad="true"
-                      items="{view>/users}" mode="SingleSelect" selectionChange="onSelect">
+                    items="{view>/users}" mode="SingleSelect" selectionChange="onSelect">
                     <headerToolbar>
                         <OverflowToolbar>
                             <Title text="{i18n>lstUsersTitleText}"/>
@@ -21,15 +21,15 @@
                         </OverflowToolbar>
                     </headerToolbar>
                     <StandardListItem title="{view>username}"
-                                      info="{= ${view>active} ? ${i18n>ostStatusActiveText} : ${i18n>ostStatusInactiveText}}"
-                                      infoState="{= ${view>active} ? 'Success' : 'Error'}">
+                                    info="{= ${view>active} ? ${i18n>ostStatusActiveText} : ${i18n>ostStatusInactiveText}}"
+                                    infoState="{= ${view>active} ? 'Success' : 'Error'}">
                     </StandardListItem>
                 </List>
                 <dependents>
                     <Dialog id="dlgCreate" title="{i18n>dlgCreateTitle}">
                         <Panel>
                             <Input width="100%" placeholder="{i18n>inpUsernamePlaceholder}"
-                                   value="{view>/newUsername}" valueLiveUpdate="true"/>
+                                    value="{view>/newUsername}" valueLiveUpdate="true"/>
                         </Panel>
                         <beginButton>
                             <Button type="Accept" text="{i18n>btnAcceptText}"

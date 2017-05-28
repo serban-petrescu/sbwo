@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
-                         xmlns:spet="spet.sbwo.web.util"
-                         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+                        xmlns:spet="spet.sbwo.web.util"
+                        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <spet:EventWrapper sapshow="onAddPersonEmail" saphide="onDeletePersonLastEmail">
         <Panel>
             <headerToolbar>
@@ -11,7 +11,7 @@
                 </Toolbar>
             </headerToolbar>
             <Table items="{data>emailAddresses}" visible="{= ${data>emailAddresses/length} &gt; 0 }"
-                   keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
+                    keyboardMode="Edit" mode="Delete" delete="onDeleteCollection">
                 <columns>
                     <Column minScreenWidth="Medium" demandPopin="true">
                         <header>

@@ -2,10 +2,10 @@
     <Page title="{i18n>pagRootFavouritesTitle}">
         <headerContent>
             <ToggleButton press="onToggleFavourite" pressed="{view>/isFavourite}" visible="{= !${view>/edit} }"
-                          tooltip="{= ${view>/isFavourite} ? ${i18n>btnRootRemoveFavouriteTooltip} : ${i18n>btnRootAddFavouriteTooltip} }"
-                          icon="{= ${view>/isFavourite} ? 'sap-icon://favorite' : 'sap-icon://unfavorite' }"/>
+                        tooltip="{= ${view>/isFavourite} ? ${i18n>btnRootRemoveFavouriteTooltip} : ${i18n>btnRootAddFavouriteTooltip} }"
+                        icon="{= ${view>/isFavourite} ? 'sap-icon://favorite' : 'sap-icon://unfavorite' }"/>
             <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}" press="onToggleEdit"
-                          tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+                        tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
         </headerContent>
 
         <List items="{view>/favourites}" mode="{= ${view>/edit} ? 'Delete' : 'None'}" delete="onDeleteFavouriteEdit">

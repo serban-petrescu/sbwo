@@ -1,9 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
     <ActionSheet id="actUploadDestination"
-                 placement="Top"
-                 showCancelButton="true"
-                 buttons="{view>/destinations}"
-                 title="{i18n>actCustomizingUploadDestinationTitle}">
+                placement="Top"
+                showCancelButton="true"
+                buttons="{view>/destinations}"
+                title="{i18n>actCustomizingUploadDestinationTitle}">
         <buttons>
             <Button text="{view>title}" icon="{view>icon}" press="onOpenUploadDialog"/>
         </buttons>

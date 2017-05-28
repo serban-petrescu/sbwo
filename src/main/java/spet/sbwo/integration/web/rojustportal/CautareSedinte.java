@@ -44,41 +44,41 @@ public class CautareSedinte {
     protected Institutie institutie;
 
     /**
-     * Gets the value of the dataSedinta property.
-     *
-     * @return possible object is
-     * {@link XMLGregorianCalendar }
-     */
+    * Gets the value of the dataSedinta property.
+    *
+    * @return possible object is
+    * {@link XMLGregorianCalendar }
+    */
     public XMLGregorianCalendar getDataSedinta() {
         return dataSedinta;
     }
 
     /**
-     * Sets the value of the dataSedinta property.
-     *
-     * @param value allowed object is
-     *              {@link XMLGregorianCalendar }
-     */
+    * Sets the value of the dataSedinta property.
+    *
+    * @param value allowed object is
+    *              {@link XMLGregorianCalendar }
+    */
     public void setDataSedinta(XMLGregorianCalendar value) {
         this.dataSedinta = value;
     }
 
     /**
-     * Gets the value of the institutie property.
-     *
-     * @return possible object is
-     * {@link Institutie }
-     */
+    * Gets the value of the institutie property.
+    *
+    * @return possible object is
+    * {@link Institutie }
+    */
     public Institutie getInstitutie() {
         return institutie;
     }
 
     /**
-     * Sets the value of the institutie property.
-     *
-     * @param value allowed object is
-     *              {@link Institutie }
-     */
+    * Sets the value of the institutie property.
+    *
+    * @param value allowed object is
+    *              {@link Institutie }
+    */
     public void setInstitutie(Institutie value) {
         this.institutie = value;
     }

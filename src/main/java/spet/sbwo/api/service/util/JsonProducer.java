@@ -39,7 +39,7 @@ public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReade
 
     @Override
     public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType,
-                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException {
+                            MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException {
         return helper.deserialize(genericType, new InputStreamReader(entityStream, UTF_8));
     }
 

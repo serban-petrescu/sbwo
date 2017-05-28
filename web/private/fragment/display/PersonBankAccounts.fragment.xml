@@ -2,7 +2,7 @@
     <Panel headerText="{i18n>tblPersonBankAccountsHeader}">
         <List items="{data>bankAccounts}">
             <StandardListItem title="{data>accountNumber}" description="{data>bank}" infoState="Success" type="Inactive"
-                              info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
+                            info="{= ${data>primary} ? (${device>/system/phone} ? ${i18n>txtPrimaryShortText} : ${i18n>txtPrimaryLongText}) : '' }"/>
         </List>
     </Panel>
 </core:FragmentDefinition>

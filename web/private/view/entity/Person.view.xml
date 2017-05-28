@@ -1,17 +1,17 @@
 <mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
-          xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+        xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page id="pagEntity"
-          title="{
-			parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'}, 
-				{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}
-			],
-			formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
-		}"
-          busy="{= !${view>/loaded} }"
-          busyIndicatorDelay="500"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{
+            parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'},
+                {path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}
+            ],
+            formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
+        }"
+        busy="{= !${view>/loaded} }"
+        busyIndicatorDelay="500"
+        showNavButton="true"
+        navButtonPress="onNavBack">
 
         <headerContent>
             <Button icon="sap-icon://save"
@@ -24,8 +24,8 @@
                     cd:target="{path: 'view>/id', formatter: '.formatExportPath'}"
                     tooltip="{i18n>btnPersonEntityExportTooltip}"/>
             <ToggleButton icon="sap-icon://edit" pressed="{view>/edit}"
-                          visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
-                          press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
+                        visible="{= ${view>/loaded} &amp;&amp; !${data>/deleted}}"
+                        press="onToggleEdit" tooltip="{i18n>btnEntityToggleEditModeTooltip}"/>
         </headerContent>
 
         <ObjectHeader
@@ -33,13 +33,13 @@
             fullScreenOptimized="true"
             icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
             title="{
-				parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
-				formatter: 'spet.sbwo.web.model.formatter.personName'
-			}"
+                parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
+                formatter: 'spet.sbwo.web.model.formatter.personName'
+            }"
             intro="{
-				parts: [{path: 'data>/location/country/name'}, {path: 'data>/location/region/name'}, {path: 'data>/location/address'}],
-				formatter: 'spet.sbwo.web.model.formatter.address'
-			}">
+                parts: [{path: 'data>/location/country/name'}, {path: 'data>/location/region/name'}, {path: 'data>/location/address'}],
+                formatter: 'spet.sbwo.web.model.formatter.address'
+            }">
             <statuses>
                 <ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
             </statuses>
@@ -54,7 +54,7 @@
 
         <dependents>
             <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
-                           binding="{data>/location}"/>
+                            binding="{data>/location}"/>
         </dependents>
 
         <footer>

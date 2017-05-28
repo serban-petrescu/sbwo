@@ -58,7 +58,7 @@ public class GoogleMapsGeocodingApi implements IGeocodingApi {
 
     protected Position callApi(String url) throws MalformedURLException, IOException {
         try (InputStream stream = new URL(url).openConnection().getInputStream();
-             InputStreamReader in = new InputStreamReader(stream)) {
+            InputStreamReader in = new InputStreamReader(stream)) {
             Response response = gson.fromJson(in, Response.class);
             return responseToPosition(response);
         }

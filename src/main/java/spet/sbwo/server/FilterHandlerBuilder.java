@@ -23,24 +23,24 @@ public class FilterHandlerBuilder implements IServletHandlerBuilder {
     }
 
     /**
-     * Sets the path specification for the holder.
-     */
+    * Sets the path specification for the holder.
+    */
     public FilterHandlerBuilder path(String path) {
         this.path = path;
         return this;
     }
 
     /**
-     * Sets the underlying filter.
-     */
+    * Sets the underlying filter.
+    */
     public FilterHandlerBuilder filter(Filter filter) {
         this.filter = filter;
         return this;
     }
 
     /**
-     * Sets the dispatcher type(s) to be used for the filter.
-     */
+    * Sets the dispatcher type(s) to be used for the filter.
+    */
     public FilterHandlerBuilder dispatches(EnumSet<DispatcherType> dispatches) {
         this.dispatches = dispatches;
         return this;

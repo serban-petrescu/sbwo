@@ -1,17 +1,17 @@
 sap.ui.define([
-	"./Base"
+    "./Base"
 ], function(Base) {
-	"use strict";
-	
-	return Base.extend("spet.sbwo.web.controller.list.PersonList", {
-		getEntityRoute: function() {
-			return "person";
-		},
-		
-		getListRoute: function() {
-			return "person-list";
-		}
-		
-	});
+    "use strict";
+
+    return Base.extend("spet.sbwo.web.controller.list.PersonList", {
+        getEntityRoute: function() {
+            return "person";
+        },
+
+        getListRoute: function() {
+            return "person-list";
+        }
+
+    });
 
 });

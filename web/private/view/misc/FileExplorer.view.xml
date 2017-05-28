@@ -1,5 +1,5 @@
 <mvc:View controllerName="spet.sbwo.web.controller.misc.FileExplorer" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
     <Dialog id="dlgMain"
             title="{i18n>dlgFileExplorerTitle}"
             stretch="{device>/system/phone}"
@@ -30,16 +30,16 @@
 
             <ScrollContainer height="100%" horizontal="false" vertical="true">
                 <List id="lstFolders"
-                      showNoData="{view>/folder}"
-                      items="{path: 'view>/folders', sorter: {path: 'name'}}"
-                      mode="{= ${view>/folder} &amp;&amp; ${view>/multiple} ? 'MultiSelect' : 'None' }">
+                    showNoData="{view>/folder}"
+                    items="{path: 'view>/folders', sorter: {path: 'name'}}"
+                    mode="{= ${view>/folder} &amp;&amp; ${view>/multiple} ? 'MultiSelect' : 'None' }">
                     <StandardListItem icon="{view>icon}" title="{view>name}" type="Navigation" press="onFolderPress"/>
                 </List>
 
                 <List id="lstFiles"
-                      items="{path: 'view>/files', sorter: {path: 'name'}}"
-                      visible="{= !${view>/folder} }"
-                      mode="{= ${view>/multiple} ? 'MultiSelect' : 'SingleSelectLeft'}">
+                    items="{path: 'view>/files', sorter: {path: 'name'}}"
+                    visible="{= !${view>/folder} }"
+                    mode="{= ${view>/multiple} ? 'MultiSelect' : 'SingleSelectLeft'}">
                     <StandardListItem icon="{view>icon}" title="{view>name}"/>
                 </List>
             </ScrollContainer>

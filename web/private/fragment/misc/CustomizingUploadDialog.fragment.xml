@@ -26,9 +26,9 @@
                     <u:FileUploader
                         id="fupCustomizing"
                         uploadUrl="{
-							parts: [{path: 'view>target'}, {path: 'view>separator'}, {path: 'view>header'}], 
-							formatter: '.formatUploadUrl'
-						}"
+                            parts: [{path: 'view>target'}, {path: 'view>separator'}, {path: 'view>header'}],
+                            formatter: '.formatUploadUrl'
+                        }"
                         width="100%"
                         sendXHR="true"
                         useMultipart="false"

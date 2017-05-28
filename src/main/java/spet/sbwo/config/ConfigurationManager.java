@@ -35,7 +35,7 @@ public class ConfigurationManager {
 
     public Configuration update(Configuration data) {
         try (FileOutputStream fos = new FileOutputStream(file);
-             OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
+            OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
             helper.serialize(data, Configuration.class, writer);
             return data;
         } catch (Exception e) {

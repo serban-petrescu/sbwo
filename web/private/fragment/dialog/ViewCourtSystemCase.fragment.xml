@@ -80,13 +80,13 @@
                     <Text text="{view>result}"/>
                     <Text text="{view>summary}"/>
                     <Text text="{
-						parts: [
-							{path: 'view>document/type'},
-							{path: 'view>document/number'},
-							{path: 'view>document/date'}
-						], 
-						formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
-					}"/>
+                        parts: [
+                            {path: 'view>document/type'},
+                            {path: 'view>document/number'},
+                            {path: 'view>document/date'}
+                        ],
+                        formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
+                    }"/>
                 </ColumnListItem>
             </Table>
         </Panel>

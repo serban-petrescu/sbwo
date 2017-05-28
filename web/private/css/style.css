@@ -8,10 +8,10 @@
     z-index: 100;
 }
 #ring {
-	top: 50%;
-	left: 50%;
-	margin-top: -100px;
-	margin-left: -100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
 }
 @-webkit-keyframes uil-ring-anim {
     0% {
@@ -164,13 +164,13 @@
 }
 
 .infoTextDescription {
-	font-size: 75%;
-	padding: 0 !important;
-	line-height: initial !important;
+    font-size: 75%;
+    padding: 0 !important;
+    line-height: initial !important;
 }
 
 .sapMITBHead.sapMITBTextOnly{
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .sapUiUfdShellHeadItm > span, .sapUiUfdShellHeadUsrItmName, .sapUiUfdShellHeadUsrItmImg {

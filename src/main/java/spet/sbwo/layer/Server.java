@@ -38,7 +38,7 @@ public class Server {
         private final AjaxFilter ajaxDenyFilter = new AjaxFilter(false);
 
         public Facade(IPublic[] publicSingletons, IPrivate[] privateSingletons, WebServlet webServlet,
-                      ILoginProvider loginProvider, ISessionManager sessionManager, Configuration configuration) {
+                    ILoginProvider loginProvider, ISessionManager sessionManager, Configuration configuration) {
             ServerBuilder serverBuilder = new ServerBuilder();
             serverBuilder.setPort(8080);
 

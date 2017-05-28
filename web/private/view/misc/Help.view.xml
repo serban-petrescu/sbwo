@@ -1,19 +1,19 @@
 <mvc:View controllerName="spet.sbwo.web.controller.misc.Help" xmlns:html="http://www.w3.org/1999/xhtml"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
     <SplitContainer id="spcMain" mode="ShowHideMode">
         <masterPages>
             <Page id="pagMaster" showFooter="true" title="{i18n>titHelpPageMasterText}" showNavButton="true"
-                  navButtonPress="onNavBack">
+                navButtonPress="onNavBack">
                 <subHeader>
                     <Toolbar>
                         <SearchField search="onSearchMaster"/>
                     </Toolbar>
                 </subHeader>
                 <List id="lstTopics" items="{path: 'view>/helps', sorter: {path: 'title'}}"
-                      mode="{:= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
-                      selectionChange="onSelectMaster">
+                    mode="{:= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+                    selectionChange="onSelectMaster">
                     <StandardListItem title="{view>title}" info="{view>length}" press="onSelectMaster"
-                                      type="{:= ${device>/system/phone} ? 'Active' : 'Inactive'}"/>
+                                    type="{:= ${device>/system/phone} ? 'Active' : 'Inactive'}"/>
                 </List>
                 <footer>
                     <Toolbar/>
@@ -22,7 +22,7 @@
         </masterPages>
         <detailPages>
             <Page id="pagDetail" showFooter="true" title="{view>title}" enableScrolling="false"
-                  showNavButton="{device>/system/phone}" navButtonPress="onGoToMaster">
+                showNavButton="{device>/system/phone}" navButtonPress="onGoToMaster">
                 <spet:HelpVideo name="{view>id}" trackLabel="{i18n>lblHelpTrackText}"/>
                 <footer>
                     <Toolbar/>

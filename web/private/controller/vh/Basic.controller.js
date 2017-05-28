@@ -1,8 +1,8 @@
 sap.ui.define([
-	"./Base"
+    "./Base"
 ], function(Base) {
-	"use strict";
-	
-	return Base.extend("spet.sbwo.web.controller.vh.Basic", {});
-	
+    "use strict";
+
+    return Base.extend("spet.sbwo.web.controller.vh.Basic", {});
+
 });

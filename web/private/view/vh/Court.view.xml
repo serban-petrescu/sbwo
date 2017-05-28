@@ -4,7 +4,7 @@
         <subHeader>
             <Toolbar>
                 <SearchField id="seaMain" width="100%" showRefreshButton="{:= !${device>/support/touch} }"
-                             search="search"/>
+                            search="search"/>
             </Toolbar>
         </subHeader>
         <PullToRefresh visible="{device>/support/touch}" refresh="refresh"/>

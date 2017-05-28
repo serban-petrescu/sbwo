@@ -37,25 +37,25 @@ public class ArrayOfDosarCaleAtac {
     protected List<DosarCaleAtac> dosarCaleAtac;
 
     /**
-     * Gets the value of the dosarCaleAtac property.
-     * <p>
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the dosarCaleAtac property.
-     * <p>
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getDosarCaleAtac().add(newItem);
-     * </pre>
-     * <p>
-     * <p>
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link DosarCaleAtac }
-     */
+    * Gets the value of the dosarCaleAtac property.
+    * <p>
+    * <p>
+    * This accessor method returns a reference to the live list,
+    * not a snapshot. Therefore any modification you make to the
+    * returned list will be present inside the JAXB object.
+    * This is why there is not a <CODE>set</CODE> method for the dosarCaleAtac property.
+    * <p>
+    * <p>
+    * For example, to add a new item, do as follows:
+    * <pre>
+    *    getDosarCaleAtac().add(newItem);
+    * </pre>
+    * <p>
+    * <p>
+    * <p>
+    * Objects of the following type(s) are allowed in the list
+    * {@link DosarCaleAtac }
+    */
     public List<DosarCaleAtac> getDosarCaleAtac() {
         if (dosarCaleAtac == null) {
             dosarCaleAtac = new ArrayList<>();

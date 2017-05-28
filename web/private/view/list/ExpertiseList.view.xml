@@ -1,9 +1,9 @@
 <mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:core="sap.ui.core"
-          xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <Page id="pagList"
-          title="{i18n>pagExpertiseListTitle}"
-          showNavButton="true"
-          navButtonPress="onNavBack">
+        title="{i18n>pagExpertiseListTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack">
         <subHeader>
             <Toolbar>
                 <SearchField id="seaMain" width="100%" search="onSearch"/>
@@ -17,17 +17,17 @@
             </items>
         </IconTabHeader>
         <Table id="lstMain" items="{
-				path: '/ExpertiseSearchs', 
-				sorter: {path: 'NextHearing', descending: true},
-				groupHeaderFactory: '.buildGroupHeader'
-			}"
-               growing="true" growingScrollToLoad="true">
+                path: '/ExpertiseSearchs',
+                sorter: {path: 'NextHearing', descending: true},
+                groupHeaderFactory: '.buildGroupHeader'
+            }"
+                growing="true" growingScrollToLoad="true">
             <infoToolbar>
                 <Toolbar visible="{view>/settings/applied}">
                     <Title text="{i18n>titViewSettingsAppliedText}"/>
                     <ToolbarSpacer/>
                     <core:Icon src="sap-icon://sys-cancel" alt="{i18n>btnClearViewSettingsTooltip}"
-                               press="onResetViewSettings"/>
+                                press="onResetViewSettings"/>
                 </Toolbar>
             </infoToolbar>
             <columns>
