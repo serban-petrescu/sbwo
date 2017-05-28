@@ -1,6 +1,5 @@
 package spet.sbwo.control.mapper;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.LocationChannel;
 import spet.sbwo.control.channel.LocationChannel.AdmUnit;
 import spet.sbwo.control.channel.LocationChannel.Country;
@@ -38,7 +37,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 	}
 
 	@Override
-	public void merge(LocationChannel external, Location internal) throws ControlException {
+	public void merge(LocationChannel external, Location internal)  {
 		super.merge(external, internal);
 		external.setAddress(internal.getAddress());
 		external.setAdministrativeUnit(this.admUnitMapper.toExternal(internal.getAdministrativeUnit()));
@@ -50,7 +49,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 	}
 
 	@Override
-	public void merge(Location internal, LocationChannel external) throws ControlException {
+	public void merge(Location internal, LocationChannel external)  {
 		super.merge(internal, external);
 		internal.setAddress(external.getAddress());
 		internal.setAdministrativeUnit(this.admUnitMapper.toInternal(external.getAdministrativeUnit()));
@@ -61,7 +60,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		ifNotNull(external.getGeocoded(), internal::setGeocoded);
 	}
 
-	public Location toInternalMandatory(Location internal, LocationChannel external) throws ControlException {
+	public Location toInternalMandatory(Location internal, LocationChannel external)  {
 		if (external != null) {
 			if (internal != null) {
 				merge(internal, external);
@@ -91,7 +90,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public LocationChannel.Country toExternal(LocationCountry input) throws ControlException {
+		public LocationChannel.Country toExternal(LocationCountry input)  {
 			LocationChannel.Country result = this.newExternal(input);
 			if (input != null) {
 				this.merge(result, input);
@@ -102,14 +101,14 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public void merge(Country external, LocationCountry internal) throws ControlException {
+		public void merge(Country external, LocationCountry internal)  {
 			super.merge(external, internal);
 			external.setName(internal.getName());
 			external.setCode(internal.getCode());
 		}
 
 		@Override
-		public void merge(LocationCountry internal, LocationChannel.Country external) throws ControlException {
+		public void merge(LocationCountry internal, LocationChannel.Country external)  {
 			super.merge(internal, external);
 			internal.setName(external.getName());
 			internal.setCode(external.getCode());
@@ -132,7 +131,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public LocationChannel.Region toExternal(LocationRegion input) throws ControlException {
+		public LocationChannel.Region toExternal(LocationRegion input)  {
 			LocationChannel.Region result = this.newExternal(input);
 			if (input != null) {
 				this.merge(result, input);
@@ -143,14 +142,14 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public void merge(Region external, LocationRegion internal) throws ControlException {
+		public void merge(Region external, LocationRegion internal)  {
 			super.merge(external, internal);
 			external.setName(internal.getName());
 			external.setCode(internal.getCode());
 		}
 
 		@Override
-		public void merge(LocationRegion internal, LocationChannel.Region external) throws ControlException {
+		public void merge(LocationRegion internal, LocationChannel.Region external)  {
 			super.merge(internal, external);
 			internal.setName(external.getName());
 			internal.setCode(external.getCode());
@@ -173,7 +172,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public LocationChannel.AdmUnit toExternal(LocationAdministrativeUnit input) throws ControlException {
+		public LocationChannel.AdmUnit toExternal(LocationAdministrativeUnit input)  {
 			LocationChannel.AdmUnit result = this.newExternal(input);
 			if (input != null) {
 				this.merge(result, input);
@@ -184,7 +183,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 		}
 
 		@Override
-		public void merge(AdmUnit external, LocationAdministrativeUnit internal) throws ControlException {
+		public void merge(AdmUnit external, LocationAdministrativeUnit internal)  {
 			super.merge(external, internal);
 			external.setName(internal.getName());
 			external.setCode(internal.getCode());
@@ -192,7 +191,7 @@ public class LocationMapper extends BaseMapper<Location, LocationChannel> {
 
 		@Override
 		public void merge(LocationAdministrativeUnit internal, LocationChannel.AdmUnit external)
-				throws ControlException {
+				 {
 			super.merge(internal, external);
 			internal.setName(external.getName());
 			internal.setCode(external.getCode());

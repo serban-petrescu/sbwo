@@ -15,7 +15,7 @@ public abstract class BaseDatabaseAction<I, O> implements IDatabaseAction<I, O> 
 	}
 
 	@Override
-	public O run(I input, IDatabaseExecutor executor) throws ControlException {
+	public O run(I input, IDatabaseExecutor executor)  {
 		try {
 			return doRun(input, executor);
 		} catch (DatabaseException e) {
@@ -24,6 +24,6 @@ public abstract class BaseDatabaseAction<I, O> implements IDatabaseAction<I, O> 
 		}
 	}
 
-	protected abstract O doRun(I input, IDatabaseExecutor executor) throws ControlException, DatabaseException;
+	protected abstract O doRun(I input, IDatabaseExecutor executor) ;
 
 }

@@ -17,7 +17,7 @@ import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.util.CsvMapIteratorHolder;
 import spet.sbwo.control.importer.DataImportFacade;
-import spet.sbwo.control.importer.DataImportFacade.Target;
+import spet.sbwo.control.importer.Target;
 
 @Path("/import")
 public class DataImportService extends BaseService implements IPrivate {

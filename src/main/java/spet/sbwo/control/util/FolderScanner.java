@@ -1,6 +1,7 @@
 package spet.sbwo.control.util;
 
-import static spet.sbwo.control.util.FileNameUtils.*;
+import static spet.sbwo.control.util.FileNameUtils.base;
+import static spet.sbwo.control.util.FileNameUtils.extension;
 
 import java.io.File;
 import java.util.Arrays;

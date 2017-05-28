@@ -1,6 +1,5 @@
 package spet.sbwo.control.action.user;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.UserChannel;
 import spet.sbwo.control.util.PasswordHasher;
@@ -15,7 +14,7 @@ public class ChangePassword extends BaseUserDatabaseAction<String, Void> {
 	}
 
 	@Override
-	public Void doRun(String input, IDatabaseExecutor executor, User user) throws ControlException {
+	public Void doRun(String input, IDatabaseExecutor executor, User user)  {
 		PasswordHasher.HashedPasswordInfo pwdInfo = HASHER.hashPassword(input);
 		user.setPassword(pwdInfo.getHash());
 		user.setSalt(pwdInfo.getSalt());

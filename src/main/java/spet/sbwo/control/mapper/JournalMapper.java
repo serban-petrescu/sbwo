@@ -20,7 +20,7 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 	}
 
 	@Override
-	public void merge(O external, I internal) throws ControlException {
+	public void merge(O external, I internal)  {
 		super.merge(external, internal);
 		external.setChangedBy(toExternal(internal.getChangedBy()));
 		external.setChangedOn(internal.getChangedOn());
@@ -30,7 +30,7 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 	}
 
 	@Override
-	public void merge(I internal, O external) throws ControlException {
+	public void merge(I internal, O external)  {
 		super.merge(internal, external);
 		internal.setChangedBy(toInternal(external.getChangedBy()));
 		internal.setChangedOn(external.getChangedOn());
@@ -39,7 +39,7 @@ public abstract class JournalMapper<I extends JournalizedBaseEntity, O extends J
 		this.ifNotNull(external.getDeleted(), internal::setDeleted);
 	}
 
-	protected User toInternal(UserChannel user) throws ControlException {
+	protected User toInternal(UserChannel user)  {
 		if (user != null && user.getId() != null) {
 			try {
 				return this.executor.find(User.class, user.getId());

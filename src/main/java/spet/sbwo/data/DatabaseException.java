@@ -1,38 +1,32 @@
 package spet.sbwo.data;
 
 import static org.h2.api.ErrorCode.*;
+
+import java.util.Optional;
+
 import org.h2.jdbc.JdbcSQLException;
 
-
-public class DatabaseException extends Exception {
+public class DatabaseException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
-	private DatabaseError error;
-	private String details;
+	private final DatabaseError error;
+	private final String details;
 
 	public DatabaseException(Throwable cause) {
-		JdbcSQLException h2Ex = null;
-		while (cause != null) {
-			if (cause instanceof JdbcSQLException) {
-				h2Ex = (JdbcSQLException)cause;
-			}
-			cause = cause.getCause();
-		}
-		
-		if (h2Ex != null) {
-			this.error = this.getErrorFromH2Code(h2Ex.getErrorCode());
-			this.details = h2Ex.getMessage();
-		}
-		else {
+		Optional<JdbcSQLException> vendorException = getVendorException(cause);
+		if (vendorException.isPresent()) {
+			this.error = getErrorFromH2Code(vendorException.get().getErrorCode());
+			this.details = vendorException.get().getMessage();
+		} else {
 			this.error = DatabaseError.OTHER;
-			this.details = cause != null ? cause.getMessage() : null;
+			this.details = "";
 		}
 	}
-	
+
 	public DatabaseException(DatabaseError error, String details) {
 		this.error = error;
 		this.details = details;
 	}
-	
+
 	public DatabaseError getError() {
 		return error;
 	}
@@ -41,8 +35,18 @@ public class DatabaseException extends Exception {
 		return details;
 	}
 
-	private DatabaseError getErrorFromH2Code(int code) {
-		switch(code) {
+	private static Optional<JdbcSQLException> getVendorException(Throwable cause) {
+		while (cause != null) {
+			if (cause instanceof JdbcSQLException) {
+				return Optional.of((JdbcSQLException) cause);
+			}
+			cause = cause.getCause();
+		}
+		return Optional.empty();
+	}
+
+	private static DatabaseError getErrorFromH2Code(int code) {
+		switch (code) {
 		case DRIVER_VERSION_ERROR_2:
 		case INVALID_DATABASE_NAME_1:
 		case ERROR_OPENING_DATABASE_1:
@@ -106,7 +110,7 @@ public class DatabaseException extends Exception {
 		case ACCESS_DENIED_TO_CLASS_1:
 		case ADMIN_RIGHTS_REQUIRED:
 			return DatabaseError.AUTHORIZATION_ERROR;
-			
+
 		case DUPLICATE_KEY_1:
 		case DUPLICATE_PROPERTY_1:
 		case CHECK_CONSTRAINT_INVALID:
@@ -133,7 +137,7 @@ public class DatabaseException extends Exception {
 
 		case DIVISION_BY_ZERO_1:
 			return DatabaseError.DIVISION_BY_ZERO;
-			
+
 		case CAN_ONLY_ASSIGN_TO_VARIABLE_1:
 		case CLASS_NOT_FOUND_1:
 		case CLUSTER_ERROR_DATABASE_RUNS_ALONE:

@@ -17,7 +17,6 @@ import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
 
 import spet.sbwo.control.util.ILoginProvider;
-import spet.sbwo.server.SessionDataStore;
 
 /**
  * Class for enabling basic security features on the server.

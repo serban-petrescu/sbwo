@@ -2,7 +2,6 @@ package spet.sbwo.control.action.misc;
 
 import java.util.List;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.action.bo.base.RestoreEntity;
 import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
@@ -19,7 +18,7 @@ public class RestoreList extends BaseUserDatabaseAction<List<TrashChannel>, Void
 	}
 
 	@Override
-	public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user) throws ControlException {
+	public Void doRun(List<TrashChannel> input, IDatabaseExecutor executor, User user)  {
 		for (TrashChannel c : input) {
 			getActionFor(c.getType()).run(c.getId(), executor, user);
 		}

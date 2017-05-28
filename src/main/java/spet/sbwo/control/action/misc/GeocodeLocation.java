@@ -1,9 +1,7 @@
 package spet.sbwo.control.action.misc;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.LocationChannel;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Location;
 import spet.sbwo.integration.api.geocode.IGeocodingApi;
@@ -18,7 +16,7 @@ public class GeocodeLocation extends BaseDatabaseAction<Location, Void> {
 	}
 
 	@Override
-	protected Void doRun(Location input, IDatabaseExecutor executor) throws ControlException, DatabaseException {
+	protected Void doRun(Location input, IDatabaseExecutor executor)  {
 		Position position = api.geocode(input);
 		if (position != null) {
 			input.setLatitude(position.getLatitude());

@@ -1,12 +1,13 @@
-package spet.sbwo.control.importer;
+package spet.sbwo.control.importer.base;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import spet.sbwo.control.importer.IEntityProvider;
 import spet.sbwo.data.base.BaseEntity;
 
-abstract class BaseMapImporter<T extends BaseEntity> extends BaseImporter<T>implements IEntityProvider<T> {
+public abstract class BaseMapImporter<T extends BaseEntity> extends BaseImporter<T>implements IEntityProvider<T> {
 	protected Map<String, T> results;
 
 	protected BaseMapImporter() {
@@ -14,7 +15,7 @@ abstract class BaseMapImporter<T extends BaseEntity> extends BaseImporter<T>impl
 	}
 
 	@Override
-	protected Collection<T> getResults() {
+	public Collection<T> getResults() {
 		return results.values();
 	}
 

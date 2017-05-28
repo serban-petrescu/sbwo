@@ -3,7 +3,6 @@ package spet.sbwo.control.action.bo.base;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
@@ -21,7 +20,7 @@ public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAct
 	}
 
 	@Override
-	protected Void doRun(Integer id, T t, IDatabaseExecutor executor, User user) throws DatabaseException {
+	protected Void doRun(Integer id, T t, IDatabaseExecutor executor, User user)  {
 		if (shouldDeleteDirectly(t)) {
 			delete(executor, t);
 		} else {
@@ -30,7 +29,7 @@ public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAct
 		return null;
 	}
 
-	protected void delete(IDatabaseExecutor executor, T t) throws DatabaseException {
+	protected void delete(IDatabaseExecutor executor, T t)  {
 		executor.delete(t);
 	}
 

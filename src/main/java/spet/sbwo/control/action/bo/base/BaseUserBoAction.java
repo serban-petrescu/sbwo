@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
@@ -19,7 +18,7 @@ public abstract class BaseUserBoAction<T extends JournalizedBaseEntity, I, O> ex
 	}
 
 	@Override
-	public O doRun(I input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException {
+	public O doRun(I input, IDatabaseExecutor executor, User user)  {
 		T t = executor.find(entity, keyFromInput(input));
 		if (t != null) {
 			return doRun(input, t, executor, user);
@@ -31,7 +30,7 @@ public abstract class BaseUserBoAction<T extends JournalizedBaseEntity, I, O> ex
 	protected abstract Integer keyFromInput(I input);
 
 	protected abstract O doRun(I input, T t, IDatabaseExecutor executor, User user)
-			throws ControlException, DatabaseException;
+			;
 
 	protected void changed(User user, T t) {
 		t.setChangedBy(user);

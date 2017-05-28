@@ -1,11 +1,13 @@
-package spet.sbwo.control.importer;
+package spet.sbwo.control.importer.person;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import spet.sbwo.data.DatabaseException;
+import spet.sbwo.control.importer.LocationImporter;
+import spet.sbwo.control.importer.Utils;
+import spet.sbwo.control.importer.base.BaseMapImporter;
 import spet.sbwo.data.domain.IdentityCardType;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonJuridical;
@@ -19,7 +21,7 @@ class PersonImporter extends BaseMapImporter<Person> {
 	}
 
 	@Override
-	public Person process(Map<String, String> entry) throws DatabaseException {
+	public Person process(Map<String, String> entry)  {
 		Person result;
 		if ("0".equals(entry.get("type"))) {
 			PersonNatural natural = new PersonNatural();

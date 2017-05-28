@@ -1,6 +1,5 @@
 package spet.sbwo.control.action.user;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.UserChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
@@ -14,7 +13,7 @@ public abstract class BasePasswordMatchesAction extends BaseUserDatabaseAction<S
 	}
 
 	@Override
-	public Boolean doRun(String input, IDatabaseExecutor executor, User user) throws ControlException {
+	public Boolean doRun(String input, IDatabaseExecutor executor, User user)  {
 		boolean result;
 		if (user == null || !user.isActive()) {
 			return false;
@@ -25,7 +24,7 @@ public abstract class BasePasswordMatchesAction extends BaseUserDatabaseAction<S
 		return result;
 	}
 
-	protected abstract boolean checkPassword(User user, String password) throws ControlException;
+	protected abstract boolean checkPassword(User user, String password) ;
 
 	protected void updateUserAfterLogin(User user, boolean result) {
 		if (result) {

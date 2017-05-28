@@ -1,6 +1,5 @@
 package spet.sbwo.control.action.user;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.UserChannel;
 import spet.sbwo.control.util.PasswordHasher;
@@ -15,7 +14,7 @@ public class EncryptPassword extends BaseUserDatabaseAction<String, String> {
 	}
 
 	@Override
-	public String doRun(String input, IDatabaseExecutor executor, User u) throws ControlException {
+	public String doRun(String input, IDatabaseExecutor executor, User u)  {
 		return u == null ? null : HASHER.hashPassword(input, u.getSalt());
 	}
 

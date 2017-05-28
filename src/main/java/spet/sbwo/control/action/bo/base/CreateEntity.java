@@ -2,11 +2,9 @@ package spet.sbwo.control.action.bo.base;
 
 import java.time.LocalDateTime;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.JournalChannel;
 import spet.sbwo.control.mapper.BaseMapper;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
@@ -21,7 +19,7 @@ public abstract class CreateEntity<T extends JournalizedBaseEntity, C extends Jo
 	}
 
 	@Override
-	public T doRun(C input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException {
+	public T doRun(C input, IDatabaseExecutor executor, User user)  {
 		BaseMapper<T, C> mapper = mapper(executor);
 		T t = mapper.toInternal(input);
 		t.setCreatedBy(user);

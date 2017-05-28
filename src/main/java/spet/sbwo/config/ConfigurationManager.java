@@ -33,7 +33,7 @@ public class ConfigurationManager {
 		}
 	}
 
-	public Configuration update(Configuration data) throws ControlException {
+	public Configuration update(Configuration data) {
 		try (FileOutputStream fos = new FileOutputStream(file);
 				OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
 			helper.serialize(data, Configuration.class, writer);

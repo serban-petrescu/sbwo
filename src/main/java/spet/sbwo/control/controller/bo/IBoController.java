@@ -1,18 +1,17 @@
 package spet.sbwo.control.controller.bo;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.JournalChannel;
 
 public interface IBoController<C extends JournalChannel> {
 
-	int create(C data, String username) throws ControlException;
+	int create(C data, String username) ;
 
-	C read(int id) throws ControlException;
+	C read(int id) ;
 
-	void update(int id, C data, String username) throws ControlException;
+	void update(int id, C data, String username) ;
 
-	void delete(int id, String username) throws ControlException;
+	void delete(int id, String username) ;
 
-	void restore(int id, String username) throws ControlException;
+	void restore(int id, String username) ;
 
 }

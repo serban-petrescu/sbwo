@@ -1,6 +1,5 @@
 package spet.sbwo.control.action.bo.base;
 
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
@@ -12,7 +11,7 @@ public class RestoreEntity<T extends JournalizedBaseEntity> extends BaseUserBoAc
 	}
 
 	@Override
-	protected Void doRun(Integer id, T t, IDatabaseExecutor executor, User user) throws DatabaseException {
+	protected Void doRun(Integer id, T t, IDatabaseExecutor executor, User user)  {
 		t.setDeleted(false);
 		changed(user, t);
 		return null;

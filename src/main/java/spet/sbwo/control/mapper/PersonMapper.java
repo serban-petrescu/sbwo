@@ -31,7 +31,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 	}
 
 	@Override
-	public void merge(PersonChannel result, Person input) throws ControlException {
+	public void merge(PersonChannel result, Person input)  {
 		super.merge(result, input);
 
 		result.setBankAccounts(this.bankAccountMapper.toExternal(input.getBankAccounts()));
@@ -58,7 +58,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 	}
 
 	@Override
-	public void merge(Person internal, PersonChannel external) throws ControlException {
+	public void merge(Person internal, PersonChannel external)  {
 		super.merge(internal, external);
 
 		internal.setBankAccounts(
@@ -96,7 +96,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 	}
 
 	@Override
-	protected Person newInternal(PersonChannel external) throws ControlException {
+	protected Person newInternal(PersonChannel external)  {
 		if (external.getType() != null) {
 			if (external.getType() == PersonType.NATURAL.ordinal()) {
 				return new PersonNatural();
@@ -118,17 +118,17 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		protected PersonEmailAddress newInternal(Email external) throws ControlException {
+		protected PersonEmailAddress newInternal(Email external)  {
 			return new PersonEmailAddress();
 		}
 
 		@Override
-		protected Email newExternal(PersonEmailAddress internal) throws ControlException {
+		protected Email newExternal(PersonEmailAddress internal)  {
 			return new Email();
 		}
 
 		@Override
-		public void merge(Email external, PersonEmailAddress internal) throws ControlException {
+		public void merge(Email external, PersonEmailAddress internal)  {
 			super.merge(external, internal);
 			external.setEmail(internal.getEmail());
 			external.setName(internal.getName());
@@ -136,7 +136,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		public void merge(PersonEmailAddress internal, Email external) throws ControlException {
+		public void merge(PersonEmailAddress internal, Email external)  {
 			super.merge(internal, external);
 			internal.setEmail(external.getEmail());
 			internal.setName(external.getName());
@@ -150,17 +150,17 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		protected PersonTelephone newInternal(Telephone external) throws ControlException {
+		protected PersonTelephone newInternal(Telephone external)  {
 			return new PersonTelephone();
 		}
 
 		@Override
-		protected Telephone newExternal(PersonTelephone internal) throws ControlException {
+		protected Telephone newExternal(PersonTelephone internal)  {
 			return new Telephone();
 		}
 
 		@Override
-		public void merge(Telephone external, PersonTelephone internal) throws ControlException {
+		public void merge(Telephone external, PersonTelephone internal)  {
 			super.merge(external, internal);
 			external.setTelephone(internal.getTelephone());
 			external.setName(internal.getName());
@@ -168,7 +168,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		public void merge(PersonTelephone internal, Telephone external) throws ControlException {
+		public void merge(PersonTelephone internal, Telephone external)  {
 			super.merge(internal, external);
 			internal.setTelephone(external.getTelephone());
 			internal.setName(external.getName());
@@ -182,17 +182,17 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		protected PersonBankAccount newInternal(BankAccount external) throws ControlException {
+		protected PersonBankAccount newInternal(BankAccount external)  {
 			return new PersonBankAccount();
 		}
 
 		@Override
-		protected BankAccount newExternal(PersonBankAccount internal) throws ControlException {
+		protected BankAccount newExternal(PersonBankAccount internal)  {
 			return new BankAccount();
 		}
 
 		@Override
-		public void merge(BankAccount external, PersonBankAccount internal) throws ControlException {
+		public void merge(BankAccount external, PersonBankAccount internal)  {
 			super.merge(external, internal);
 			external.setBank(internal.getBank());
 			external.setAccountNumber(internal.getAccountNumber());
@@ -200,7 +200,7 @@ public class PersonMapper extends JournalMapper<Person, PersonChannel> {
 		}
 
 		@Override
-		public void merge(PersonBankAccount internal, BankAccount external) throws ControlException {
+		public void merge(PersonBankAccount internal, BankAccount external)  {
 			super.merge(internal, external);
 			internal.setBank(external.getBank());
 			internal.setAccountNumber(external.getAccountNumber());

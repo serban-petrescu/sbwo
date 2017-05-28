@@ -2,11 +2,11 @@ package spet.sbwo.control;
 
 import spet.sbwo.data.DatabaseException;
 
-public class ControlException extends Exception {
+public class ControlException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
-	private ControlError error;
-	private Class<?> channel;
-	private DatabaseException cause;
+	private final ControlError error;
+	private final Class<?> channel;
+	private final DatabaseException cause;
 
 	public ControlException(DatabaseException e) {
 		this.error = ControlError.PERSISTENCE_ERROR;
@@ -24,24 +24,12 @@ public class ControlException extends Exception {
 		case CONCURRENT_ACCESS:
 			this.error = ControlError.OBJECT_LOCKED;
 			break;
-		case CONNECTION_ERROR:
-			this.error = ControlError.PERSISTENCE_ERROR;
-			break;
+		case INVALID_VALUE:
 		case CONSTRAINT_VIOLATED:
 			this.error = ControlError.INVALID_PROPERTY_VALUE;
 			break;
 		case DIVISION_BY_ZERO:
-			this.error = ControlError.PERSISTENCE_ERROR;
-			break;
-		case INVALID_VALUE:
-			this.error = ControlError.INVALID_PROPERTY_VALUE;
-			break;
-		case OTHER:
-			this.error = ControlError.PERSISTENCE_ERROR;
-			break;
-		case STRUCTURE_ERROR:
-			this.error = ControlError.PERSISTENCE_ERROR;
-			break;
+		case CONNECTION_ERROR:
 		default:
 			this.error = ControlError.PERSISTENCE_ERROR;
 			break;
@@ -63,7 +51,8 @@ public class ControlException extends Exception {
 	public Class<?> getChannel() {
 		return channel;
 	}
-
+	
+	@Override
 	public DatabaseException getCause() {
 		return cause;
 	}

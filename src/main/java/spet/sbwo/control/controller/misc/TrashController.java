@@ -2,7 +2,6 @@ package spet.sbwo.control.controller.misc;
 
 import java.util.List;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.misc.ForceDeleteList;
 import spet.sbwo.control.action.misc.ReadAllTrash;
@@ -16,15 +15,15 @@ public class TrashController extends BaseActionExecutor {
 		super(database);
 	}
 
-	public void delete(List<TrashChannel> entities, String username) throws ControlException {
+	public void delete(List<TrashChannel> entities, String username)  {
 		executeAndCommit(username, new ForceDeleteList(), entities);
 	}
 
-	public void restore(List<TrashChannel> entities, String username) throws ControlException {
+	public void restore(List<TrashChannel> entities, String username)  {
 		executeAndCommit(username, new RestoreList(), entities);
 	}
 
-	public void deleteAll(String username) throws ControlException {
+	public void deleteAll(String username)  {
 		executeAndCommit(username, new ReadAllTrash().then(new ForceDeleteList()), null);
 	}
 

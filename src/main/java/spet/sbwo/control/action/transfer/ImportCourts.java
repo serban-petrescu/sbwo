@@ -5,10 +5,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.CourtImportChannel;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Court;
 
@@ -20,7 +18,7 @@ public class ImportCourts extends BaseDatabaseAction<List<CourtImportChannel>, V
 
 	@Override
 	public Void doRun(List<CourtImportChannel> input, IDatabaseExecutor executor)
-			throws ControlException, DatabaseException {
+			 {
 		Map<String, Court> courts = executor.queryList("Court.readAll", Court.class).stream()
 				.collect(Collectors.toMap(Court::getCode, Function.identity()));
 		for (CourtImportChannel importCourt : input) {

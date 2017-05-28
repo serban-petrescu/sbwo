@@ -19,14 +19,14 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	protected final EntityManager em;
 	protected EntityTransaction tr;
 
-	DatabaseExecutor(EntityManager em) throws DatabaseException {
+	DatabaseExecutor(EntityManager em)  {
 		this.em = em;
 		this.tr = null;
 		this.start();
 	}
 
 	@Override
-	public <T> void update(T entity) throws DatabaseException {
+	public <T> void update(T entity)  {
 		try {
 			em.merge(entity);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public <T> void delete(T entity) throws DatabaseException {
+	public <T> void delete(T entity)  {
 		try {
 			em.remove(entity);
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public <T> void create(T entity) throws DatabaseException {
+	public <T> void create(T entity)  {
 		try {
 			em.persist(entity);
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public void start() throws DatabaseException {
+	public void start()  {
 		if (this.tr == null) {
 			this.tr = em.getTransaction();
 			this.tr.begin();
@@ -66,12 +66,12 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public void commit() throws DatabaseException {
+	public void commit()  {
 		this.commit(false);
 	}
 
 	@Override
-	public void commit(boolean start) throws DatabaseException {
+	public void commit(boolean start)  {
 		if (this.tr != null) {
 			try {
 				this.tr.commit();
@@ -88,12 +88,12 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public void rollback() throws DatabaseException {
+	public void rollback()  {
 		this.rollback(false);
 	}
 
 	@Override
-	public void rollback(boolean start) throws DatabaseException {
+	public void rollback(boolean start)  {
 		if (this.tr != null) {
 			try {
 				this.tr.rollback();
@@ -124,7 +124,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public <T> T find(Class<T> clazz, Object id) throws DatabaseException {
+	public <T> T find(Class<T> clazz, Object id)  {
 		try {
 			return em.find(clazz, id);
 		} catch (Exception e) {
@@ -134,7 +134,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public <T> List<T> queryList(String name, Class<T> resultType, Object... params) throws DatabaseException {
+	public <T> List<T> queryList(String name, Class<T> resultType, Object... params)  {
 		try {
 			TypedQuery<T> query = em.createNamedQuery(name, resultType);
 			for (int i = 0; i < params.length; ++i) {
@@ -148,13 +148,13 @@ class DatabaseExecutor implements IDatabaseExecutor {
 	}
 
 	@Override
-	public <T> Optional<T> querySingle(String name, Class<T> resultType, Object... params) throws DatabaseException {
+	public <T> Optional<T> querySingle(String name, Class<T> resultType, Object... params)  {
 		return queryList(name, resultType, params).stream().findFirst();
 	}
 
 	@Override
 	public <T> List<T> queryListLimit(String name, Class<T> resultType, int maxResults, Object... params)
-			throws DatabaseException {
+			 {
 		try {
 			TypedQuery<T> query = em.createNamedQuery(name, resultType);
 			for (int i = 0; i < params.length; ++i) {

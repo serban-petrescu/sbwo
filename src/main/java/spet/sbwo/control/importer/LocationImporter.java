@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import spet.sbwo.control.importer.base.BaseListImporter;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Location;
@@ -15,7 +16,7 @@ import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;
 import spet.sbwo.data.table.LocationRegion;
 
-class LocationImporter extends BaseListImporter<Location> {
+public class LocationImporter extends BaseListImporter<Location> {
 	private static final Logger LOG = LoggerFactory.getLogger(LocationImporter.class);
 	private LocationProvider provider;
 
@@ -24,7 +25,7 @@ class LocationImporter extends BaseListImporter<Location> {
 	}
 
 	@Override
-	protected Location build(Map<String, String> entry) throws DatabaseException {
+	protected Location build(Map<String, String> entry)  {
 		Location result = new Location();
 		result.setAddress(entry.get("location_address"));
 
@@ -50,7 +51,7 @@ class LocationImporter extends BaseListImporter<Location> {
 			this.executor = executor;
 		}
 
-		public Optional<LocationCountry> country(String code) throws DatabaseException {
+		public Optional<LocationCountry> country(String code)  {
 			return executor.querySingle("LocationCountry.getByCode", LocationCountry.class, code);
 		}
 

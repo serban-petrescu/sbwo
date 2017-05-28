@@ -1,6 +1,5 @@
 package spet.sbwo.control.controller.user;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.user.ReadPreference;
 import spet.sbwo.control.action.user.UpdatePreference;
@@ -13,11 +12,11 @@ public class PreferenceController extends BaseActionExecutor {
 		super(database);
 	}
 
-	public UserPreferenceChannel readPreference(String username) throws ControlException {
+	public UserPreferenceChannel readPreference(String username)  {
 		return executeAndCommit(username, new ReadPreference(), null);
 	}
 
-	public UserPreferenceChannel updatePreference(String username, UserPreferenceChannel data) throws ControlException {
+	public UserPreferenceChannel updatePreference(String username, UserPreferenceChannel data)  {
 		return executeAndCommit(username, new UpdatePreference(), data);
 	}
 

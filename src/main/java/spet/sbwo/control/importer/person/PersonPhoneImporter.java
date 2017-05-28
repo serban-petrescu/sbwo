@@ -1,9 +1,12 @@
-package spet.sbwo.control.importer;
+package spet.sbwo.control.importer.person;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import spet.sbwo.control.importer.IEntityProvider;
+import spet.sbwo.control.importer.Utils;
+import spet.sbwo.control.importer.base.BaseListImporter;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonTelephone;
 

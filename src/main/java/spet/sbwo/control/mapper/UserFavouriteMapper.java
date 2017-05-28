@@ -2,7 +2,6 @@ package spet.sbwo.control.mapper;
 
 import java.util.List;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.UserFavouriteChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
@@ -17,17 +16,17 @@ public class UserFavouriteMapper extends BaseMapper<UserFavourite, UserFavourite
 	}
 
 	@Override
-	protected UserFavourite newInternal(UserFavouriteChannel external) throws ControlException {
+	protected UserFavourite newInternal(UserFavouriteChannel external)  {
 		return new UserFavourite();
 	}
 
 	@Override
-	protected UserFavouriteChannel newExternal(UserFavourite internal) throws ControlException {
+	protected UserFavouriteChannel newExternal(UserFavourite internal)  {
 		return new UserFavouriteChannel();
 	}
 
 	@Override
-	public void merge(UserFavourite internal, UserFavouriteChannel external) throws ControlException {
+	public void merge(UserFavourite internal, UserFavouriteChannel external)  {
 		super.merge(internal, external);
 		internal.setHash(external.getHash());
 		internal.setTitle(external.getTitle());
@@ -35,7 +34,7 @@ public class UserFavouriteMapper extends BaseMapper<UserFavourite, UserFavourite
 	}
 
 	@Override
-	public void merge(UserFavouriteChannel external, UserFavourite internal) throws ControlException {
+	public void merge(UserFavouriteChannel external, UserFavourite internal)  {
 		super.merge(external, internal);
 		external.setHash(internal.getHash());
 		external.setTitle(internal.getTitle());
@@ -43,7 +42,7 @@ public class UserFavouriteMapper extends BaseMapper<UserFavourite, UserFavourite
 
 	@Override
 	public List<UserFavourite> merge(List<UserFavourite> internal, List<UserFavouriteChannel> external)
-			throws ControlException {
+			 {
 		return super.merge(internal, external);
 	}
 }

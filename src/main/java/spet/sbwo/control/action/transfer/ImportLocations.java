@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.LocationImportChannel;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;
@@ -23,7 +22,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 	}
 
 	@Override
-	public Void doRun(List<LocationImportChannel> input, IDatabaseExecutor executor) throws DatabaseException {
+	public Void doRun(List<LocationImportChannel> input, IDatabaseExecutor executor)  {
 		if (!input.isEmpty()) {
 			importLocationData(input, executor);
 		}
@@ -31,7 +30,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 	}
 
 	protected void importLocationData(List<LocationImportChannel> data, IDatabaseExecutor executor)
-			throws DatabaseException {
+			 {
 		Collections.sort(data);
 		LocationCountry currentCountry = null;
 		LocationRegion currentRegion = null;
@@ -56,7 +55,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 	}
 
 	protected LocationCountry getCountry(IDatabaseExecutor executor, String code, String name)
-			throws DatabaseException {
+			 {
 		LocationCountry result;
 		Optional<LocationCountry> o = executor.querySingle("LocationCountry.getByCode", LocationCountry.class, code);
 		if (o.isPresent()) {
@@ -73,7 +72,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 	}
 
 	protected LocationRegion getRegion(IDatabaseExecutor executor, Map<String, LocationRegion> regions,
-			LocationCountry country, String code, String name) throws DatabaseException {
+			LocationCountry country, String code, String name)  {
 		LocationRegion result = regions.get(code);
 		if (result == null) {
 			result = new LocationRegion();
@@ -92,7 +91,7 @@ public class ImportLocations extends BaseDatabaseAction<List<LocationImportChann
 
 	protected LocationAdministrativeUnit getUnit(IDatabaseExecutor executor,
 			Map<String, LocationAdministrativeUnit> units, LocationRegion region, String code, String name)
-					throws DatabaseException {
+					 {
 		LocationAdministrativeUnit result = units.get(code);
 		if (result == null) {
 			result = new LocationAdministrativeUnit();

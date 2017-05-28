@@ -27,7 +27,7 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 	}
 
 	@Override
-	public void merge(Expertise internal, ExpertiseChannel external) throws ControlException {
+	public void merge(Expertise internal, ExpertiseChannel external)  {
 		super.merge(internal, external);
 		internal.setCourt(toInternal(external.getCourt()));
 		internal.setLastCheckedOn(external.getLastCheckedOn());
@@ -46,7 +46,7 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 	}
 
 	@Override
-	public void merge(ExpertiseChannel external, Expertise internal) throws ControlException {
+	public void merge(ExpertiseChannel external, Expertise internal)  {
 		super.merge(external, internal);
 		external.setCourt(toExternal(internal.getCourt()));
 		external.setLastCheckedOn(internal.getLastCheckedOn());
@@ -66,12 +66,12 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 	}
 
 	@Override
-	protected Expertise newInternal(ExpertiseChannel external) throws ControlException {
+	protected Expertise newInternal(ExpertiseChannel external)  {
 		return new Expertise();
 	}
 
 	@Override
-	protected ExpertiseChannel newExternal(Expertise internal) throws ControlException {
+	protected ExpertiseChannel newExternal(Expertise internal)  {
 		return new ExpertiseChannel();
 	}
 
@@ -87,7 +87,7 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 		}
 	}
 
-	protected Court toInternal(CourtChannel channel) throws ControlException {
+	protected Court toInternal(CourtChannel channel)  {
 		if (channel != null && channel.getId() != null) {
 			try {
 				return executor.find(Court.class, channel.getId());
@@ -106,24 +106,24 @@ public class ExpertiseMapper extends JournalMapper<Expertise, ExpertiseChannel> 
 		}
 
 		@Override
-		protected ExpertiseFine newInternal(Fine external) throws ControlException {
+		protected ExpertiseFine newInternal(Fine external)  {
 			return new ExpertiseFine();
 		}
 
 		@Override
-		protected Fine newExternal(ExpertiseFine internal) throws ControlException {
+		protected Fine newExternal(ExpertiseFine internal)  {
 			return new Fine();
 		}
 
 		@Override
-		public void merge(ExpertiseFine internal, Fine external) throws ControlException {
+		public void merge(ExpertiseFine internal, Fine external)  {
 			super.merge(internal, external);
 			internal.setDate(external.getDate());
 			internal.setSum(external.getSum());
 		}
 
 		@Override
-		public void merge(Fine external, ExpertiseFine internal) throws ControlException {
+		public void merge(Fine external, ExpertiseFine internal)  {
 			super.merge(external, internal);
 			external.setDate(internal.getDate());
 			external.setSum(internal.getSum());

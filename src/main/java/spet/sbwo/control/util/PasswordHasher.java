@@ -36,7 +36,7 @@ public class PasswordHasher {
 		this.hashLength = hashLength;
 	}
 
-	public boolean checkPassword(String input, String hash, String salt) throws ControlException {
+	public boolean checkPassword(String input, String hash, String salt)  {
 		try {
 			byte[] saltb = Base64.getDecoder().decode(salt);
 			byte[] hashb = Base64.getDecoder().decode(hash);
@@ -49,7 +49,7 @@ public class PasswordHasher {
 		}
 	}
 
-	public HashedPasswordInfo hashPassword(String password) throws ControlException {
+	public HashedPasswordInfo hashPassword(String password)  {
 		try {
 			byte[] salt = this.buildSalt();
 			SecretKey key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
@@ -61,7 +61,7 @@ public class PasswordHasher {
 		}
 	}
 
-	public String hashPassword(String password, String salt) throws ControlException {
+	public String hashPassword(String password, String salt)  {
 		try {
 			byte[] saltb = Base64.getDecoder().decode(salt);
 			SecretKey key = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
@@ -73,7 +73,7 @@ public class PasswordHasher {
 		}
 	}
 
-	protected byte[] buildSalt() throws ControlException {
+	protected byte[] buildSalt()  {
 		try {
 			return SecureRandom.getInstance("SHA1PRNG").generateSeed(this.saltLength);
 		} catch (Exception e) {

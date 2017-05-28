@@ -18,12 +18,12 @@ public class DatabaseFacade implements IBackupCreator, IDatabaseExecutorCreator 
 	}
 
 	@Override
-	public IDatabaseExecutor createExecutor() throws DatabaseException {
+	public IDatabaseExecutor createExecutor()  {
 		return new DatabaseExecutor(this.emf.createEntityManager());
 	}
 
 	@Override
-	public void createBackup(String baseName) throws DatabaseException {
+	public void createBackup(String baseName)  {
 		EntityManager em = null;
 		EntityTransaction transaction = null;
 		try {

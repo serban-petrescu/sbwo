@@ -3,7 +3,6 @@ package spet.sbwo.control.controller.bo;
 import java.time.Duration;
 
 import spet.sbwo.config.ControlEntry;
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.bo.base.CreateEntity;
 import spet.sbwo.control.action.bo.base.DeleteEntity;
 import spet.sbwo.control.action.bo.base.ReadEntity;
@@ -25,7 +24,7 @@ public class PersonController extends BaseBoController<Person, PersonChannel> {
 		super(database, config);
 	}
 
-	public String export(int id) throws ControlException {
+	public String export(int id)  {
 		return execute(new ExportPerson(), id);
 	}
 

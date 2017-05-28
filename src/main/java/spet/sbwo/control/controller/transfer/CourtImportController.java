@@ -2,7 +2,6 @@ package spet.sbwo.control.controller.transfer;
 
 import java.util.List;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.transfer.ImportCourts;
 import spet.sbwo.control.channel.CourtImportChannel;
@@ -14,7 +13,7 @@ public class CourtImportController extends BaseActionExecutor {
 		super(database);
 	}
 
-	public void importCourts(List<CourtImportChannel> data) throws ControlException {
+	public void importCourts(List<CourtImportChannel> data)  {
 		executeAndCommit(new ImportCourts(), data);
 	}
 

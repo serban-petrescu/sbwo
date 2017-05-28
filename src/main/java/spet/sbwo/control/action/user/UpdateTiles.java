@@ -2,11 +2,9 @@ package spet.sbwo.control.action.user;
 
 import java.util.Map;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.UserHomeTilesChannel;
 import spet.sbwo.control.channel.UserHomeTilesChannel.HomeTile;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserHomeTile;
@@ -19,7 +17,7 @@ public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, Us
 
 	@Override
 	public UserHomeTilesChannel doRun(UserHomeTilesChannel input, IDatabaseExecutor executor, User user)
-			throws ControlException, DatabaseException {
+			 {
 		UserHomeTilesChannel result = new UserHomeTilesChannel();
 		updateExisting(user, result, input.getTiles());
 		createNew(executor, user, result, input.getTiles());
@@ -27,7 +25,7 @@ public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, Us
 	}
 
 	protected void createNew(IDatabaseExecutor executor, User user, UserHomeTilesChannel result,
-			Map<String, HomeTile> input) throws DatabaseException {
+			Map<String, HomeTile> input)  {
 		for (Map.Entry<String, HomeTile> entry : input.entrySet()) {
 			if (!result.getTiles().containsKey(entry.getKey())) {
 				result.getTiles().put(entry.getKey(), entry.getValue());

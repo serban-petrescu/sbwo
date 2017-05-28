@@ -1,6 +1,6 @@
 package spet.sbwo.control.scheduler.period;
 
-import static spet.sbwo.control.util.FileNameUtils.*;
+import static spet.sbwo.control.util.FileNameUtils.base;
 
 import java.io.File;
 import java.time.Instant;

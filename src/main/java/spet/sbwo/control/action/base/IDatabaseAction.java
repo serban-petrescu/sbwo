@@ -1,12 +1,11 @@
 package spet.sbwo.control.action.base;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 
 @FunctionalInterface
 public interface IDatabaseAction<I, O> {
 
-	O run(I input, IDatabaseExecutor executor) throws ControlException;
+	O run(I input, IDatabaseExecutor executor) ;
 
 	default <X> IDatabaseAction<I, X> then(IDatabaseAction<O, X> second) {
 		return (i, e) -> second.run(this.run(i, e), e);

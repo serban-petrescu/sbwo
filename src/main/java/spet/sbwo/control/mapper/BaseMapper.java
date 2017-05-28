@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.BaseChannel;
 import spet.sbwo.data.DatabaseError;
 import spet.sbwo.data.DatabaseException;
@@ -31,7 +30,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		this.returnNullOnNullId = returnNullOnNullId;
 	}
 
-	public O toExternal(I input) throws ControlException {
+	public O toExternal(I input)  {
 		if (input != null) {
 			O result = this.newExternal(input);
 			this.merge(result, input);
@@ -41,7 +40,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		}
 	}
 
-	public List<I> toInternal(List<O> input) throws ControlException {
+	public List<I> toInternal(List<O> input)  {
 		List<I> list = new LinkedList<>();
 		if (input != null) {
 			for (O ex : input) {
@@ -51,7 +50,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		return list;
 	}
 
-	public List<O> toExternal(List<I> input) throws ControlException {
+	public List<O> toExternal(List<I> input)  {
 		List<O> list = new LinkedList<>();
 		if (input != null) {
 			for (I in : input) {
@@ -61,7 +60,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		return list;
 	}
 
-	public I toInternal(O input) throws ControlException {
+	public I toInternal(O input)  {
 		if (input != null && (input.getId() != null || !this.returnNullOnNullId)) {
 			I result = this.newInternal(input);
 			ops.add(new PersistentEntityOperation(result, PersistentEntityOperationType.CREATE));
@@ -72,16 +71,16 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		}
 	}
 
-	public void merge(I internal, O external) throws ControlException {
+	public void merge(I internal, O external)  {
 		ops.add(new PersistentEntityOperation(internal, PersistentEntityOperationType.UPDATE));
 		this.ifNotNull(external.getId(), internal::setId);
 	}
 
-	public void merge(O external, I internal) throws ControlException {
+	public void merge(O external, I internal)  {
 		external.setId(internal.getId());
 	}
 
-	public void flush() throws DatabaseException {
+	public void flush()  {
 		for (PersistentEntityOperation op : ops) {
 			op.execute(executor);
 		}
@@ -104,9 +103,9 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		ops.add(index, op);
 	}
 
-	protected abstract I newInternal(O external) throws ControlException;
+	protected abstract I newInternal(O external) ;
 
-	protected abstract O newExternal(I internal) throws ControlException;
+	protected abstract O newExternal(I internal) ;
 
 	protected <T> void ifNotNull(T t, IDeffered<T> def) {
 		if (t != null) {
@@ -133,7 +132,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 		}
 	}
 
-	protected List<I> merge(List<I> internal, List<O> external) throws ControlException {
+	protected List<I> merge(List<I> internal, List<O> external)  {
 		List<I> result = new LinkedList<>();
 
 		if (internal != null && external != null) {
@@ -206,7 +205,7 @@ public abstract class BaseMapper<I extends BaseEntity, O extends BaseChannel> {
 			this.type = type;
 		}
 
-		public void execute(IDatabaseExecutor executor) throws DatabaseException {
+		public void execute(IDatabaseExecutor executor)  {
 			switch (this.type) {
 			case CREATE:
 				executor.create(this.entity);

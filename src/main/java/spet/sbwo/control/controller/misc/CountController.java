@@ -1,6 +1,5 @@
 package spet.sbwo.control.controller.misc;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.misc.CountEntities;
 import spet.sbwo.control.channel.CountChannel;
@@ -12,7 +11,7 @@ public class CountController extends BaseActionExecutor {
 		super(database);
 	}
 
-	public CountChannel readCounts() throws ControlException {
+	public CountChannel readCounts()  {
 		return execute(new CountEntities(), null);
 	}
 

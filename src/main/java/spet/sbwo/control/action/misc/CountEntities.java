@@ -1,9 +1,7 @@
 package spet.sbwo.control.action.misc;
 
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.CountChannel;
-import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 
 public class CountEntities extends BaseDatabaseAction<Void, CountChannel> {
@@ -13,7 +11,7 @@ public class CountEntities extends BaseDatabaseAction<Void, CountChannel> {
 	}
 
 	@Override
-	public CountChannel doRun(Void input, IDatabaseExecutor executor) throws ControlException, DatabaseException {
+	public CountChannel doRun(Void input, IDatabaseExecutor executor)  {
 		CountChannel result = new CountChannel();
 		result.setDeleted(executor.querySingle("DeletedEntity.countAll", Long.class).orElse(0L));
 		result.setPerson(executor.querySingle("Person.countByDeleted", Long.class, false).orElse(0L));

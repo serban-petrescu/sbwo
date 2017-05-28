@@ -1,4 +1,4 @@
-package spet.sbwo.control.importer;
+package spet.sbwo.control.importer.person;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -10,12 +10,13 @@ import java.util.Set;
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.channel.PersonChannel;
-import spet.sbwo.data.DatabaseException;
+import spet.sbwo.control.importer.ISuite;
+import spet.sbwo.control.importer.LocationImporter;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.User;
 
-class PersonSuite implements ISuite {
+public class PersonSuite implements ISuite {
 	private static final String BANK_ACCOUNT_FIELD_GROUP = "bankAccounts";
 	private static final String PHONE_FIELD_GROUP = "telephones";
 	private static final String EMAIL_FIELD_GROUP = "emails";
@@ -27,7 +28,7 @@ class PersonSuite implements ISuite {
 	private PersonPhoneImporter phone;
 	private LocationImporter location;
 
-	public PersonSuite(Set<String> inputs, IDatabaseExecutor executor) throws ControlException {
+	public PersonSuite(Set<String> inputs, IDatabaseExecutor executor)  {
 		this.executor = executor;
 
 		if (inputs.contains(PERSON_FILED_GROUP)) {
@@ -48,7 +49,7 @@ class PersonSuite implements ISuite {
 		}
 	}
 
-	public ISuite process(Map<String, Iterator<Map<String, String>>> data, User user) throws DatabaseException {
+	public ISuite process(Map<String, Iterator<Map<String, String>>> data, User user)  {
 		Iterator<Map<String, String>> personData = data.get(PERSON_FILED_GROUP);
 		while (personData.hasNext()) {
 			Person current = person.process(personData.next());
@@ -80,7 +81,7 @@ class PersonSuite implements ISuite {
 		return this;
 	}
 
-	public ISuite persist() throws DatabaseException {
+	public ISuite persist()  {
 		location.persist(executor);
 		person.persist(executor);
 		if (email != null) {

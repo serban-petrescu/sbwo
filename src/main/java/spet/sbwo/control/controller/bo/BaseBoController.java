@@ -3,7 +3,6 @@ package spet.sbwo.control.controller.bo;
 import java.time.Duration;
 
 import spet.sbwo.config.ControlEntry;
-import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.bo.base.CreateEntity;
 import spet.sbwo.control.action.bo.base.DeleteEntity;
@@ -24,28 +23,28 @@ abstract class BaseBoController<E extends JournalizedBaseEntity, C extends Journ
 	}
 
 	@Override
-	public int create(C data, String username) throws ControlException {
+	public int create(C data, String username)  {
 		return executeAndCommit(username, createAction(), data).getId();
 	}
 
 	@Override
-	public C read(int id) throws ControlException {
+	public C read(int id)  {
 		return execute(readAction(), id);
 	}
 
 	@Override
-	public void update(int id, C data, String username) throws ControlException {
+	public void update(int id, C data, String username)  {
 		data.setId(id);
 		executeAndCommit(username, updateAction(), data);
 	}
 
 	@Override
-	public void delete(int id, String username) throws ControlException {
+	public void delete(int id, String username)  {
 		executeAndCommit(username, deleteAction(config.getDirectDeleteInterval()), id);
 	}
 
 	@Override
-	public void restore(int id, String username) throws ControlException {
+	public void restore(int id, String username)  {
 		executeAndCommit(username, restoreAction(), id);
 	}
 

@@ -20,7 +20,7 @@ public abstract class BaseUserDatabaseAction<I, O> implements IUserDatabaseActio
 	}
 
 	@Override
-	public O run(I input, IDatabaseExecutor executor, User user) throws ControlException {
+	public O run(I input, IDatabaseExecutor executor, User user)  {
 		try {
 			if (mandatory && user == null) {
 				throw new ControlException(ControlError.ENTITY_NOT_FOUND, UserChannel.class);
@@ -33,6 +33,6 @@ public abstract class BaseUserDatabaseAction<I, O> implements IUserDatabaseActio
 		}
 	}
 
-	protected abstract O doRun(I input, IDatabaseExecutor executor, User user) throws ControlException, DatabaseException;
+	protected abstract O doRun(I input, IDatabaseExecutor executor, User user) ;
 
 }

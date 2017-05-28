@@ -17,7 +17,7 @@ public abstract class BaseActionExecutor {
 		this.database = database;
 	}
 
-	protected <I, O> O execute(IDatabaseAction<I, O> action, I in) throws ControlException {
+	protected <I, O> O execute(IDatabaseAction<I, O> action, I in) {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
 			return action.run(in, executor);
 		} catch (DatabaseException e) {
@@ -25,7 +25,7 @@ public abstract class BaseActionExecutor {
 		}
 	}
 
-	protected <I, O> O execute(String username, IUserDatabaseAction<I, O> action, I in) throws ControlException {
+	protected <I, O> O execute(String username, IUserDatabaseAction<I, O> action, I in) {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
 			return action.run(in, executor, new ReadByUsername().run(username, executor));
 		} catch (DatabaseException e) {
@@ -33,8 +33,7 @@ public abstract class BaseActionExecutor {
 		}
 	}
 
-	protected <I, O> O executeAndCommit(String username, IUserDatabaseAction<I, O> action, I in)
-			throws ControlException {
+	protected <I, O> O executeAndCommit(String username, IUserDatabaseAction<I, O> action, I in) {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
 			O o = action.run(in, executor, new ReadByUsername().run(username, executor));
 			executor.commit();
@@ -44,7 +43,7 @@ public abstract class BaseActionExecutor {
 		}
 	}
 
-	protected <I, O> O executeAndCommit(IDatabaseAction<I, O> action, I in) throws ControlException {
+	protected <I, O> O executeAndCommit(IDatabaseAction<I, O> action, I in) {
 		try (IDatabaseExecutor executor = database.createExecutor()) {
 			O o = action.run(in, executor);
 			executor.commit();

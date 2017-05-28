@@ -2,9 +2,10 @@ package spet.sbwo.control.importer;
 
 import java.math.BigDecimal;
 
-class Utils {
+public class Utils {
 
 	private Utils() {
+		super();
 	}
 
 	public static boolean toBoolean(String input) {
