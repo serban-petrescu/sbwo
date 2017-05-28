@@ -60,9 +60,7 @@ public enum StadiuProcesual {
     @XmlEnumValue("Sesizareprealabila")
     SESIZAREPREALABILA("Sesizareprealabila"),
     @XmlEnumValue("Contesta\u0163ieNCPP")
-    CONTESTA\
-
-    u0162IE_NCPP("Contesta\u0163ieNCPP"),
+    CONTESTATIE_NCPP("Contesta\u0163ieNCPP"),
 
     @XmlEnumValue("Recursincasatie")
     RECURSINCASATIE("Recursincasatie"),

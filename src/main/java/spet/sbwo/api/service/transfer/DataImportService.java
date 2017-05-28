@@ -46,9 +46,10 @@ public class DataImportService extends BaseService implements IPrivate {
 
     protected Target getTargetForEntity(String entity) {
         String lower = entity.toLowerCase();
-        if ("persons".equals(lower)) {
-            return Target.PERSON;
+        switch (lower) {
+            case "persons": return Target.PERSON;
+            case "expertises": return Target.EXPERTISE;
+            default: return null;
         }
-        return null;
     }
 }

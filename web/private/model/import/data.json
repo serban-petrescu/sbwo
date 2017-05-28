@@ -19,5 +19,15 @@
         "optional": true
       }
     ]
+  },
+  "expertises": {
+    "name": "expertises",
+    "files": [{
+      "name": "expertises",
+      "optional": false
+    }, {
+      "name": "fines",
+      "optional": true
+    }]
   }
 }

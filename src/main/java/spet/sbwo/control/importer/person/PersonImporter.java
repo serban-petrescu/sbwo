@@ -1,17 +1,17 @@
 package spet.sbwo.control.importer.person;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import spet.sbwo.control.importer.LocationImporter;
 import spet.sbwo.control.importer.Utils;
 import spet.sbwo.control.importer.base.BaseMapImporter;
+import spet.sbwo.control.importer.misc.LocationImporter;
 import spet.sbwo.data.domain.IdentityCardType;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonJuridical;
 import spet.sbwo.data.table.PersonNatural;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 class PersonImporter extends BaseMapImporter<Person> {
     private LocationImporter locationImporter;
@@ -20,8 +20,17 @@ class PersonImporter extends BaseMapImporter<Person> {
         this.locationImporter = locationImporter;
     }
 
+    public static List<String> fields() {
+        List<String> fields = new LinkedList<>();
+        Collections.addAll(fields, "number", "type", "juridical_name", "juridical_id_number", "juridical_reg_number",
+            "juridical_joint_stock", "natural_first_name", "natural_last_name", "natural_personal_number",
+            "natural_id_card_type", "natural_id_card_number");
+        fields.addAll(LocationImporter.fields());
+        return fields;
+    }
+
     @Override
-    public Person process(Map<String, String> entry) {
+    public Person buildFromEntry(Map<String, String> entry) {
         Person result;
         if ("0".equals(entry.get("type"))) {
             PersonNatural natural = new PersonNatural();
@@ -40,18 +49,8 @@ class PersonImporter extends BaseMapImporter<Person> {
             result = juridical;
         }
         result.setDeleted(false);
-        result.setLocation(this.locationImporter.process(entry));
-        results.put(entry.get("number"), result);
+        result.setLocation(locationImporter.process(entry));
         return result;
-    }
-
-    public static List<String> fields() {
-        List<String> fields = new LinkedList<>();
-        Collections.addAll(fields, "number", "type", "juridical_name", "juridical_id_number", "juridical_reg_number",
-            "juridical_joint_stock", "natural_first_name", "natural_last_name", "natural_personal_number",
-            "natural_id_card_type", "natural_id_card_number");
-        fields.addAll(LocationImporter.fields());
-        return fields;
     }
 
 }

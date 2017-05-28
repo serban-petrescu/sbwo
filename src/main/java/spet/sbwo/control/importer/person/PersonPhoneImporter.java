@@ -1,14 +1,14 @@
 package spet.sbwo.control.importer.person;
 
+import spet.sbwo.control.importer.Utils;
+import spet.sbwo.control.importer.base.BaseListImporter;
+import spet.sbwo.control.importer.base.IEntityProvider;
+import spet.sbwo.data.table.Person;
+import spet.sbwo.data.table.PersonTelephone;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import spet.sbwo.control.importer.IEntityProvider;
-import spet.sbwo.control.importer.Utils;
-import spet.sbwo.control.importer.base.BaseListImporter;
-import spet.sbwo.data.table.Person;
-import spet.sbwo.data.table.PersonTelephone;
 
 class PersonPhoneImporter extends BaseListImporter<PersonTelephone> {
     private IEntityProvider<Person> personProvider;

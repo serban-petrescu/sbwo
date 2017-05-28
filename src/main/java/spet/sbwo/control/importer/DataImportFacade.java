@@ -1,19 +1,16 @@
 package spet.sbwo.control.importer;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.user.ReadByUsernameMandatory;
+import spet.sbwo.control.importer.base.ISuite;
+import spet.sbwo.control.importer.expertise.ExpertiseSuite;
 import spet.sbwo.control.importer.person.PersonSuite;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
+
+import java.util.*;
 
 public class DataImportFacade {
     private final DatabaseFacade database;
@@ -36,6 +33,8 @@ public class DataImportFacade {
         switch (target) {
             case PERSON:
                 return Optional.of(new PersonSuite(inputs, executor));
+            case EXPERTISE:
+                return Optional.of(new ExpertiseSuite(inputs, executor));
             default:
                 return Optional.empty();
         }
@@ -45,6 +44,8 @@ public class DataImportFacade {
         switch (target) {
             case PERSON:
                 return PersonSuite.fields();
+            case EXPERTISE:
+                return ExpertiseSuite.fields();
             default:
                 return Collections.emptyMap();
         }

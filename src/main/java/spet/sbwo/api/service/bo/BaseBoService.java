@@ -13,7 +13,7 @@ import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.control.channel.JournalChannel;
 import spet.sbwo.control.controller.bo.IBoController;
 
-abstract class BaseBoService<C extends JournalChannel, K extends IBoController<C>> extends BaseService {
+public abstract class BaseBoService<C extends JournalChannel, K extends IBoController<C>> extends BaseService {
     protected final K controller;
 
     protected BaseBoService(K controller) {

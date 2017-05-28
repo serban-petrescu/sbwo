@@ -24,7 +24,7 @@
             <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.edit.ExpertiseFines"/>
         </l:VerticalLayout>
     </IconTabFilter>
-    <IconTabFilter icon="sap-icon://write-new-document" binding="{data>/}">
+    <IconTabFilter icon="sap-icon://write-new-document" binding="{data>/}" visible="{= !!${data>notes} }">
         <l:VerticalLayout width="100%" visible="{= !${view>/edit} }">
             <core:Fragment type="XML" fragmentName="spet.sbwo.web.fragment.display.Notes"/>
         </l:VerticalLayout>
