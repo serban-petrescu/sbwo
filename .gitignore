@@ -20,3 +20,5 @@
 /dependency-reduced-pom.xml
 /dist
 /sbwo.zip
+*.iml
+/.idea
