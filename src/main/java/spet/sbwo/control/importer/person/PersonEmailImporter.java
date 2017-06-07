@@ -24,10 +24,10 @@ class PersonEmailImporter extends BaseListImporter<PersonEmailAddress> {
     @Override
     protected PersonEmailAddress build(Map<String, String> entry) {
         PersonEmailAddress result = new PersonEmailAddress();
-        result.setPerson(personProvider.getEntity(entry.get("person_number")));
         result.setEmail(entry.get("email_address"));
         result.setName(entry.get("name"));
         result.setPrimary(Utils.toBoolean(entry.get("is_primary")));
+        personProvider.getEntity(entry.get("person_number")).getEmailAddresses().add(result);
         return result;
     }
 

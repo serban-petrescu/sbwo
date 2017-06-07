@@ -3,7 +3,7 @@ package spet.sbwo.control.action.bo.expertise;
 import java.time.LocalDateTime;
 
 import spet.sbwo.control.action.base.BaseDatabaseAction;
-import spet.sbwo.control.channel.ExpertiseChannel;
+import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Expertise;
 import spet.sbwo.integration.api.court.ICourtSystemApi;

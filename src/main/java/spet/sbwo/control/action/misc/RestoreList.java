@@ -6,7 +6,7 @@ import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.action.bo.base.RestoreEntity;
 import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
 import spet.sbwo.control.action.bo.person.RestorePerson;
-import spet.sbwo.control.channel.TrashChannel;
+import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.table.User;

@@ -45,32 +45,47 @@ public class VCardBuilder {
     }
 
     public String build() {
-        StringBuilder result = new StringBuilder(64);
-        result.append("BEGIN:VCARD\nVERSION:2.1\n");
+        StringVCard card = new StringVCard();
+        card.begin();
+        card.addField("FN", name);
+        card.addField("TEL;TYPE=WORK,PREF", primaryPhone);
+        card.addFieldList("TEL;TYPE=WORK", phones);
+        card.addField("ADR;TYPE=WORK,PREF", address);
+        card.addField("EMAIL;TYPE=INTERNET,PREF", primaryEmail);
+        card.addFieldList("EMAIL;TYPE=INTERNET", emails);
+        card.end();
+        return card.toString();
+    }
 
-        if (name != null && !name.isEmpty()) {
-            result.append("FN:").append(name).append('\n');
-        }
+    private static class StringVCard {
+        StringBuffer result = new StringBuffer(128);
 
-        if (primaryPhone != null && !primaryPhone.isEmpty()) {
-            result.append("TEL;TYPE=WORK,PREF:").append(primaryPhone).append('\n');
-        }
-        for (String phone : phones) {
-            result.append("TEL;TYPE=WORK:").append(phone).append('\n');
-        }
-
-        if (address != null && !address.isEmpty()) {
-            result.append("ADR;TYPE=WORK,PREF:").append(address).append('\n');
-        }
-
-        if (primaryEmail != null && !primaryEmail.isEmpty()) {
-            result.append("EMAIL;TYPE=INTERNET,PREF:").append(primaryEmail).append('\n');
-        }
-        for (String email : emails) {
-            result.append("EMAIL;TYPE=INTERNET:").append(email).append('\n');
+        public void begin() {
+            result.append("BEGIN:VCARD\nVERSION:2.1\n");
         }
 
-        result.append("END:VCARD\n");
-        return result.toString();
+        public void addFieldList(String field, List<String> values) {
+            for (String value : values) {
+                addField(field, value);
+            }
+        }
+
+        public void addField(String field, String value) {
+            if (value != null && !value.isEmpty()) {
+                result.append(field);
+                result.append(':');
+                result.append(value);
+                result.append('\n');
+            }
+        }
+
+        public void end() {
+            result.append("END:VCARD\n");
+        }
+
+        @Override
+        public String toString() {
+            return result.toString();
+        }
     }
 }

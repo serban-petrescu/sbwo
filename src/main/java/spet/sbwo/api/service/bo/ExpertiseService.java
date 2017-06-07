@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.channel.ExpertiseChannel;
+import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.control.controller.bo.ExpertiseController;
 import spet.sbwo.integration.api.court.ICourtSystemApi;
 import spet.sbwo.integration.api.court.model.Case;

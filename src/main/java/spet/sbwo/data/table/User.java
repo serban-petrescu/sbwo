@@ -2,24 +2,20 @@ package spet.sbwo.data.table;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import spet.sbwo.data.base.BaseEntity;
 
 @Entity
 @Table(name = "T_USER")
 public class User extends BaseEntity {
-    @Column(name = "C_USERNAME", unique = true, length = 30)
+    @Column(name = "C_USERNAME")
     private String username;
 
-    @Column(name = "C_PASSWORD", length = 1024)
+    @Column(name = "C_PASSWORD")
     private String password;
 
-    @Column(name = "C_SALT", length = 64)
+    @Column(name = "C_SALT")
     private String salt;
 
     @Column(name = "C_ACTIVE")
@@ -28,13 +24,16 @@ public class User extends BaseEntity {
     @Column(name = "C_FAILS")
     private int fails;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_PREFERENCE_ID")
     private UserPreference preference;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_USER_ID")
     private List<UserHomeTile> homeTiles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_USER_ID")
     private List<UserFavourite> favourites;
 
     public String getUsername() {
@@ -104,8 +103,7 @@ public class User extends BaseEntity {
     @Override
     public String toString() {
         return "User [username=" + username + ", password=" + password + ", salt=" + salt + ", active=" + active
-            + ", preference=" + preference + ", homeTiles=" + homeTiles + ", favourites=" + favourites + ", id="
-            + id + "]";
+            + ", id=" + id + "]";
     }
 
 }

@@ -11,21 +11,21 @@ import spet.sbwo.data.table.User;
 
 @MappedSuperclass
 public class JournalizedBaseEntity extends BaseEntity {
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "C_CREATEDBY_ID", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "C_CREATEDBY_ID")
     protected User createdBy;
 
     @Column(name = "C_CREATEDON")
     protected LocalDateTime createdOn;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "C_CHANGEDBY_ID", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "C_CHANGEDBY_ID")
     protected User changedBy;
 
     @Column(name = "C_CHANGEDON")
     protected LocalDateTime changedOn;
 
-    @Column(name = "C_DELETED", nullable = false)
+    @Column(name = "C_DELETED")
     protected boolean deleted;
 
 

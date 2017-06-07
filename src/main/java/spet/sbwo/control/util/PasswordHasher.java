@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.channel.UserChannel;
+import spet.sbwo.control.channel.user.UserChannel;
 
 public class PasswordHasher {
     private static final Logger LOG = LoggerFactory.getLogger(PasswordHasher.class);

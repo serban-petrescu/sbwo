@@ -1,6 +1,6 @@
 package spet.sbwo.control.controller.bo;
 
-import spet.sbwo.control.channel.JournalChannel;
+import spet.sbwo.control.channel.base.JournalChannel;
 
 public interface IBoController<C extends JournalChannel> {
 

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.util.ISerializationHelper;
+import spet.sbwo.control.util.serialization.ISerializationHelper;
 
 public class ConfigurationManager {
     private static final Logger LOG = LoggerFactory.getLogger(ConfigurationManager.class);

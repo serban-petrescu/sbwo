@@ -9,16 +9,16 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue(value = "1")
 public class PersonJuridical extends Person {
-    @Column(name = "C_NAME", length = 128)
+    @Column(name = "C_NAME")
     private String name;
 
-    @Column(name = "C_ID_NUMBER", length = 64)
+    @Column(name = "C_ID_NUMBER")
     private String idNumber;
 
-    @Column(name = "C_REG_NUMBER", length = 64)
+    @Column(name = "C_REG_NUMBER")
     private String regNumber;
 
-    @Column(name = "C_JOINT_STOCK", nullable = true, precision = 16, scale = 2)
+    @Column(name = "C_JOINT_STOCK")
     private BigDecimal jointStock;
 
     public String getName() {

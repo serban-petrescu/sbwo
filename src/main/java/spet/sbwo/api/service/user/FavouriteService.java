@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.channel.UserFavouriteChannel;
+import spet.sbwo.control.channel.user.UserFavouriteChannel;
 import spet.sbwo.control.controller.user.FavouriteController;
 
 @Path("/user/favourites")

@@ -9,7 +9,7 @@ import spet.sbwo.control.action.bo.base.DeleteEntity;
 import spet.sbwo.control.action.bo.base.ReadEntity;
 import spet.sbwo.control.action.bo.base.RestoreEntity;
 import spet.sbwo.control.action.bo.base.UpdateEntity;
-import spet.sbwo.control.channel.JournalChannel;
+import spet.sbwo.control.channel.base.JournalChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 

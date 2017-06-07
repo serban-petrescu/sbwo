@@ -9,10 +9,10 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_COURT")
 public class Court extends BaseEntity {
-    @Column(name = "C_NAME", unique = true, length = 128)
+    @Column(name = "C_NAME")
     private String name;
 
-    @Column(name = "C_CODE", unique = true, length = 16)
+    @Column(name = "C_CODE")
     private String code;
 
     public String getName() {

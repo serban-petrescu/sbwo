@@ -1,7 +1,7 @@
 package spet.sbwo.control.action.user;
 
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.control.channel.UserHomeTilesChannel;
+import spet.sbwo.control.channel.user.UserHomeTilesChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserHomeTile;

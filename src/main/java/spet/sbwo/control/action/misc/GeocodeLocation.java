@@ -1,7 +1,7 @@
 package spet.sbwo.control.action.misc;
 
 import spet.sbwo.control.action.base.BaseDatabaseAction;
-import spet.sbwo.control.channel.LocationChannel;
+import spet.sbwo.control.channel.location.LocationChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Location;
 import spet.sbwo.integration.api.geocode.IGeocodingApi;

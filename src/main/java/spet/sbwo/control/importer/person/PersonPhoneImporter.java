@@ -20,10 +20,10 @@ class PersonPhoneImporter extends BaseListImporter<PersonTelephone> {
     @Override
     protected PersonTelephone build(Map<String, String> entry) {
         PersonTelephone result = new PersonTelephone();
-        result.setPerson(personProvider.getEntity(entry.get("person_number")));
         result.setTelephone(entry.get("telephone"));
         result.setName(entry.get("name"));
         result.setPrimary(Utils.toBoolean(entry.get("is_primary")));
+        personProvider.getEntity(entry.get("person_number")).getTelephones().add(result);
         return result;
     }
 

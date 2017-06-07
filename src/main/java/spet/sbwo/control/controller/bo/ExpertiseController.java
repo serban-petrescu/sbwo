@@ -13,7 +13,7 @@ import spet.sbwo.control.action.bo.expertise.DeleteExpertise;
 import spet.sbwo.control.action.bo.expertise.ReadExpertise;
 import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
 import spet.sbwo.control.action.bo.expertise.UpdateExpertise;
-import spet.sbwo.control.channel.ExpertiseChannel;
+import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Expertise;
 

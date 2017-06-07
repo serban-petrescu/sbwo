@@ -4,16 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.domain.ExpertiseStatus;
@@ -23,7 +14,7 @@ import spet.sbwo.data.embed.Tariff;
 @Table(name = "T_EXPERTISE")
 public class Expertise extends JournalizedBaseEntity {
 
-    @Column(name = "C_NUMBER", length = 32)
+    @Column(name = "C_NUMBER")
     private String number;
 
     @ManyToOne(optional = false)
@@ -33,14 +24,14 @@ public class Expertise extends JournalizedBaseEntity {
     @Column(name = "C_YEAR")
     private int year;
 
-    @Column(name = "C_TITLE", length = 128)
+    @Column(name = "C_TITLE")
     private String title;
 
     @Column(name = "C_STATUS")
     @Enumerated(EnumType.ORDINAL)
     private ExpertiseStatus status;
 
-    @Column(name = "C_NOTE", length = 512)
+    @Column(name = "C_NOTE")
     private String note;
 
     @ManyToOne
@@ -56,11 +47,12 @@ public class Expertise extends JournalizedBaseEntity {
     @Embedded
     private Tariff tariff;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "C_LOCATION_ID")
     private Location location;
 
-    @OneToMany(mappedBy = "expertise")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_EXPERTISE_ID")
     private List<ExpertiseFine> fines;
 
     public String getNumber() {

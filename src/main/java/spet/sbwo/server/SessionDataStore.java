@@ -41,7 +41,7 @@ public class SessionDataStore extends AbstractSessionDataStore {
     }
 
     @Override
-    public SessionData load(String id) throws Exception {
+    public SessionData load(String id) {
         return runInContext(() -> {
             UserSession session = manager.read(id);
             if (session != null) {
@@ -59,7 +59,7 @@ public class SessionDataStore extends AbstractSessionDataStore {
                     throw new IllegalStateException(e);
                 }
             } else {
-                throw new NullPointerException();
+                throw new IllegalArgumentException();
             }
         });
     }
@@ -70,7 +70,7 @@ public class SessionDataStore extends AbstractSessionDataStore {
     }
 
     @Override
-    public void doStore(String id, SessionData data, long lastSaveTime) throws Exception {
+    public void doStore(String id, SessionData data, long lastSaveTime) throws IOException {
         UserSession session = new UserSession();
         session.setAccessTime(data.getAccessed());
         session.setAttributes(serialize(new HashMap<>(data.getAllAttributes())));

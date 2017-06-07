@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LocationImporter extends BaseListImporter<Location> {
-    private static final Logger LOG = LoggerFactory.getLogger(LocationImporter.class);
     private final LocationProvider provider;
 
     public LocationImporter(IDatabaseExecutor executor) {

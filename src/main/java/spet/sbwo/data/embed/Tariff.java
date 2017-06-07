@@ -7,10 +7,10 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Tariff {
-    @Column(name = "C_PRICE", nullable = true, precision = 16, scale = 2)
+    @Column(name = "C_PRICE")
     private BigDecimal price;
 
-    @Column(name = "C_ADVANCE", nullable = true, precision = 16, scale = 2)
+    @Column(name = "C_ADVANCE")
     private BigDecimal advance;
 
     public Tariff() {

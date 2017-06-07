@@ -18,7 +18,7 @@ import javax.ws.rs.ext.Provider;
 
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.base.IPublic;
-import spet.sbwo.control.util.ISerializationHelper;
+import spet.sbwo.control.util.serialization.ISerializationHelper;
 
 @Provider
 @Produces("application/json")

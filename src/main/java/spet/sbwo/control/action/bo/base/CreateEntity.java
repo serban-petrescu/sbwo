@@ -3,8 +3,8 @@ package spet.sbwo.control.action.bo.base;
 import java.time.LocalDateTime;
 
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.control.channel.JournalChannel;
-import spet.sbwo.control.mapper.BaseMapper;
+import spet.sbwo.control.channel.base.JournalChannel;
+import spet.sbwo.control.mapper.IMapper;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
@@ -20,14 +20,13 @@ public abstract class CreateEntity<T extends JournalizedBaseEntity, C extends Jo
 
     @Override
     public T doRun(C input, IDatabaseExecutor executor, User user) {
-        BaseMapper<T, C> mapper = mapper(executor);
-        T t = mapper.toInternal(input);
+        IMapper<T, C> mapper = mapper(executor);
+        T t = mapper.toEntity(input);
         t.setCreatedBy(user);
         t.setCreatedOn(LocalDateTime.now());
-        mapper.flush();
         return t;
     }
 
-    protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
+    protected abstract IMapper<T, C> mapper(IDatabaseExecutor executor);
 
 }

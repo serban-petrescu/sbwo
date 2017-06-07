@@ -9,18 +9,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "T_USER_SESSION")
 public class UserSession {
-
     @Id
-    @Column(name = "C_ID", length = 128)
+    @Column(name = "C_ID")
     private String id;
 
-    @Column(name = "C_CONTEXT_PATH", length = 64)
+    @Column(name = "C_CONTEXT_PATH")
     private String contextPath;
 
-    @Column(name = "C_VIRTUAL_HOST", length = 64)
+    @Column(name = "C_VIRTUAL_HOST")
     private String virtualHost;
 
-    @Column(name = "C_LAST_NODE", length = 64)
+    @Column(name = "C_LAST_NODE")
     private String lastNode;
 
     @Column(name = "C_ACCESS_TIME")

@@ -14,23 +14,12 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_EXPERTISE_FINE")
 public class ExpertiseFine extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "C_EXPERTISE_ID")
-    private Expertise expertise;
 
     @Column(name = "C_DATE")
     private LocalDate date;
 
-    @Column(name = "C_SUM", nullable = true, precision = 16, scale = 2)
+    @Column(name = "C_SUM")
     private BigDecimal sum;
-
-    public Expertise getExpertise() {
-        return expertise;
-    }
-
-    public void setExpertise(Expertise expertise) {
-        this.expertise = expertise;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -48,4 +37,8 @@ public class ExpertiseFine extends BaseEntity {
         this.sum = sum;
     }
 
+    @Override
+    public String toString() {
+        return "ExpertiseFine{date=" + date + ", sum=" + sum + '}';
+    }
 }

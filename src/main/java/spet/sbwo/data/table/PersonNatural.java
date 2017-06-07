@@ -11,20 +11,20 @@ import spet.sbwo.data.domain.IdentityCardType;
 @Entity
 @DiscriminatorValue(value = "0")
 public class PersonNatural extends Person {
-    @Column(name = "C_FIRST_NAME", length = 128)
+    @Column(name = "C_FIRST_NAME")
     private String firstName;
 
-    @Column(name = "C_LAST_NAME", length = 128)
+    @Column(name = "C_LAST_NAME")
     private String lastName;
 
-    @Column(name = "C_PERSONAL_NUMBER", length = 32)
+    @Column(name = "C_PERSONAL_NUMBER")
     private String personalNumber;
 
     @Column(name = "C_ID_CARD_TYPE")
     @Enumerated(EnumType.ORDINAL)
     private IdentityCardType identityCardType;
 
-    @Column(name = "C_ID_CARD_NUMBER", length = 32)
+    @Column(name = "C_ID_CARD_NUMBER")
     private String identityCardNumber;
 
     public String getFirstName() {

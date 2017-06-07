@@ -4,7 +4,7 @@ import java.util.List;
 
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.transfer.ImportCourts;
-import spet.sbwo.control.channel.CourtImportChannel;
+import spet.sbwo.control.channel.expertise.CourtImportChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class CourtImportController extends BaseActionExecutor {

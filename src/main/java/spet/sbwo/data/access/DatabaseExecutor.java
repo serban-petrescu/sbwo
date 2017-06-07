@@ -14,7 +14,7 @@ import spet.sbwo.data.DatabaseError;
 import spet.sbwo.data.DatabaseException;
 
 class DatabaseExecutor implements IDatabaseExecutor {
-    static final Logger LOG = LoggerFactory.getLogger(DatabaseExecutor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DatabaseExecutor.class);
 
     protected final EntityManager em;
     protected EntityTransaction tr;
@@ -76,7 +76,7 @@ class DatabaseExecutor implements IDatabaseExecutor {
             try {
                 this.tr.commit();
             } catch (Exception e) {
-                LOG.warn("Transaction commit has failed.");
+                LOG.error("Transaction commit has failed.", e);
                 throw new DatabaseException(e);
             } finally {
                 this.tr = null;

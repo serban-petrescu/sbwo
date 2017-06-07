@@ -2,7 +2,7 @@ package spet.sbwo.control.importer.expertise;
 
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.channel.ExpertiseChannel;
+import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.control.importer.Utils;
 import spet.sbwo.control.importer.base.ISuite;
 import spet.sbwo.control.importer.misc.LocationImporter;
@@ -50,11 +50,7 @@ public class ExpertiseSuite implements ISuite {
 
     @Override
     public ISuite persist() {
-        locationImporter.persist(executor);
         expertiseImporter.persist(executor);
-        if (fineImporter != null) {
-            fineImporter.persist(executor);
-        }
         return this;
     }
 }

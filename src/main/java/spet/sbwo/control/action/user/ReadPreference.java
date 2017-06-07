@@ -1,6 +1,6 @@
 package spet.sbwo.control.action.user;
 
-import spet.sbwo.control.channel.UserPreferenceChannel;
+import spet.sbwo.control.channel.user.UserPreferenceChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserPreference;

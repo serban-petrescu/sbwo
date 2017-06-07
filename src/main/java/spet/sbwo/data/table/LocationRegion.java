@@ -14,17 +14,16 @@ import spet.sbwo.data.base.BaseEntity;
 import spet.sbwo.data.base.ICodifiedEntity;
 
 @Entity
-@Table(name = "T_LOCATION_REGION", indexes = {@Index(unique = true, columnList = "C_COUNTRY_ID,C_NAME"),
-    @Index(unique = true, columnList = "C_COUNTRY_ID,C_CODE")})
+@Table(name = "T_LOCATION_REGION")
 public class LocationRegion extends BaseEntity implements ICodifiedEntity<String> {
     @ManyToOne(optional = false)
-    @JoinColumn(name = "C_COUNTRY_ID", nullable = false)
+    @JoinColumn(name = "C_COUNTRY_ID")
     private LocationCountry country;
 
-    @Column(name = "C_NAME", length = 128)
+    @Column(name = "C_NAME")
     private String name;
 
-    @Column(name = "C_CODE", length = 16)
+    @Column(name = "C_CODE")
     private String code;
 
     @OneToMany(mappedBy = "region")
@@ -65,8 +64,7 @@ public class LocationRegion extends BaseEntity implements ICodifiedEntity<String
 
     @Override
     public String toString() {
-        return "LocationRegion [country=" + country + ", name=" + name + ", code=" + code + ", administrativeUnits="
-            + administrativeUnits + ", id=" + id + "]";
+        return "LocationRegion [name=" + name + ", code=" + code + ", id=" + id + "]";
     }
 
 }

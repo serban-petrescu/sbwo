@@ -6,8 +6,8 @@ import org.picocontainer.parameters.ConstantParameter;
 
 import spet.sbwo.config.Configuration;
 import spet.sbwo.config.ConfigurationManager;
-import spet.sbwo.control.util.GsonSerializationHelper;
-import spet.sbwo.control.util.ISerializationHelper;
+import spet.sbwo.control.util.serialization.gson.GsonSerializationHelper;
+import spet.sbwo.control.util.serialization.ISerializationHelper;
 
 public class Config {
 

@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.util.JsonpUtils;
-import spet.sbwo.control.channel.UserPreferenceChannel;
+import spet.sbwo.control.channel.user.UserPreferenceChannel;
 import spet.sbwo.control.controller.user.PreferenceController;
 
 @Path("/user/preference")

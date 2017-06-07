@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import spet.sbwo.control.action.base.BaseDatabaseAction;
-import spet.sbwo.control.channel.LocationImportChannel;
+import spet.sbwo.control.channel.location.LocationImportChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.LocationAdministrativeUnit;
 import spet.sbwo.data.table.LocationCountry;

@@ -11,23 +11,11 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_USER_FAVOURITE")
 public class UserFavourite extends BaseEntity {
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "C_USER_ID")
-    private User user;
-
-    @Column(name = "C_TITLE", length = 64)
+    @Column(name = "C_TITLE")
     private String title;
 
-    @Column(name = "C_HASH", length = 64)
+    @Column(name = "C_HASH")
     private String hash;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getTitle() {
         return title;
@@ -47,6 +35,6 @@ public class UserFavourite extends BaseEntity {
 
     @Override
     public String toString() {
-        return "UserFavourite [user=" + user + ", title=" + title + ", hash=" + hash + ", id=" + id + "]";
+        return "UserFavourite [title=" + title + ", hash=" + hash + ", id=" + id + "]";
     }
 }

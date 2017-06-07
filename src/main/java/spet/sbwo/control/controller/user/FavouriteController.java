@@ -7,7 +7,7 @@ import spet.sbwo.control.action.user.AddFavourite;
 import spet.sbwo.control.action.user.DeleteFavourite;
 import spet.sbwo.control.action.user.ReadFavourites;
 import spet.sbwo.control.action.user.UpdateFavourites;
-import spet.sbwo.control.channel.UserFavouriteChannel;
+import spet.sbwo.control.channel.user.UserFavouriteChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class FavouriteController extends BaseActionExecutor {

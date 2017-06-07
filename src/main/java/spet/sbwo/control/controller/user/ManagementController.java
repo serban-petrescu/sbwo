@@ -8,7 +8,7 @@ import spet.sbwo.control.action.user.ChangePassword;
 import spet.sbwo.control.action.user.ReadAllUserPlains;
 import spet.sbwo.control.action.user.ReadCurrentUserInfo;
 import spet.sbwo.control.action.user.RegisterUser;
-import spet.sbwo.control.channel.UserInfoChannel;
+import spet.sbwo.control.channel.user.UserInfoChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
 

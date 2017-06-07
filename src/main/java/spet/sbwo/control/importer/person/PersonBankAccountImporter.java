@@ -24,10 +24,10 @@ class PersonBankAccountImporter extends BaseListImporter<PersonBankAccount> {
     @Override
     protected PersonBankAccount build(Map<String, String> entry) {
         PersonBankAccount result = new PersonBankAccount();
-        result.setPerson(personProvider.getEntity(entry.get("person_number")));
         result.setAccountNumber(entry.get("account_number"));
         result.setBank(entry.get("bank_name"));
         result.setPrimary(Utils.toBoolean(entry.get("is_primary")));
+        personProvider.getEntity(entry.get("person_number")).getBankAccounts().add(result);
         return result;
     }
 

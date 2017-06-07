@@ -38,11 +38,7 @@ public class DeletedEntityKey implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         DeletedEntityKey other = (DeletedEntityKey) obj;
-        if (id != other.id)
-            return false;
-        if (type != other.type)
-            return false;
-        return true;
+        return id == other.id && type == other.type;
     }
 
     public EntityType getType() {

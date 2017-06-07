@@ -29,8 +29,7 @@ public abstract class BaseUserBoAction<T extends JournalizedBaseEntity, I, O> ex
 
     protected abstract Integer keyFromInput(I input);
 
-    protected abstract O doRun(I input, T t, IDatabaseExecutor executor, User user)
-        ;
+    protected abstract O doRun(I input, T t, IDatabaseExecutor executor, User user);
 
     protected void changed(User user, T t) {
         t.setChangedBy(user);

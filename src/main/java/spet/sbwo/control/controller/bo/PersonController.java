@@ -14,7 +14,7 @@ import spet.sbwo.control.action.bo.person.ExportPerson;
 import spet.sbwo.control.action.bo.person.ReadPerson;
 import spet.sbwo.control.action.bo.person.RestorePerson;
 import spet.sbwo.control.action.bo.person.UpdatePerson;
-import spet.sbwo.control.channel.PersonChannel;
+import spet.sbwo.control.channel.person.PersonChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Person;
 

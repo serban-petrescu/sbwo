@@ -3,7 +3,7 @@ package spet.sbwo.control.controller.user;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.user.ReadPreference;
 import spet.sbwo.control.action.user.UpdatePreference;
-import spet.sbwo.control.channel.UserPreferenceChannel;
+import spet.sbwo.control.channel.user.UserPreferenceChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class PreferenceController extends BaseActionExecutor {

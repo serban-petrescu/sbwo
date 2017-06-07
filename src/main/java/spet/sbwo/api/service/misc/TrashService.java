@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.channel.TrashChannel;
+import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.control.controller.misc.TrashController;
 
 @Path("/trash")

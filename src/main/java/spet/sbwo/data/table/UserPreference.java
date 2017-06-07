@@ -11,27 +11,14 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_USER_PREFERENCE")
 public class UserPreference extends BaseEntity {
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "C_USER_ID")
-    private User user;
-
-    @Column(name = "C_LANGUAGE", length = 16)
+    @Column(name = "C_LANGUAGE")
     private String language;
 
-    @Column(name = "C_THEME", length = 32)
+    @Column(name = "C_THEME")
     private String theme;
 
     @Column(name = "C_DRAFT_RESUME_DELAY")
     private int draftResumeDelay;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getLanguage() {
         return language;

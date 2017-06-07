@@ -17,10 +17,6 @@ import spet.sbwo.control.util.FolderScanner.RootResult;
 @Path("/utility/file/explore")
 public class FileExploreService extends BaseService implements IPrivate {
 
-    public FileExploreService() {
-        super();
-    }
-
     @GET
     @Path("/files")
     @Produces("application/json")

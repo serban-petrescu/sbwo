@@ -2,18 +2,7 @@ package spet.sbwo.data.table;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.domain.PersonType;
@@ -22,22 +11,25 @@ import spet.sbwo.data.domain.PersonType;
 @Table(name = "T_PERSON")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "C_PERSON_TYPE", discriminatorType = DiscriminatorType.INTEGER)
-public abstract class Person extends JournalizedBaseEntity {
+public class Person extends JournalizedBaseEntity {
     @Column(name = "C_PERSON_TYPE", insertable = false, updatable = false)
     @Enumerated(EnumType.ORDINAL)
     private PersonType type;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "C_LOCATION_ID", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_LOCATION_ID")
     private Location location;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_PERSON_ID")
     private List<PersonBankAccount> bankAccounts;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_PERSON_ID")
     private List<PersonTelephone> telephones;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "C_PERSON_ID")
     private List<PersonEmailAddress> emailAddresses;
 
     public PersonType getType() {

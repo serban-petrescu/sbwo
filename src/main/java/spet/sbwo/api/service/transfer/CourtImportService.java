@@ -16,7 +16,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.control.channel.CourtImportChannel;
+import spet.sbwo.control.channel.expertise.CourtImportChannel;
 import spet.sbwo.control.controller.transfer.CourtImportController;
 
 @Path("/import")

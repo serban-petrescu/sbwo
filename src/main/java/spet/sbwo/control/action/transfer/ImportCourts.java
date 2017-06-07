@@ -6,7 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import spet.sbwo.control.action.base.BaseDatabaseAction;
-import spet.sbwo.control.channel.CourtImportChannel;
+import spet.sbwo.control.channel.expertise.CourtImportChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Court;
 

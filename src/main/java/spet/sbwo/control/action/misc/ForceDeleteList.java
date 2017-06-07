@@ -6,7 +6,7 @@ import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.action.bo.base.DeleteEntity;
 import spet.sbwo.control.action.bo.expertise.DeleteExpertise;
 import spet.sbwo.control.action.bo.person.DeletePerson;
-import spet.sbwo.control.channel.TrashChannel;
+import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.table.User;

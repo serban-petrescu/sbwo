@@ -6,7 +6,7 @@ import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.misc.ForceDeleteList;
 import spet.sbwo.control.action.misc.ReadAllTrash;
 import spet.sbwo.control.action.misc.RestoreList;
-import spet.sbwo.control.channel.TrashChannel;
+import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 
 public class TrashController extends BaseActionExecutor {

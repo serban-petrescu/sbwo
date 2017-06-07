@@ -10,28 +10,16 @@ import javax.persistence.Table;
 import spet.sbwo.data.base.BaseEntity;
 
 @Entity
-@Table(name = "T_PERSON_TELEPHONE", indexes = {@Index(unique = true, columnList = "C_PERSON_ID,C_NAME")})
+@Table(name = "T_PERSON_TELEPHONE")
 public class PersonTelephone extends BaseEntity {
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false, name = "C_PERSON_ID")
-    private Person person;
-
-    @Column(name = "C_NAME", length = 64)
+    @Column(name = "C_NAME")
     private String name;
 
     @Column(name = "C_PRIMARY")
     private boolean primary;
 
-    @Column(name = "C_TELEPHONE", length = 128)
+    @Column(name = "C_TELEPHONE")
     private String telephone;
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
     public String getName() {
         return name;
@@ -59,8 +47,8 @@ public class PersonTelephone extends BaseEntity {
 
     @Override
     public String toString() {
-        return "PersonTelephone [person=" + person + ", name=" + name + ", primary=" + primary + ", telephone="
-            + telephone + ", id=" + id + "]";
+        return "PersonTelephone [name=" + name + ", primary=" + primary + ", telephone=" + telephone + ", id=" + id +
+            "]";
     }
 
 }

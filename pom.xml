@@ -19,12 +19,14 @@
 		<apache-commons-csv-version>1.3</apache-commons-csv-version>
 		<eclipselink-version>2.6.4</eclipselink-version>
 		<picocontainer-version>2.15</picocontainer-version>
-		<maven-compiler-version>3.3</maven-compiler-version>
+        <modelmapper-version>0.7.5</modelmapper-version>
+		<maven-compiler-version>3.5</maven-compiler-version>
 		<flyway-version>4.2.0</flyway-version>
 		<frontend-plugin-version>1.4</frontend-plugin-version>
 		<node-version>v4.6.0</node-version>
 		<jar-plugin-version>3.0.2</jar-plugin-version>
 		<dependency-plugin-version>3.0.0</dependency-plugin-version>
+        <junit-version>4.12</junit-version>
 	</properties>
 
 	<dependencies>
@@ -89,6 +91,19 @@
 			<artifactId>commons-csv</artifactId>
 			<version>${apache-commons-csv-version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -125,7 +140,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -146,7 +161,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>

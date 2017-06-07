@@ -43,6 +43,7 @@ public class ExpertiseImporter extends BaseMapImporter<Expertise> {
         result.setTitle(entry.get("expertise_title"));
         result.setTariff(buildTariff(entry));
         result.setDeleted(false);
+        result.setFines(new ArrayList<>());
         return result;
     }
 

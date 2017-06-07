@@ -26,7 +26,7 @@ public class ExpertiseFineImporter extends BaseListImporter<ExpertiseFine> {
         ExpertiseFine result = new ExpertiseFine();
         result.setSum(Utils.toDecimal(entry.get("fine_sum")));
         result.setDate(Utils.toLocalDate(entry.get("fine_date")));
-        result.setExpertise(expertiseProvider.getEntity(entry.get("expertise_number")));
+        expertiseProvider.getEntity(entry.get("expertise_number")).getFines().add(result);
         return result;
     }
 }

@@ -1,7 +1,7 @@
 package spet.sbwo.control.action.bo.base;
 
-import spet.sbwo.control.channel.JournalChannel;
-import spet.sbwo.control.mapper.BaseMapper;
+import spet.sbwo.control.channel.base.JournalChannel;
+import spet.sbwo.control.mapper.IMapper;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 
@@ -17,11 +17,11 @@ public abstract class ReadEntity<T extends JournalizedBaseEntity, C extends Jour
         return input;
     }
 
-    protected abstract BaseMapper<T, C> mapper(IDatabaseExecutor executor);
+    protected abstract IMapper<T, C> mapper(IDatabaseExecutor executor);
 
     @Override
     protected C doRun(Integer input, T t, IDatabaseExecutor executor) {
-        return mapper(executor).toExternal(t);
+        return mapper(executor).toChannel(t);
     }
 
 }

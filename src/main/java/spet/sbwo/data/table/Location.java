@@ -11,19 +11,19 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_LOCATION")
 public class Location extends BaseEntity {
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "C_COUNTRY_ID", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "C_COUNTRY_ID")
     private LocationCountry country;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "C_REGION_ID", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "C_REGION_ID")
     private LocationRegion region;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "C_ADM_UNIT_ID", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "C_ADM_UNIT_ID")
     private LocationAdministrativeUnit administrativeUnit;
 
-    @Column(name = "C_ADDRESS", length = 512)
+    @Column(name = "C_ADDRESS")
     private String address;
 
     @Column(name = "C_LATITUDE")

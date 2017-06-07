@@ -1,7 +1,7 @@
 package spet.sbwo.control.action.user;
 
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.control.channel.UserPreferenceChannel;
+import spet.sbwo.control.channel.user.UserPreferenceChannel;
 import spet.sbwo.data.table.UserPreference;
 
 public abstract class BasePreferenceAction<I> extends BaseUserDatabaseAction<I, UserPreferenceChannel> {

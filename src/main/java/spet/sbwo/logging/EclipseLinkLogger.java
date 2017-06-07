@@ -23,6 +23,7 @@ public class EclipseLinkLogger extends AbstractSessionLog {
                 break;
             default:
                 logger.debug(entry.getMessage());
+                break;
         }
     }
 

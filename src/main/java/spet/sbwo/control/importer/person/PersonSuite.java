@@ -2,7 +2,7 @@ package spet.sbwo.control.importer.person;
 
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
-import spet.sbwo.control.channel.PersonChannel;
+import spet.sbwo.control.channel.person.PersonChannel;
 import spet.sbwo.control.importer.Utils;
 import spet.sbwo.control.importer.base.ISuite;
 import spet.sbwo.control.importer.misc.LocationImporter;
@@ -62,17 +62,7 @@ public class PersonSuite implements ISuite {
     }
 
     public ISuite persist() {
-        locationImporter.persist(executor);
         personImporter.persist(executor);
-        if (emailImporter != null) {
-            emailImporter.persist(executor);
-        }
-        if (bankAccountImporter != null) {
-            bankAccountImporter.persist(executor);
-        }
-        if (phoneImporter != null) {
-            phoneImporter.persist(executor);
-        }
         return this;
     }
 }

@@ -3,8 +3,8 @@ package spet.sbwo.control.action.user;
 import java.util.Map;
 
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.control.channel.UserHomeTilesChannel;
-import spet.sbwo.control.channel.UserHomeTilesChannel.HomeTile;
+import spet.sbwo.control.channel.user.UserHomeTilesChannel;
+import spet.sbwo.control.channel.user.UserHomeTilesChannel.HomeTile;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserHomeTile;
@@ -32,7 +32,6 @@ public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, Us
                 tile.setName(entry.getKey());
                 tile.setOrder(entry.getValue().getOrder());
                 tile.setVisible(entry.getValue().isVisible());
-                tile.setUser(user);
                 user.getHomeTiles().add(tile);
                 executor.create(tile);
             }

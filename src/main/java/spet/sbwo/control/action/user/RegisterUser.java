@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
-import spet.sbwo.control.channel.UserChannel;
+import spet.sbwo.control.channel.user.UserChannel;
 import spet.sbwo.control.util.PasswordHasher;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;

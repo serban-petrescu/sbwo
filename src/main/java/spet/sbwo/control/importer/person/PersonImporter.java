@@ -8,10 +8,7 @@ import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonJuridical;
 import spet.sbwo.data.table.PersonNatural;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class PersonImporter extends BaseMapImporter<Person> {
     private LocationImporter locationImporter;
@@ -50,6 +47,9 @@ class PersonImporter extends BaseMapImporter<Person> {
         }
         result.setDeleted(false);
         result.setLocation(locationImporter.process(entry));
+        result.setEmailAddresses(new ArrayList<>());
+        result.setTelephones(new ArrayList<>());
+        result.setBankAccounts(new ArrayList<>());
         return result;
     }
 

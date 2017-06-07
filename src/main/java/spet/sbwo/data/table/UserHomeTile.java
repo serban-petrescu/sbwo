@@ -11,11 +11,7 @@ import spet.sbwo.data.base.BaseEntity;
 @Entity
 @Table(name = "T_USER_HOME_TILE")
 public class UserHomeTile extends BaseEntity {
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "C_USER_ID")
-    private User user;
-
-    @Column(name = "C_NAME", length = 32)
+    @Column(name = "C_NAME")
     private String name;
 
     @Column(name = "C_ORDER")
@@ -23,14 +19,6 @@ public class UserHomeTile extends BaseEntity {
 
     @Column(name = "C_VISIBLE")
     private boolean visible;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getName() {
         return name;
@@ -58,8 +46,7 @@ public class UserHomeTile extends BaseEntity {
 
     @Override
     public String toString() {
-        return "UserHomeTile [user=" + user + ", name=" + name + ", order=" + order + ", visible=" + visible + ", id="
-            + id + "]";
+        return "UserHomeTile [name=" + name + ", order=" + order + ", visible=" + visible + ", id=" + id + "]";
     }
 
 }

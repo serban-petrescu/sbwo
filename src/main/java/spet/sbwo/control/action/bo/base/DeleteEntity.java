@@ -38,7 +38,7 @@ public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAct
         changed(user, t);
     }
 
-    protected boolean shouldDeleteDirectly(JournalizedBaseEntity entity) {
+    private boolean shouldDeleteDirectly(JournalizedBaseEntity entity) {
         return directDeleteInterval == null
             || directDeleteInterval.compareTo(Duration.between(entity.getCreatedOn(), LocalDateTime.now())) > 0;
     }
