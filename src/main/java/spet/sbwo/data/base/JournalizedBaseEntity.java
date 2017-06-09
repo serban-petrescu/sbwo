@@ -1,13 +1,12 @@
 package spet.sbwo.data.base;
 
-import java.time.LocalDateTime;
+import spet.sbwo.data.table.User;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-
-import spet.sbwo.data.table.User;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class JournalizedBaseEntity extends BaseEntity {

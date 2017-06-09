@@ -1,10 +1,10 @@
 package spet.sbwo.control.controller.user;
 
+import spet.sbwo.data.table.UserSession;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-import spet.sbwo.data.table.UserSession;
 
 public class CachedSessionManager implements ISessionManager {
     private final SessionManager inner;

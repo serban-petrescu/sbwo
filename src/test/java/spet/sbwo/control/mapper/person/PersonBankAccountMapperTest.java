@@ -33,7 +33,7 @@ public class PersonBankAccountMapperTest {
     }
 
     @Before
-    public void setup() {
+    public void setUp() {
         entity = createEntity();
         fullChannel = createChannelFull();
         nullChannel = new PersonBankAccountChannel();

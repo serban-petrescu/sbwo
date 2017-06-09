@@ -1,21 +1,16 @@
 package spet.sbwo.server;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import org.eclipse.jetty.server.session.AbstractSessionDataStore;
+import org.eclipse.jetty.server.session.SessionData;
+import spet.sbwo.control.controller.user.ISessionManager;
+import spet.sbwo.data.table.UserSession;
+
+import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
-
-import org.eclipse.jetty.server.session.AbstractSessionDataStore;
-import org.eclipse.jetty.server.session.SessionData;
-
-import spet.sbwo.control.controller.user.ISessionManager;
-import spet.sbwo.data.table.UserSession;
 
 /**
  * Adapter class between the session manager and the Jetty specific session data
@@ -93,8 +88,8 @@ public class SessionDataStore extends AbstractSessionDataStore {
     }
 
     /**
-    * Runs a given task in the context.
-    */
+     * Runs a given task in the context.
+     */
     protected <T> T runInContext(Supplier<T> executor) {
         Deferred<T> deferred = new Deferred<>(executor);
         this._context.run(deferred);
@@ -102,11 +97,11 @@ public class SessionDataStore extends AbstractSessionDataStore {
     }
 
     /**
-    * Serializes the session attributes.
-    */
+     * Serializes the session attributes.
+     */
     protected byte[] serialize(HashMap<String, Object> data) throws IOException {
         try (ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
-            ObjectOutputStream obj = new ObjectOutputStream(out)) {
+             ObjectOutputStream obj = new ObjectOutputStream(out)) {
             obj.writeObject(data);
             obj.flush();
             return out.toByteArray();
@@ -114,23 +109,23 @@ public class SessionDataStore extends AbstractSessionDataStore {
     }
 
     /**
-    * Deserializes the session attributes.
-    */
+     * Deserializes the session attributes.
+     */
     @SuppressWarnings("unchecked")
     protected HashMap<String, Object> deserialize(byte[] data) throws ClassNotFoundException, IOException {
         try (ByteArrayInputStream in = new ByteArrayInputStream(data);
-            ObjectInputStream obj = new ObjectInputStream(in)) {
+             ObjectInputStream obj = new ObjectInputStream(in)) {
             return (HashMap<String, Object>) obj.readObject();
         }
     }
 
     /**
-    * Utility class for executing a task and keeping a deferred reference to
-    * the result.
-    */
+     * Utility class for executing a task and keeping a deferred reference to
+     * the result.
+     */
     private class Deferred<T> implements Runnable {
-        private T result;
         private final Supplier<T> supplier;
+        private T result;
 
         public Deferred(Supplier<T> supplier) {
             this.supplier = supplier;

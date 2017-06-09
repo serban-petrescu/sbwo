@@ -1,12 +1,8 @@
 package spet.sbwo.data.table;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import spet.sbwo.data.base.BaseEntity;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "T_LOCATION")

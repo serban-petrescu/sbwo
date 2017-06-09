@@ -1,20 +1,15 @@
 package spet.sbwo.api.service.misc;
 
-import java.io.File;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.util.JsonFragmentStream;
 import spet.sbwo.control.util.FolderScanner;
 import spet.sbwo.control.util.FolderScanner.FileInfo;
 import spet.sbwo.control.util.FolderScanner.QueryResult;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import java.io.File;
 
 @Path("/utility/file")
 public class LogService extends BaseService implements IPrivate {

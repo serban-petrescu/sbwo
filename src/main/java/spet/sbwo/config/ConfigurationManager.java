@@ -1,18 +1,13 @@
 package spet.sbwo.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.util.serialization.ISerializationHelper;
+
+import java.io.*;
+import java.nio.charset.Charset;
 
 public class ConfigurationManager {
     private static final Logger LOG = LoggerFactory.getLogger(ConfigurationManager.class);
@@ -35,7 +30,7 @@ public class ConfigurationManager {
 
     public Configuration update(Configuration data) {
         try (FileOutputStream fos = new FileOutputStream(file);
-            OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
+             OutputStreamWriter writer = new OutputStreamWriter(fos, Charset.defaultCharset().name())) {
             helper.serialize(data, Configuration.class, writer);
             return data;
         } catch (Exception e) {

@@ -15,7 +15,7 @@ public class GenericsDirectBoundaryTest {
     private MutablePicoContainer container;
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().build();
         container.addComponent(HA.class);
         container.addComponent(HB.class);

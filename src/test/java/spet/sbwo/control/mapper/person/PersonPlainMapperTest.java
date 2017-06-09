@@ -66,7 +66,7 @@ public class PersonPlainMapperTest {
     }
 
     @Before
-    public void setup() {
+    public void setUp() {
         juridicalEntity = createJuridicalEntity();
         naturalEntity = createNaturalEntity();
         juridicalChannel = createJuridicalChannel();

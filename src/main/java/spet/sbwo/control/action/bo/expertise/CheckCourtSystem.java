@@ -1,7 +1,5 @@
 package spet.sbwo.control.action.bo.expertise;
 
-import java.time.LocalDateTime;
-
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
@@ -9,6 +7,8 @@ import spet.sbwo.data.table.Expertise;
 import spet.sbwo.integration.api.court.ICourtSystemApi;
 import spet.sbwo.integration.api.court.model.Case;
 import spet.sbwo.integration.api.court.model.Hearing;
+
+import java.time.LocalDateTime;
 
 public class CheckCourtSystem extends BaseDatabaseAction<Expertise, Void> {
     private final ICourtSystemApi api;

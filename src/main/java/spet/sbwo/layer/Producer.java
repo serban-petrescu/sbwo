@@ -1,7 +1,6 @@
 package spet.sbwo.layer;
 
 import org.picocontainer.MutablePicoContainer;
-
 import spet.sbwo.api.service.util.JsonProducer;
 import spet.sbwo.api.service.util.JsonpProducer;
 

@@ -1,11 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -63,161 +58,161 @@ public class SedintaDosar {
     protected String stadiuProcesualNume;
 
     /**
-    * Gets the value of the numar property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the numar property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNumar() {
         return numar;
     }
 
     /**
-    * Sets the value of the numar property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the numar property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNumar(String value) {
         this.numar = value;
     }
 
     /**
-    * Gets the value of the numarVechi property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the numarVechi property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNumarVechi() {
         return numarVechi;
     }
 
     /**
-    * Sets the value of the numarVechi property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the numarVechi property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNumarVechi(String value) {
         this.numarVechi = value;
     }
 
     /**
-    * Gets the value of the data property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the data property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getData() {
         return data;
     }
 
     /**
-    * Sets the value of the data property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the data property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
     }
 
     /**
-    * Gets the value of the ora property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the ora property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getOra() {
         return ora;
     }
 
     /**
-    * Sets the value of the ora property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the ora property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setOra(String value) {
         this.ora = value;
     }
 
     /**
-    * Gets the value of the categorieCaz property.
-    *
-    * @return possible object is
-    * {@link CategorieCaz }
-    */
+     * Gets the value of the categorieCaz property.
+     *
+     * @return possible object is
+     * {@link CategorieCaz }
+     */
     public CategorieCaz getCategorieCaz() {
         return categorieCaz;
     }
 
     /**
-    * Sets the value of the categorieCaz property.
-    *
-    * @param value allowed object is
-    *              {@link CategorieCaz }
-    */
+     * Sets the value of the categorieCaz property.
+     *
+     * @param value allowed object is
+     *              {@link CategorieCaz }
+     */
     public void setCategorieCaz(CategorieCaz value) {
         this.categorieCaz = value;
     }
 
     /**
-    * Gets the value of the stadiuProcesual property.
-    *
-    * @return possible object is
-    * {@link StadiuProcesual }
-    */
+     * Gets the value of the stadiuProcesual property.
+     *
+     * @return possible object is
+     * {@link StadiuProcesual }
+     */
     public StadiuProcesual getStadiuProcesual() {
         return stadiuProcesual;
     }
 
     /**
-    * Sets the value of the stadiuProcesual property.
-    *
-    * @param value allowed object is
-    *              {@link StadiuProcesual }
-    */
+     * Sets the value of the stadiuProcesual property.
+     *
+     * @param value allowed object is
+     *              {@link StadiuProcesual }
+     */
     public void setStadiuProcesual(StadiuProcesual value) {
         this.stadiuProcesual = value;
     }
 
     /**
-    * Gets the value of the categorieCazNume property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the categorieCazNume property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getCategorieCazNume() {
         return categorieCazNume;
     }
 
     /**
-    * Sets the value of the categorieCazNume property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the categorieCazNume property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setCategorieCazNume(String value) {
         this.categorieCazNume = value;
     }
 
     /**
-    * Gets the value of the stadiuProcesualNume property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the stadiuProcesualNume property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getStadiuProcesualNume() {
         return stadiuProcesualNume;
     }
 
     /**
-    * Sets the value of the stadiuProcesualNume property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the stadiuProcesualNume property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setStadiuProcesualNume(String value) {
         this.stadiuProcesualNume = value;
     }

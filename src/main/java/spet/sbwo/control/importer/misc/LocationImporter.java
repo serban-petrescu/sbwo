@@ -1,7 +1,5 @@
 package spet.sbwo.control.importer.misc;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import spet.sbwo.control.importer.base.BaseListImporter;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.Location;
@@ -17,6 +15,11 @@ public class LocationImporter extends BaseListImporter<Location> {
         this.provider = new LocationProvider(executor);
     }
 
+    public static List<String> fields() {
+        return Arrays.asList("location_country_code", "location_region_code", "location_adm_unit_code",
+            "location_address");
+    }
+
     @Override
     protected Location build(Map<String, String> entry) {
         Location result = new Location();
@@ -30,11 +33,6 @@ public class LocationImporter extends BaseListImporter<Location> {
             });
         });
         return result;
-    }
-
-    public static List<String> fields() {
-        return Arrays.asList("location_country_code", "location_region_code", "location_adm_unit_code",
-            "location_address");
     }
 
 }

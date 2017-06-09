@@ -26,8 +26,8 @@ public class LocationMapper implements IMapper<Location, LocationChannel> {
     private final Function<Integer, LocationAdministrativeUnit> admUnitProvider;
 
     LocationMapper(Function<Integer, LocationCountry> countryProvider,
-                          Function<Integer, LocationRegion> regionProvider,
-                          Function<Integer, LocationAdministrativeUnit> admUnitProvider) {
+                   Function<Integer, LocationRegion> regionProvider,
+                   Function<Integer, LocationAdministrativeUnit> admUnitProvider) {
         this.countryProvider = countryProvider;
         this.regionProvider = regionProvider;
         this.admUnitProvider = admUnitProvider;

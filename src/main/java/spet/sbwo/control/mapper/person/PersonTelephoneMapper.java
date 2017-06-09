@@ -10,6 +10,7 @@ import static spet.sbwo.control.mapper.Utils.NOT_NULL;
 
 class PersonTelephoneMapper implements IMapper<PersonTelephone, PersonTelephoneChannel> {
     private static final ModelMapper mapper = new ModelMapper();
+
     static {
         mapper.addMappings(new PropertyMap<PersonTelephoneChannel, PersonTelephone>() {
             @Override

@@ -1,14 +1,13 @@
 package spet.sbwo.control.action.base;
 
-import java.util.concurrent.Callable;
-
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.user.ReadByUsername;
 import spet.sbwo.data.DatabaseException;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
+
+import java.util.concurrent.Callable;
 
 public abstract class BaseActionExecutor {
     protected final IDatabaseExecutorCreator database;

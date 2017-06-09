@@ -1,8 +1,8 @@
 package spet.sbwo.control.controller.user;
 
-import java.util.List;
-
 import spet.sbwo.data.table.UserSession;
+
+import java.util.List;
 
 public interface ISessionManager {
 

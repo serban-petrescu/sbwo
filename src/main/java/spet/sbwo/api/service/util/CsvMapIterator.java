@@ -1,9 +1,9 @@
 package spet.sbwo.api.service.util;
 
+import org.apache.commons.csv.CSVRecord;
+
 import java.util.Iterator;
 import java.util.Map;
-
-import org.apache.commons.csv.CSVRecord;
 
 public class CsvMapIterator implements Iterator<Map<String, String>> {
     private Iterator<CSVRecord> base;

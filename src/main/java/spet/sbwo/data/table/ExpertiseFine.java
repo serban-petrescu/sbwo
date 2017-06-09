@@ -1,15 +1,12 @@
 package spet.sbwo.data.table;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import spet.sbwo.data.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import spet.sbwo.data.base.BaseEntity;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "T_EXPERTISE_FINE")

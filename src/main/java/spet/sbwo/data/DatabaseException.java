@@ -1,10 +1,10 @@
 package spet.sbwo.data;
 
-import static org.h2.api.ErrorCode.*;
+import org.h2.jdbc.JdbcSQLException;
 
 import java.util.Optional;
 
-import org.h2.jdbc.JdbcSQLException;
+import static org.h2.api.ErrorCode.*;
 
 public class DatabaseException extends RuntimeException {
     private static final long serialVersionUID = 1L;
@@ -27,22 +27,14 @@ public class DatabaseException extends RuntimeException {
         this.details = details;
     }
 
-    public DatabaseError getError() {
-        return error;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
     private static Optional<JdbcSQLException> getVendorException(Throwable cause) {
-        while (cause != null) {
-            if (cause instanceof JdbcSQLException) {
-                return Optional.of((JdbcSQLException) cause);
-            }
-            cause = cause.getCause();
+        if (cause instanceof JdbcSQLException) {
+            return Optional.of((JdbcSQLException) cause);
+        } else if (cause == null) {
+            return Optional.empty();
+        } else {
+            return getVendorException(cause.getCause());
         }
-        return Optional.empty();
     }
 
     private static DatabaseError getErrorFromH2Code(int code) {
@@ -235,5 +227,13 @@ public class DatabaseException extends RuntimeException {
             default:
                 return DatabaseError.OTHER;
         }
+    }
+
+    public DatabaseError getError() {
+        return error;
+    }
+
+    public String getDetails() {
+        return details;
     }
 }

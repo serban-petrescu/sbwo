@@ -1,14 +1,13 @@
 package spet.sbwo.data.table;
 
-import java.util.List;
+import spet.sbwo.data.base.BaseEntity;
+import spet.sbwo.data.base.ICodifiedEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import spet.sbwo.data.base.BaseEntity;
-import spet.sbwo.data.base.ICodifiedEntity;
+import java.util.List;
 
 @Entity
 @Table(name = "T_LOCATION_COUNTRY")

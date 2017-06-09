@@ -1,8 +1,8 @@
 package spet.sbwo.control.scheduler.manager;
 
-import java.util.List;
-
 import spet.sbwo.control.scheduler.model.ScheduleChannel;
+
+import java.util.List;
 
 public interface IScheduleManager {
 

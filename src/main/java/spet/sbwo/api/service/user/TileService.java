@@ -1,15 +1,11 @@
 package spet.sbwo.api.service.user;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.channel.user.UserHomeTilesChannel;
 import spet.sbwo.control.controller.user.TileController;
+
+import javax.ws.rs.*;
 
 @Path("/user/tiles")
 public class TileService extends BaseService implements IPrivate {

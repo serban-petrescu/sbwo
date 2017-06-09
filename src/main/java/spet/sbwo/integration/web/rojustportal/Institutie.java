@@ -1,4 +1,3 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
 import javax.xml.bind.annotation.XmlEnum;
@@ -766,10 +765,6 @@ public enum Institutie {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static Institutie fromValue(String v) {
         for (Institutie c : Institutie.values()) {
             if (c.value.equals(v)) {
@@ -777,6 +772,10 @@ public enum Institutie {
             }
         }
         throw new IllegalArgumentException(v);
+    }
+
+    public String value() {
+        return value;
     }
 
 }

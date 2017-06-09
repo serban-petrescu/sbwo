@@ -2,15 +2,7 @@ package spet.sbwo;
 
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoBuilder;
-
-import spet.sbwo.layer.Config;
-import spet.sbwo.layer.Control;
-import spet.sbwo.layer.Database;
-import spet.sbwo.layer.Integration;
-import spet.sbwo.layer.Producer;
-import spet.sbwo.layer.Schedule;
-import spet.sbwo.layer.Server;
-import spet.sbwo.layer.Service;
+import spet.sbwo.layer.*;
 
 public class Application {
 

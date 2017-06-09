@@ -36,8 +36,8 @@ public class Server implements IServer {
     }
 
     /**
-    * Sets the root handler.
-    */
+     * Sets the root handler.
+     */
     void setHandler(Handler handler) {
         this.inner.setHandler(handler);
     }

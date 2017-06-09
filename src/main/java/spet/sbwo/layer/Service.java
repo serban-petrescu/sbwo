@@ -1,31 +1,19 @@
 package spet.sbwo.layer;
 
-import javax.persistence.EntityManagerFactory;
-
 import org.h2.server.web.WebServlet;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.parameters.ComponentParameter;
 import org.picocontainer.parameters.ConstantParameter;
-
 import spet.sbwo.api.odata.ODataFactory;
 import spet.sbwo.api.service.bo.ExpertiseService;
 import spet.sbwo.api.service.bo.PersonService;
-import spet.sbwo.api.service.misc.ConfigurationService;
-import spet.sbwo.api.service.misc.CountService;
-import spet.sbwo.api.service.misc.FileExploreService;
-import spet.sbwo.api.service.misc.GeocodingService;
-import spet.sbwo.api.service.misc.LogService;
-import spet.sbwo.api.service.misc.ScheduleService;
-import spet.sbwo.api.service.misc.TrashService;
+import spet.sbwo.api.service.misc.*;
 import spet.sbwo.api.service.transfer.CourtImportService;
 import spet.sbwo.api.service.transfer.DataImportService;
 import spet.sbwo.api.service.transfer.LocationImportService;
-import spet.sbwo.api.service.user.FavouriteService;
-import spet.sbwo.api.service.user.ManagementService;
-import spet.sbwo.api.service.user.PreferenceService;
-import spet.sbwo.api.service.user.SelfService;
-import spet.sbwo.api.service.user.SessionService;
-import spet.sbwo.api.service.user.TileService;
+import spet.sbwo.api.service.user.*;
+
+import javax.persistence.EntityManagerFactory;
 
 public class Service {
     private static final String LOG_PATH = "log";

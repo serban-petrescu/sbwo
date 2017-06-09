@@ -1,26 +1,20 @@
 package spet.sbwo.api.service.user;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPublic;
 import spet.sbwo.api.service.util.JsonpUtils;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.controller.user.ManagementController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class SessionService extends BaseService implements IPublic {
     private static final Logger LOG = LoggerFactory.getLogger(SessionService.class);

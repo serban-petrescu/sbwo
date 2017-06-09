@@ -1,13 +1,12 @@
 package spet.sbwo.data.embed;
 
-import java.io.Serializable;
+import spet.sbwo.data.domain.EntityType;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import spet.sbwo.data.domain.EntityType;
+import java.io.Serializable;
 
 @Embeddable
 public class DeletedEntityKey implements Serializable {

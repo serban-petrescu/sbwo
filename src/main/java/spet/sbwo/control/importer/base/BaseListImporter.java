@@ -1,11 +1,11 @@
 package spet.sbwo.control.importer.base;
 
+import spet.sbwo.data.base.BaseEntity;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import spet.sbwo.data.base.BaseEntity;
 
 public abstract class BaseListImporter<T extends BaseEntity> extends BaseImporter<T> {
     protected List<T> results;

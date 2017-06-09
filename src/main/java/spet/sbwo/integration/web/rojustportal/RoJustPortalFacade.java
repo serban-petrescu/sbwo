@@ -1,20 +1,18 @@
 package spet.sbwo.integration.web.rojustportal;
 
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.integration.api.court.ICourtSystemApi;
 import spet.sbwo.integration.api.court.model.Case;
 import spet.sbwo.integration.api.court.model.Document;
 import spet.sbwo.integration.api.court.model.Hearing;
 import spet.sbwo.integration.api.court.model.Side;
+
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoJustPortalFacade implements ICourtSystemApi {
     private static final Logger LOG = LoggerFactory.getLogger(RoJustPortalFacade.class);

@@ -1,16 +1,12 @@
 package spet.sbwo.control.controller.user;
 
-import java.util.Collections;
-import java.util.List;
-
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.session.ReadAllExpired;
-import spet.sbwo.control.action.session.ReadSession;
-import spet.sbwo.control.action.session.RemoveSession;
-import spet.sbwo.control.action.session.SessionExists;
-import spet.sbwo.control.action.session.UpsertSession;
+import spet.sbwo.control.action.session.*;
 import spet.sbwo.data.access.DatabaseFacade;
 import spet.sbwo.data.table.UserSession;
+
+import java.util.Collections;
+import java.util.List;
 
 public class SessionManager extends BaseActionExecutor implements ISessionManager {
 

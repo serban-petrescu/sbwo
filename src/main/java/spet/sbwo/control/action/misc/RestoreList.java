@@ -1,7 +1,5 @@
 package spet.sbwo.control.action.misc;
 
-import java.util.List;
-
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.action.bo.base.RestoreEntity;
 import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
@@ -10,6 +8,8 @@ import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.table.User;
+
+import java.util.List;
 
 public class RestoreList extends BaseUserDatabaseAction<List<TrashChannel>, Void> {
 

@@ -1,8 +1,8 @@
 package spet.sbwo.server;
 
-import javax.servlet.Servlet;
-
 import org.eclipse.jetty.servlet.ServletHolder;
+
+import javax.servlet.Servlet;
 
 /**
  * Handler builder for keeping a single servlet instance.
@@ -17,24 +17,24 @@ public class ServletHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-    * Enables or disables cache.
-    */
+     * Enables or disables cache.
+     */
     public ServletHandlerBuilder cache(boolean enabled) {
         this.cacheEnabled = enabled;
         return this;
     }
 
     /**
-    * Sets the underlying servlet.
-    */
+     * Sets the underlying servlet.
+     */
     public ServletHandlerBuilder servlet(Servlet servlet) {
         this.servlet = servlet;
         return this;
     }
 
     /**
-    * Sets the holder's path specification.
-    */
+     * Sets the holder's path specification.
+     */
     public ServletHandlerBuilder path(String path) {
         this.path = path;
         return this;

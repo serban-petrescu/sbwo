@@ -1,4 +1,3 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
 import javax.xml.bind.annotation.XmlAccessType;

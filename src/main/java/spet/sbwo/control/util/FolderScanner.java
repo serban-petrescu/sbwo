@@ -1,13 +1,13 @@
 package spet.sbwo.control.util;
 
-import static spet.sbwo.control.util.FileNameUtils.base;
-import static spet.sbwo.control.util.FileNameUtils.extension;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static spet.sbwo.control.util.FileNameUtils.base;
+import static spet.sbwo.control.util.FileNameUtils.extension;
 
 public class FolderScanner {
     private File base;
@@ -19,7 +19,7 @@ public class FolderScanner {
     public static RootResult roots() {
         File[] files = File.listRoots();
         if (files != null) {
-            return new RootResult(Arrays.stream(files).map(f -> f.getPath()).collect(Collectors.toList()),
+            return new RootResult(Arrays.stream(files).map(File::getPath).collect(Collectors.toList()),
                 File.separator);
         } else {
             return new RootResult(Collections.emptyList(), File.separator);
@@ -30,7 +30,7 @@ public class FolderScanner {
         File[] files = base.listFiles(f -> f.isDirectory() && !f.isHidden());
         if (files != null) {
             return new QueryResult<>(base.getAbsolutePath(),
-                Arrays.stream(files).map(f -> f.getName()).collect(Collectors.toList()));
+                Arrays.stream(files).map(File::getName).collect(Collectors.toList()));
         } else {
             return new QueryResult<>(base.getAbsolutePath(), Collections.emptyList());
         }
@@ -41,7 +41,7 @@ public class FolderScanner {
             .listFiles((f, n) -> (extension.isEmpty() || extension(n).equals(extension)) && !f.isHidden());
         if (files != null) {
             return new QueryResult<>(base.getAbsolutePath(),
-                Arrays.stream(files).map(f -> new FileInfo(f)).collect(Collectors.toList()));
+                Arrays.stream(files).map(FileInfo::new).collect(Collectors.toList()));
         } else {
             return new QueryResult<>(base.getAbsolutePath(), Collections.emptyList());
         }
@@ -51,7 +51,7 @@ public class FolderScanner {
         private List<String> roots;
         private String separator;
 
-        public RootResult(List<String> roots, String separator) {
+        RootResult(List<String> roots, String separator) {
             this.roots = roots;
             this.separator = separator;
         }
@@ -69,7 +69,7 @@ public class FolderScanner {
         private String base;
         private List<T> content;
 
-        public QueryResult(String base, List<T> content) {
+        QueryResult(String base, List<T> content) {
             this.base = base;
             this.content = content;
         }
@@ -88,18 +88,11 @@ public class FolderScanner {
         private String extension;
         private long size;
 
-        public FileInfo(File file) {
+        FileInfo(File file) {
             super();
             this.name = base(file.getName());
             this.extension = extension(file.getName());
             this.size = file.length();
-        }
-
-        public FileInfo(String name, String extension, long size) {
-            super();
-            this.name = name;
-            this.extension = extension;
-            this.size = size;
         }
 
         public String getName() {

@@ -1,12 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -44,41 +38,41 @@ public class CautareSedinte {
     protected Institutie institutie;
 
     /**
-    * Gets the value of the dataSedinta property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataSedinta property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataSedinta() {
         return dataSedinta;
     }
 
     /**
-    * Sets the value of the dataSedinta property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataSedinta property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataSedinta(XMLGregorianCalendar value) {
         this.dataSedinta = value;
     }
 
     /**
-    * Gets the value of the institutie property.
-    *
-    * @return possible object is
-    * {@link Institutie }
-    */
+     * Gets the value of the institutie property.
+     *
+     * @return possible object is
+     * {@link Institutie }
+     */
     public Institutie getInstitutie() {
         return institutie;
     }
 
     /**
-    * Sets the value of the institutie property.
-    *
-    * @param value allowed object is
-    *              {@link Institutie }
-    */
+     * Sets the value of the institutie property.
+     *
+     * @param value allowed object is
+     *              {@link Institutie }
+     */
     public void setInstitutie(Institutie value) {
         this.institutie = value;
     }

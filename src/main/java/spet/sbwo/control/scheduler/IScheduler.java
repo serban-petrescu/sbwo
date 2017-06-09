@@ -1,9 +1,9 @@
 package spet.sbwo.control.scheduler;
 
-import java.time.LocalDateTime;
-
 import spet.sbwo.control.scheduler.model.ScheduleInfo;
 import spet.sbwo.control.scheduler.model.SchedulerType;
+
+import java.time.LocalDateTime;
 
 public interface IScheduler {
 

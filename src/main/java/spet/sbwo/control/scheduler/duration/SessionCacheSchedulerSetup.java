@@ -1,10 +1,10 @@
 package spet.sbwo.control.scheduler.duration;
 
-import java.time.Duration;
-
 import spet.sbwo.config.SessionEntry;
 import spet.sbwo.control.controller.user.CachedSessionManager;
 import spet.sbwo.control.scheduler.model.SchedulerType;
+
+import java.time.Duration;
 
 public class SessionCacheSchedulerSetup implements ISimpleScheduleSetup {
     private final Duration flushInterval;

@@ -1,8 +1,8 @@
 package spet.sbwo.control.scheduler.duration;
 
-import java.time.LocalDateTime;
-
 import spet.sbwo.control.scheduler.model.ScheduleInfo;
+
+import java.time.LocalDateTime;
 
 public class SimpleDurationScheduler extends BaseDurationScheduler {
     private final ISimpleScheduleSetup setup;

@@ -1,10 +1,10 @@
 package spet.sbwo.control.importer.base;
 
-import java.util.Collection;
-import java.util.Map;
-
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.BaseEntity;
+
+import java.util.Collection;
+import java.util.Map;
 
 public abstract class BaseImporter<T extends BaseEntity> {
 

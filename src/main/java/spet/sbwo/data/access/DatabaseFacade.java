@@ -1,13 +1,12 @@
 package spet.sbwo.data.access;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import spet.sbwo.data.DatabaseException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import spet.sbwo.data.DatabaseException;
 
 public class DatabaseFacade implements IBackupCreator, IDatabaseExecutorCreator {
     private static final Logger LOG = LoggerFactory.getLogger(DatabaseFacade.class);

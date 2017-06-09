@@ -32,7 +32,7 @@ public class PersonEmailMapperTest {
     }
 
     @Before
-    public void setup() {
+    public void setUp() {
         entity = createEntity();
         fullChannel = createFullChannel();
         nullChannel = new PersonEmailChannel();

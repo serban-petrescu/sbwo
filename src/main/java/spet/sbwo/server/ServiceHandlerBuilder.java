@@ -1,15 +1,14 @@
 package spet.sbwo.server;
 
+import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+import javax.servlet.Servlet;
+import javax.ws.rs.core.Application;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.servlet.Servlet;
-import javax.ws.rs.core.Application;
-
-import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
-import org.eclipse.jetty.servlet.ServletHolder;
 
 /**
  * Handler builder class for creating JAX-RS service handlers.
@@ -27,64 +26,64 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-    * Enables or disables the cache.
-    */
+     * Enables or disables the cache.
+     */
     public ServiceHandlerBuilder cache(boolean enabled) {
         this.cacheEnabled = enabled;
         return this;
     }
 
     /**
-    * Adds a new service instance.
-    */
+     * Adds a new service instance.
+     */
     public ServiceHandlerBuilder add(Object service) {
         this.services.add(service);
         return this;
     }
 
     /**
-    * Adds several service instances.
-    */
+     * Adds several service instances.
+     */
     public ServiceHandlerBuilder addAll(Object... services) {
         Collections.addAll(this.services, services);
         return this;
     }
 
     /**
-    * Adds several service instances.
-    */
+     * Adds several service instances.
+     */
     public ServiceHandlerBuilder addAll(List<Object> services) {
         this.services.addAll(services);
         return this;
     }
 
     /**
-    * Adds a new service class.
-    */
+     * Adds a new service class.
+     */
     public ServiceHandlerBuilder addClass(Class<?> clazz) {
         this.classes.add(clazz);
         return this;
     }
 
     /**
-    * Adds several service classes.
-    */
+     * Adds several service classes.
+     */
     public ServiceHandlerBuilder addClasses(Class<?>... classes) {
         Collections.addAll(this.classes, classes);
         return this;
     }
 
     /**
-    * Adds several service classes.
-    */
+     * Adds several service classes.
+     */
     public ServiceHandlerBuilder addClasses(List<Class<?>> classes) {
         this.classes.addAll(classes);
         return this;
     }
 
     /**
-    * Sets the holder's path specification.
-    */
+     * Sets the holder's path specification.
+     */
     public ServiceHandlerBuilder path(String path) {
         this.path = path;
         return this;
@@ -97,9 +96,9 @@ public class ServiceHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-    * Helper class for exposing the service instances and classes to the JAX-RS
-    * API.
-    */
+     * Helper class for exposing the service instances and classes to the JAX-RS
+     * API.
+     */
     protected static class SimpleApplication extends Application {
         private final Set<Object> services;
         private final Set<Class<?>> classes;

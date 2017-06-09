@@ -1,16 +1,12 @@
 package spet.sbwo.control.controller.user;
 
-import java.util.List;
-
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.user.ActivateUser;
-import spet.sbwo.control.action.user.ChangePassword;
-import spet.sbwo.control.action.user.ReadAllUserPlains;
-import spet.sbwo.control.action.user.ReadCurrentUserInfo;
-import spet.sbwo.control.action.user.RegisterUser;
+import spet.sbwo.control.action.user.*;
 import spet.sbwo.control.channel.user.UserInfoChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.view.UserPlain;
+
+import java.util.List;
 
 public class ManagementController extends BaseActionExecutor {
     private static final String INITIAL_CREDENT = "init";

@@ -1,17 +1,15 @@
 package spet.sbwo.data.access;
 
-import java.util.List;
-import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import spet.sbwo.data.DatabaseError;
+import spet.sbwo.data.DatabaseException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import spet.sbwo.data.DatabaseError;
-import spet.sbwo.data.DatabaseException;
+import java.util.List;
+import java.util.Optional;
 
 class DatabaseExecutor implements IDatabaseExecutor {
     private static final Logger LOG = LoggerFactory.getLogger(DatabaseExecutor.class);

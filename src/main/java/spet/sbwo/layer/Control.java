@@ -1,21 +1,13 @@
 package spet.sbwo.layer;
 
 import org.picocontainer.MutablePicoContainer;
-
 import spet.sbwo.control.controller.bo.ExpertiseController;
 import spet.sbwo.control.controller.bo.PersonController;
 import spet.sbwo.control.controller.misc.CountController;
 import spet.sbwo.control.controller.misc.TrashController;
 import spet.sbwo.control.controller.transfer.CourtImportController;
 import spet.sbwo.control.controller.transfer.LocationImportController;
-import spet.sbwo.control.controller.user.CachedSessionManager;
-import spet.sbwo.control.controller.user.FavouriteController;
-import spet.sbwo.control.controller.user.ISessionManager;
-import spet.sbwo.control.controller.user.LoginController;
-import spet.sbwo.control.controller.user.ManagementController;
-import spet.sbwo.control.controller.user.PreferenceController;
-import spet.sbwo.control.controller.user.SessionManager;
-import spet.sbwo.control.controller.user.TileController;
+import spet.sbwo.control.controller.user.*;
 import spet.sbwo.control.importer.DataImportFacade;
 import spet.sbwo.control.runnable.RunCheckCourtBatch;
 import spet.sbwo.control.runnable.RunGeocodeLocationBatch;

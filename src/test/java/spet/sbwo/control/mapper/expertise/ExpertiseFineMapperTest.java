@@ -31,7 +31,7 @@ public class ExpertiseFineMapperTest {
     }
 
     @Before
-    public void setup() {
+    public void setUp() {
         entity = createEntity();
         channel = createChannel();
     }

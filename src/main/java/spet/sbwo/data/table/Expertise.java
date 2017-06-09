@@ -1,14 +1,13 @@
 package spet.sbwo.data.table;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.*;
-
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.domain.ExpertiseStatus;
 import spet.sbwo.data.embed.Tariff;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "T_EXPERTISE")

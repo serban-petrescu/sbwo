@@ -1,16 +1,12 @@
 package spet.sbwo.api.service.util;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class CsvMapIteratorHolder implements AutoCloseable {
     private final Map<String, Iterator<Map<String, String>>> result = new HashMap<>();

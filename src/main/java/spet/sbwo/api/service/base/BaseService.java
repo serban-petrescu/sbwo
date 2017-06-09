@@ -1,6 +1,9 @@
 package spet.sbwo.api.service.base;
 
-import java.util.UUID;
+import org.apache.cxf.phase.PhaseInterceptorChain;
+import spet.sbwo.control.ControlError;
+import spet.sbwo.control.ControlException;
+import spet.sbwo.data.DatabaseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,16 +11,35 @@ import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
-
-import org.apache.cxf.phase.PhaseInterceptorChain;
-
-import spet.sbwo.control.ControlError;
-import spet.sbwo.control.ControlException;
-import spet.sbwo.data.DatabaseException;
+import java.util.UUID;
 
 public abstract class BaseService {
     public static final String X_CSRF_TOKEN_HEADER = "X-CSRF-TOKEN";
     public static final String X_CSRF_TOKEN_HEADER_FETCH = "Fetch";
+
+    public static String getOrCreateCsrfToken(HttpSession session) {
+        String token;
+        if (session.getAttribute(X_CSRF_TOKEN_HEADER) != null) {
+            token = (String) session.getAttribute(X_CSRF_TOKEN_HEADER);
+        } else {
+            token = UUID.randomUUID().toString();
+            session.setAttribute(X_CSRF_TOKEN_HEADER, token);
+        }
+        return token;
+    }
+
+    public static String currentUsername() {
+        HttpServletRequest request = (HttpServletRequest) PhaseInterceptorChain.getCurrentMessage().get("HTTP.REQUEST");
+        if (request.getSession(false) != null) {
+            if (request.getUserPrincipal() != null) {
+                return request.getUserPrincipal().getName();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
 
     protected WebApplicationException mapException(Exception ex) {
         if (isNotFoundException(ex)) {
@@ -67,30 +89,6 @@ public abstract class BaseService {
         ExceptionChannel result = new ExceptionChannel();
         result.setDetails(e.getMessage());
         return result;
-    }
-
-    public static String getOrCreateCsrfToken(HttpSession session) {
-        String token;
-        if (session.getAttribute(X_CSRF_TOKEN_HEADER) != null) {
-            token = (String) session.getAttribute(X_CSRF_TOKEN_HEADER);
-        } else {
-            token = UUID.randomUUID().toString();
-            session.setAttribute(X_CSRF_TOKEN_HEADER, token);
-        }
-        return token;
-    }
-
-    public static String currentUsername() {
-        HttpServletRequest request = (HttpServletRequest) PhaseInterceptorChain.getCurrentMessage().get("HTTP.REQUEST");
-        if (request.getSession(false) != null) {
-            if (request.getUserPrincipal() != null) {
-                return request.getUserPrincipal().getName();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
     }
 
 }

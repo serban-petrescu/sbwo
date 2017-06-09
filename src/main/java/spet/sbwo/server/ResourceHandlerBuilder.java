@@ -16,24 +16,24 @@ public class ResourceHandlerBuilder extends AbstractServletHandlerBuilder {
     }
 
     /**
-    * Sets the base path (package) for files to be served.
-    */
+     * Sets the base path (package) for files to be served.
+     */
     public ResourceHandlerBuilder directory(String path) {
         this.base = path;
         return this;
     }
 
     /**
-    * Enables or disables the cache.
-    */
+     * Enables or disables the cache.
+     */
     public ResourceHandlerBuilder cache(boolean enabled) {
         this.cacheEnabled = enabled;
         return this;
     }
 
     /**
-    * Sets the holder's path specification.
-    */
+     * Sets the holder's path specification.
+     */
     public ResourceHandlerBuilder path(String path) {
         this.path = path;
         return this;

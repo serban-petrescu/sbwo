@@ -2,7 +2,6 @@ package spet.sbwo.layer;
 
 import org.h2.server.web.WebServlet;
 import org.picocontainer.MutablePicoContainer;
-
 import spet.sbwo.api.filter.AjaxFilter;
 import spet.sbwo.api.filter.AuthConditionalFilter;
 import spet.sbwo.api.filter.CsrfTokenFilter;
@@ -38,7 +37,7 @@ public class Server {
         private final AjaxFilter ajaxDenyFilter = new AjaxFilter(false);
 
         public Facade(IPublic[] publicSingletons, IPrivate[] privateSingletons, WebServlet webServlet,
-                    ILoginProvider loginProvider, ISessionManager sessionManager, Configuration configuration) {
+                      ILoginProvider loginProvider, ISessionManager sessionManager, Configuration configuration) {
             ServerBuilder serverBuilder = new ServerBuilder();
             serverBuilder.setPort(8080);
 

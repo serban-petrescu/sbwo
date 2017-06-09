@@ -1,4 +1,3 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
 import javax.xml.bind.annotation.XmlEnum;
@@ -122,10 +121,6 @@ public enum StadiuProcesual {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static StadiuProcesual fromValue(String v) {
         for (StadiuProcesual c : StadiuProcesual.values()) {
             if (c.value.equals(v)) {
@@ -133,6 +128,10 @@ public enum StadiuProcesual {
             }
         }
         throw new IllegalArgumentException(v);
+    }
+
+    public String value() {
+        return value;
     }
 
 }

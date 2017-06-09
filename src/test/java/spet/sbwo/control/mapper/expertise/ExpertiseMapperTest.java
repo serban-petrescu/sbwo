@@ -85,7 +85,7 @@ public class ExpertiseMapperTest {
     }
 
     @Before
-    public void setup() {
+    public void setUp() {
         entity = createEntity(courtProvider.apply(1), userProvider.apply(1));
         channel = createChannel(2, 2);
     }

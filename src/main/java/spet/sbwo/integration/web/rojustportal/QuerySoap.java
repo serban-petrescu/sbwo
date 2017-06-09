@@ -18,13 +18,15 @@ import javax.xml.ws.ResponseWrapper;
 public interface QuerySoap {
 
     /**
-    * Cautare sedinte dupa data, institutie
-    */
+     * Cautare sedinte dupa data, institutie
+     */
     @WebMethod(operationName = "CautareSedinte", action = "portalquery.just.ro/CautareSedinte")
-    @RequestWrapper(localName = "CautareSedinte", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareSedinte")
-    @ResponseWrapper(localName = "CautareSedinteResponse", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareSedinteResponse")
+    @RequestWrapper(localName = "CautareSedinte", targetNamespace = "portalquery.just.ro", className = "ro.just" +
+        ".portalquery.CautareSedinte")
+    @ResponseWrapper(localName = "CautareSedinteResponse", targetNamespace = "portalquery.just.ro", className = "ro" +
+        ".just.portalquery.CautareSedinteResponse")
     @WebResult(name = "CautareSedinteResult", targetNamespace = "portalquery.just.ro")
-    public spet.sbwo.integration.web.rojustportal.ArrayOfSedinta cautareSedinte(
+    spet.sbwo.integration.web.rojustportal.ArrayOfSedinta cautareSedinte(
         @WebParam(name = "dataSedinta", targetNamespace = "portalquery.just.ro")
             javax.xml.datatype.XMLGregorianCalendar dataSedinta,
         @WebParam(name = "institutie", targetNamespace = "portalquery.just.ro")
@@ -32,19 +34,23 @@ public interface QuerySoap {
     );
 
     @WebMethod(operationName = "HelloWorld", action = "portalquery.just.ro/HelloWorld")
-    @RequestWrapper(localName = "HelloWorld", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.HelloWorld")
-    @ResponseWrapper(localName = "HelloWorldResponse", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.HelloWorldResponse")
+    @RequestWrapper(localName = "HelloWorld", targetNamespace = "portalquery.just.ro", className = "ro.just" +
+        ".portalquery.HelloWorld")
+    @ResponseWrapper(localName = "HelloWorldResponse", targetNamespace = "portalquery.just.ro", className = "ro.just" +
+        ".portalquery.HelloWorldResponse")
     @WebResult(name = "HelloWorldResult", targetNamespace = "portalquery.just.ro")
-    public java.lang.String helloWorld();
+    java.lang.String helloWorld();
 
     /**
-    * Cautare dosare dupa numar, obiect, parte, institutie, data
-    */
+     * Cautare dosare dupa numar, obiect, parte, institutie, data
+     */
     @WebMethod(operationName = "CautareDosare", action = "portalquery.just.ro/CautareDosare")
-    @RequestWrapper(localName = "CautareDosare", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare")
-    @ResponseWrapper(localName = "CautareDosareResponse", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosareResponse")
+    @RequestWrapper(localName = "CautareDosare", targetNamespace = "portalquery.just.ro", className = "ro.just" +
+        ".portalquery.CautareDosare")
+    @ResponseWrapper(localName = "CautareDosareResponse", targetNamespace = "portalquery.just.ro", className = "ro" +
+        ".just.portalquery.CautareDosareResponse")
     @WebResult(name = "CautareDosareResult", targetNamespace = "portalquery.just.ro")
-    public spet.sbwo.integration.web.rojustportal.ArrayOfDosar cautareDosare(
+    spet.sbwo.integration.web.rojustportal.ArrayOfDosar cautareDosare(
         @WebParam(name = "numarDosar", targetNamespace = "portalquery.just.ro")
             java.lang.String numarDosar,
         @WebParam(name = "obiectDosar", targetNamespace = "portalquery.just.ro")
@@ -60,13 +66,15 @@ public interface QuerySoap {
     );
 
     /**
-    * Cautare dosare dupa numar, obiect, parte, institutie, data, data ultima modificare
-    */
+     * Cautare dosare dupa numar, obiect, parte, institutie, data, data ultima modificare
+     */
     @WebMethod(operationName = "CautareDosare2", action = "portalquery.just.ro/CautareDosare2")
-    @RequestWrapper(localName = "CautareDosare2", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare2")
-    @ResponseWrapper(localName = "CautareDosare2Response", targetNamespace = "portalquery.just.ro", className = "ro.just.portalquery.CautareDosare2Response")
+    @RequestWrapper(localName = "CautareDosare2", targetNamespace = "portalquery.just.ro", className = "ro.just" +
+        ".portalquery.CautareDosare2")
+    @ResponseWrapper(localName = "CautareDosare2Response", targetNamespace = "portalquery.just.ro", className = "ro" +
+        ".just.portalquery.CautareDosare2Response")
     @WebResult(name = "CautareDosare2Result", targetNamespace = "portalquery.just.ro")
-    public spet.sbwo.integration.web.rojustportal.ArrayOfDosar cautareDosare2(
+    spet.sbwo.integration.web.rojustportal.ArrayOfDosar cautareDosare2(
         @WebParam(name = "numarDosar", targetNamespace = "portalquery.just.ro")
             java.lang.String numarDosar,
         @WebParam(name = "obiectDosar", targetNamespace = "portalquery.just.ro")

@@ -1,10 +1,10 @@
 package spet.sbwo.control.scheduler.duration;
 
-import java.time.Duration;
-
 import spet.sbwo.config.GeocodingEntry;
 import spet.sbwo.control.runnable.RunGeocodeLocationBatch;
 import spet.sbwo.control.scheduler.model.SchedulerType;
+
+import java.time.Duration;
 
 public class GeocodeSchedulerSetup implements ISimpleScheduleSetup {
     private final Duration interval;

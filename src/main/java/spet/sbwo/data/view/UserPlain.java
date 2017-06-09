@@ -1,10 +1,10 @@
 package spet.sbwo.data.view;
 
+import spet.sbwo.data.base.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import spet.sbwo.data.base.BaseEntity;
 
 @Entity
 @Table(name = "V_USER_PLAIN")

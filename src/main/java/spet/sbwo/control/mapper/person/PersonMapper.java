@@ -18,10 +18,10 @@ public class PersonMapper implements IMapper<Person, PersonChannel> {
     private final IMapper<Person, PersonChannel> plainMapper;
 
     PersonMapper(IMapper<PersonBankAccount, PersonBankAccountChannel> bankAccountMapper,
-                         IMapper<PersonEmailAddress, PersonEmailChannel> emailMapper,
-                         IMapper<PersonTelephone, PersonTelephoneChannel> phoneMapper,
-                         IMapper<Location, LocationChannel> locationMapper,
-                         IMapper<Person, PersonChannel> plainMapper) {
+                 IMapper<PersonEmailAddress, PersonEmailChannel> emailMapper,
+                 IMapper<PersonTelephone, PersonTelephoneChannel> phoneMapper,
+                 IMapper<Location, LocationChannel> locationMapper,
+                 IMapper<Person, PersonChannel> plainMapper) {
         this.bankAccountMapper = bankAccountMapper;
         this.emailMapper = emailMapper;
         this.phoneMapper = phoneMapper;

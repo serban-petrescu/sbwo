@@ -18,12 +18,12 @@ public class IMapperTest {
     private final MockMapper mapper = new MockMapper();
 
     @Before
-    public void setupEntities() {
+    public void setUpEntities() {
         entities = Stream.of(2, 3, 4).map(IMapperTest::entityFor).collect(Collectors.toList());
     }
 
     @Before
-    public void setupChannels() {
+    public void setUpChannels() {
         channels = Stream.of(1, 3, 5).map(IMapperTest::channelFor).collect(Collectors.toList());
     }
 

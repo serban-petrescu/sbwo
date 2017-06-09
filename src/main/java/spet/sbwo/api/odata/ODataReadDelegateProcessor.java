@@ -1,34 +1,14 @@
 package spet.sbwo.api.odata;
 
-import java.io.InputStream;
-import java.util.List;
-
 import org.apache.olingo.odata2.api.batch.BatchHandler;
 import org.apache.olingo.odata2.api.batch.BatchResponsePart;
 import org.apache.olingo.odata2.api.exception.ODataException;
 import org.apache.olingo.odata2.api.exception.ODataNotImplementedException;
-import org.apache.olingo.odata2.api.processor.ODataContext;
-import org.apache.olingo.odata2.api.processor.ODataProcessor;
-import org.apache.olingo.odata2.api.processor.ODataRequest;
-import org.apache.olingo.odata2.api.processor.ODataResponse;
-import org.apache.olingo.odata2.api.processor.ODataSingleProcessor;
-import org.apache.olingo.odata2.api.uri.info.DeleteUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetComplexPropertyUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntityCountUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntityLinkCountUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntityLinkUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntitySetCountUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntitySetLinksCountUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntitySetLinksUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntitySetUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetEntityUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetFunctionImportUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetMediaResourceUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetMetadataUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetServiceDocumentUriInfo;
-import org.apache.olingo.odata2.api.uri.info.GetSimplePropertyUriInfo;
-import org.apache.olingo.odata2.api.uri.info.PostUriInfo;
-import org.apache.olingo.odata2.api.uri.info.PutMergePatchUriInfo;
+import org.apache.olingo.odata2.api.processor.*;
+import org.apache.olingo.odata2.api.uri.info.*;
+
+import java.io.InputStream;
+import java.util.List;
 
 class ODataReadDelegateProcessor extends ODataSingleProcessor {
     private final ODataSingleProcessor delegate;
@@ -50,13 +30,13 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
 
     @Override
     public ODataResponse createEntity(PostUriInfo uriInfo, InputStream content, String requestContentType,
-                                    String contentType) throws ODataException {
+                                      String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse createEntityLink(PostUriInfo uriInfo, InputStream content, String requestContentType,
-                                        String contentType) throws ODataException {
+                                          String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
@@ -120,6 +100,11 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
     }
 
     @Override
+    public void setContext(ODataContext context) {
+        delegate.setContext(context);
+    }
+
+    @Override
     public List<String> getCustomContentTypes(Class<? extends ODataProcessor> processorFeature) throws ODataException {
         return delegate.getCustomContentTypes(processorFeature);
     }
@@ -178,43 +163,41 @@ class ODataReadDelegateProcessor extends ODataSingleProcessor {
     }
 
     @Override
-    public void setContext(ODataContext context) {
-        delegate.setContext(context);
-    }
-
-    @Override
     public ODataResponse updateEntity(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                    boolean merge, String contentType) throws ODataException {
+                                      boolean merge, String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityComplexProperty(PutMergePatchUriInfo uriInfo, InputStream content,
-                                                    String requestContentType, boolean merge, String contentType) throws ODataException {
+                                                     String requestContentType, boolean merge, String contentType)
+        throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityLink(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                        String contentType) throws ODataException {
+                                          String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntityMedia(PutMergePatchUriInfo uriInfo, InputStream content, String requestContentType,
-                                            String contentType) throws ODataException {
+                                           String contentType) throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntitySimpleProperty(PutMergePatchUriInfo uriInfo, InputStream content,
-                                                    String requestContentType, String contentType) throws ODataException {
+                                                    String requestContentType, String contentType)
+        throws ODataException {
         throw new ODataNotImplementedException();
     }
 
     @Override
     public ODataResponse updateEntitySimplePropertyValue(PutMergePatchUriInfo uriInfo, InputStream content,
-                                                        String requestContentType, String contentType) throws ODataException {
+                                                         String requestContentType, String contentType)
+        throws ODataException {
         throw new ODataNotImplementedException();
     }
 }

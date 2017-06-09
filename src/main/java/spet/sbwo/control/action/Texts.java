@@ -1,16 +1,16 @@
 package spet.sbwo.control.action;
 
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.Properties;
-
-import org.slf4j.LoggerFactory;
 
 public enum Texts {
     INSTANCE;
 
     private final Properties entries;
 
-    private Texts() {
+    Texts() {
         entries = new Properties();
         try {
             entries.load(Texts.class.getResourceAsStream("texts.properties"));

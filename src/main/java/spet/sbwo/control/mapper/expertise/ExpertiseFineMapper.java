@@ -9,6 +9,7 @@ import spet.sbwo.data.table.ExpertiseFine;
 
 class ExpertiseFineMapper implements IMapper<ExpertiseFine, ExpertiseFineChannel> {
     private static final ModelMapper mapper = new ModelMapper();
+
     static {
         mapper.addMappings(new PropertyMap<ExpertiseFineChannel, ExpertiseFine>() {
             @Override

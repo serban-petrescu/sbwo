@@ -1,11 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -66,181 +61,181 @@ public class DosarSedinta {
     protected XMLGregorianCalendar dataDocument;
 
     /**
-    * Gets the value of the complet property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the complet property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getComplet() {
         return complet;
     }
 
     /**
-    * Sets the value of the complet property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the complet property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setComplet(String value) {
         this.complet = value;
     }
 
     /**
-    * Gets the value of the data property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the data property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getData() {
         return data;
     }
 
     /**
-    * Sets the value of the data property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the data property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setData(XMLGregorianCalendar value) {
         this.data = value;
     }
 
     /**
-    * Gets the value of the ora property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the ora property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getOra() {
         return ora;
     }
 
     /**
-    * Sets the value of the ora property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the ora property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setOra(String value) {
         this.ora = value;
     }
 
     /**
-    * Gets the value of the solutie property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the solutie property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getSolutie() {
         return solutie;
     }
 
     /**
-    * Sets the value of the solutie property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the solutie property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setSolutie(String value) {
         this.solutie = value;
     }
 
     /**
-    * Gets the value of the solutieSumar property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the solutieSumar property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getSolutieSumar() {
         return solutieSumar;
     }
 
     /**
-    * Sets the value of the solutieSumar property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the solutieSumar property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setSolutieSumar(String value) {
         this.solutieSumar = value;
     }
 
     /**
-    * Gets the value of the dataPronuntare property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataPronuntare property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataPronuntare() {
         return dataPronuntare;
     }
 
     /**
-    * Sets the value of the dataPronuntare property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataPronuntare property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataPronuntare(XMLGregorianCalendar value) {
         this.dataPronuntare = value;
     }
 
     /**
-    * Gets the value of the documentSedinta property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the documentSedinta property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getDocumentSedinta() {
         return documentSedinta;
     }
 
     /**
-    * Sets the value of the documentSedinta property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the documentSedinta property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setDocumentSedinta(String value) {
         this.documentSedinta = value;
     }
 
     /**
-    * Gets the value of the numarDocument property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the numarDocument property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNumarDocument() {
         return numarDocument;
     }
 
     /**
-    * Sets the value of the numarDocument property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the numarDocument property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNumarDocument(String value) {
         this.numarDocument = value;
     }
 
     /**
-    * Gets the value of the dataDocument property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataDocument property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataDocument() {
         return dataDocument;
     }
 
     /**
-    * Sets the value of the dataDocument property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataDocument property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataDocument(XMLGregorianCalendar value) {
         this.dataDocument = value;
     }

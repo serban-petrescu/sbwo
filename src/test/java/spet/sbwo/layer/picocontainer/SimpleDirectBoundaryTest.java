@@ -11,7 +11,7 @@ public class SimpleDirectBoundaryTest {
     private MutablePicoContainer container;
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().build();
         container.addComponent(IA.class, A.class);
         container.addComponent(IB.class, B.class);

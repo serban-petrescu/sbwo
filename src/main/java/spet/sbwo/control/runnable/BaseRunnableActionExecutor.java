@@ -1,7 +1,6 @@
 package spet.sbwo.control.runnable;
 
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.base.IDatabaseAction;

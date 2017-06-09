@@ -1,15 +1,11 @@
 package spet.sbwo.api.service.misc;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.config.Configuration;
 import spet.sbwo.config.ConfigurationManager;
+
+import javax.ws.rs.*;
 
 @Path("/utility/file/config")
 public class ConfigurationService extends BaseService implements IPrivate {

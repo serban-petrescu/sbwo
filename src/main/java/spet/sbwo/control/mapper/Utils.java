@@ -2,7 +2,6 @@ package spet.sbwo.control.mapper;
 
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Condition;
-import org.modelmapper.ModelMapper;
 import spet.sbwo.control.channel.base.BaseChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.BaseEntity;
@@ -11,11 +10,11 @@ import java.util.function.Function;
 
 public class Utils {
 
+    public static Condition<?, ?> NOT_NULL = c -> c.getSource() != null;
+
     private Utils() {
         super();
     }
-
-    public static Condition<?, ?> NOT_NULL = c -> c.getSource() != null;
 
     public static <T> T retrieveDependent(BaseChannel channel, Function<Integer, T> provider) {
         if (channel != null && channel.getId() != null) {

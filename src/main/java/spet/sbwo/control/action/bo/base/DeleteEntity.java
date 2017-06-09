@@ -1,11 +1,11 @@
 package spet.sbwo.control.action.bo.base;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.table.User;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class DeleteEntity<T extends JournalizedBaseEntity> extends BaseUserBoAction<T, Integer, Void> {
     protected final Duration directDeleteInterval;

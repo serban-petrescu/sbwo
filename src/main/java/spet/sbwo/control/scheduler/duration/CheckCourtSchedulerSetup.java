@@ -1,10 +1,10 @@
 package spet.sbwo.control.scheduler.duration;
 
-import java.time.Duration;
-
 import spet.sbwo.config.CheckCourtEntry;
 import spet.sbwo.control.runnable.RunCheckCourtBatch;
 import spet.sbwo.control.scheduler.model.SchedulerType;
+
+import java.time.Duration;
 
 public class CheckCourtSchedulerSetup implements ISimpleScheduleSetup {
     private final RunCheckCourtBatch batch;

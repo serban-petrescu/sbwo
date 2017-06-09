@@ -1,23 +1,17 @@
 package spet.sbwo.api.service.transfer;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.api.service.util.CsvMapIteratorHolder;
 import spet.sbwo.control.importer.DataImportFacade;
 import spet.sbwo.control.importer.Target;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+import java.util.Map;
 
 @Path("/import")
 public class DataImportService extends BaseService implements IPrivate {
@@ -47,9 +41,12 @@ public class DataImportService extends BaseService implements IPrivate {
     protected Target getTargetForEntity(String entity) {
         String lower = entity.toLowerCase();
         switch (lower) {
-            case "persons": return Target.PERSON;
-            case "expertises": return Target.EXPERTISE;
-            default: return null;
+            case "persons":
+                return Target.PERSON;
+            case "expertises":
+                return Target.EXPERTISE;
+            default:
+                return null;
         }
     }
 }

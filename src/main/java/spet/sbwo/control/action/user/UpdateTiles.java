@@ -1,13 +1,13 @@
 package spet.sbwo.control.action.user;
 
-import java.util.Map;
-
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.user.UserHomeTilesChannel;
 import spet.sbwo.control.channel.user.UserHomeTilesChannel.HomeTile;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.table.UserHomeTile;
+
+import java.util.Map;
 
 public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, UserHomeTilesChannel> {
 
@@ -24,7 +24,7 @@ public class UpdateTiles extends BaseUserDatabaseAction<UserHomeTilesChannel, Us
     }
 
     protected void createNew(IDatabaseExecutor executor, User user, UserHomeTilesChannel result,
-                            Map<String, HomeTile> input) {
+                             Map<String, HomeTile> input) {
         for (Map.Entry<String, HomeTile> entry : input.entrySet()) {
             if (!result.getTiles().containsKey(entry.getKey())) {
                 result.getTiles().put(entry.getKey(), entry.getValue());

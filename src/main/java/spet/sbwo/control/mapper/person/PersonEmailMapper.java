@@ -9,6 +9,7 @@ import spet.sbwo.data.table.PersonEmailAddress;
 
 class PersonEmailMapper implements IMapper<PersonEmailAddress, PersonEmailChannel> {
     private static final ModelMapper mapper = new ModelMapper();
+
     static {
         mapper.addMappings(new PropertyMap<PersonEmailChannel, PersonEmailAddress>() {
             @Override

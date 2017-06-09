@@ -1,6 +1,12 @@
 package spet.sbwo.control.scheduler.period;
 
-import static spet.sbwo.control.util.FileNameUtils.base;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import spet.sbwo.config.DatabaseBackupEntry;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
+import spet.sbwo.data.DatabaseException;
+import spet.sbwo.data.access.IBackupCreator;
 
 import java.io.File;
 import java.time.Instant;
@@ -10,21 +16,13 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import spet.sbwo.config.DatabaseBackupEntry;
-import spet.sbwo.control.scheduler.model.ScheduleInfo;
-import spet.sbwo.control.scheduler.model.SchedulerType;
-import spet.sbwo.data.DatabaseException;
-import spet.sbwo.data.access.IBackupCreator;
+import static spet.sbwo.control.util.FileNameUtils.base;
 
 public class BackupScheduler extends BasePeriodScheduler {
-    private static final Logger LOG = LoggerFactory.getLogger(BackupScheduler.class);
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("'backup_'yyyyMMdd'_'HHmmss")
         .withZone(ZoneId.systemDefault());
     public static final String FILE_PATTERN = "backup_\\d{8}_\\d{6}";
-
+    private static final Logger LOG = LoggerFactory.getLogger(BackupScheduler.class);
     protected final File directory;
     protected final IBackupCreator backuper;
 

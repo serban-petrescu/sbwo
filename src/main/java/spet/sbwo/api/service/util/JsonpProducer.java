@@ -1,22 +1,20 @@
 package spet.sbwo.api.service.util;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
+import com.google.gson.Gson;
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.base.IPublic;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-
-import com.google.gson.Gson;
-
-import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.api.service.base.IPublic;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 
 @Provider
 @Produces("application/javascript")

@@ -1,28 +1,26 @@
 package spet.sbwo.integration.web.googlemaps;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spet.sbwo.config.GeocodingEntry;
 import spet.sbwo.data.table.Location;
 import spet.sbwo.integration.api.geocode.IGeocodingApi;
 import spet.sbwo.integration.api.geocode.model.Position;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 public class GoogleMapsGeocodingApi implements IGeocodingApi {
     private static final Logger LOG = LoggerFactory.getLogger(GoogleMapsGeocodingApi.class);
-    private final static String API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+    private static final String API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+    private static final String DEFAULT_ENCODING = "UTF-8";
 
     private final Gson gson;
     private final String apiKey;
@@ -56,15 +54,15 @@ public class GoogleMapsGeocodingApi implements IGeocodingApi {
         }
     }
 
-    protected Position callApi(String url) throws MalformedURLException, IOException {
+    private Position callApi(String url) throws IOException {
         try (InputStream stream = new URL(url).openConnection().getInputStream();
-            InputStreamReader in = new InputStreamReader(stream)) {
+             InputStreamReader in = new InputStreamReader(stream)) {
             Response response = gson.fromJson(in, Response.class);
             return responseToPosition(response);
         }
     }
 
-    protected Position responseToPosition(Response response) {
+    private Position responseToPosition(Response response) {
         if (response.getResults() != null && !response.getResults().isEmpty()) {
             Result first = response.getResults().get(0);
             if (first.getGeometry() != null && first.getGeometry().getLocation() != null) {
@@ -78,28 +76,28 @@ public class GoogleMapsGeocodingApi implements IGeocodingApi {
         return null;
     }
 
-    protected String buildUrl(String address) throws UnsupportedEncodingException {
+    private String buildUrl(String address) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder(API_URL);
         result.append("?key=");
-        result.append(URLEncoder.encode(apiKey, "UTF-8"));
+        result.append(URLEncoder.encode(apiKey, DEFAULT_ENCODING));
         result.append("&address=");
-        result.append(URLEncoder.encode(address, "UTF-8"));
+        result.append(URLEncoder.encode(address, DEFAULT_ENCODING));
         return result.toString();
     }
 
-    protected String buildUrl(Location location) throws UnsupportedEncodingException {
+    private String buildUrl(Location location) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder(API_URL);
         result.append("?key=");
-        result.append(URLEncoder.encode(apiKey, "UTF-8"));
+        result.append(URLEncoder.encode(apiKey, DEFAULT_ENCODING));
         if (location.getCountry() != null && location.getCountry().getCode() != null) {
             result.append("&components=country:");
-            result.append(URLEncoder.encode(location.getCountry().getCode(), "UTF-8"));
+            result.append(URLEncoder.encode(location.getCountry().getCode(), DEFAULT_ENCODING));
         }
         result.append("&address=");
-        result.append(URLEncoder.encode(location.getAddress(), "UTF-8"));
+        result.append(URLEncoder.encode(location.getAddress(), DEFAULT_ENCODING));
         if (location.getRegion() != null) {
-            result.append(URLEncoder.encode(", ", "UTF-8"));
-            result.append(URLEncoder.encode(location.getRegion().getName(), "UTF-8"));
+            result.append(URLEncoder.encode(", ", DEFAULT_ENCODING));
+            result.append(URLEncoder.encode(location.getRegion().getName(), DEFAULT_ENCODING));
         }
         return result.toString();
     }

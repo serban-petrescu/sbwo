@@ -3,7 +3,6 @@ package spet.sbwo.layer;
 import org.picocontainer.MutablePicoContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.integration.api.court.ICourtSystemApi;
 import spet.sbwo.integration.web.googlemaps.GoogleMapsGeocodingApi;
 import spet.sbwo.integration.web.rojustportal.RoJustPortalFacade;

@@ -1,4 +1,3 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
 import javax.xml.bind.annotation.XmlEnum;
@@ -61,10 +60,6 @@ public enum CategorieCaz {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static CategorieCaz fromValue(String v) {
         for (CategorieCaz c : CategorieCaz.values()) {
             if (c.value.equals(v)) {
@@ -72,6 +67,10 @@ public enum CategorieCaz {
             }
         }
         throw new IllegalArgumentException(v);
+    }
+
+    public String value() {
+        return value;
     }
 
 }

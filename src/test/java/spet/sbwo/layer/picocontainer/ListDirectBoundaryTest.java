@@ -13,7 +13,7 @@ public class ListDirectBoundaryTest {
     private MutablePicoContainer container;
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().build();
         container.addComponent(E1.class);
         container.addComponent(E2.class);

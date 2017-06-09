@@ -1,11 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -36,21 +31,21 @@ public class CautareDosareResponse {
     protected ArrayOfDosar cautareDosareResult;
 
     /**
-    * Gets the value of the cautareDosareResult property.
-    *
-    * @return possible object is
-    * {@link ArrayOfDosar }
-    */
+     * Gets the value of the cautareDosareResult property.
+     *
+     * @return possible object is
+     * {@link ArrayOfDosar }
+     */
     public ArrayOfDosar getCautareDosareResult() {
         return cautareDosareResult;
     }
 
     /**
-    * Sets the value of the cautareDosareResult property.
-    *
-    * @param value allowed object is
-    *              {@link ArrayOfDosar }
-    */
+     * Sets the value of the cautareDosareResult property.
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfDosar }
+     */
     public void setCautareDosareResult(ArrayOfDosar value) {
         this.cautareDosareResult = value;
     }

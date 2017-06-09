@@ -21,14 +21,12 @@ public class PersonSuite implements ISuite {
     private PersonBankAccountImporter bankAccountImporter;
     private PersonEmailImporter emailImporter;
     private PersonPhoneImporter phoneImporter;
-    private LocationImporter locationImporter;
 
     public PersonSuite(Set<String> inputs, IDatabaseExecutor executor) {
         this.executor = executor;
 
         if (inputs.contains(PERSON_FIELD_GROUP)) {
-            locationImporter = new LocationImporter(executor);
-            personImporter = new PersonImporter(locationImporter);
+            personImporter = new PersonImporter(new LocationImporter(executor));
         } else {
             throw new ControlException(ControlError.IMPORT_FILE_MISSING, PersonChannel.class);
         }

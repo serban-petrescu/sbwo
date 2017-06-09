@@ -1,12 +1,12 @@
 package spet.sbwo.control.action.misc;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import spet.sbwo.control.action.base.BaseDatabaseAction;
 import spet.sbwo.control.channel.misc.TrashChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.view.DeletedEntity;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReadAllTrash extends BaseDatabaseAction<Void, List<TrashChannel>> {
 

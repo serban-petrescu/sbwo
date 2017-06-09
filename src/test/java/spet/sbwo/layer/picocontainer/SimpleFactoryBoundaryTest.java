@@ -12,7 +12,7 @@ public class SimpleFactoryBoundaryTest {
     private MutablePicoContainer container;
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().withCaching().build();
         container.addAdapter(new AFactory());
         container.addAdapter(new BFactory());

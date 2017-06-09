@@ -22,7 +22,7 @@ public class PersonMapperTest {
     private PersonChannel channel;
 
     @Before
-    public void setupMapper() {
+    public void setUpMapper() {
         mapper = new PersonMapper(new MockMapper<>(PersonBankAccount.class, PersonBankAccountChannel.class),
             new MockMapper<>(PersonEmailAddress.class, PersonEmailChannel.class),
             new MockMapper<>(PersonTelephone.class, PersonTelephoneChannel.class),
@@ -31,7 +31,7 @@ public class PersonMapperTest {
     }
 
     @Before
-    public void setupEntity() {
+    public void setUpEntity() {
         entity = mockEntity(Person.class, 1);
         entity.setLocation(mockEntity(Location.class, 1));
         entity.setBankAccounts(mockEntities(PersonBankAccount.class, 1, 2, 3));
@@ -40,7 +40,7 @@ public class PersonMapperTest {
     }
 
     @Before
-    public void setupChannel() {
+    public void setUpChannel() {
         channel = mockChannel(PersonChannel.class, 1);
         channel.setLocation(mockChannel(LocationChannel.class, 1));
         channel.setBankAccounts(mockChannels(PersonBankAccountChannel.class, 2, 3, 4));

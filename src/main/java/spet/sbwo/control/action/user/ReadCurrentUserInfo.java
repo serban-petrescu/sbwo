@@ -1,13 +1,13 @@
 package spet.sbwo.control.action.user;
 
-import java.util.stream.Collectors;
-
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;
 import spet.sbwo.control.channel.user.UserChannel;
 import spet.sbwo.control.channel.user.UserInfoChannel;
 import spet.sbwo.data.access.IDatabaseExecutor;
 import spet.sbwo.data.table.User;
 import spet.sbwo.data.view.UserPlain;
+
+import java.util.stream.Collectors;
 
 public class ReadCurrentUserInfo extends BaseUserDatabaseAction<Void, UserInfoChannel> {
 

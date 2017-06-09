@@ -1,9 +1,9 @@
 package spet.sbwo.api.odata;
 
-import java.io.InputStream;
-
 import org.apache.olingo.odata2.jpa.processor.api.model.JPAEdmExtension;
 import org.apache.olingo.odata2.jpa.processor.api.model.JPAEdmSchemaView;
+
+import java.io.InputStream;
 
 class ODataExtension implements JPAEdmExtension {
     @Override

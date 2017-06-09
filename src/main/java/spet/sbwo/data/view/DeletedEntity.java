@@ -1,17 +1,10 @@
 package spet.sbwo.data.view;
 
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
-
 import spet.sbwo.data.domain.EntityType;
 import spet.sbwo.data.embed.DeletedEntityKey;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @IdClass(DeletedEntityKey.class)

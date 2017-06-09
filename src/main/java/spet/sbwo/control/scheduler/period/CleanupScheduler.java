@@ -1,6 +1,11 @@
 package spet.sbwo.control.scheduler.period;
 
-import static spet.sbwo.control.util.FileNameUtils.base;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import spet.sbwo.config.CleanupEntry;
+import spet.sbwo.config.DatabaseBackupEntry;
+import spet.sbwo.control.scheduler.model.ScheduleInfo;
+import spet.sbwo.control.scheduler.model.SchedulerType;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,13 +21,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import spet.sbwo.config.CleanupEntry;
-import spet.sbwo.config.DatabaseBackupEntry;
-import spet.sbwo.control.scheduler.model.ScheduleInfo;
-import spet.sbwo.control.scheduler.model.SchedulerType;
+import static spet.sbwo.control.util.FileNameUtils.base;
 
 public class CleanupScheduler extends BasePeriodScheduler {
     private static final Logger LOG = LoggerFactory.getLogger(CleanupScheduler.class);

@@ -1,7 +1,6 @@
 package spet.sbwo.layer;
 
 import org.picocontainer.MutablePicoContainer;
-
 import spet.sbwo.control.scheduler.duration.CheckCourtSchedulerSetup;
 import spet.sbwo.control.scheduler.duration.GeocodeSchedulerSetup;
 import spet.sbwo.control.scheduler.duration.SessionCacheSchedulerSetup;

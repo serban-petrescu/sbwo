@@ -1,12 +1,8 @@
 package spet.sbwo.data.table;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import spet.sbwo.data.domain.IdentityCardType;
+
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue(value = "0")

@@ -1,22 +1,13 @@
 package spet.sbwo.control.controller.bo;
 
-import java.time.Duration;
-
 import spet.sbwo.config.ControlEntry;
-import spet.sbwo.control.action.bo.base.CreateEntity;
-import spet.sbwo.control.action.bo.base.DeleteEntity;
-import spet.sbwo.control.action.bo.base.ReadEntity;
-import spet.sbwo.control.action.bo.base.RestoreEntity;
-import spet.sbwo.control.action.bo.base.UpdateEntity;
-import spet.sbwo.control.action.bo.person.CreatePerson;
-import spet.sbwo.control.action.bo.person.DeletePerson;
-import spet.sbwo.control.action.bo.person.ExportPerson;
-import spet.sbwo.control.action.bo.person.ReadPerson;
-import spet.sbwo.control.action.bo.person.RestorePerson;
-import spet.sbwo.control.action.bo.person.UpdatePerson;
+import spet.sbwo.control.action.bo.base.*;
+import spet.sbwo.control.action.bo.person.*;
 import spet.sbwo.control.channel.person.PersonChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Person;
+
+import java.time.Duration;
 
 public class PersonController extends BaseBoController<Person, PersonChannel> {
 

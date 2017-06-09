@@ -1,7 +1,5 @@
 package spet.sbwo.api.odata;
 
-import javax.persistence.EntityManagerFactory;
-
 import org.apache.olingo.odata2.api.ODataCallback;
 import org.apache.olingo.odata2.api.ODataService;
 import org.apache.olingo.odata2.api.edm.provider.EdmProvider;
@@ -10,9 +8,19 @@ import org.apache.olingo.odata2.jpa.processor.api.ODataJPAContext;
 import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
 import org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeException;
 
+import javax.persistence.EntityManagerFactory;
+
 public class ODataFactory extends ODataJPAServiceFactory {
     private static EntityManagerFactory emf;
     private static String puName;
+
+    public static void setEmf(EntityManagerFactory emf) {
+        ODataFactory.emf = emf;
+    }
+
+    public static void setPuName(String puName) {
+        ODataFactory.puName = puName;
+    }
 
     @Override
     public ODataService createODataSingleProcessorService(EdmProvider provider, ODataSingleProcessor processor) {
@@ -37,14 +45,6 @@ public class ODataFactory extends ODataJPAServiceFactory {
         oDataJPAContext.setJPAEdmExtension(new ODataExtension());
         oDataJPAContext.setDefaultNaming(true);
         return oDataJPAContext;
-    }
-
-    public static void setEmf(EntityManagerFactory emf) {
-        ODataFactory.emf = emf;
-    }
-
-    public static void setPuName(String puName) {
-        ODataFactory.puName = puName;
     }
 
 }

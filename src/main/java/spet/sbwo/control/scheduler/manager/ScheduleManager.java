@@ -1,29 +1,22 @@
 package spet.sbwo.control.scheduler.manager;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.config.SchedulerEntry;
 import spet.sbwo.control.scheduler.IScheduler;
 import spet.sbwo.control.scheduler.duration.ISimpleScheduleSetup;
 import spet.sbwo.control.scheduler.duration.SimpleDurationScheduler;
 import spet.sbwo.control.scheduler.model.ScheduleChannel;
 import spet.sbwo.control.scheduler.model.ScheduleInfo;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ScheduleManager implements IScheduleManager {
     private static final Logger LOG = LoggerFactory.getLogger(ScheduleManager.class);

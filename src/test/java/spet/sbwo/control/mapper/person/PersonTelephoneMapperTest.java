@@ -32,7 +32,7 @@ public class PersonTelephoneMapperTest {
     }
 
     @Before
-    public void setupEntity() {
+    public void setUpEntity() {
         entity = createEntity();
         fullChannel = createChannel();
         nullChannel = new PersonTelephoneChannel();

@@ -1,11 +1,10 @@
 package spet.sbwo.data.table;
 
-import java.util.List;
-
-import javax.persistence.*;
-
 import spet.sbwo.data.base.JournalizedBaseEntity;
 import spet.sbwo.data.domain.PersonType;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "T_PERSON")

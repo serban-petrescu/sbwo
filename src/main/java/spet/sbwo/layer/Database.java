@@ -1,10 +1,9 @@
 package spet.sbwo.layer;
 
-import javax.persistence.Persistence;
-
 import org.picocontainer.MutablePicoContainer;
-
 import spet.sbwo.data.access.DatabaseFacade;
+
+import javax.persistence.Persistence;
 
 public class Database {
     static final String SBWO_PU = "sbwo";

@@ -14,7 +14,7 @@ public class SimpleSingletonBoundaryTest {
     private final B b = new B();
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().withCaching().build();
         container.addComponent(IA.class, a);
         container.addComponent(IB.class, b);

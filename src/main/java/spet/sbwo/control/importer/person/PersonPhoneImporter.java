@@ -17,6 +17,10 @@ class PersonPhoneImporter extends BaseListImporter<PersonTelephone> {
         this.personProvider = personProvider;
     }
 
+    public static List<String> fields() {
+        return Arrays.asList("person_number", "telephone", "name", "is_primary");
+    }
+
     @Override
     protected PersonTelephone build(Map<String, String> entry) {
         PersonTelephone result = new PersonTelephone();
@@ -25,10 +29,6 @@ class PersonPhoneImporter extends BaseListImporter<PersonTelephone> {
         result.setPrimary(Utils.toBoolean(entry.get("is_primary")));
         personProvider.getEntity(entry.get("person_number")).getTelephones().add(result);
         return result;
-    }
-
-    public static List<String> fields() {
-        return Arrays.asList("person_number", "telephone", "name", "is_primary");
     }
 
 }

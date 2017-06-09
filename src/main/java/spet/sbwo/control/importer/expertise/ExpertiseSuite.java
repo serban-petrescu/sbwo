@@ -17,14 +17,12 @@ public class ExpertiseSuite implements ISuite {
     private final IDatabaseExecutor executor;
     private ExpertiseFineImporter fineImporter;
     private ExpertiseImporter expertiseImporter;
-    private LocationImporter locationImporter;
 
     public ExpertiseSuite(Set<String> inputs, IDatabaseExecutor executor) {
         this.executor = executor;
 
         if (inputs.contains(EXPERTISE_FIELD_GROUP)) {
-            locationImporter = new LocationImporter(executor);
-            expertiseImporter = new ExpertiseImporter(executor, locationImporter);
+            expertiseImporter = new ExpertiseImporter(executor, new LocationImporter(executor));
         } else {
             throw new ControlException(ControlError.IMPORT_FILE_MISSING, ExpertiseChannel.class);
         }

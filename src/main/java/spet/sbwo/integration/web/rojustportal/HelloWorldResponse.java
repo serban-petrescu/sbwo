@@ -1,11 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -36,21 +31,21 @@ public class HelloWorldResponse {
     protected String helloWorldResult;
 
     /**
-    * Gets the value of the helloWorldResult property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the helloWorldResult property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getHelloWorldResult() {
         return helloWorldResult;
     }
 
     /**
-    * Sets the value of the helloWorldResult property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the helloWorldResult property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setHelloWorldResult(String value) {
         this.helloWorldResult = value;
     }

@@ -1,12 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -68,161 +62,161 @@ public class CautareDosare2 {
     protected XMLGregorianCalendar dataUltimaModificareStop;
 
     /**
-    * Gets the value of the numarDosar property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the numarDosar property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNumarDosar() {
         return numarDosar;
     }
 
     /**
-    * Sets the value of the numarDosar property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the numarDosar property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNumarDosar(String value) {
         this.numarDosar = value;
     }
 
     /**
-    * Gets the value of the obiectDosar property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the obiectDosar property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getObiectDosar() {
         return obiectDosar;
     }
 
     /**
-    * Sets the value of the obiectDosar property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the obiectDosar property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setObiectDosar(String value) {
         this.obiectDosar = value;
     }
 
     /**
-    * Gets the value of the numeParte property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the numeParte property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNumeParte() {
         return numeParte;
     }
 
     /**
-    * Sets the value of the numeParte property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the numeParte property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNumeParte(String value) {
         this.numeParte = value;
     }
 
     /**
-    * Gets the value of the institutie property.
-    *
-    * @return possible object is
-    * {@link Institutie }
-    */
+     * Gets the value of the institutie property.
+     *
+     * @return possible object is
+     * {@link Institutie }
+     */
     public Institutie getInstitutie() {
         return institutie;
     }
 
     /**
-    * Sets the value of the institutie property.
-    *
-    * @param value allowed object is
-    *              {@link Institutie }
-    */
+     * Sets the value of the institutie property.
+     *
+     * @param value allowed object is
+     *              {@link Institutie }
+     */
     public void setInstitutie(Institutie value) {
         this.institutie = value;
     }
 
     /**
-    * Gets the value of the dataStart property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataStart property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataStart() {
         return dataStart;
     }
 
     /**
-    * Sets the value of the dataStart property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataStart property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataStart(XMLGregorianCalendar value) {
         this.dataStart = value;
     }
 
     /**
-    * Gets the value of the dataStop property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataStop property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataStop() {
         return dataStop;
     }
 
     /**
-    * Sets the value of the dataStop property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataStop property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataStop(XMLGregorianCalendar value) {
         this.dataStop = value;
     }
 
     /**
-    * Gets the value of the dataUltimaModificareStart property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataUltimaModificareStart property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataUltimaModificareStart() {
         return dataUltimaModificareStart;
     }
 
     /**
-    * Sets the value of the dataUltimaModificareStart property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataUltimaModificareStart property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataUltimaModificareStart(XMLGregorianCalendar value) {
         this.dataUltimaModificareStart = value;
     }
 
     /**
-    * Gets the value of the dataUltimaModificareStop property.
-    *
-    * @return possible object is
-    * {@link XMLGregorianCalendar }
-    */
+     * Gets the value of the dataUltimaModificareStop property.
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
+     */
     public XMLGregorianCalendar getDataUltimaModificareStop() {
         return dataUltimaModificareStop;
     }
 
     /**
-    * Sets the value of the dataUltimaModificareStop property.
-    *
-    * @param value allowed object is
-    *              {@link XMLGregorianCalendar }
-    */
+     * Sets the value of the dataUltimaModificareStop property.
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
+     */
     public void setDataUltimaModificareStop(XMLGregorianCalendar value) {
         this.dataUltimaModificareStop = value;
     }

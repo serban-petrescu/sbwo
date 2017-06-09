@@ -4,17 +4,18 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import spet.sbwo.control.channel.person.PersonChannel;
 import spet.sbwo.control.mapper.IMapper;
+import spet.sbwo.control.mapper.Utils.FromEnumConverter;
+import spet.sbwo.control.mapper.Utils.ToEnumConverter;
 import spet.sbwo.data.domain.IdentityCardType;
 import spet.sbwo.data.domain.PersonType;
 import spet.sbwo.data.table.Person;
 import spet.sbwo.data.table.PersonJuridical;
 import spet.sbwo.data.table.PersonNatural;
 
-import spet.sbwo.control.mapper.Utils.ToEnumConverter;
-import spet.sbwo.control.mapper.Utils.FromEnumConverter;
-
 class PersonPlainMapper implements IMapper<Person, PersonChannel> {
     private static final ModelMapper naturalMapper = new ModelMapper();
+    private static final ModelMapper juridicalMapper = new ModelMapper();
+
     static {
         naturalMapper.addMappings(new PersonNaturalPropertyMap());
         naturalMapper.addMappings(new PropertyMap<PersonNatural, PersonChannel>() {
@@ -23,17 +24,22 @@ class PersonPlainMapper implements IMapper<Person, PersonChannel> {
                 skip(destination.getName());
             }
         });
-        naturalMapper.addConverter(new ToEnumConverter<PersonType>(PersonType.class){});
-        naturalMapper.addConverter(new FromEnumConverter<PersonType>(){});
-        naturalMapper.addConverter(new ToEnumConverter<IdentityCardType>(IdentityCardType.class){});
-        naturalMapper.addConverter(new FromEnumConverter<IdentityCardType>(){});
+        naturalMapper.addConverter(new ToEnumConverter<PersonType>(PersonType.class) {
+        });
+        naturalMapper.addConverter(new FromEnumConverter<PersonType>() {
+        });
+        naturalMapper.addConverter(new ToEnumConverter<IdentityCardType>(IdentityCardType.class) {
+        });
+        naturalMapper.addConverter(new FromEnumConverter<IdentityCardType>() {
+        });
     }
 
-    private static final ModelMapper juridicalMapper = new ModelMapper();
     static {
         juridicalMapper.addMappings(new PersonJuridicalPropertyMap());
-        juridicalMapper.addConverter(new ToEnumConverter<PersonType>(PersonType.class){});
-        juridicalMapper.addConverter(new FromEnumConverter<PersonType>(){});
+        juridicalMapper.addConverter(new ToEnumConverter<PersonType>(PersonType.class) {
+        });
+        juridicalMapper.addConverter(new FromEnumConverter<PersonType>() {
+        });
     }
 
     PersonPlainMapper() {

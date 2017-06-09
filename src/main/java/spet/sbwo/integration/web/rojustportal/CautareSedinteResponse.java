@@ -1,11 +1,6 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
@@ -36,21 +31,21 @@ public class CautareSedinteResponse {
     protected ArrayOfSedinta cautareSedinteResult;
 
     /**
-    * Gets the value of the cautareSedinteResult property.
-    *
-    * @return possible object is
-    * {@link ArrayOfSedinta }
-    */
+     * Gets the value of the cautareSedinteResult property.
+     *
+     * @return possible object is
+     * {@link ArrayOfSedinta }
+     */
     public ArrayOfSedinta getCautareSedinteResult() {
         return cautareSedinteResult;
     }
 
     /**
-    * Sets the value of the cautareSedinteResult property.
-    *
-    * @param value allowed object is
-    *              {@link ArrayOfSedinta }
-    */
+     * Sets the value of the cautareSedinteResult property.
+     *
+     * @param value allowed object is
+     *              {@link ArrayOfSedinta }
+     */
     public void setCautareSedinteResult(ArrayOfSedinta value) {
         this.cautareSedinteResult = value;
     }

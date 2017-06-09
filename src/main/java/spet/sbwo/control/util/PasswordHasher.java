@@ -1,19 +1,17 @@
 package spet.sbwo.control.util;
 
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import spet.sbwo.control.ControlError;
+import spet.sbwo.control.ControlException;
+import spet.sbwo.control.channel.user.UserChannel;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import spet.sbwo.control.ControlError;
-import spet.sbwo.control.ControlException;
-import spet.sbwo.control.channel.user.UserChannel;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Base64;
 
 public class PasswordHasher {
     private static final Logger LOG = LoggerFactory.getLogger(PasswordHasher.class);

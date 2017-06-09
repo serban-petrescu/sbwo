@@ -1,11 +1,10 @@
 package spet.sbwo.api.service.util;
 
+import javax.ws.rs.core.StreamingOutput;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Scanner;
-
-import javax.ws.rs.core.StreamingOutput;
 
 public class JsonFragmentStream implements StreamingOutput {
     private File file;

@@ -15,7 +15,7 @@ public class GenericsInstancesBoundaryTest {
     private final HB hb = new HB();
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().build();
         container.addComponent(ha);
         container.addComponent(hb);

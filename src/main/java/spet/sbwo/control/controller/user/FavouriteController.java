@@ -1,7 +1,5 @@
 package spet.sbwo.control.controller.user;
 
-import java.util.List;
-
 import spet.sbwo.control.action.base.BaseActionExecutor;
 import spet.sbwo.control.action.user.AddFavourite;
 import spet.sbwo.control.action.user.DeleteFavourite;
@@ -9,6 +7,8 @@ import spet.sbwo.control.action.user.ReadFavourites;
 import spet.sbwo.control.action.user.UpdateFavourites;
 import spet.sbwo.control.channel.user.UserFavouriteChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
+
+import java.util.List;
 
 public class FavouriteController extends BaseActionExecutor {
 

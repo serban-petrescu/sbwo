@@ -1,12 +1,8 @@
 package spet.sbwo.api.service.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
+import spet.sbwo.api.service.base.IPrivate;
+import spet.sbwo.api.service.base.IPublic;
+import spet.sbwo.control.util.serialization.ISerializationHelper;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -15,10 +11,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-
-import spet.sbwo.api.service.base.IPrivate;
-import spet.sbwo.api.service.base.IPublic;
-import spet.sbwo.control.util.serialization.ISerializationHelper;
+import java.io.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 
 @Provider
 @Produces("application/json")
@@ -39,7 +34,7 @@ public class JsonProducer implements MessageBodyWriter<Object>, MessageBodyReade
 
     @Override
     public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType,
-                            MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException {
+                           MultivaluedMap<String, String> httpHeaders, InputStream entityStream) throws IOException {
         return helper.deserialize(genericType, new InputStreamReader(entityStream, UTF_8));
     }
 

@@ -1,10 +1,9 @@
 package spet.sbwo.data.table;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 
 @Entity
 @DiscriminatorValue(value = "1")

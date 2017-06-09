@@ -1,21 +1,13 @@
 package spet.sbwo.control.controller.bo;
 
-import java.time.Duration;
-
 import spet.sbwo.config.ControlEntry;
-import spet.sbwo.control.action.bo.base.CreateEntity;
-import spet.sbwo.control.action.bo.base.DeleteEntity;
-import spet.sbwo.control.action.bo.base.ReadEntity;
-import spet.sbwo.control.action.bo.base.RestoreEntity;
-import spet.sbwo.control.action.bo.base.UpdateEntity;
-import spet.sbwo.control.action.bo.expertise.CreateExpertise;
-import spet.sbwo.control.action.bo.expertise.DeleteExpertise;
-import spet.sbwo.control.action.bo.expertise.ReadExpertise;
-import spet.sbwo.control.action.bo.expertise.RestoreExpertise;
-import spet.sbwo.control.action.bo.expertise.UpdateExpertise;
+import spet.sbwo.control.action.bo.base.*;
+import spet.sbwo.control.action.bo.expertise.*;
 import spet.sbwo.control.channel.expertise.ExpertiseChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.table.Expertise;
+
+import java.time.Duration;
 
 public class ExpertiseController extends BaseBoController<Expertise, ExpertiseChannel> {
 

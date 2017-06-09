@@ -1,18 +1,13 @@
 package spet.sbwo.api.service.misc;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-
 import spet.sbwo.api.service.base.BaseService;
 import spet.sbwo.api.service.base.IPrivate;
 import spet.sbwo.control.util.FolderScanner;
 import spet.sbwo.control.util.FolderScanner.FileInfo;
 import spet.sbwo.control.util.FolderScanner.QueryResult;
 import spet.sbwo.control.util.FolderScanner.RootResult;
+
+import javax.ws.rs.*;
 
 @Path("/utility/file/explore")
 public class FileExploreService extends BaseService implements IPrivate {
@@ -21,7 +16,7 @@ public class FileExploreService extends BaseService implements IPrivate {
     @Path("/files")
     @Produces("application/json")
     public QueryResult<FileInfo> exploreFiles(@QueryParam("base") String base,
-                                            @QueryParam("extension") @DefaultValue("") String extension) {
+                                              @QueryParam("extension") @DefaultValue("") String extension) {
         try {
             return new FolderScanner(base).files(extension);
         } catch (Exception e) {

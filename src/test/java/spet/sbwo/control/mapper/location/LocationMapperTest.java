@@ -28,16 +28,16 @@ public class LocationMapperTest {
     private LocationChannel nullChildChannel;
 
     @Before
-    public void setupEntities() {
-        setupCountries();
-        setupRegions();
-        setupUnits();
-        setupMainEntity();
+    public void setUpEntities() {
+        setUpCountries();
+        setUpRegions();
+        setUpUnits();
+        setUpMainEntity();
     }
 
     @Before
-    public void setupFullChannel() {
-        fullChannel = setupFullMainChannel();
+    public void setUpFullChannel() {
+        fullChannel = setUpFullMainChannel();
 
         LocationCountryChannel country = new LocationCountryChannel();
         country.setId(2);
@@ -59,13 +59,13 @@ public class LocationMapperTest {
     }
 
     @Before
-    public void setupNullChannel() {
+    public void setUpNullChannel() {
         nullChannel = new LocationChannel();
     }
 
     @Before
-    public void setupNullChildChannel() {
-        nullChildChannel = setupFullMainChannel();
+    public void setUpNullChildChannel() {
+        nullChildChannel = setUpFullMainChannel();
         nullChildChannel.setCountry(new LocationCountryChannel());
         nullChildChannel.setRegion(new LocationRegionChannel());
         nullChildChannel.setAdministrativeUnit(new LocationAdmUnitChannel());
@@ -173,7 +173,7 @@ public class LocationMapperTest {
         return new LocationMapper(i -> countries.get(i), i -> regions.get(i), i -> units.get(i));
     }
 
-    private LocationChannel setupFullMainChannel() {
+    private LocationChannel setUpFullMainChannel() {
         LocationChannel channel = new LocationChannel();
         channel.setAddress("Other street no. 9");
         channel.setGeocoded(false);
@@ -183,7 +183,7 @@ public class LocationMapperTest {
         return channel;
     }
 
-    private void setupMainEntity() {
+    private void setUpMainEntity() {
         entity = new Location();
         entity.setAdministrativeUnit(units.get(1));
         entity.setCountry(countries.get(1));
@@ -195,21 +195,21 @@ public class LocationMapperTest {
         entity.setId(1);
     }
 
-    private void setupCountries() {
+    private void setUpCountries() {
         countries = new HashMap<>();
         countries.put(1, country(1, "A", "A Country"));
         countries.put(2, country(2, "B", "B Country"));
         countries.put(3, country(3, "C", "C Country"));
     }
 
-    private void setupRegions() {
+    private void setUpRegions() {
         regions = new HashMap<>();
         regions.put(1, region(1, "A", "A Region"));
         regions.put(2, region(2, "B", "B Region"));
         regions.put(3, region(3, "C", "C Region"));
     }
 
-    private void setupUnits() {
+    private void setUpUnits() {
         units = new HashMap<>();
         units.put(1, admUnit(1, "A", "A Unit"));
         units.put(2, admUnit(2, "B", "B Unit"));

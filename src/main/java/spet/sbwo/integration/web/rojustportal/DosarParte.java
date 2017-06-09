@@ -1,4 +1,3 @@
-
 package spet.sbwo.integration.web.rojustportal;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,41 +34,41 @@ public class DosarParte {
     protected String calitateParte;
 
     /**
-    * Gets the value of the nume property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the nume property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getNume() {
         return nume;
     }
 
     /**
-    * Sets the value of the nume property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the nume property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setNume(String value) {
         this.nume = value;
     }
 
     /**
-    * Gets the value of the calitateParte property.
-    *
-    * @return possible object is
-    * {@link String }
-    */
+     * Gets the value of the calitateParte property.
+     *
+     * @return possible object is
+     * {@link String }
+     */
     public String getCalitateParte() {
         return calitateParte;
     }
 
     /**
-    * Sets the value of the calitateParte property.
-    *
-    * @param value allowed object is
-    *              {@link String }
-    */
+     * Sets the value of the calitateParte property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
     public void setCalitateParte(String value) {
         this.calitateParte = value;
     }

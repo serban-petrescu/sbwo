@@ -16,7 +16,7 @@ public class ListInstancesBoundaryTest {
     private final E3 e3 = new E3();
 
     @Before
-    public void setup() {
+    public void setUp() {
         container = new PicoBuilder().build();
         container.addComponent(e1);
         container.addComponent(e2);

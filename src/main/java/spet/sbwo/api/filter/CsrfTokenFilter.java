@@ -1,15 +1,12 @@
 package spet.sbwo.api.filter;
 
-import static spet.sbwo.api.service.base.BaseService.X_CSRF_TOKEN_HEADER;
-import static spet.sbwo.api.service.base.BaseService.X_CSRF_TOKEN_HEADER_FETCH;
-import static spet.sbwo.api.service.base.BaseService.getOrCreateCsrfToken;
-
-import java.io.IOException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import static spet.sbwo.api.service.base.BaseService.*;
 
 public class CsrfTokenFilter extends BaseFilter {
 

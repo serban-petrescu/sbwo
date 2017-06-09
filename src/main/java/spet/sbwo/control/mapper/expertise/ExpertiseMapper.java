@@ -29,7 +29,7 @@ public class ExpertiseMapper implements IMapper<Expertise, ExpertiseChannel> {
     private final ExpertiseFineMapper fineMapper;
 
     ExpertiseMapper(Function<Integer, User> userProvider,
-                           Function<Integer, Court> courtProvider) {
+                    Function<Integer, Court> courtProvider) {
         this.userProvider = userProvider;
         this.courtProvider = courtProvider;
         this.fineMapper = new ExpertiseFineMapper();

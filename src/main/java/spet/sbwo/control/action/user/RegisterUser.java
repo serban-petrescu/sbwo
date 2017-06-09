@@ -1,7 +1,6 @@
 package spet.sbwo.control.action.user;
 
 import org.slf4j.LoggerFactory;
-
 import spet.sbwo.control.ControlError;
 import spet.sbwo.control.ControlException;
 import spet.sbwo.control.action.base.BaseUserDatabaseAction;

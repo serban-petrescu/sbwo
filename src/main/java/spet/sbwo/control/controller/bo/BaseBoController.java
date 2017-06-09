@@ -1,17 +1,13 @@
 package spet.sbwo.control.controller.bo;
 
-import java.time.Duration;
-
 import spet.sbwo.config.ControlEntry;
 import spet.sbwo.control.action.base.BaseActionExecutor;
-import spet.sbwo.control.action.bo.base.CreateEntity;
-import spet.sbwo.control.action.bo.base.DeleteEntity;
-import spet.sbwo.control.action.bo.base.ReadEntity;
-import spet.sbwo.control.action.bo.base.RestoreEntity;
-import spet.sbwo.control.action.bo.base.UpdateEntity;
+import spet.sbwo.control.action.bo.base.*;
 import spet.sbwo.control.channel.base.JournalChannel;
 import spet.sbwo.data.access.IDatabaseExecutorCreator;
 import spet.sbwo.data.base.JournalizedBaseEntity;
+
+import java.time.Duration;
 
 abstract class BaseBoController<E extends JournalizedBaseEntity, C extends JournalChannel> extends BaseActionExecutor
     implements IBoController<C> {

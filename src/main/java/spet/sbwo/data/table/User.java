@@ -1,10 +1,9 @@
 package spet.sbwo.data.table;
 
-import java.util.List;
+import spet.sbwo.data.base.BaseEntity;
 
 import javax.persistence.*;
-
-import spet.sbwo.data.base.BaseEntity;
+import java.util.List;
 
 @Entity
 @Table(name = "T_USER")

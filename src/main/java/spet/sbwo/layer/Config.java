@@ -3,11 +3,10 @@ package spet.sbwo.layer;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.parameters.ComponentParameter;
 import org.picocontainer.parameters.ConstantParameter;
-
 import spet.sbwo.config.Configuration;
 import spet.sbwo.config.ConfigurationManager;
-import spet.sbwo.control.util.serialization.gson.GsonSerializationHelper;
 import spet.sbwo.control.util.serialization.ISerializationHelper;
+import spet.sbwo.control.util.serialization.gson.GsonSerializationHelper;
 
 public class Config {
 
