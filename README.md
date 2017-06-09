@@ -1,3 +1,3 @@
-# [WIP] Small Business Work Organizer [![Build Status](https://travis-ci.org/serban-petrescu/sbwo.svg?branch=master)](https://travis-ci.org/serban-petrescu/sbwo) [![Release Version](https://img.shields.io/github/release/serban-petrescu/sbwo.svg)](https://github.com/serban-petrescu/sbwo/releases)
+# [WIP] Small Business Work Organizer [![Build Status](https://travis-ci.org/serban-petrescu/sbwo.svg?branch=master)](https://travis-ci.org/serban-petrescu/sbwo) [![Release Version](https://img.shields.io/github/release/serban-petrescu/sbwo.svg)](https://github.com/serban-petrescu/sbwo/releases) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9250aa232f9b4b9fb5b6c1b569e6cb7c)](https://www.codacy.com/app/serban-petrescu/sbwo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=serban-petrescu/sbwo&amp;utm_campaign=Badge_Grade)
 
 This project aims to be a lightweight, self-contained application for managing the data of a small business. 
