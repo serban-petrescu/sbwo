@@ -22,3 +22,8 @@
 /sbwo.zip
 *.iml
 /.idea
+
+**.js
+**.js.map
+!**.es6.js
+

@@ -1,1 +1,0 @@
-{"version":3,"sources":["user.es6.js"],"names":["oUserData"],"mappings":";;;;;;;oBACeA,S","file":"user.js","sourcesContent":["/* global oUserData */\r\nexport default oUserData;\r\n"]}

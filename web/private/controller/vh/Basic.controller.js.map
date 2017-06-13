@@ -1,1 +1,0 @@
-{"version":3,"sources":["Basic.controller.es6.js"],"names":["extend"],"mappings":";;;;;;;;;;;;;;;;oBAEe,eAAKA,MAAL,CAAY,2CAAZ,EAAyD,EAAzD,C","file":"Basic.controller.js","sourcesContent":["import Base from \"./Base\";\r\n\r\nexport default Base.extend(\"spet.sbwo.web.private.controller.vh.Basic\", {});\r\n"]}
