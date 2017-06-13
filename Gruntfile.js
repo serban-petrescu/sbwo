@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 		sTarget = grunt.option("target") || "",
 		sJar = grunt.option("jar");
 
-	var ES8_FILES_SRC = ['web/**/*.es6.js', "!web/lib/**"];
+	var ES8_FILES_SRC = ["web/**/*.es6.js", "!web/lib/**"];
 	var UI5_SAP_LIBS = ["sap.ui.core", "sap.ui.layout", "sap.ui.unified", "sap.m", "themelib_sap_belize", "themelib_sap_bluecrystal"];
 	
 	function renameWithoutEs6(sSrc) {
@@ -47,9 +47,9 @@ module.exports = function(grunt) {
             },
 			babel: {
 				files: ES8_FILES_SRC,
-				tasks: ['babel:single'],
+				tasks: ["babel:single"],
 				options: {
-				  event: ['added', 'changed'],
+				  event: ["added", "changed"],
 				},
 			}
 		},
@@ -74,22 +74,18 @@ module.exports = function(grunt) {
 			}
 		},
 		"openui5_preload": {
-			json: {
-				options: {
-					resources: {
-						cwd: "web/private/",
-						prefix: "spet/sbwo/web"
-					},
-					dest: "dist/web/private",
-					compatVersion: "1.38"
-				},
-				components: "spet/sbwo/web"
-			},
 			js: {
 				options: {
 					resources: {
 						cwd: "web/private/",
-						prefix: "spet/sbwo/web"
+						prefix: "spet/sbwo/web",
+						src: [
+						    "**/*.js",
+						    "**/*.fragment.xml",
+						    "**/*.view.xml",
+						    "**/*.properties",
+							"!**/*.es6.js"
+						]
 					},
 					dest: "dist/web/private",
 				},
@@ -101,7 +97,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					src: ["web/public/**/*.js", "web/private/**/*.js", "web/public/*.js", "web/private/*.js"],
+					src: ["web/public/**/*.js", "web/private/**/*.js", "!**/*.es6.js"],
 					dest: "dist/"
 				}]
 			}
@@ -119,7 +115,7 @@ module.exports = function(grunt) {
 					expand: true,
 					dot: true,
 					cwd: "web",
-					src: ["public/**", "private/**"],
+					src: ["public/**", "private/**", "!**/*.es6.js"],
 					dest: "dist/web/",
 					rename: function(dest, src) {
 						if (src.endsWith(".js")) {
@@ -159,7 +155,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.event.on('watch', function(action, filepath) {
+	grunt.event.on("watch", function(action, filepath) {
 		grunt.config.merge({
 			babel: {
 				single: {
@@ -179,8 +175,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-compress");
 	grunt.loadNpmTasks("grunt-mkdir");
 	grunt.loadNpmTasks("grunt-contrib-clean");
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-babel');
+	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("grunt-babel");
 	
 	grunt.registerTask("install", ["bower-install-simple:install", "copy:install"]);
 	grunt.registerTask("default", ["clean", "install", "babel:all", "openui5_preload", "uglify", "copy:dist", "mkdir", "compress"]);
