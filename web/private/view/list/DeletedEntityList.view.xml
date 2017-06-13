@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.list.DeletedEntityList" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="spet.sbwo.web.private.controller.list.DeletedEntityList" xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
     <Page id="pagList"
         title="{i18n>pagDeletedEntitiesTitle}"
@@ -29,7 +29,7 @@
                 <Column width="3em"/>
             </columns>
             <ColumnListItem vAlign="Middle">
-                <core:Icon src="{path: 'Type', formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+                <core:Icon src="{path: 'Type', formatter: 'spet.sbwo.web.private.model.formatter.entityIcon'}"/>
                 <Text text="{Title}"/>
                 <Text
                     text="{path: 'DeletedOn', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'HH:mm dd.MM.yyyy'}}"/>

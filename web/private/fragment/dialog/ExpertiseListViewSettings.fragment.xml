@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <ViewSettingsDialog id="vsdMain" confirm="onViewSettingsConfirm">
         <sortItems>
             <ViewSettingsItem text="{i18n>lblCaseNumberText}" key="Number"/>

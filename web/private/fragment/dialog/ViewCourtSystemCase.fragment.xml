@@ -24,7 +24,7 @@
                         <Text text="{view>number}"/>
                     </f:FormElement>
                     <f:FormElement label="{i18n>lblCourtCaseDate}" visible="{= !!${view>date} }">
-                        <Text text="{path: 'view>date', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                        <Text text="{path: 'view>date', formatter: 'spet.sbwo.web.private.model.formatter.date'}"/>
                     </f:FormElement>
                     <f:FormElement label="{i18n>lblCourtCaseMatter}" visible="{= !!${view>matter} }">
                         <Text text="{view>matter}"/>
@@ -74,9 +74,9 @@
                     </Column>
                 </columns>
                 <ColumnListItem>
-                    <Text text="{path: 'view>date', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                    <Text text="{path: 'view>date', formatter: 'spet.sbwo.web.private.model.formatter.date'}"/>
                     <Text text="{view>time}"/>
-                    <Text text="{path: 'view>delivery', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                    <Text text="{path: 'view>delivery', formatter: 'spet.sbwo.web.private.model.formatter.date'}"/>
                     <Text text="{view>result}"/>
                     <Text text="{view>summary}"/>
                     <Text text="{
@@ -85,7 +85,7 @@
                             {path: 'view>document/number'},
                             {path: 'view>document/date'}
                         ],
-                        formatter: 'spet.sbwo.web.model.formatter.courtCaseDocument'
+                        formatter: 'spet.sbwo.web.private.model.formatter.courtCaseDocument'
                     }"/>
                 </ColumnListItem>
             </Table>

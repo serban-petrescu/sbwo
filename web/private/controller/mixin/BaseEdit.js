@@ -1,17 +1,20 @@
-sap.ui.define([], function() {
-    return {
-        isCollectionEmpty: function(oEvent, sCollection) {
+sap.ui.define([], function () {
+    "use strict";
+
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.default = {
+        isCollectionEmpty: function isCollectionEmpty(oEvent, sCollection) {
             var oControl = oEvent.getSource(),
                 oModel = oControl.getBindingContext("data").getModel(),
                 sBasePath = oControl.getBindingContext("data").getPath() || "",
-                sPath = sCollection ?
-                    (sBasePath.slice(-1) === "/" ? sBasePath + sCollection : sBasePath + "/" + sCollection) :
-                    (sBasePath.substring(0, sBasePath.lastIndexOf("/"))),
+                sPath = sCollection ? sBasePath.slice(-1) === "/" ? sBasePath + sCollection : sBasePath + "/" + sCollection : sBasePath.substring(0, sBasePath.lastIndexOf("/")),
                 aArray = oModel.getProperty(sPath) || [];
             return aArray.length === 0;
         },
-
-        onAddCollection: function(oEvent, sCollection, oData) {
+        onAddCollection: function onAddCollection(oEvent, sCollection, oData) {
             var oControl = oEvent.getSource(),
                 oModel = oControl.getBindingContext("data").getModel(),
                 sBasePath = oControl.getBindingContext("data").getPath() || "",
@@ -23,8 +26,7 @@ sap.ui.define([], function() {
                 this.onValueChanged();
             }
         },
-
-        onDeleteCollectionLastItem: function(oEvent, sCollection) {
+        onDeleteCollectionLastItem: function onDeleteCollectionLastItem(oEvent, sCollection) {
             var oControl = oEvent.getSource(),
                 oModel = oControl.getBindingContext("data").getModel(),
                 sBasePath = oControl.getBindingContext("data").getPath() || "",
@@ -38,8 +40,7 @@ sap.ui.define([], function() {
                 }
             }
         },
-
-        onDeleteCollection: function(oEvent) {
+        onDeleteCollection: function onDeleteCollection(oEvent) {
             var oItem = oEvent.getParameter("listItem"),
                 oModel = oItem.getBindingContext("data").getModel(),
                 sBasePath = oItem.getBindingContext("data").getPath() || "",
@@ -53,4 +54,6 @@ sap.ui.define([], function() {
             }
         }
     };
+    return exports.default;
 });
+//# sourceMappingURL=BaseEdit.js.map

@@ -14,7 +14,6 @@ import javax.ws.rs.PathParam;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Path("/import")
@@ -37,7 +36,7 @@ public class CourtImportService extends BaseService implements IPrivate {
         }
     }
 
-    protected List<CourtImportChannel> extractChannels(CSVParser parser) {
+    private List<CourtImportChannel> extractChannels(CSVParser parser) {
         List<CourtImportChannel> channels = new ArrayList<>();
         for (CSVRecord record : parser) {
             channels.add(new CourtImportChannel(record.get(0), record.get(1)));

@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.list.PersonList" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="spet.sbwo.web.private.controller.list.PersonList" xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <Page id="pagList"
         title="{i18n>pagPersonListTitle}"
@@ -17,7 +17,7 @@
                             press="onPressItem"
                             description="{
                     parts: [{path: 'Country'}, {path: 'Region'}, {path: 'Address'}],
-                    formatter: 'spet.sbwo.web.model.formatter.address'
+                    formatter: 'spet.sbwo.web.private.model.formatter.address'
                 }">
             </StandardListItem>
         </List>

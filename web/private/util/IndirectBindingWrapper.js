@@ -1,10 +1,20 @@
-sap.ui.define(["sap/ui/core/Control"], function(Control) {
+sap.ui.define(["sap/ui/core/Control"], function (_Control) {
+    "use strict";
 
-    /**
-    * Link for handling indirect bindings.
-    * @class
-    */
-    return Control.extend("spet.sbwo.web.util.IndirectBindingWrapper", {
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _Control2 = _interopRequireDefault(_Control);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Control2.default.extend("spet.sbwo.web.private.util.IndirectBindingWrapper", {
         metadata: {
             properties: {
                 "pattern": {
@@ -30,32 +40,27 @@ sap.ui.define(["sap/ui/core/Control"], function(Control) {
             defaultAggregation: "control"
         },
 
-        setControl: function(oControl) {
+        setControl: function setControl(oControl) {
             this.setAggregation("control", oControl);
             this.updateBinding();
         },
-
-        setValue: function(sValue) {
+        setValue: function setValue(sValue) {
             this.setProperty("value", sValue);
             this.updateBinding();
         },
-
-        setPattern: function(sValue) {
+        setPattern: function setPattern(sValue) {
             this.setProperty("pattern", sValue);
             this.updateBinding();
         },
-
-        setDefault: function(sValue) {
+        setDefault: function setDefault(sValue) {
             this.setProperty("default", sValue);
             this.updateBinding();
         },
-
-        setModelName: function(sValue) {
+        setModelName: function setModelName(sValue) {
             this.setProperty("modelName", sValue);
             this.updateBinding();
         },
-
-        updateBinding: function() {
+        updateBinding: function updateBinding() {
             var sPattern = this.getPattern(),
                 sValue = this.getValue(),
                 sDefault = this.getDefault(),
@@ -68,8 +73,7 @@ sap.ui.define(["sap/ui/core/Control"], function(Control) {
                         model: sModel,
                         path: sPattern.replace(/#/g, sValue + "")
                     });
-                }
-                else if (sDefault) {
+                } else if (sDefault) {
                     oControl.bindElement({
                         model: sModel,
                         path: sDefault
@@ -77,11 +81,10 @@ sap.ui.define(["sap/ui/core/Control"], function(Control) {
                 }
             }
         },
-
-        renderer: function(oRm, oControl) {
+        renderer: function renderer(oRm, oControl) {
             oRm.renderControl(oControl.getControl());
         }
-
     });
-
+    return exports.default;
 });
+//# sourceMappingURL=IndirectBindingWrapper.js.map

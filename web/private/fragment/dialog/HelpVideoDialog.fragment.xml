@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <Dialog id="dlgHelpVideo" stretch="{device>/system/phone}" horizontalScrolling="false" verticalScrolling="false"
             binding="{view>/help}" contentHeight="90%" contentWidth="90%">
         <customHeader>

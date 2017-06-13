@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
-                        xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.util">
+                        xmlns:f="sap.ui.layout.form" xmlns:spet="spet.sbwo.web.private.util">
     <ScrollContainer width="100%" height="100%" vertical="true" horizontal="false">
         <List id="lstSchedules" items="{path: 'view>/schedules', sorter: {path: 'time'}}" growing="true"
             growingScrollToLoad="true">
@@ -11,7 +11,7 @@
                             press="onReadSchedules"/>
                 </Toolbar>
             </headerToolbar>
-            <DisplayListItem label="{path: 'view>time', formatter: 'spet.sbwo.web.model.formatter.dateTime'}"
+            <DisplayListItem label="{path: 'view>time', formatter: 'spet.sbwo.web.private.model.formatter.dateTime'}"
                             value="{path: 'view>type', formatter: '.formatScheduleType'}"/>
         </List>
     </ScrollContainer>

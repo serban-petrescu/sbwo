@@ -1,48 +1,44 @@
-sap.ui.define([
-    "./Base",
-    "spet/sbwo/web/controller/facade/PersonEdit"
-], function(Base, PersonEdit) {
+sap.ui.define(["./Base", "spet/sbwo/web/private/controller/mixin/PersonEdit", "jquery.sap.global"], function (_Base, _PersonEdit, _jquerySap) {
     "use strict";
 
-    var sBaseApiPath = "/private/api/rest/person";
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
 
-    return Base.extend("spet.sbwo.web.controller.entity.Person", jQuery.extend({}, PersonEdit, {
-        onInit: function() {
-            Base.prototype.onInit.apply(this, arguments);
+    var _Base2 = _interopRequireDefault(_Base);
+
+    var _PersonEdit2 = _interopRequireDefault(_PersonEdit);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.entity.Person", _jquerySap2.default.extend({}, _PersonEdit2.default, {
+        onInit: function onInit() {
+            _Base2.default.prototype.onInit.apply(this, arguments);
             this.getRouter().getRoute("person").attachPatternMatched(this.onRouteMatched, this);
         },
-
-        getReadApiUrl: function(sId){
-            return sBaseApiPath + "/read/" + sId;
+        getBaseApiUrl: function getBaseApiUrl() {
+            return "/private/api/rest/person";
         },
-
-        getUpdateApiUrl: function(sId) {
-            return sBaseApiPath + "/update/" + sId;
-        },
-
-        getRestoreApiUrl: function(sId) {
-            return sBaseApiPath + "/restore/" + sId;
-        },
-
-        getDeleteApiUrl: function(sId) {
-            return sBaseApiPath + "/delete/" + sId;
-        },
-
-        getEntityListRoute: function() {
+        getEntityListRoute: function getEntityListRoute() {
             return "person-list";
         },
-
-        formatExportPath: function(sId) {
-            return sBaseApiPath + "/export/" + sId;
+        formatExportPath: function formatExportPath(sId) {
+            return this.getBaseApiUrl() + "/export/" + sId;
         },
-
-        onOpenLocationMapDialog: function() {
+        onOpenLocationMapDialog: function onOpenLocationMapDialog() {
             this.byId("dlgLocationMap").open();
         },
-
-        onCloseLocationMapDialog: function() {
+        onCloseLocationMapDialog: function onCloseLocationMapDialog() {
             this.byId("dlgLocationMap").close();
         }
     }));
-
+    return exports.default;
 });
+//# sourceMappingURL=Person.controller.js.map

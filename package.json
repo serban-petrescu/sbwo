@@ -13,17 +13,31 @@
   "bugs": {
     "url": "https://github.com/serban-petrescu/sbwo/issues"
   },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-es2015-modules-ui5"
+    ]
+  },
   "homepage": "https://github.com/serban-petrescu/sbwo#readme",
   "private": true,
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-ui5": "^6.0.0-alpha.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
     "bower": "^1.8.0",
     "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
     "grunt-bower-install-simple": "^1.2.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-compress": "^1.4.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^2.3.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-mkdir": "^1.0.0",
     "grunt-openui5": "^0.12.0"
   }

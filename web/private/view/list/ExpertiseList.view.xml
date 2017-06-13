@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.list.ExpertiseList" xmlns:core="sap.ui.core"
+<mvc:View controllerName="spet.sbwo.web.private.controller.list.ExpertiseList" xmlns:core="sap.ui.core"
         xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <Page id="pagList"
         title="{i18n>pagExpertiseListTitle}"
@@ -62,7 +62,7 @@
         </Table>
 
         <dependents>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ExpertiseListViewSettings" type="XML"/>
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.ExpertiseListViewSettings" type="XML"/>
         </dependents>
     </Page>
 </mvc:View>

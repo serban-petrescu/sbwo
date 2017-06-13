@@ -1,11 +1,27 @@
-sap.ui.define([
-    "spet/sbwo/web/controller/Base",
-    "sap/m/MessageBox"
-], function(Base, MessageBox) {
+sap.ui.define(["spet/sbwo/web/private/controller/Base", "sap/m/MessageBox", "jquery.sap.global"], function (_Base, _MessageBox, _jquerySap) {
     "use strict";
 
-    return Base.extend("spet.sbwo.web.controller.misc.Customizing", {
-        onInit: function() {
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _Base2 = _interopRequireDefault(_Base);
+
+    var _MessageBox2 = _interopRequireDefault(_MessageBox);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.misc.Customizing", {
+        onInit: function onInit() {
+            var _this = this;
+
             var oBundle = this.getResourceBundle(),
                 sClass = this.getOwnerComponent().getContentDensityClass();
 
@@ -37,57 +53,52 @@ sap.ui.define([
                 }
             });
 
-            this.getOwnerComponent().getModel().securityTokenAvailable().then(function(sToken) {
-                this.getModel("view").setProperty("/securityToken", sToken);
-            }.bind(this));
+            this.getOwnerComponent().getModel().securityTokenAvailable().then(function (sToken) {
+                return _this.getModel("view").setProperty("/securityToken", sToken);
+            });
 
-            this.byId("pagCustomizing").getDependents().forEach(function(oD){oD.addStyleClass(sClass);});
+            this.byId("pagCustomizing").getDependents().forEach(function (oD) {
+                return oD.addStyleClass(sClass);
+            });
         },
-
-        formatUploadUrl: function(sPattern, sSeparator, bHeader) {
+        formatUploadUrl: function formatUploadUrl(sPattern, sSeparator, bHeader) {
             if (sPattern) {
-                return jQuery.sap.formatMessage(sPattern, [encodeURIComponent(sSeparator), bHeader + ""]);
-            }
-            else {
+                return _jquerySap2.default.sap.formatMessage(sPattern, [encodeURIComponent(sSeparator), bHeader + ""]);
+            } else {
                 return "";
             }
         },
-
-        onOpenUploadSheet: function(oEvent){
+        onOpenUploadSheet: function onOpenUploadSheet(oEvent) {
             this.byId("actUploadDestination").openBy(oEvent.getSource());
         },
-
-        onOpenUploadDialog: function(oEvent){
+        onOpenUploadDialog: function onOpenUploadDialog(oEvent) {
             var sPath = oEvent.getSource().getBindingContext("view").getPath(),
                 oDialog = this.byId("dlgUpload");
             oDialog.bindElement({
-                model:	"view",
-                path:	sPath + "/dialog"
+                model: "view",
+                path: sPath + "/dialog"
             });
             oDialog.open();
         },
-
-        onCloseUploadDialog: function() {
+        onCloseUploadDialog: function onCloseUploadDialog() {
             this.byId("dlgUpload").close();
         },
-
-        onUploadStart: function() {
+        onUploadStart: function onUploadStart() {
             this.getModel("view").setProperty("/busy", true);
             this.byId("fupCustomizing").upload();
         },
-
-        onUploadComplete: function(oEvent){
+        onUploadComplete: function onUploadComplete(oEvent) {
             var oBundle = this.getResourceBundle();
             this.getModel("view").setProperty("/busy", false);
             if (oEvent.getParameter("status") === 204) {
-                MessageBox.success(oBundle.getText("txtCustomizingUploadSuccessText"));
-            }
-            else {
+                _MessageBox2.default.success(oBundle.getText("txtCustomizingUploadSuccessText"));
+            } else {
                 this.onInternalServerError(oEvent.getParameter("responseRaw"));
             }
             this.getModel().refresh();
             this.byId("dlgUpload").close();
         }
     });
-
+    return exports.default;
 });
+//# sourceMappingURL=Customizing.controller.js.map

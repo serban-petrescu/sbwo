@@ -2,11 +2,13 @@ package spet.sbwo.data.view;
 
 import spet.sbwo.data.base.BaseEntity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
+@Cacheable(false)
 @Table(name = "V_USER_PLAIN")
 public class UserPlain extends BaseEntity {
     @Column(name = "C_USERNAME")

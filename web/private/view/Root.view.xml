@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.Root" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="spet.sbwo.web.private.controller.Root" xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns:mvc="sap.ui.core.mvc"
         xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
     <u:Shell id="shlMain" showPane="{= ${view>/menu} &amp;&amp; !${device>/system/phone} }">
@@ -43,7 +43,7 @@
             <App id="appMain"/>
         </u:content>
         <u:paneContent>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.UserFavouritesPage" type="XML"/>
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.misc.UserFavouritesPage" type="XML"/>
         </u:paneContent>
 
         <u:dependents>
@@ -56,7 +56,7 @@
                 <List growing="true" growingScrollToLoad="true" items="{/GlobalSearchs}" id="lstSearchPopover">
                     <StandardListItem title="{Title}" description="{Description}" type="Active"
                                     press="onSelectSearchPopover"
-                                    icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+                                    icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.private.model.formatter.entityIcon'}"/>
                 </List>
             </Popover>
 
@@ -67,17 +67,17 @@
                         confirm="onSelectSearchDialog"
                         search="onSearchDialog">
                 <StandardListItem title="{Title}" description="{Description}"
-                                icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.model.formatter.entityIcon'}"/>
+                                icon="{parts: [{path: 'Type'}, {path: 'Subtype'}], formatter: 'spet.sbwo.web.private.model.formatter.entityIcon'}"/>
             </SelectDialog>
 
             <Dialog id="dlgFavourites" stretch="true" showHeader="false">
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.UserFavouritesPage" type="XML"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.misc.UserFavouritesPage" type="XML"/>
                 <endButton>
                     <Button text="{i18n>btnCloseDialogText}" press="onCloseFavourites"/>
                 </endButton>
             </Dialog>
 
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.HelpVideoDialog" type="XML"/>
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.HelpVideoDialog" type="XML"/>
         </u:dependents>
     </u:Shell>
 </mvc:View>

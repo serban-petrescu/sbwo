@@ -1,20 +1,35 @@
-sap.ui.define([
-    "./Base",
-    "sap/ui/core/routing/HashChanger",
-    "spet/sbwo/web/model/helps",
-    "spet/sbwo/web/util/vhManager"
-], function(Base, HashChanger, helps, vhManager) {
+sap.ui.define(["./Base", "sap/ui/core/routing/HashChanger", "spet/sbwo/web/private/model/helps", "spet/sbwo/web/private/util/vhManager", "jquery.sap.global"], function (_Base, _HashChanger, _helps, _vhManager, _jquerySap) {
     "use strict";
 
-    return Base.extend("spet.sbwo.web.controller.Root", {
-        onInit: function() {
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _Base2 = _interopRequireDefault(_Base);
+
+    var _HashChanger2 = _interopRequireDefault(_HashChanger);
+
+    var _helps2 = _interopRequireDefault(_helps);
+
+    var _vhManager2 = _interopRequireDefault(_vhManager);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.Root", {
+        onInit: function onInit() {
             var sClass = this.getOwnerComponent().getContentDensityClass(),
-                oOverlay = jQuery("#overlay");
+                oOverlay = (0, _jquerySap2.default)("#overlay");
 
-            vhManager.initialize(this.getOwnerComponent(), this.getView());
-
-            jQuery.sap.delayedCall(1000, null, function(){
-                oOverlay.fadeOut(1000, oOverlay.remove.bind(oOverlay));
+            _vhManager2.default.initialize(this.getOwnerComponent(), this.getView());
+            _jquerySap2.default.sap.delayedCall(1000, null, function () {
+                return oOverlay.fadeOut(1000, oOverlay.remove.bind(oOverlay));
             });
 
             this.buildViewModel({
@@ -22,69 +37,56 @@ sap.ui.define([
                 edit: false,
                 favourites: [],
                 isFavourite: false,
-                hash: HashChanger.getInstance().getHash(),
+                hash: _HashChanger2.default.getInstance().getHash(),
                 help: null
             });
 
             this.getView().addStyleClass(sClass);
-            this.byId("shlMain").getDependents().forEach(function(oControl){
-                oControl.addStyleClass(sClass);
+            this.byId("shlMain").getDependents().forEach(function (oControl) {
+                return oControl.addStyleClass(sClass);
             });
-
             this.attachHashAndRoutes();
         },
+        attachHashAndRoutes: function attachHashAndRoutes() {
+            var _this = this;
 
-        attachHashAndRoutes: function() {
-            var oModel = this.getModel("view"),
-                fnUpdateModel = this.updateFavoriteModel.bind(this),
-                oHash = HashChanger.getInstance(),
-                oRouter = this.getRouter(),
-                fnReadHelp = function(sRoute) {
-                    this.getModel("view").setProperty("/help", helps.route(this.getResourceBundle(), sRoute));
-                }.bind(this);
-            oHash.attachEvent("hashChanged", function(oEvent) {
-                oModel.setProperty("/hash", oEvent.getParameter("newHash"));
-                fnUpdateModel();
-            });
-            oHash.attachEvent("hashReplaced", function(oEvent) {
-                oModel.setProperty("/hash", oEvent.getParameter("sHash"));
-                fnUpdateModel();
-            });
-            oHash.attachEvent("hashSet", function(oEvent) {
-                oModel.setProperty("/hash", oEvent.getParameter("sHash"));
-                fnUpdateModel();
-            });
+            var fnHelp = function fnHelp(sRoute) {
+                return _this.getModel("view").setProperty("/help", _helps2.default.route(_this.getResourceBundle(), sRoute));
+            };
 
-            oRouter.attachRouteMatched(function(oEvent){
-                fnReadHelp(oEvent.getParameter("name"));
-            });
-            oRouter.attachBypassed(function(){
-                fnReadHelp("home");
+            var fnBuildHandler = function fnBuildHandler(sParameter) {
+                return function (oEvent) {
+                    _this.getModel("view").setProperty("/hash", oEvent.getParameter(sParameter));
+                    _this.updateFavoriteModel();
+                };
+            };
+
+            _HashChanger2.default.getInstance().attachEvent("hashChanged", fnBuildHandler("newHash")).attachEvent("hashReplaced", fnBuildHandler("sHash")).attachEvent("hashSet", fnBuildHandler("sHash"));
+
+            this.getRouter().attachRouteMatched(function (oEvent) {
+                return fnHelp(oEvent.getParameter("name"));
+            }).attachBypassed(function () {
+                return fnHelp("home");
             });
         },
-
-        onCloseHelpDialog: function() {
+        onCloseHelpDialog: function onCloseHelpDialog() {
             this.byId("dlgHelpVideo").close();
         },
-
-        onOpenHelpDialog: function() {
+        onOpenHelpDialog: function onOpenHelpDialog() {
             this.byId("dlgHelpVideo").open();
         },
-
-        onLogoff: function() {
+        onLogoff: function onLogoff() {
             window.location.assign("/public/rest/user/logout");
         },
-
-        onShowFavourites: function() {
+        onShowFavourites: function onShowFavourites() {
             var oModel = this.getModel("view"),
-                bOpen;
+                bOpen = void 0;
 
             if (this.getModel("device").getProperty("/system/phone")) {
                 oModel.setProperty("/menu", true);
                 this.byId("dlgFavourites").open();
                 bOpen = true;
-            }
-            else {
+            } else {
                 bOpen = !oModel.getProperty("/menu");
                 oModel.setProperty("/menu", bOpen);
             }
@@ -93,77 +95,59 @@ sap.ui.define([
                 this.get("/private/api/rest/user/favourites/read", this.updateFavoriteModel);
             }
         },
-
-        onToggleEdit: function(oEvent) {
+        onToggleEdit: function onToggleEdit(oEvent) {
             if (!oEvent.getSource().getPressed()) {
                 var oData = this.getModel("view").getProperty("/favourites");
                 this.put("/private/api/rest/user/favourites/update", oData, this.updateFavoriteModel);
             }
         },
-
-        updateFavoriteModel: function(aFavData) {
+        updateFavoriteModel: function updateFavoriteModel(aFavData) {
             var oModel = this.getModel("view"),
                 sHash = oModel.getProperty("/hash"),
-                aFavs = aFavData === undefined ? oModel.getProperty("/favourites") : aFavData,
-                i,
-                bFound = false;
-            for (i = 0; i < aFavs.length; ++i) {
-                if (aFavs[i].hash === sHash) {
-                    bFound = true;
-                    break;
-                }
-            }
-            aFavs.sort(function(a, b) {
-                var sTitleA = a.title.toUpperCase();
-                var sTitleB = b.title.toUpperCase();
-                if (sTitleA < sTitleB) {
-                    return -1;
-                }
-                if (sTitleA > sTitleB) {
-                    return 1;
-                }
-                return 0;
-            });
-            oModel.setProperty("/favourites", aFavs);
-            oModel.setProperty("/isFavourite", bFound);
-        },
+                aFavs = aFavData === undefined ? oModel.getProperty("/favourites") : aFavData;
 
-        onToggleFavourite: function(oEvent) {
+            aFavs.sort(function (a, b) {
+                return a.title.toUpperCase().localeCompare(b.title.toUpperCase());
+            });
+
+            oModel.setProperty("/favourites", aFavs);
+            oModel.setProperty("/isFavourite", !!aFavs.find(function (oFav) {
+                return oFav.hash === sHash;
+            }));
+        },
+        onToggleFavourite: function onToggleFavourite(oEvent) {
+            var _this2 = this;
+
             var oModel = this.getModel("view"),
                 aFavs = oModel.getProperty("/favourites"),
-                sHash = oModel.getProperty("/hash"),
-                i,
-                oData,
-                fnSuccess;
+                sHash = oModel.getProperty("/hash");
 
-            if (oEvent.getSource().getPressed()) {
-                oData = {
+            var fnCreate = function fnCreate() {
+                var oData = {
                     hash: sHash,
                     title: window.document.title
                 };
-                fnSuccess = function(oDt) {
+                _this2.post("/private/api/rest/user/favourites/create", oData, function (oDt) {
                     aFavs.push(oDt);
-                    this.updateFavoriteModel(aFavs);
-                };
-                this.post("/private/api/rest/user/favourites/create", oData, fnSuccess);
-            }
-            else {
-                for (i = 0; i < aFavs.length; ++i) {
-                    if (aFavs[i].hash === sHash) {
-                        break;
-                    }
-                }
-                if (i < aFavs.length) {
-                    fnSuccess = function() {
-                        aFavs.splice(i, 1);
-                        this.updateFavoriteModel(aFavs);
-                    };
-                    this.del("/private/api/rest/user/favourites/delete/" + aFavs[i].id, fnSuccess);
-                }
-            }
-        },
+                    _this2.updateFavoriteModel(aFavs);
+                });
+            };
 
-        onDeleteFavouriteEdit: function(oEvent) {
+            var fnDelete = function fnDelete() {
+                var iIndex = aFavs.findIndex(function (oFav) {
+                    return oFav.hash === sHash;
+                });
+                if (iIndex !== undefined) {
+                    _this2.del("/private/api/rest/user/favourites/delete/" + aFavs[iIndex].id, function () {
+                        aFavs.splice(iIndex, 1);
+                        _this2.updateFavoriteModel(aFavs);
+                    });
+                }
+            };
+
+            oEvent.getSource().getPressed() ? fnCreate() : fnDelete();
+        },
+        onDeleteFavouriteEdit: function onDeleteFavouriteEdit(oEvent) {
             var oItem = oEvent.getParameter("listItem"),
                 sPath = oItem.getBindingContext("view").getPath(),
                 iIndex = parseInt(sPath.substring(sPath.lastIndexOf("/") + 1), 10),
@@ -171,53 +155,46 @@ sap.ui.define([
             aFavs.splice(iIndex, 1);
             this.updateFavoriteModel(aFavs);
         },
-
-        onCloseFavourites: function() {
+        onCloseFavourites: function onCloseFavourites() {
             this.getModel("view").setProperty("/menu", false);
             this.byId("dlgFavourites").close();
         },
-
-        onNavigateToFavourite: function(oEvent) {
+        onNavigateToFavourite: function onNavigateToFavourite(oEvent) {
             var sHash = oEvent.getSource().getBindingContext("view").getProperty("hash");
-            HashChanger.getInstance().setHash(sHash);
+            _HashChanger2.default.getInstance().setHash(sHash);
         },
-
-        onPressHome: function() {
+        onPressHome: function onPressHome() {
             this.getRouter().navTo("home", {});
         },
-
-        onPressPersonalization: function() {
+        onPressPersonalization: function onPressPersonalization() {
             this.getRouter().navTo("user-settings", {});
         },
-
-        onOpenGlobalSearch: function() {
+        onOpenGlobalSearch: function onOpenGlobalSearch() {
             this.byId("sedGlobalSearch").open("");
         },
-
-        onSearchField: function(oEvent) {
+        onSearchField: function onSearchField(oEvent) {
             var oPopover = this.byId("popGlobalSearch"),
-                oSearch = oEvent.getSource();
-            this.applySearchFilter(oEvent.getParameter("query"), "Search", this.byId("lstSearchPopover").getBinding("items"));
+                oSearch = oEvent.getSource(),
+                oBinding = this.byId("lstSearchPopover").getBinding("items");
+            this.applySearchFilter(oEvent.getParameter("query"), "Search", oBinding);
             oPopover.setContentWidth(oSearch.$().width() + "px");
-            jQuery.sap.delayedCall(500, null, function(){
-                oPopover.openBy(oSearch);
+            oBinding.attachEventOnce("dataReceived", function () {
+                return oPopover.openBy(oSearch);
             });
         },
-
-        onSearchDialog: function(oEvent) {
+        onSearchDialog: function onSearchDialog(oEvent) {
             this.applySearchFilter(oEvent.getParameter("value"), "Search", oEvent.getParameter("itemsBinding"));
         },
-
-        onSelectSearchDialog: function(oEvent) {
+        onSelectSearchDialog: function onSelectSearchDialog(oEvent) {
             var oContext = oEvent.getParameter("selectedItem").getBindingContext();
             this.navigateToEntity(oContext.getProperty("Type"), oContext.getProperty("Id"));
         },
-
-        onSelectSearchPopover: function(oEvent) {
+        onSelectSearchPopover: function onSelectSearchPopover(oEvent) {
             var oContext = oEvent.getSource().getBindingContext();
             this.navigateToEntity(oContext.getProperty("Type"), oContext.getProperty("Id"));
             this.byId("popGlobalSearch").close();
         }
     });
-
+    return exports.default;
 });
+//# sourceMappingURL=Root.controller.js.map

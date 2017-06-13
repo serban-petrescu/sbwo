@@ -38,7 +38,7 @@
             </f:FormElement>
             <f:FormElement label="{i18n>lblPersonIdCardTypeText}" visible="{= ${data>identityCardType} !== null }">
                 <Text
-                    text="{path: 'data>identityCardType', formatter: 'spet.sbwo.web.model.formatter.identityCardType'}"/>
+                    text="{path: 'data>identityCardType', formatter: 'spet.sbwo.web.private.model.formatter.identityCardType'}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblPersonIdCardNumberText}" visible="{= !!${data>identityCardNumber} }">
                 <Text text="{data>identityCardNumber}"/>

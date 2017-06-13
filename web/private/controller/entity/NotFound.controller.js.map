@@ -1,0 +1,1 @@
+{"version":3,"sources":["NotFound.controller.es6.js"],"names":["extend"],"mappings":";;;;;;;;;;;;;;;;oBAEe,eAAKA,MAAL,CAAY,kDAAZ,EAAgE,EAAhE,C","file":"NotFound.controller.js","sourcesContent":["import Base from \"spet/sbwo/web/private/controller/Base\";\r\n\r\nexport default Base.extend(\"spet.sbwo.web.private.controller.entity.NotFound\", {});\r\n"]}

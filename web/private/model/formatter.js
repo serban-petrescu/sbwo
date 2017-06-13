@@ -1,5 +1,28 @@
-sap.ui.define(["sap/ui/core/format/DateFormat"], function(DateFormat) {
-    var oBundle;
+sap.ui.define(["sap/ui/core/format/DateFormat", "jquery.sap.global"], function (_DateFormat, _jquerySap) {
+    "use strict";
+
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _DateFormat2 = _interopRequireDefault(_DateFormat);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+        return typeof obj;
+    } : function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    var oBundle = void 0;
 
     var mSearchIcons = {
         "PERSON": {
@@ -12,90 +35,87 @@ sap.ui.define(["sap/ui/core/format/DateFormat"], function(DateFormat) {
         "EXPERTISE": "sap-icon://official-service"
     };
 
-    var fnEntityPageTitle = function(bLoaded, sDefault, sPattern) {
-        if (!bLoaded) {
-            return sDefault;
+    var PERSON_TYPE_DEFAULT = "txtEnumValueUnknown";
+    var PERSON_TYPE_TO_I18N = new Map([[0, "txtPersonTypeNatural"], [1, "txtPersonTypeJuridical"]]);
+
+    var IDENTITY_CARD_DEFAULT = "txtIndentityCardTypeOther";
+    var IDENTITY_CARD_TO_I18N = new Map([[0, "txtIndentityCardTypeCard"], [1, "txtIndentityCardTypeBulletin"], [2, "txtIndentityCardTypePassport"]]);
+
+    var EXPERTISE_STATUS_DEFAULT = "txtEnumValueUnknown";
+    var EXPERTISE_STATUS_TO_I18N = new Map([[0, "txtExpertiseStatusNotStudied"], [1, "txtExpertiseStatusStudied"], [2, "txtExpertiseStatusSubmitted"], [3, "txtExpertiseStatusSupplement"], [4, "txtExpertiseStatusFinalized"]]);
+
+    var fnEntityPageTitle = function fnEntityPageTitle(bLoaded, sDefault, sPattern) {
+        for (var _len = arguments.length, aArgs = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+            aArgs[_key - 3] = arguments[_key];
         }
-        else {
-            return jQuery.sap.formatMessage(sPattern, Array.prototype.splice.call(arguments, 3));
-        }
+
+        return bLoaded ? _jquerySap2.default.sap.formatMessage(sPattern, aArgs) : sDefault;
     };
 
-    var oDisplayDateFormat = DateFormat.getDateInstance({pattern: "dd.MM.yyyy"}),
-        oDisplayTimeFormat = DateFormat.getTimeInstance({pattern: "HH:mm:ss"}),
-        oDisplayDateTimeFormat = DateFormat.getDateTimeInstance({pattern: "dd.MM.yyyy HH:mm:ss"}),
-        oBackendDateFormat = DateFormat.getDateInstance({pattern: "yyyy-MM-dd"}),
-        oBackendTimeFormat = DateFormat.getTimeInstance({pattern: "HH:mm:ss.SSSSSSSSS"}),
-        oBackendDateTimeFormat = DateFormat.getDateTimeInstance({pattern: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"});
+    var oDisplayDateFormat = _DateFormat2.default.getDateInstance({
+        pattern: "dd.MM.yyyy"
+    }),
+        oDisplayTimeFormat = _DateFormat2.default.getTimeInstance({
+        pattern: "HH:mm:ss"
+    }),
+        oDisplayDateTimeFormat = _DateFormat2.default.getDateTimeInstance({
+        pattern: "dd.MM.yyyy HH:mm:ss"
+    }),
+        oBackendDateFormat = _DateFormat2.default.getDateInstance({
+        pattern: "yyyy-MM-dd"
+    }),
+        oBackendTimeFormat = _DateFormat2.default.getTimeInstance({
+        pattern: "HH:mm:ss.SSSSSSSSS"
+    }),
+        oBackendDateTimeFormat = _DateFormat2.default.getDateTimeInstance({
+        pattern: "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS"
+    });
 
-    var fnFormatDate = function(oDate) {
-        var oD;
+    var fnToDate = function fnToDate(oDate, oFormat) {
         if (oDate instanceof Date) {
-            oD = oDate;
+            return oDate;
+        } else if (typeof oDate === "number") {
+            return new Date(oDate);
+        } else {
+            return oFormat.parse(oDate);
         }
-        else if (typeof oDate === "number") {
-            oD = new Date(oDate);
-        }
-        else {
-            oD = oBackendDateFormat.parse(oDate);
-        }
-        return oDisplayDateFormat.format(oD);
     };
 
-    var fnFormatTime = function(oDate) {
-        var oD;
-        if (oDate instanceof Date) {
-            oD = oDate;
-        }
-        else if (typeof oDate === "number") {
-            oD = new Date(oDate);
-        }
-        else {
-            oD = oBackendTimeFormat.parse(oDate);
-        }
-        return oDisplayTimeFormat.format(oD);
+    var fnFormatDate = function fnFormatDate(oDate) {
+        return oDisplayDateFormat.format(fnToDate(oDate, oBackendDateFormat));
     };
 
-    var fnFormatDateTime = function(oDate) {
-        var oD;
-        if (oDate instanceof Date) {
-            oD = oDate;
-        }
-        else if (typeof oDate === "number") {
-            oD = new Date(oDate);
-        }
-        else {
-            oD = oBackendDateTimeFormat.parse(oDate);
-        }
-        return oDisplayDateTimeFormat.format(oD);
+    var fnFormatTime = function fnFormatTime(oDate) {
+        return oDisplayTimeFormat.format(fnToDate(oDate, oBackendTimeFormat));
     };
 
-    return {
+    var fnFormatDateTime = function fnFormatDateTime(oDate) {
+        return oDisplayDateTimeFormat.format(fnToDate(oDate, oBackendDateTimeFormat));
+    };
 
-        setResourceBundle: function(oResourceBundle) {
+    exports.default = {
+        setResourceBundle: function setResourceBundle(oResourceBundle) {
             oBundle = oResourceBundle;
         },
-
-        pattern: function(sPattern) {
-            return jQuery.sap.formatMessage(sPattern, Array.prototype.slice.call(arguments, 1));
+        pattern: function pattern(sPattern) {
+            return _jquerySap2.default.sap.formatMessage(sPattern, Array.prototype.slice.call(arguments, 1));
         },
+
 
         entityPageTitle: fnEntityPageTitle,
 
-        courtCaseDocument: function(sType, sNumber, sDate) {
+        courtCaseDocument: function courtCaseDocument(sType, sNumber, sDate) {
             if (sType && sNumber && sDate) {
                 return oBundle.getText("txtCourtCaseDocumentFullPattern", [sType, sNumber, fnFormatDate(sDate)]);
-            }
-            else if (sType && sDate) {
+            } else if (sType && sDate) {
                 return oBundle.getText("txtCourtCaseDocumentPartialPattern", [sType, fnFormatDate(sDate)]);
-            }
-            else if (sType) {
+            } else if (sType) {
                 return sType;
-            }
-            else {
+            } else {
                 return "";
             }
         },
+
 
         date: fnFormatDate,
 
@@ -103,78 +123,52 @@ sap.ui.define(["sap/ui/core/format/DateFormat"], function(DateFormat) {
 
         dateTime: fnFormatDateTime,
 
-        personPageTitle: function(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
+        personPageTitle: function personPageTitle(bLoaded, sDefault, sPattern, iType, sFirstName, sLastName, sName) {
             if (iType === 0) {
                 sName = oBundle.getText("txtPersonNaturalNameText", [sFirstName, sLastName]);
             }
             return fnEntityPageTitle(bLoaded, sDefault, sPattern, sName);
         },
-
-        helpPageTitle: function(sDefault, sPattern, sName) {
+        helpPageTitle: function helpPageTitle(sDefault, sPattern, sName) {
             return fnEntityPageTitle(!!sName, sDefault, sPattern, sName);
         },
-
-        entityIcon: function(iType, iSubtype) {
+        entityIcon: function entityIcon(iType, iSubtype) {
             var oType = mSearchIcons[iType + ""];
-            if (typeof oType === "object") {
+            if ((typeof oType === "undefined" ? "undefined" : _typeof(oType)) === "object") {
                 return oType[iSubtype + ""] || oType[""] || "sap-icon://question-mark";
             } else if (typeof oType === "string") {
                 return oType;
             }
             return "sap-icon://question-mark";
         },
-
-        personName: function(iType, sFirstName, sLastName, sName) {
+        personName: function personName(iType, sFirstName, sLastName, sName) {
             if (iType === 0 || iType === "NATURAL") {
                 return oBundle.getText("txtPersonNaturalNameText", [sFirstName, sLastName]);
-            }
-            else {
+            } else {
                 return sName;
             }
         },
-
-        personType: function(iType) {
-            switch(iType) {
-                case 0: return oBundle.getText("txtPersonTypeNatural");
-                case 1: return oBundle.getText("txtPersonTypeJuridical");
-                default: return oBundle.getText("txtEnumValueUnknown");
-            }
+        personType: function personType(iType) {
+            return oBundle.getText(PERSON_TYPE_TO_I18N.get(iType) || PERSON_TYPE_DEFAULT);
         },
-
-        identityCardType: function(iType) {
-            switch(iType) {
-                case 0: return oBundle.getText("txtIndentityCardTypeCard");
-                case 1: return oBundle.getText("txtIndentityCardTypeBulletin");
-                case 2: return oBundle.getText("txtIndentityCardTypePassport");
-                default: return oBundle.getText("txtIndentityCardTypeOther");
-            }
+        identityCardType: function identityCardType(iType) {
+            return oBundle.getText(IDENTITY_CARD_TO_I18N.get(iType) || IDENTITY_CARD_DEFAULT);
         },
-
-        expertiseStatus: function(iStatus) {
-            switch(iStatus) {
-                case 0: return oBundle.getText("txtExpertiseStatusNotStudied");
-                case 1: return oBundle.getText("txtExpertiseStatusStudied");
-                case 2: return oBundle.getText("txtExpertiseStatusSubmitted");
-                case 3: return oBundle.getText("txtExpertiseStatusSupplement");
-                case 4: return oBundle.getText("txtExpertiseStatusFinalized");
-                default: return oBundle.getText("txtEnumValueUnknown");
-            }
+        expertiseStatus: function expertiseStatus(iStatus) {
+            return oBundle.getText(EXPERTISE_STATUS_TO_I18N.get(iStatus) || EXPERTISE_STATUS_DEFAULT);
         },
-
-        address: function(sCountry, sRegion, sAddress) {
+        address: function address(sCountry, sRegion, sAddress) {
             if (sCountry && sRegion && sAddress) {
                 return oBundle.getText("txtFullyQualifiedAddressText", [sCountry, sRegion, sAddress]);
-            }
-            else if (sAddress) {
+            } else if (sAddress) {
                 return sAddress;
-            }
-            else if (sCountry && sRegion) {
+            } else if (sCountry && sRegion) {
                 return oBundle.getText("txtPartialRegionalAddressText", [sCountry, sRegion]);
-            }
-            else {
+            } else {
                 return oBundle.getText("txtUnknownAddressText");
             }
         }
-
     };
-}, /* bExport = */ true);
+    return exports.default;
+});
+//# sourceMappingURL=formatter.js.map

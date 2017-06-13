@@ -6,6 +6,7 @@ import spet.sbwo.data.embed.GlobalSearchKey;
 import javax.persistence.*;
 
 @Entity
+@Cacheable(false)
 @IdClass(GlobalSearchKey.class)
 @Table(name = "V_GLOBAL_SEARCH")
 public class GlobalSearch {

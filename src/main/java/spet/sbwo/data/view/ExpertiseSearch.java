@@ -1,12 +1,10 @@
 package spet.sbwo.data.view;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Cacheable(false)
 @Table(name = "V_EXPERTISE_SEARCH")
 public class ExpertiseSearch {
 

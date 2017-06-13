@@ -1,5 +1,5 @@
-<mvc:View controllerName="spet.sbwo.web.controller.misc.Help" xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<mvc:View controllerName="spet.sbwo.web.private.controller.misc.Help" xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <SplitContainer id="spcMain" mode="ShowHideMode">
         <masterPages>
             <Page id="pagMaster" showFooter="true" title="{i18n>titHelpPageMasterText}" showNavButton="true"

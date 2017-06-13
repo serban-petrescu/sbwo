@@ -3,7 +3,7 @@
     <Panel headerText="{i18n>tblExpertiseFinesHeader}">
         <List items="{data>fines}">
             <StandardListItem info="{path: 'data>sum', type: 'sap.ui.model.odata.type.Decimal'}"
-                            title="{path: 'data>date', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                            title="{path: 'data>date', formatter: 'spet.sbwo.web.private.model.formatter.date'}"/>
         </List>
     </Panel>
 </core:FragmentDefinition>

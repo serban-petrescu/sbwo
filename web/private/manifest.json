@@ -2,7 +2,7 @@
   "_version": "1.1.0",
   "sap.app": {
     "_version": "1.1.0",
-    "id": "spet.sbwo.web",
+    "id": "spet.sbwo.web.private",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -50,7 +50,7 @@
   "sap.ui5": {
     "_version": "1.1.0",
     "rootView": {
-      "viewName": "spet.sbwo.web.view.Root",
+      "viewName": "spet.sbwo.web.private.view.Root",
       "type": "XML"
     },
     "dependencies": {
@@ -69,7 +69,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "spet.sbwo.web.i18n.i18n"
+          "bundleName": "spet.sbwo.web.private.i18n.i18n"
         }
       },
       "": {
@@ -96,7 +96,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "spet.sbwo.web.view",
+        "viewPath": "spet.sbwo.web.private.view",
         "controlId": "appMain",
         "controlAggregation": "pages",
         "transition": "slide",
@@ -192,7 +192,7 @@
               "data>/lastName",
               "data>/name"
             ],
-            "formatter": "spet.sbwo.web.model.formatter.personPageTitle"
+            "formatter": "spet.sbwo.web.private.model.formatter.personPageTitle"
           },
           "viewId": "person"
         },
@@ -244,7 +244,7 @@
               "i18n>pagHelpTopicTitle",
               "view>title"
             ],
-            "formatter": "spet.sbwo.web.model.formatter.helpPageTitle"
+            "formatter": "spet.sbwo.web.private.model.formatter.helpPageTitle"
           },
           "viewId": "help"
         },
@@ -267,7 +267,7 @@
               "i18n>pagEntityExpertisePatternTitle",
               "data>/number"
             ],
-            "formatter": "spet.sbwo.web.model.formatter.entityPageTitle"
+            "formatter": "spet.sbwo.web.private.model.formatter.entityPageTitle"
           },
           "viewId": "expertise"
         }

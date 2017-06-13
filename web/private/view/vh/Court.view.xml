@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.vh.Basic" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+<mvc:View controllerName="spet.sbwo.web.private.controller.vh.Basic" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <Dialog id="dlgMain" stretch="{device>/system/phone}" contentHeight="90%" resizable="true"
             title="{i18n>dlgValueHelpCourtTitle}">
         <subHeader>

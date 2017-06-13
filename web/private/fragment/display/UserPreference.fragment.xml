@@ -8,7 +8,7 @@
                         'data>/draftResumeDelay',
                         'i18n>inpUserPreferenceDraftResumeMinutesUnit'
                     ],
-                    formatter: 'spet.sbwo.web.model.formatter.pattern'
+                    formatter: 'spet.sbwo.web.private.model.formatter.pattern'
                 }"/>
                 <Text text="{i18n>txtUserPreferenceDraftResumeMinutesInfo}"
                     class="sapThemeHighlight-asColor infoTextDescription"/>

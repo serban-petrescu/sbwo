@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Cacheable(false)
 @IdClass(DeletedEntityKey.class)
 @Table(name = "V_DELETED")
 public class DeletedEntity {

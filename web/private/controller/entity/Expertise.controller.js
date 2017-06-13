@@ -1,98 +1,85 @@
-sap.ui.define([
-    "./Base",
-    "spet/sbwo/web/controller/facade/ExpertiseEdit",
-    "sap/m/MessageBox"
-], function(Base, ExpertiseEdit, MessageBox) {
+sap.ui.define(["./Base", "spet/sbwo/web/private/controller/mixin/ExpertiseEdit", "sap/m/MessageBox", "jquery.sap.global"], function (_Base, _ExpertiseEdit, _MessageBox, _jquerySap) {
     "use strict";
 
-    var sBaseApiPath = "/private/api/rest/expertise";
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
 
-    return Base.extend("spet.sbwo.web.controller.entity.Expertise", jQuery.extend({}, ExpertiseEdit, {
-        onInit: function() {
-            Base.prototype.onInit.apply(this, arguments);
+    var _Base2 = _interopRequireDefault(_Base);
+
+    var _ExpertiseEdit2 = _interopRequireDefault(_ExpertiseEdit);
+
+    var _MessageBox2 = _interopRequireDefault(_MessageBox);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.entity.Expertise", _jquerySap2.default.extend({}, _ExpertiseEdit2.default, {
+        onInit: function onInit() {
+            _Base2.default.prototype.onInit.apply(this, arguments);
             this.getRouter().getRoute("expertise").attachPatternMatched(this.onRouteMatched, this);
         },
-
-        getReadApiUrl: function(sId){
-            return sBaseApiPath + "/read/" + sId;
+        getBaseApiUrl: function getBaseApiUrl() {
+            return "/private/api/rest/expertise";
         },
-
-        getUpdateApiUrl: function(sId) {
-            return sBaseApiPath + "/update/" + sId;
-        },
-
-        getRestoreApiUrl: function(sId) {
-            return sBaseApiPath + "/restore/" + sId;
-        },
-
-        getDeleteApiUrl: function(sId) {
-            return sBaseApiPath + "/delete/" + sId;
-        },
-
-        getEntityListRoute: function() {
+        getEntityListRoute: function getEntityListRoute() {
             return "expertise-list";
         },
-
-        onReadSuccess: function() {
-            Base.prototype.onReadSuccess.apply(this, arguments);
+        onReadSuccess: function onReadSuccess() {
+            _Base2.default.prototype.onReadSuccess.apply(this, arguments);
             this.getModel("view").setProperty("/case", null);
         },
-
-        getCaseNumberInput: function() {
+        getCaseNumberInput: function getCaseNumberInput() {
             return this.byId("inpCaseNumber");
         },
-
-        onCaseNotFound: function() {
+        onCaseNotFound: function onCaseNotFound() {
             if (this.getModel("view").getProperty("/edit")) {
-                ExpertiseEdit.onCaseNotFound.apply(this, arguments);
-            }
-            else {
+                _ExpertiseEdit2.default.onCaseNotFound.apply(this, arguments);
+            } else {
                 if (this.byId("dlgCourtCase").isOpen()) {
                     this.byId("dlgCourtCase").close();
                 }
-                MessageBox.warning(this.getResourceBundle().getText("txtExpertiseUnableToFindCaseText"));
+                _MessageBox2.default.warning(this.getResourceBundle().getText("txtExpertiseUnableToFindCaseText"));
             }
         },
-
-        onCaseLoaded: function(oData) {
+        onCaseLoaded: function onCaseLoaded(oData) {
             if (this.getModel("view").getProperty("/edit")) {
-                ExpertiseEdit.onCaseLoaded.apply(this, arguments);
+                _ExpertiseEdit2.default.onCaseLoaded.apply(this, arguments);
                 this.saveDraft();
-            }
-            else {
+            } else {
                 this.getModel("view").setProperty("/case", oData);
             }
         },
-
-        onCourtLoaded: function() {
-            ExpertiseEdit.onCourtLoaded.apply(this, arguments);
+        onCourtLoaded: function onCourtLoaded() {
+            _ExpertiseEdit2.default.onCourtLoaded.apply(this, arguments);
             this.saveDraft();
         },
-
-        onCourtClear: function() {
-            ExpertiseEdit.onCourtClear.apply(this, arguments);
+        onCourtClear: function onCourtClear() {
+            _ExpertiseEdit2.default.onCourtClear.apply(this, arguments);
             this.saveDraft();
         },
-
-        onOpenCourtCaseDialog: function() {
+        onOpenCourtCaseDialog: function onOpenCourtCaseDialog() {
             if (this.getModel("view").getProperty("/case") === null) {
                 this.onLoadCase();
             }
             this.byId("dlgCourtCase").open();
         },
-
-        onCloseCourtCaseDialog: function() {
+        onCloseCourtCaseDialog: function onCloseCourtCaseDialog() {
             this.byId("dlgCourtCase").close();
         },
-
-        onOpenLocationMapDialog: function() {
+        onOpenLocationMapDialog: function onOpenLocationMapDialog() {
             this.byId("dlgLocationMap").open();
         },
-
-        onCloseLocationMapDialog: function() {
+        onCloseLocationMapDialog: function onCloseLocationMapDialog() {
             this.byId("dlgLocationMap").close();
         }
-
     }));
-
+    return exports.default;
 });
+//# sourceMappingURL=Expertise.controller.js.map

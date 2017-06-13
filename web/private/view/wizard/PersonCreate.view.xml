@@ -1,5 +1,5 @@
-<mvc:View controllerName="spet.sbwo.web.controller.wizard.PersonCreate" xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.util" xmlns:core="sap.ui.core">
+<mvc:View controllerName="spet.sbwo.web.private.controller.wizard.PersonCreate" xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:spet="spet.sbwo.web.private.util" xmlns:core="sap.ui.core">
     <Page id="pagPersonCreate"
         title="{i18n>pagPersonCreateTitle}"
         showNavButton="true"
@@ -12,31 +12,31 @@
                         icon="sap-icon://tags"
                         title="{i18n>wzsPersonCreateTypeTitle}"
                         validated="{view>/wizard/validity/0}">
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonType" type="XML" binding="{data>/}"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.PersonType" type="XML" binding="{data>/}"/>
             </WizardStep>
             <WizardStep id="wzsPersonInfo"
                         icon="sap-icon://hint"
                         title="{i18n>wzsPersonCreateInfoTitle}"
                         validated="{view>/wizard/validity/1}">
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonProperties" type="XML"
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.PersonProperties" type="XML"
                                 binding="{data>/}"/>
             </WizardStep>
             <WizardStep id="wzsPersonLocationInfo"
                         icon="sap-icon://map"
                         title="{i18n>wzsPersonCreateLocationTitle}"
                         validated="{view>/wizard/validity/2}">
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.LocationPartialForm" type="XML"
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.LocationPartialForm" type="XML"
                                 binding="{data>/location}"/>
             </WizardStep>
             <WizardStep id="wzsPersonContact"
                         icon="sap-icon://customer-briefing"
                         title="{i18n>wzsPersonCreateContactTitle}"
                         validated="{view>/wizard/validity/3}">
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonEmails" type="XML" binding="{data>/}"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.PersonEmails" type="XML" binding="{data>/}"/>
                 <html:div class="sapUiTinyMarginBottom"/>
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonPhones" type="XML" binding="{data>/}"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.PersonPhones" type="XML" binding="{data>/}"/>
                 <html:div class="sapUiTinyMarginBottom"/>
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.PersonBankAccounts" type="XML"
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.PersonBankAccounts" type="XML"
                                 binding="{data>/}"/>
                 <html:div class="sapUiTinyMarginBottom"/>
             </WizardStep>

@@ -1,25 +1,35 @@
-sap.ui.define([
-    "./Base",
-    "spet/sbwo/web/controller/facade/PersonEdit"
-], function(Base, PersonEdit) {
+sap.ui.define(["./Base", "spet/sbwo/web/private/controller/mixin/PersonEdit", "jquery.sap.global"], function (_Base, _PersonEdit, _jquerySap) {
     "use strict";
 
-    return Base.extend("spet.sbwo.web.controller.wizard.PersonCreate", jQuery.extend({}, PersonEdit, {
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
 
-        getEntityRoute: function() {
+    var _Base2 = _interopRequireDefault(_Base);
+
+    var _PersonEdit2 = _interopRequireDefault(_PersonEdit);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.wizard.PersonCreate", _jquerySap2.default.extend({}, _PersonEdit2.default, {
+        getEntityRoute: function getEntityRoute() {
             return "person";
         },
-
-        getCreateApiPath: function() {
+        getCreateApiPath: function getCreateApiPath() {
             return "/private/api/rest/person/create";
         },
-
-        onInit: function() {
-            Base.prototype.onInit.apply(this, arguments);
+        onInit: function onInit() {
+            _Base2.default.prototype.onInit.apply(this, arguments);
             this.getRouter().getRoute("person-create").attachPatternMatched(this.onRouteMatched, this);
         },
-
-        getInitialDataModelContent: function() {
+        getInitialDataModelContent: function getInitialDataModelContent() {
             return {
                 type: 0,
                 location: {
@@ -48,8 +58,7 @@ sap.ui.define([
                 jointStock: null
             };
         },
-
-        getInitialViewModelContent: function() {
+        getInitialViewModelContent: function getInitialViewModelContent() {
             return {
                 draft: "Clear",
                 wizard: {
@@ -59,5 +68,6 @@ sap.ui.define([
             };
         }
     }));
-
+    return exports.default;
 });
+//# sourceMappingURL=PersonCreate.controller.js.map

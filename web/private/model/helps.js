@@ -1,4 +1,10 @@
-sap.ui.define([], function() {
+sap.ui.define([], function () {
+    "use strict";
+
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
     var oCache = null;
 
     var mRoutes = {
@@ -6,7 +12,7 @@ sap.ui.define([], function() {
         "person-create": "person-create"
     };
 
-    var fnGetPages = function(oBundle) {
+    var fnGetPages = function fnGetPages(oBundle) {
         if (oCache === null) {
             oCache = {
                 "person-entity": {
@@ -24,19 +30,21 @@ sap.ui.define([], function() {
         return oCache;
     };
 
-    return {
+    exports.default = {
         count: 2,
-        pages: function(oBundle) {
+
+        pages: function pages(oBundle) {
             return fnGetPages(oBundle);
         },
-        route: function(oBundle, sRoute) {
+        route: function route(oBundle, sRoute) {
             var sPage = mRoutes[sRoute];
             if (sPage) {
                 return fnGetPages(oBundle)[sPage];
-            }
-            else {
+            } else {
                 return null;
             }
         }
     };
+    return exports.default;
 });
+//# sourceMappingURL=helps.js.map

@@ -10,7 +10,7 @@
     <f:FormContainer expandable="true" title="{i18n>frcServerControlTitle}" visible="{view>/edit}">
         <f:FormElement label="{i18n>lblDirectDeleteMinutesText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/control/directDeleteInterval', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/control/directDeleteInterval', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtDirectDeleteMinutesInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
@@ -19,7 +19,7 @@
     <f:FormContainer expandable="true" title="{i18n>frcServerSessionTitle}" visible="{view>/edit}">
         <f:FormElement label="{i18n>lblSessionExpirationMinutesText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/session/timeout', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/session/timeout', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtSessionExpirationMinutesInfo}"
                     class="sapThemeHighlight-asColor infoTextDescription"/>
@@ -27,7 +27,7 @@
         </f:FormElement>
         <f:FormElement label="{i18n>lblSessionFlushIntervalText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/session/flushInterval', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/session/flushInterval', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtSessionFlushIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
@@ -46,7 +46,7 @@
         </f:FormElement>
         <f:FormElement label="{i18n>lblDatabaseBackupIntervalText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.util.Period'}"
+                <Input value="{path: 'data>/databaseBackup/interval', type: 'spet.sbwo.web.private.util.Period'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtDatabaseBackupIntervalInfo}"
                     class="sapThemeHighlight-asColor infoTextDescription"/>
@@ -74,7 +74,7 @@
         </f:FormElement>
         <f:FormElement label="{i18n>lblCleanupThresholdText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/cleanup/threshold', type: 'spet.sbwo.web.util.Period'}"
+                <Input value="{path: 'data>/cleanup/threshold', type: 'spet.sbwo.web.private.util.Period'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtCleanupThresholdInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
@@ -83,14 +83,14 @@
     <f:FormContainer expandable="true" title="{i18n>frcServerCheckCourtTitle}" visible="{view>/edit}">
         <f:FormElement label="{i18n>lblCheckCourtMaxAgeText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/checkCourt/maxAge', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/checkCourt/maxAge', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtCheckCourtMaxAgeInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
         </f:FormElement>
         <f:FormElement label="{i18n>lblCheckCourtIntervalText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/checkCourt/interval', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/checkCourt/interval', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtCheckCourtIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>
@@ -111,7 +111,7 @@
         </f:FormElement>
         <f:FormElement label="{i18n>lblGeocodingIntervalText}">
             <l:VerticalLayout width="100%" class="sapUiTinyMarginBottom">
-                <Input value="{path: 'data>/geocoding/interval', type: 'spet.sbwo.web.util.Duration'}"
+                <Input value="{path: 'data>/geocoding/interval', type: 'spet.sbwo.web.private.util.Duration'}"
                         change="onValueChanged" width="100%"/>
                 <Text text="{i18n>txtGeocodingIntervalInfo}" class="sapThemeHighlight-asColor infoTextDescription"/>
             </l:VerticalLayout>

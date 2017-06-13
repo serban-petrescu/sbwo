@@ -1,5 +1,5 @@
-<mvc:View controllerName="spet.sbwo.web.controller.misc.UserSettings" xmlns:f="sap.ui.layout.form"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<mvc:View controllerName="spet.sbwo.web.private.controller.misc.UserSettings" xmlns:f="sap.ui.layout.form"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <Page id="pagUserSettings"
         title="{i18n>pagUserSettingsTitle}"
         showNavButton="true"
@@ -20,8 +20,8 @@
                     <f:ResponsiveGridLayout labelSpanL="4" labelSpanM="5" emptySpanL="4" emptySpanM="2" columnsL="1"
                                             columnsM="1"/>
                 </f:layout>
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.display.UserPreference" type="XML"/>
-                <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.UserPreference" type="XML"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.display.UserPreference" type="XML"/>
+                <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.UserPreference" type="XML"/>
             </f:Form>
         </Panel>
 
@@ -36,7 +36,7 @@
         </footer>
 
         <dependents>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.UserPasswordChange" type="XML"/>
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.UserPasswordChange" type="XML"/>
         </dependents>
     </Page>
 </mvc:View>

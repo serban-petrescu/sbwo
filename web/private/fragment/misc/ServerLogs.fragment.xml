@@ -48,7 +48,7 @@
                 <ColumnListItem>
                     <core:Icon color="{path: 'view>level/name', formatter: '.formatLogColorFromLevel'}"
                                 src="sap-icon://circle-task-2"/>
-                    <Text text="{path: 'view>timeMillis', formatter: 'spet.sbwo.web.model.formatter.dateTime'}"/>
+                    <Text text="{path: 'view>timeMillis', formatter: 'spet.sbwo.web.private.model.formatter.dateTime'}"/>
                     <Text text="{view>loggerName}"/>
                     <Text text="{view>message/message}"/>
                 </ColumnListItem>

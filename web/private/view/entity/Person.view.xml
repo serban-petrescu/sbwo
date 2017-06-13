@@ -1,12 +1,12 @@
-<mvc:View controllerName="spet.sbwo.web.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+<mvc:View controllerName="spet.sbwo.web.private.controller.entity.Person" xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util"
         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page id="pagEntity"
         title="{
             parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'}, {path: 'i18n>pagEntityPersonPatternTitle'},
                 {path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}
             ],
-            formatter: 'spet.sbwo.web.model.formatter.personPageTitle'
+            formatter: 'spet.sbwo.web.private.model.formatter.personPageTitle'
         }"
         busy="{= !${view>/loaded} }"
         busyIndicatorDelay="500"
@@ -34,11 +34,11 @@
             icon="{= ${data>/type} === 0 ? 'sap-icon://customer' : 'sap-icon://group'}"
             title="{
                 parts: [{path: 'data>/type'}, {path: 'data>/firstName'}, {path: 'data>/lastName'}, {path: 'data>/name'}],
-                formatter: 'spet.sbwo.web.model.formatter.personName'
+                formatter: 'spet.sbwo.web.private.model.formatter.personName'
             }"
             intro="{
                 parts: [{path: 'data>/location/country/name'}, {path: 'data>/location/region/name'}, {path: 'data>/location/address'}],
-                formatter: 'spet.sbwo.web.model.formatter.address'
+                formatter: 'spet.sbwo.web.private.model.formatter.address'
             }">
             <statuses>
                 <ObjectStatus text="{i18n>txtObjectStatusDeletedText}" state="Error" visible="{data>/deleted}"/>
@@ -46,14 +46,14 @@
             <headerContainer>
                 <IconTabBar class="sapUiResponsiveContentPadding">
                     <items>
-                        <core:Fragment fragmentName="spet.sbwo.web.fragment.entity.PersonTabs" type="XML"/>
+                        <core:Fragment fragmentName="spet.sbwo.web.private.fragment.entity.PersonTabs" type="XML"/>
                     </items>
                 </IconTabBar>
             </headerContainer>
         </ObjectHeader>
 
         <dependents>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.LocationMapDialog" type="XML"
                             binding="{data>/location}"/>
         </dependents>
 

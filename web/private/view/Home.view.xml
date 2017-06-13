@@ -1,4 +1,4 @@
-<mvc:View controllerName="spet.sbwo.web.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="spet.sbwo.web.private.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
         xmlns:u="sap.ui.unified">
     <Page id="pagHome"

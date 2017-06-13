@@ -1,5 +1,5 @@
-<mvc:View controllerName="spet.sbwo.web.controller.misc.FileExplorer" xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<mvc:View controllerName="spet.sbwo.web.private.controller.misc.FileExplorer" xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <Dialog id="dlgMain"
             title="{i18n>dlgFileExplorerTitle}"
             stretch="{device>/system/phone}"

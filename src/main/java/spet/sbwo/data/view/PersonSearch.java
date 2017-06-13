@@ -6,6 +6,7 @@ import spet.sbwo.data.domain.PersonType;
 import javax.persistence.*;
 
 @Entity
+@Cacheable(false)
 @Table(name = "V_PERSON_SEARCH")
 public class PersonSearch extends BaseEntity {
     @Column(name = "C_NAME")

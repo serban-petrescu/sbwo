@@ -17,55 +17,55 @@
     </div>
 </div>
 <script type="text/javascript">
-            var oUserData, sGoogleApiKey;
+    var oUserData, sGoogleApiKey;
 
-            function setGoogleApiKey(sKey) {
-                sGoogleApiKey = sKey;
+    function setGoogleApiKey(sKey) {
+        sGoogleApiKey = sKey;
+    }
+
+    function mergeUserData(oData) {
+        oData.preference.language = oData.preference.language || "en";
+        oData.preference.theme = oData.preference.theme || "sap_belize"
+        oData.preference.draftResumeDelay = oData.preference.draftResumeDelay || 30;
+        oUserData = oData;
+    }
+
+    function browserSupportsCSSProperty(sPropertyName) {
+        var oElem = document.createElement('div');
+            sPropertyName = sPropertyName.toLowerCase();
+
+        if (oElem.style[sPropertyName] !== undefined) {
+            return true;
+        }
+
+        var sPropertyNameCapital = sPropertyName.charAt(0).toUpperCase() + sPropertyName.substr(1),
+            aDomPrefixes = 'Webkit Moz ms O'.split(' ');
+
+        for (var i = 0; i < aDomPrefixes.length; ++i) {
+            if (oElem.style[aDomPrefixes[i] + sPropertyNameCapital] !== undefined) {
+                return true;
             }
+        }
+        return false;
+    }
 
-            function mergeUserData(oData) {
-                oData.preference.language = oData.preference.language || "en";
-                oData.preference.theme = oData.preference.theme || "sap_belize"
-                oData.preference.draftResumeDelay = oData.preference.draftResumeDelay || 30;
-                oUserData = oData;
-            }
-
-            function browserSupportsCSSProperty(sPropertyName) {
-                var oElem = document.createElement('div');
-                    sPropertyName = sPropertyName.toLowerCase();
-
-                if (oElem.style[sPropertyName] !== undefined) {
-                    return true;
-                }
-
-                var sPropertyNameCapital = sPropertyName.charAt(0).toUpperCase() + sPropertyName.substr(1),
-                    aDomPrefixes = 'Webkit Moz ms O'.split(' ');
-
-                for (var i = 0; i < aDomPrefixes.length; ++i) {
-                    if (oElem.style[aDomPrefixes[i] + sPropertyNameCapital] !== undefined) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            if (!browserSupportsCSSProperty("animation")) {
-                document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
-            }
+    if (!browserSupportsCSSProperty("animation")) {
+        document.getElementById("ring").innerHTML = '<image src="css/ring.gif" />';
+    }
 
 </script>
 
 <div id="content">
 </div>
 
+<script src="/lib/babel/polyfill.min.js"></script>
 <script src="/public/rest/user/current?callback=mergeUserData"></script>
 <script src="/private/api/rest/utility/geocode/key?callback=setGoogleApiKey"></script>
 <script type="text/javascript">
-            window["sap-ui-config"] = {
-                theme: oUserData.preference.theme,
-                language: oUserData.preference.language
-            };
-
+    window["sap-ui-config"] = {
+        theme: oUserData.preference.theme,
+        language: oUserData.preference.language
+    };
 </script>
 
 <script id="sap-ui-bootstrap"
@@ -73,26 +73,25 @@
         data-sap-ui-libs="sap.m,sap.ui.layout,sap.ui.unified,openui5.googlemaps"
         data-sap-ui-preload="async"
         data-sap-ui-compatVersion="edge"
-        data-sap-ui-resourceroots='{"spet.sbwo.web": "", "openui5.googlemaps": "/lib/googlemaps"}'>
+        data-sap-ui-resourceroots='{"spet.sbwo.web.private": "", "openui5.googlemaps": "/lib/googlemaps"}'>
 </script>
 
 <script type="text/javascript">
-            sap.ui.getCore().attachInit(function() {
-                sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
-                    new MapsApi({
-                        language: oUserData.preference.language,
-                        apiKey: sGoogleApiKey
-                    }).load();
-                    new Shell({
-                        backgroundImage: "/public/images/background.jpg",
-                        app: new sap.ui.core.ComponentContainer({
-                            height : "100%",
-                            name : "spet.sbwo.web"
-                        })
-                    }).placeAt("content");
+    sap.ui.getCore().attachInit(function() {
+        sap.ui.require(["sap/m/Shell", "openui5/googlemaps/MapsApi"], function(Shell, MapsApi) {
+            new MapsApi({
+                language: oUserData.preference.language,
+                apiKey: sGoogleApiKey
+            }).load();
+            new Shell({
+                backgroundImage: "/public/images/background.jpg",
+                app: new sap.ui.core.ComponentContainer({
+                    height : "100%",
+                    name : "spet.sbwo.web.private"
                 })
-            });
-
+            }).placeAt("content");
+        })
+    });
 </script>
 
 </body>

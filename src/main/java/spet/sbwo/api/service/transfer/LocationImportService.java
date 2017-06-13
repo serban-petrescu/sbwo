@@ -14,7 +14,6 @@ import javax.ws.rs.PathParam;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Path("/import")

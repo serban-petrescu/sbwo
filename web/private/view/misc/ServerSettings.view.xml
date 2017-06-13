@@ -1,5 +1,5 @@
-<mvc:View controllerName="spet.sbwo.web.controller.misc.ServerSettings" xmlns:f="sap.ui.layout.form"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util">
+<mvc:View controllerName="spet.sbwo.web.private.controller.misc.ServerSettings" xmlns:f="sap.ui.layout.form"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util">
     <Page id="pagServerSettings"
         title="{i18n>pagServerSettingsTitle}"
         showNavButton="true"
@@ -21,16 +21,16 @@
                                 <f:ResponsiveGridLayout labelSpanL="4" labelSpanM="5" emptySpanL="4" emptySpanM="2"
                                                         columnsL="1" columnsM="1"/>
                             </f:layout>
-                            <core:Fragment fragmentName="spet.sbwo.web.fragment.display.ServerSettings" type="XML"/>
-                            <core:Fragment fragmentName="spet.sbwo.web.fragment.edit.ServerSettings" type="XML"/>
+                            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.display.ServerSettings" type="XML"/>
+                            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.edit.ServerSettings" type="XML"/>
                         </f:Form>
                     </ScrollContainer>
                 </IconTabFilter>
                 <IconTabFilter text="{i18n>itfServerSettingsLogsText}">
-                    <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerLogs" type="XML"/>
+                    <core:Fragment fragmentName="spet.sbwo.web.private.fragment.misc.ServerLogs" type="XML"/>
                 </IconTabFilter>
                 <IconTabFilter text="{i18n>itfServerSettingsSchedulesText}">
-                    <core:Fragment fragmentName="spet.sbwo.web.fragment.misc.ServerSchedules" type="XML"/>
+                    <core:Fragment fragmentName="spet.sbwo.web.private.fragment.misc.ServerSchedules" type="XML"/>
                 </IconTabFilter>
             </items>
         </IconTabBar>
@@ -46,7 +46,7 @@
         </footer>
 
         <dependents>
-            <mvc:XMLView viewName="spet.sbwo.web.view.misc.FileExplorer" id="viewFileExporer"/>
+            <mvc:XMLView viewName="spet.sbwo.web.private.view.misc.FileExplorer" id="viewFileExporer"/>
         </dependents>
     </Page>
 </mvc:View>

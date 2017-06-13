@@ -1,12 +1,12 @@
-<mvc:View controllerName="spet.sbwo.web.controller.entity.Expertise" xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.util"
+<mvc:View controllerName="spet.sbwo.web.private.controller.entity.Expertise" xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:spet="spet.sbwo.web.private.util"
         xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
     <Page id="pagEntity"
         title="{
             parts: [{path: 'view>/loaded'}, {path: 'i18n>pagEntityLoadingTitle'},
                 {path: 'i18n>pagEntityExpertisePatternTitle'}, {path: 'data>/number'}
             ],
-            formatter: 'spet.sbwo.web.model.formatter.entityPageTitle'
+            formatter: 'spet.sbwo.web.private.model.formatter.entityPageTitle'
         }"
         busy="{= !${view>/loaded} }"
         busyIndicatorDelay="500"
@@ -36,7 +36,7 @@
             <headerContainer>
                 <IconTabBar class="sapUiResponsiveContentPadding">
                     <items>
-                        <core:Fragment fragmentName="spet.sbwo.web.fragment.entity.ExpertiseTabs" type="XML"/>
+                        <core:Fragment fragmentName="spet.sbwo.web.private.fragment.entity.ExpertiseTabs" type="XML"/>
                     </items>
                 </IconTabBar>
             </headerContainer>
@@ -59,9 +59,9 @@
         </footer>
 
         <dependents>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.ViewCourtSystemCase" type="XML"
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.ViewCourtSystemCase" type="XML"
                             binding="{view>/case}"/>
-            <core:Fragment fragmentName="spet.sbwo.web.fragment.dialog.LocationMapDialog" type="XML"
+            <core:Fragment fragmentName="spet.sbwo.web.private.fragment.dialog.LocationMapDialog" type="XML"
                             binding="{data>/location}"/>
         </dependents>
     </Page>

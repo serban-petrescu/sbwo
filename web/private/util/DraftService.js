@@ -1,75 +1,89 @@
-sap.ui.define(["jquery.sap.storage"], function() {
-    var oLocal,
-        bStorage;
+sap.ui.define(["jquery.sap.storage", "jquery.sap.global"], function (_jquerySap, _jquerySap3) {
+    "use strict";
+
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    var _jquerySap4 = _interopRequireDefault(_jquerySap3);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    var oLocal = void 0,
+        bStorage = void 0,
+        oExport = void 0;
 
     try {
-        oLocal = jQuery.sap.storage("local", "draft");
+        oLocal = (0, _jquerySap2.default)("local", "draft");
         bStorage = oLocal.isSupported();
-    } catch(e) {
+    } catch (e) {
         bStorage = false;
     }
 
     if (bStorage) {
-        return {
-            load: function(sKey) {
-                var oDeferred = jQuery.Deferred(),
+        oExport = {
+            load: function load(sKey) {
+                var oDeferred = _jquerySap4.default.Deferred(),
                     oResult;
                 try {
                     oResult = JSON.parse(oLocal.get(sKey)) || null;
-                }
-                catch (e) {
+                } catch (e) {
                     oResult = null;
                 }
                 oDeferred.resolve(oResult);
                 return oDeferred.promise();
             },
-
-            save: function(sKey, oData) {
-                var oDeferred = jQuery.Deferred(),
+            save: function save(sKey, oData) {
+                var oDeferred = _jquerySap4.default.Deferred(),
                     oResult;
                 try {
                     oResult = oLocal.put(sKey, JSON.stringify(oData));
-                }
-                catch (e) {
+                } catch (e) {
                     oResult = false;
                 }
                 oDeferred.resolve(oResult);
                 return oDeferred.promise();
             },
-
-            remove: function(sKey) {
-                var oDeferred = jQuery.Deferred(),
+            remove: function remove(sKey) {
+                var oDeferred = _jquerySap4.default.Deferred(),
                     oResult;
                 try {
                     oResult = oLocal.remove(sKey);
-                }
-                catch (e) {
+                } catch (e) {
                     oResult = false;
                 }
                 oDeferred.resolve(oResult);
                 return oDeferred.promise();
             }
         };
-    }
-    else {
-        return  {
-            load: function() {
-                var oDeferred = jQuery.Deferred();
+    } else {
+        oExport = {
+            load: function load() {
+                var oDeferred = _jquerySap4.default.Deferred();
                 oDeferred.resolve(null);
                 return oDeferred.promise();
             },
-
-            save: function() {
-                var oDeferred = jQuery.Deferred();
+            save: function save() {
+                var oDeferred = _jquerySap4.default.Deferred();
                 oDeferred.resolve(true);
                 return oDeferred.promise();
             },
-
-            remove: function() {
-                var oDeferred = jQuery.Deferred();
+            remove: function remove() {
+                var oDeferred = _jquerySap4.default.Deferred();
                 oDeferred.resolve(true);
                 return oDeferred.promise();
             }
         };
     }
+
+    exports.default = oExport;
+    return exports.default;
 });
+//# sourceMappingURL=DraftService.js.map

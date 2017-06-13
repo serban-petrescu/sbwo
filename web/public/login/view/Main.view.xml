@@ -1,4 +1,4 @@
-<mvc:View controllerName="login.view.Main" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="spet.sbwo.web.public.login.view.Main" xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
         height="100%">
     <App backgroundImage="../images/background.jpg">

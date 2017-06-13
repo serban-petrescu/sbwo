@@ -11,13 +11,13 @@
                 <Text text="{data>title}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblExpertiseStatusText}">
-                <Text text="{path: 'data>status', formatter: 'spet.sbwo.web.model.formatter.expertiseStatus'}"/>
+                <Text text="{path: 'data>status', formatter: 'spet.sbwo.web.private.model.formatter.expertiseStatus'}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblExpertiseResponsibleText}" visible="{= !!${data>responsible/username} }">
                 <Text text="{data>responsible/username}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblExpertiseNextHearingText}" visible="{= !!${data>nextHearing} }">
-                <Text text="{path: 'data>nextHearing', formatter: 'spet.sbwo.web.model.formatter.date'}"/>
+                <Text text="{path: 'data>nextHearing', formatter: 'spet.sbwo.web.private.model.formatter.date'}"/>
             </f:FormElement>
             <f:FormElement label="{i18n>lblExpertiseTariffAdvanceText}" visible="{= !!${data>advance} }">
                 <Text text="{path: 'data>advance', type: 'sap.ui.model.odata.type.Decimal'}"/>

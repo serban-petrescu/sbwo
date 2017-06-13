@@ -1,28 +1,36 @@
-sap.ui.define([
-    "./Base",
-    "spet/sbwo/web/controller/facade/ExpertiseEdit"
-], function(Base, ExpertiseEdit) {
+sap.ui.define(["./Base", "spet/sbwo/web/private/controller/mixin/ExpertiseEdit", "jquery.sap.global"], function (_Base, _ExpertiseEdit, _jquerySap) {
     "use strict";
 
-    var sBaseApiPath = "/private/api/rest/expertise";
+    var exports = {};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
 
-    return Base.extend("spet.sbwo.web.controller.wizard.ExpertiseCreate", jQuery.extend({}, ExpertiseEdit, {
+    var _Base2 = _interopRequireDefault(_Base);
 
-        getEntityRoute: function() {
+    var _ExpertiseEdit2 = _interopRequireDefault(_ExpertiseEdit);
+
+    var _jquerySap2 = _interopRequireDefault(_jquerySap);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    exports.default = _Base2.default.extend("spet.sbwo.web.private.controller.wizard.ExpertiseCreate", _jquerySap2.default.extend({}, _ExpertiseEdit2.default, {
+        getEntityRoute: function getEntityRoute() {
             return "expertise";
         },
-
-        getCreateApiPath: function() {
-            return sBaseApiPath + "/create";
+        getCreateApiPath: function getCreateApiPath() {
+            return "/private/api/rest/expertise/create";
         },
-
-        onInit: function() {
-            Base.prototype.onInit.apply(this, arguments);
+        onInit: function onInit() {
+            _Base2.default.prototype.onInit.apply(this, arguments);
             this.getRouter().getRoute("expertise-create").attachPatternMatched(this.onRouteMatched, this);
             this.byId("dlgCourtCase").addStyleClass(this.getOwnerComponent().getContentDensityClass());
         },
-
-        getInitialDataModelContent: function() {
+        getInitialDataModelContent: function getInitialDataModelContent() {
             return {
                 number: "",
                 title: "",
@@ -39,49 +47,42 @@ sap.ui.define([
                 }
             };
         },
-
-        getInitialViewModelContent: function() {
+        getInitialViewModelContent: function getInitialViewModelContent() {
             return {
-                draft: "Clear",
+                "draft": "Clear",
                 "case": null,
-                wizard: {
+                "wizard": {
                     step: 0,
                     validity: [true, true, true]
                 }
             };
         },
-
-        getCaseNumberInput: function() {
+        getCaseNumberInput: function getCaseNumberInput() {
             return this.byId("inpCaseNumber");
         },
-
-        restoreDraft: function() {
-            Base.prototype.restoreDraft.apply(this, arguments);
+        restoreDraft: function restoreDraft() {
+            _Base2.default.prototype.restoreDraft.apply(this, arguments);
             this.onLoadCase();
         },
-
-        onCaseLoaded: function() {
-            ExpertiseEdit.onCaseLoaded.apply(this, arguments);
+        onCaseLoaded: function onCaseLoaded() {
+            _ExpertiseEdit2.default.onCaseLoaded.apply(this, arguments);
             this.saveDraft();
         },
-
-        onCourtLoaded: function() {
-            ExpertiseEdit.onCourtLoaded.apply(this, arguments);
+        onCourtLoaded: function onCourtLoaded() {
+            _ExpertiseEdit2.default.onCourtLoaded.apply(this, arguments);
             this.saveDraft();
         },
-
-        onCourtClear: function() {
-            ExpertiseEdit.onCourtClear.apply(this, arguments);
+        onCourtClear: function onCourtClear() {
+            _ExpertiseEdit2.default.onCourtClear.apply(this, arguments);
             this.saveDraft();
         },
-
-        onOpenCourtCaseDialog: function() {
+        onOpenCourtCaseDialog: function onOpenCourtCaseDialog() {
             this.byId("dlgCourtCase").open();
         },
-
-        onCloseCourtCaseDialog: function() {
+        onCloseCourtCaseDialog: function onCloseCourtCaseDialog() {
             this.byId("dlgCourtCase").close();
         }
     }));
-
+    return exports.default;
 });
+//# sourceMappingURL=ExpertiseCreate.controller.js.map
