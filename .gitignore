@@ -26,4 +26,5 @@
 **.js
 **.js.map
 !**.es6.js
+!Gruntfile.js
 
